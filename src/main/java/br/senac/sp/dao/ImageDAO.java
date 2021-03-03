@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.logging.Level;
 /**
  *
  * @author luans
@@ -30,7 +31,7 @@ public class ImageDAO {
 
             conexao = ConexaoDB.abrirConexao();
                 
-            instrucaoSQL = conexao.prepareStatement("insert into product_img(prod_id,img_path,status_img,date_register)values(?,?,'a',now());", Statement.RETURN_GENERATED_KEYS);
+            instrucaoSQL = conexao.prepareStatement("insert into product_img(prod_id,path_img,status_img,date_register)values(?,?,'a',now());", Statement.RETURN_GENERATED_KEYS);
 
             instrucaoSQL.setInt(1, idProduto);
             instrucaoSQL.setString(2, image);
@@ -73,7 +74,7 @@ public class ImageDAO {
         try {
             conexao = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("update image set status_img = 'i' where img_id=? and status_img = 'a';");
+            instrucaoSQL = conexao.prepareStatement("update product_img set status_img = 'i' where img_id=? and status_img = 'a';");
 
             instrucaoSQL.setInt(1, imageId);
             int linhasAfetadas = instrucaoSQL.executeUpdate();
@@ -112,41 +113,24 @@ public class ImageDAO {
 
             connection = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = connection.prepareStatement("select * from image where status_img='a' and prod_id=?");
+            instrucaoSQL = connection.prepareStatement("select * from product_img where status_img='a' and prod_id=?");
             instrucaoSQL.setInt(1, productId);
             rs = instrucaoSQL.executeQuery();
             while (rs.next()) {
                 int imageId = rs.getInt("img_id");
-                Blob blob = rs.getBlob("img");
+                String path = rs.getString("path_img");
                 int pId = rs.getInt("prod_id");
                 String status = rs.getString("status_img");
                 String timestamp = rs.getString("date_register");
+                    
                 
-                InputStream inputStream = blob.getBinaryStream();
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                byte[] buffer = new byte[4096];
-                int bytesRead = -1;
-                 
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);                  
-                }
-                 
-                byte[] imageBytes = outputStream.toByteArray();
-                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-                 
-                 
-                inputStream.close();
-                outputStream.close();
-                
-                
-                
-                Image image = new Image(imageId,pId,base64Image,status,timestamp);
+                Image image = new Image(imageId,pId,path,status,timestamp);
                 imageList.add(image);
             }
         } catch (ClassNotFoundException ex) {
             //Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            //  Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+           // Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return imageList;
     }
