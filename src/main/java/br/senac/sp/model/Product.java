@@ -15,24 +15,34 @@ public class Product {
     private String productName;
     private String productFullName;
     private double price;
-    private String description;
     private int quantity;
     private int stars;
+    private String status;
 
 
-    public Product(int productId, String productName, String productFullName, double price, String description, int quantity, int stars) {
+    public Product(int productId, String productName, String productFullName, double price, int quantity, int stars, String status) {
         try {
             this.productId = productId;
             this.productName = productName;
             this.productFullName = productFullName;
             this.price = price;
-            this.description = description;
             this.quantity = quantity;
             this.stars = stars;
+            this.status = status;
         } catch (Exception e) {
             System.out.println("There was an error building the product object");
             System.out.println("Full error message: {" + e.getLocalizedMessage() + "}");
         }
     }
+
+    public Product() {
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" + "productId=" + productId + ", productName=" + productName + ", productFullName=" + productFullName + ", price=" + price + ", quantity=" + quantity + ", stars=" + stars + '}';
+    }
+    
+    
 
 }
