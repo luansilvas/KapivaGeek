@@ -37,6 +37,7 @@ public class Product_Servlet_Save extends HttpServlet {
 
         request.setAttribute("newProduct", newProduct);
         RequestDispatcher dispacher = request.getRequestDispatcher("/cadastrarImagem.jsp");
+       
         dispacher.forward(request, response);
 
     }
@@ -70,7 +71,7 @@ public class Product_Servlet_Save extends HttpServlet {
 
         ProductDAO dao = new ProductDAO();
         Product newProduct = new Product();
-
+       
         try {
             newProduct.setProductName(productNameStr);
             newProduct.setProductFullName(longNameStr);
@@ -78,7 +79,8 @@ public class Product_Servlet_Save extends HttpServlet {
             newProduct.setQuantity(Integer.parseInt(stockStr));
             newProduct.setPrice(Double.parseDouble(priceStr));
             newProduct.setStatus(statusStr);
-            dao.addNewProduct(newProduct);
+           int b = dao.addNewProduct(newProduct);
+            System.out.println(b);
         } catch (SQLException ex) {
             System.out.println(ex);
         } catch (ClassNotFoundException ex) {

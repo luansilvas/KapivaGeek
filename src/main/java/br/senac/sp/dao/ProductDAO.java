@@ -9,21 +9,26 @@ import bd.ConexaoDB;
 import br.senac.sp.model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
 /**
  *
  * @author Gabriel
  */
 public class ProductDAO {
     
-    public void addNewProduct (Product prod) throws SQLException, ClassNotFoundException{
-        String sql = "Insert into products(name_prod,long_name,amount_stars,status_prod,stock,price,date_register) values (?,?,?,?,?,?,sysdate());";
+    public int addNewProduct (Product prod) throws SQLException, ClassNotFoundException{
         
+        
+        String sql = "Insert into products(name_prod,long_name,amount_stars,status_prod,stock,price,date_register) values (?,?,?,?,?,?,sysdate());";
+         int idProd = 0;
         try (Connection conn = ConexaoDB.abrirConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
 
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try (PreparedStatement stmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setString(1, prod.getProductName());
                 stmt.setString(2, prod.getProductFullName());
                 stmt.setString(3, String.valueOf(prod.getStars()));
@@ -31,6 +36,15 @@ public class ProductDAO {
                 stmt.setString(5, String.valueOf(prod.getQuantity()));
                 stmt.setString(6, String.valueOf(prod.getPrice()));
                 stmt.executeUpdate();
+                
+                ResultSet generatedKeys = stmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    idProd = generatedKeys.getInt(1);
+                     prod.setProductId(generatedKeys.getInt(1));
+
+                } else {
+                    throw new SQLException("Falha ao obter o código do Pedido.");
+                }
 
                 System.out.println("Cadastrado com secesso");
 
@@ -42,6 +56,7 @@ public class ProductDAO {
             }
 
         }
+        return idProd;
     }
     
 }

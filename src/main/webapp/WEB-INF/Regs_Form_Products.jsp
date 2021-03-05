@@ -16,6 +16,7 @@
         <section id="main">
             <form method="post" action="Product-Salvar" novalidate>
                 <h1></h1>
+                
                 <div>
                     <label>Nome do Produto</label>
                     <input type="text" name="product-name" >
@@ -49,11 +50,13 @@
                     <input type="text" name="price">
                 </div>
                 
-                <div>
+                <div >
                     <button type="reset">Cancelar</button>
                     <button type="submit">Cadastrar - Ir Imagens</button>
                 </div>
-                
+                <div>
+                    <input type="text" name="codProdudo" value="${newProduct.getProductId()}">
+                </div>
                 
                 
             </form>
