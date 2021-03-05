@@ -88,7 +88,6 @@ public class Product_Servlet_Save extends HttpServlet {
         }
         response.sendRedirect("UploadImageServlet?codProduto="+productId);
 
-                //
 
                 //request.setAttribute("add", "Produto Registrado");
                 //HttpSession sessao = request.getSession();
