@@ -12,6 +12,15 @@
         <servlet-name>DeleteImageServlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.DeleteImageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Product_Servlet_Save</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Product_Servlet_Save</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Product_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Product_Servlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>SaveImageServlet</servlet-name>
         <url-pattern>/SaveImageServlet</url-pattern>
@@ -24,6 +33,16 @@
         <servlet-name>DeleteImageServlet</servlet-name>
         <url-pattern>/DeleteImageServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Product_Servlet</servlet-name>
+        <url-pattern>/Product_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Product_Servlet_Save</servlet-name>
+        <url-pattern>/Product_Servlet_Save</url-pattern>
+    </servlet-mapping>
+    
+    
     <session-config>
         <session-timeout>
             30

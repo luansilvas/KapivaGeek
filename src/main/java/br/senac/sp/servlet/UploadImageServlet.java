@@ -34,7 +34,7 @@ public class UploadImageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int productId = Integer.parseInt(request.getParameter("codProduto"));
-        System.out.println("passou pelo get");
+
         List<Image> imageList = new ArrayList();
         imageList = ImageDAO.getImages(productId);
         request.setAttribute("imageList", imageList);
@@ -49,7 +49,7 @@ public class UploadImageServlet extends HttpServlet {
         String caminho = null;
         InputStream conteudoArquivo = null;
         Path destino = null;
-        //int codProduto = Integer.parseInt(request.getParameter("codProduto"));
+        int codProduto = Integer.parseInt(request.getParameter("productId"));
         Part arquivo = request.getPart("image");
 
         if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
@@ -58,7 +58,7 @@ public class UploadImageServlet extends HttpServlet {
             conteudoArquivo = arquivo.getInputStream();
             destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
             caminho = "C:/PI-FOTOS/" + nomeArquivo;
-            ImageDAO.addImage(1, caminho);
+            ImageDAO.addImage(codProduto, caminho);
 
             Files.copy(conteudoArquivo, destino);
 

@@ -14,7 +14,7 @@
     </head>
     <body>
 
-        <a href="<c:url value="/UploadImageServlet?codProduto=1"/>"
+        <a href="<c:url value="/Product_Servlet"/>"
            cadastrarimagem
         </a>
            
