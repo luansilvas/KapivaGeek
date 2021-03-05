@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>SaveImageServlet</servlet-name>
-        <servlet-class>br.senac.sp.servlet.SaveImageServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>UploadImageServlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.UploadImageServlet</servlet-class>
     </servlet>
@@ -20,11 +16,6 @@
         <servlet-name>Product_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.Product_Servlet</servlet-class>
     </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>SaveImageServlet</servlet-name>
-        <url-pattern>/SaveImageServlet</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -41,8 +32,6 @@
         <servlet-name>Product_Servlet_Save</servlet-name>
         <url-pattern>/Product_Servlet_Save</url-pattern>
     </servlet-mapping>
-    
-    
     <session-config>
         <session-timeout>
             30
