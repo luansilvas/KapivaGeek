@@ -38,6 +38,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>listarProdutos.jsp</welcome-file>
+        <welcome-file>cadastrarImagem.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

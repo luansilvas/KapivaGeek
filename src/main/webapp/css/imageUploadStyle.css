@@ -1,0 +1,38 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06/03/2021, 16:07:35
+    Author     : luans
+*/
+body{
+    margin-top:20%;
+    margin-left: 15%;
+    margin-right: 15%;
+
+}
+#custom-button{
+    border: white;
+    background-color: white;
+}
+
+#custom-button:hover{
+    background: white;
+}
+#custom-text{
+
+}
+#escolhaArquivoLabel{
+    float: left;
+}
+
+.search-field{
+    border:1px solid black;
+    width: 60%;
+    height: 20px;
+    float: left;
+
+}
+  

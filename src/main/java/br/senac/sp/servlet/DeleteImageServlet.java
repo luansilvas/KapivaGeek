@@ -26,7 +26,7 @@ public class DeleteImageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         System.out.println("ENTROU NO SERVLET DE EXCLUIR");
         String toBeDeleted[] = request.getParameterValues("deleteSelected");
         int productId = Integer.parseInt(request.getParameter("productId"));
@@ -35,13 +35,20 @@ public class DeleteImageServlet extends HttpServlet {
 
             ImageDAO.deleteImage(Integer.parseInt(toBeDeleted[i]));
         }
-        
-        
+
         List<Image> imageList = new ArrayList();
         imageList = ImageDAO.getImages(productId);
         request.setAttribute("imageList", imageList);
         request.setAttribute("productId", productId);
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/cadastrarImagem.jsp");
+
+        String page = "/cadastrarImagem.jsp";
+
+        if (imageList.size() > 0) {
+            page = "/adicionarImagem.jsp";
+        } else {
+            page = "/cadastrarImagem.jsp";
+        }
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(page);
         requestDispatcher.forward(request, response);
 
     }
