@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04/03/2021, 23:51:37
+    Author     : Gabriel
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+.containerMain{
+
+    width: 800px;
+    margin: 0 auto;
+    position: absolute;
+    right: 300px;;
+    bottom: 200px;  
+}
+
+fieldset legend{
+
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;  
+    text-align: center;
+}
+
+
+.divsForm{
+    margin: 5px 0;
+}
+.divsForm label{
+
+}
+
+#Botoes {
+
+    width: 40%;
+    text-align: right;
+    right: 0;
+
+}
+
+.divsForm input{
+    margin: 0 auto;
+}

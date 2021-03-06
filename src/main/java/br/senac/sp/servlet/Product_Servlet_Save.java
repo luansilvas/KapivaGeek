@@ -54,13 +54,27 @@ public class Product_Servlet_Save extends HttpServlet {
         String statusStr = request.getParameter("status");
 
         boolean validProductName = (productNameStr.trim().length() > 3 && productNameStr != null);//Validação Nome do produto
-
-        boolean validFields = validProductName;
+        
+        boolean validLongName = (longNameStr.trim().length() <= 2000);
+        
+        boolean validStarsValue = starsStr.matches("[0-9]+");
+        
+        boolean validStockValue = stockStr.matches("[0-9]+");
+        
+        boolean ValidStatus = starsStr.trim().length()>0;
+        
+       
+        
+        boolean validFields = validProductName && validLongName && validStarsValue && validStockValue && ValidStatus;
 
         if (!validFields) {
 
             if (!validProductName) {
                 request.setAttribute("ProductNameError", "O campo nome do produto deve ter mais de 3 caracters");
+            }
+            
+            if(!validStarsValue){
+                request.setAttribute("StarsValueError", "Este campo aceita apenas números");
             }
 
             request.setAttribute("product-name", productNameStr);
