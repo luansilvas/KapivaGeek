@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
+import java.util.ArrayList;
 /**
  *
  * @author Gabriel
@@ -57,6 +58,54 @@ public class ProductDAO {
 
         }
         return idProd;
+    }
+    
+    public ArrayList<Product> findProduct(){
+        String sql = "select * from products_list";
+        ArrayList<Product>prodBd = new ArrayList<>();
+        
+        
+         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+             
+             
+            while (rs.next()) {// enquanto tiver empresas adiciona no array
+
+                Product prod = new Product();
+                prod.setProductId(rs.getInt("prod_id"));
+                prod.setProductName(rs.getString("name_prod"));
+                prod.setQuantity(rs.getInt("stock"));
+                prod.setStatus(rs.getString("status_prod"));
+                prodBd.add(prod);
+            }    
+         } catch(ClassNotFoundException ex){
+             System.out.println(ex);
+         } catch(SQLException ex){
+             System.out.println(ex);
+         }   
+         
+         return prodBd;
+    }
+    
+    public Product findProductById(int idProd) throws SQLException, ClassNotFoundException{
+          String sql = "select * from products_list where prod_id ?";
+           Product prod = new Product();
+            try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setInt(1, idProd);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                   
+                prod.setProductId(rs.getInt("prod_id"));
+                prod.setProductName(rs.getString("name_prod"));
+                prod.setQuantity(rs.getInt("stock"));
+                prod.setStatus(rs.getString("status_prod"));
+                }
+
+            }
+        }
+            return prod;
     }
     
 }
