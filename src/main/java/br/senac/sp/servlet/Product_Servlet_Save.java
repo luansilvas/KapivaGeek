@@ -57,7 +57,7 @@ public class Product_Servlet_Save extends HttpServlet {
         
         boolean validLongName = (longNameStr.trim().length() <= 2000);
         
-        boolean validStarsValue = starsStr.matches("[0-9]+");
+        boolean validStarsValue = starsStr.matches("[0-9]+") && starsStr.trim().length()<=5;
         
         boolean validStockValue = stockStr.matches("[0-9]+");
         

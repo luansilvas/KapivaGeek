@@ -16,8 +16,16 @@ and open the template in the editor.
     width: 800px;
     margin: 0 auto;
     position: absolute;
-    right: 300px;;
+    right: 300px;
     bottom: 200px;  
+}
+.containerList{
+
+    width: 800px;
+    margin: 0 auto;
+    position: absolute;
+    right: 300px;
+    bottom: 300px;     
 }
 
 fieldset legend{
@@ -26,11 +34,35 @@ fieldset legend{
     font-size: 20px;  
     text-align: center;
 }
+fieldset table{
+    margin: 0 auto;
+    text-align: center;
+    
+    
+}
 
+fieldset{
+    margin: 0 auto;
+    witdth: 500px;
+}
+
+body{
+    margin: 0 auto;
+    witdth: 500px;
+}
+#input{
+    margin-left: 30%;	
+    margin-top: 10px;
+}
+#setas{
+    text-align: center;
+    margin-top: 15px;
+}
 
 .divsForm{
     margin: 5px 0;
 }
+
 .divsForm label{
 
 }

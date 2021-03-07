@@ -15,54 +15,61 @@
     </head>
     <body>
         <section id="main" class="containerMain">
-            <fieldset>
-                <legend>Produto</legend>
-                <form method="post" action="Product-Salvar" novalidate class="form">
-                <h1></h1>
-                
-                <div class="divsForm">
-                    <label>Nome do Produto:</label>
-                    <br>
-                    <input type="text" name="product-name" >
-                   
-                </div>
-                <div id="nomeExtenso" class="divsForm">
-                    <label>Nome Extenso:</label>
-                      <br>
-                    <textarea name="long-name" rows="4" cols="50" ></textarea>
-                </div>
-                <div class="divsForm">
-                    <label>Quantidade de estrelas:</label>
-                     <br>
-                    <input type="text" name="stars">
-                    
 
-                </div>
-                <div class="divsForm">
-                    <label>Status:</label>
-                     <br>
-                    <select id="" name="status">
-                        <option value="Ativo">Escolha...</option>
-                        <option value="Ativo">Ativo</option>
-                        <option value="Inativo">Inativo</option>
-                    </select>
-                </div>
-                <div class="divsForm">
-                    <label>Quantidade estoque</label>
-                     <br>
-                    <input type="text" name="stock">
-                </div>
-                <div class="divsForm">
-                    <label>Preço:</label>
-                     <br>
-                    <input type="text" name="price">
-                </div>
-                  </fieldset>
-            <div id="Botoes" class="divsForm" >
-                    <button type="reset">Cancelar</button>
-                    <button type="submit">Alterar - Ir Imagens</button>
-                </div>              
+            <form method="post" action="AlterarProduto" class="form">
+                <fieldset>
+                    <input type="hidden" name="Product-id" value="${id}">
+                    <legend>Produto</legend>
+                    <h1></h1>
+
+                    <div class="divsForm">
+                        <label>Nome do Produto:</label>
+                        <br>
+                        <input type="text" name="product-name" value="${res.getProductName()}" >
+                        <c:if
+                            test="${ProductNameError != null}">
+                            <span><c:out value="${ProductNameError}" /></span>
+                        </c:if>
+
+                    </div>
+                    <div id="nomeExtenso" class="divsForm">
+                        <label>Nome Extenso:</label>
+                        <br>
+                        <textarea name="long-name" rows="4" cols="50" >${res.getProductFullName()}</textarea>
+                    </div>
+                    <div class="divsForm">
+                        <label>Quantidade de estrelas:</label>
+                        <br>
+                        <input type="number" name="stars"  max="5"value="${res.getStars()}">
+                        <c:if test="${StarsValueError != null}">
+                            <span><c:out value="${StarsValueError}"/></span>
+                        </c:if>
+                    </div>
+                    <div class="divsForm">
+                        <label>Status:</label>
+                        <br>
+                        <input type="text" name="status" value="${res.getStatus()}" disabled>
+
+                    </div>
+                    <div class="divsForm">
+                        <label>Quantidade estoque</label>
+                        <br>
+                        <input type="text" name="stock" value="${res.getQuantity()}">
+                    </div>
+                    <div class="divsForm">
+                        <label>Preço:</label>
+                        <br>
+                        <input type="text" name="price" value="${res.getPrice()}">
+                    </div>
+                    
+                </fieldset>
+                    <div id="Botoes" class="divsForm" >
+                        <button type="reset">Cancelar</button>
+                        <button type="submit">Alterar - Ir Imagens</button>
+                    </div>  
             </form>
+
+
         </section>
     </body>
 </html>
