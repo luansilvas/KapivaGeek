@@ -14,22 +14,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 import java.util.ArrayList;
+
 /**
  *
  * @author Gabriel
  */
 public class ProductDAO {
-    
-    public int addNewProduct (Product prod) throws SQLException, ClassNotFoundException{
-        
-        
+
+    public int addNewProduct(Product prod) throws SQLException, ClassNotFoundException {
+
         String sql = "Insert into products(name_prod,long_name,amount_stars,status_prod,stock,price,date_register) values (?,?,?,?,?,?,sysdate());";
-         int idProd = 0;
+        int idProd = 0;
         try (Connection conn = ConexaoDB.abrirConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
 
-            try (PreparedStatement stmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setString(1, prod.getProductName());
                 stmt.setString(2, prod.getProductFullName());
                 stmt.setString(3, String.valueOf(prod.getStars()));
@@ -37,11 +37,11 @@ public class ProductDAO {
                 stmt.setString(5, String.valueOf(prod.getQuantity()));
                 stmt.setString(6, String.valueOf(prod.getPrice()));
                 stmt.executeUpdate();
-                
+
                 ResultSet generatedKeys = stmt.getGeneratedKeys();
                 if (generatedKeys.next()) {
                     idProd = generatedKeys.getInt(1);
-                     prod.setProductId(generatedKeys.getInt(1));
+                    prod.setProductId(generatedKeys.getInt(1));
 
                 } else {
                     throw new SQLException("Falha ao obter o código do Pedido.");
@@ -59,16 +59,14 @@ public class ProductDAO {
         }
         return idProd;
     }
-    
-    public ArrayList<Product> findProduct(){
+
+    public ArrayList<Product> findProduct() {
         String sql = "select prod_id,name_prod,stock,status_prod from products";
-        ArrayList<Product>prodBd = new ArrayList<>();
-        
-        
-         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+        ArrayList<Product> prodBd = new ArrayList<>();
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
-             
-             
+
             while (rs.next()) {// enquanto tiver empresas adiciona no array
 
                 Product prod = new Product();
@@ -77,35 +75,64 @@ public class ProductDAO {
                 prod.setQuantity(rs.getInt("stock"));
                 prod.setStatus(rs.getString("status_prod"));
                 prodBd.add(prod);
-            }    
-         } catch(ClassNotFoundException ex){
-             System.out.println(ex);
-         } catch(SQLException ex){
-             System.out.println(ex);
-         }   
-         
-         return prodBd;
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return prodBd;
     }
-    
-    public Product findProductById(int idProd) throws SQLException, ClassNotFoundException{
-          String sql = "select * from products_list where prod_id= ?";
-           Product prod = new Product();
-            try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+
+    public Product findProductById(int idProd) throws SQLException, ClassNotFoundException {
+        String sql = "select * from products_list where prod_id= ?";
+        Product prod = new Product();
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setInt(1, idProd);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                   
-                prod.setProductId(rs.getInt("prod_id"));
-                prod.setProductName(rs.getString("name_prod"));
-                prod.setQuantity(rs.getInt("stock"));
-                prod.setStatus(rs.getString("status_prod"));
+
+                    prod.setProductId(rs.getInt("prod_id"));
+                    prod.setProductName(rs.getString("name_prod"));
+                    prod.setQuantity(rs.getInt("stock"));
+                    prod.setStatus(rs.getString("status_prod"));
                 }
 
             }
         }
-            return prod;
+        return prod;
     }
-    
+
+    public ArrayList<Product> findProduct(String pesquisa) {
+        String sql = "select * from products where name_prod= ?";
+        ArrayList<Product> prodBd = new ArrayList<>();
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, pesquisa);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {// enquanto tiver empresas adiciona no array
+
+                    Product prod = new Product();
+                    prod.setProductId(rs.getInt("prod_id"));
+                    prod.setProductName(rs.getString("name_prod"));
+                    prod.setQuantity(rs.getInt("stock"));
+                    prod.setStatus(rs.getString("status_prod"));
+                    prodBd.add(prod);
+                }
+            }
+
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return prodBd;
+    }
+
 }
