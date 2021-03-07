@@ -27,6 +27,7 @@ public class Product_Servlet extends HttpServlet {
             throws ServletException, IOException {
          RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Regs_Form_Products.jsp");
         dispatcher.forward(request, response);
+        
        
     }
 

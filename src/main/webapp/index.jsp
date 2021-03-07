@@ -14,7 +14,7 @@
     </head>
     <body>
 
-        <a href="<c:url value="/ProductList_Servlet"/>"
+        <a href="<c:url value="/ProductVisualizeServlet?productId=1"/>"
            cadastrarimagem
         </a>
            

@@ -16,6 +16,10 @@ public class Image {
     private String path;
     private String status;
     private String timestamp;
+    
+    
+    
+    public Image(){}
 
     public Image(int imageId, int productId, String path, String Status, String timestamp) {
         this.imageId = imageId;

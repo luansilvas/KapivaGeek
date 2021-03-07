@@ -88,7 +88,7 @@ public class ProductDAO {
     }
     
     public Product findProductById(int idProd) throws SQLException, ClassNotFoundException{
-          String sql = "select * from products_list where prod_id= ?";
+          String sql = "select * from products where prod_id = ?";
            Product prod = new Product();
             try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -99,8 +99,12 @@ public class ProductDAO {
                    
                 prod.setProductId(rs.getInt("prod_id"));
                 prod.setProductName(rs.getString("name_prod"));
-                prod.setQuantity(rs.getInt("stock"));
+                prod.setProductFullName(rs.getString("long_name"));
+                prod.setStars(rs.getInt("amount_stars"));
                 prod.setStatus(rs.getString("status_prod"));
+                prod.setQuantity(rs.getInt("stock"));
+                prod.setPrice(rs.getDouble("price"));
+                
                 }
 
             }

@@ -113,7 +113,7 @@ public class ImageDAO {
 
             connection = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = connection.prepareStatement("select * from product_img where status_img='a' and prod_id=?");
+            instrucaoSQL = connection.prepareStatement("select * from product_img where status_img='a' and prod_id=? limit 4");
             instrucaoSQL.setInt(1, productId);
             rs = instrucaoSQL.executeQuery();
             while (rs.next()) {
