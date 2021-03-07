@@ -54,10 +54,10 @@ public class UploadImageServlet extends HttpServlet {
 
         if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
             String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
-            String diretorioDestino = "C:/PI-FOTOS";
+            String diretorioDestino = "/PI-FOTOS";
             conteudoArquivo = arquivo.getInputStream();
             destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
-            caminho = "C:/PI-FOTOS/" + nomeArquivo;
+            caminho = "/PI-FOTOS/" + nomeArquivo;
             ImageDAO.addImage(codProduto, caminho);
 
             Files.copy(conteudoArquivo, destino);
@@ -68,7 +68,7 @@ public class UploadImageServlet extends HttpServlet {
             imageList = ImageDAO.getImages(productId);
             request.setAttribute("productId",productId);
             request.setAttribute("imageList", imageList);
-            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/cadastrarImagem.jsp");
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/adicionarImagem.jsp");
             requestDispatcher.forward(request, response);
         }
 
