@@ -1,0 +1,74 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07/03/2021, 09:53:02
+    Author     : luans
+*/
+.go-back{
+    float: left;
+}
+.go-back img{
+    width: 10%;
+    margin-left: -80%;
+}
+body{
+    margin-top: 5%;
+    margin-left: 15%;
+    font-size: 20px;
+}
+fieldset{
+    float: left;
+}
+.detail-field{
+    margin-left: -18%;
+    width: 800px;
+    height: 643px;
+    margin: none;
+}
+.buy-field{
+    height: 643px;
+    margin-left: 6%;
+    width: 400px;
+}
+.buy-field p{
+margin-top: 10%;
+margin-left: 15%;
+}
+.buy-field button{
+margin-top: 10%;
+margin-left: 35%;
+}
+.Pic,.mainPic,.arrows{
+    display: block;
+}
+.mainPic{
+    margin-left: 15%;
+    width: 60%;
+}
+.Pic,.arrows{
+    display: inline;
+    width: 15%;
+}
+.product-images{
+    margin-left: 5%;
+    float: left;
+    width: 60%;    
+}
+
+
+
+.product-detail{
+    float: middle;
+
+}
+.full-name-field{
+    margin-left: 500px;
+border: solid 0.5px lightgray;
+color: lightgray;
+}
+.mushrooms{
+    display: inline;
+}
