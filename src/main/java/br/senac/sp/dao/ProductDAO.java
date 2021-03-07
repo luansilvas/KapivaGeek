@@ -61,7 +61,7 @@ public class ProductDAO {
     }
     
     public ArrayList<Product> findProduct(){
-        String sql = "select * from products_list";
+        String sql = "select prod_id,name_prod,stock,status_prod from products";
         ArrayList<Product>prodBd = new ArrayList<>();
         
         
@@ -88,7 +88,7 @@ public class ProductDAO {
     }
     
     public Product findProductById(int idProd) throws SQLException, ClassNotFoundException{
-          String sql = "select * from products_list where prod_id ?";
+          String sql = "select * from products_list where prod_id= ?";
            Product prod = new Product();
             try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {

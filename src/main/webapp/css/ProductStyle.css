@@ -26,7 +26,19 @@ fieldset legend{
     font-size: 20px;  
     text-align: center;
 }
-
+fieldset table{
+    margin: 0 auto;
+    text-align: center;
+   
+}
+#input{
+    margin: 0 auto;
+    
+}
+#setas{
+    text-align: center;
+    margin-top: 15px;
+}
 
 .divsForm{
     margin: 5px 0;

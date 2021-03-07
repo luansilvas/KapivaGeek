@@ -47,7 +47,8 @@
 
         <servlet-name>ProductList_Servlet</servlet-name>
         <url-pattern>/ProductList_Servlet</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Product_Servlet_Alter</servlet-name>
         <url-pattern>/AlterarProduto</url-pattern>
 
