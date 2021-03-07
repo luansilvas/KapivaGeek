@@ -17,15 +17,20 @@
         <servlet-class>br.senac.sp.servlet.Product_Servlet</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>ProductList_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.ProductList_Servlet</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>Product_Servlet_Alter</servlet-name>
         <servlet-class>br.senac.sp.servlet.Product_Servlet_Alter</servlet-class>
-
+    </servlet>
+    <servlet>
+        <servlet-name>Inactive_Reactive_Prod_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Inactive_Reactive_Prod_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Alter_Product_Save</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Alter_Product_Save</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
@@ -44,13 +49,20 @@
         <url-pattern>/Product_Servlet_Save</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>ProductList_Servlet</servlet-name>
         <url-pattern>/ProductList_Servlet</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Product_Servlet_Alter</servlet-name>
         <url-pattern>/AlterarProduto</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Inactive_Reactive_Prod_Servlet</servlet-name>
+        <url-pattern>/InactiveReactive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Alter_Product_Save</servlet-name>
+        <url-pattern>/SaveChage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
