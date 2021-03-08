@@ -32,6 +32,10 @@
         <servlet-name>Alter_Product_Save</servlet-name>
         <servlet-class>br.senac.sp.servlet.Alter_Product_Save</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VisualizeProductImageServlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.VisualizeProductImageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>Alter_Product_Save</servlet-name>
         <url-pattern>/SaveChage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VisualizeProductImageServlet</servlet-name>
+        <url-pattern>/VisualizeProductImageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
