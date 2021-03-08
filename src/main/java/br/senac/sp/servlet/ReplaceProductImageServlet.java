@@ -31,7 +31,7 @@ import utils.ImageUploadUtils;
  * @author luans
  */
 @MultipartConfig(maxFileSize = 20848820) // 5MB == 20848820 bytes == 5 * 1024 * 1024
-public class UploadImageServlet extends HttpServlet {
+public class ReplaceProductImageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,13 +46,14 @@ public class UploadImageServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    @Override
+     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String caminho = null;
         InputStream conteudoArquivo = null;
         Path destino = null;
         int productId = Integer.parseInt(request.getParameter("productId"));
+        int imageId = Integer.parseInt(request.getParameter("imageId"));
         Part arquivo = request.getPart("image");
         
         System.out.println(productId +"OIIIIIIIIII");
@@ -67,7 +68,7 @@ public class UploadImageServlet extends HttpServlet {
             destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
 
             caminho = "/PI-FOTOS/" + nomeArquivo;
-            ImageDAO.addImage(productId, caminho);
+            ImageDAO.alterImage(imageId, caminho);
 
             Files.copy(conteudoArquivo, destino);
 
@@ -81,7 +82,5 @@ public class UploadImageServlet extends HttpServlet {
         }
 
     }
-
-
 
 }

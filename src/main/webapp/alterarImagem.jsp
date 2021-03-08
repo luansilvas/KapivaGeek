@@ -1,6 +1,6 @@
 <%-- 
-    Document   : cadastrarImagem
-    Created on : 01/03/2021, 17:53:23
+    Document   : alterarImagem
+    Created on : 08/03/2021, 06:00:57
     Author     : luans
 --%>
 
@@ -19,7 +19,7 @@
 
 
         <fieldset class="general-fieldset">
-            <legend>Adicionar/remover Imagens</legend>
+            <legend>Alterar Imagens</legend>
 
             <form action="<c:url value="/UploadImageServlet"/>" method="POST" enctype="multipart/form-data">
 
@@ -39,11 +39,14 @@
             </form>
             <fieldset>
 
-            <form action="<c:url value="/DeleteImageServlet"/>" method="POST">
+
+            
+
+                <form action="<c:url value="/DeleteAlterImageServlet"/>" method="POST">
                 <c:forEach items="${imageList}" var="image">
                     <input type="checkbox" name = "deleteSelected" value="${image.imageId}">
-                    <a href="<c:url value="ReplaceProductImage?imageId=${image.imageId}&productId=${image.productId}"/>">
-                        <img src="${image.path}" width="100" height="100">
+                    <a href="<c:url value="/ReplaceProductImageServlet?imageId=${image.imageId}&productId=${image.productId}"/>">
+                    <img src="${image.path}" width="100" height="100">
                     </a>
                     <input type="text" name="productId" value="${image.productId}" hidden="hidden">
                 </c:forEach>
@@ -73,3 +76,4 @@
     </body>
 
 </html>
+
