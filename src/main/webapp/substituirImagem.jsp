@@ -14,10 +14,11 @@
         <link href="css/imageUploadStyle.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>AlterarImagem</h1>
 
 
         <c:forEach items="${imageList}" var="image">
+            <p>Foto a ser alterada:</p>
             <img src="${image.path}" width="100" height="100">
             <input type="text" name="productId" value="${image.productId}" hidden="hidden">
         </c:forEach>
@@ -37,8 +38,8 @@
             <input type="checkbox" name="mainimage" id="mainimage">            
             <label for="mainimage">Imagem da pagina Inicial</label>
             <br>
-            <input type="text"  value="${productId}" name="productId">
-            <input type="text" value="${imageId}" name="imageId">
+            <input type="text"  value="${productId}" name="productId" hidden="hidden">
+            <input type="text" value="${imageId}" name="imageId" hidden="hidden">
             <input type="submit">
             
         </form>
