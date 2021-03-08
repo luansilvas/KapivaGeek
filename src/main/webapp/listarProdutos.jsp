@@ -14,14 +14,14 @@
         <link href="css/ProductStyle.css" rel="stylesheet">
     </head>
     <body>
-        <fieldset class= "general-fieldset">
-            <div id="corpo">
+        <div class="containerList">
+            <fieldset>
                 <legend>Listar produtos</legend>  
 
-                <form methodo="post">
+                <form method="post">
                     <div id="input">
                         <label>Procurar</label>
-                        <input type="text">
+                        <input type="text" name="pesquisa">
                         <label><img src="icons/search.png" alt="Lupa"></label>
                     </div>
                 </form>
@@ -62,7 +62,8 @@
                     <img src="icons/seta2-right.png" alt="icone next">
 
                 </div>
-            </div>
-        </fieldset>
+
+            </fieldset>
+        </div>
     </body>
 </html>

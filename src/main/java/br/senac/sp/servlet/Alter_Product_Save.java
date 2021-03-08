@@ -5,18 +5,15 @@
  */
 package br.senac.sp.servlet;
 
-import br.senac.sp.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import br.senac.sp.dao.*;
+import br.senac.sp.model.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,46 +22,38 @@ import java.util.logging.Logger;
  *
  * @author Gabriel
  */
-@WebServlet(name = "Product_Salvar", urlPatterns = {"/Product-Salvar"})
-public class Product_Servlet_Save extends HttpServlet {
+public class Alter_Product_Save extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession section = request.getSession();
-        Product newProduct = (Product) section.getAttribute("newProduct");
-        section.removeAttribute("newProduct");
-
-        request.setAttribute("newProduct", newProduct);
-        RequestDispatcher dispacher = request.getRequestDispatcher("/cadastrarImagem.jsp");
-
-        dispacher.forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String productId = request.getParameter("Product-id");
         String productNameStr = request.getParameter("product-name");
         String longNameStr = request.getParameter("long-name");
         String starsStr = request.getParameter("stars");
         String stockStr = request.getParameter("stock");
         String priceStr = request.getParameter("price");
-        String statusStr = request.getParameter("status");
+        
+    
 
         boolean validProductName = (productNameStr.trim().length() > 3 && productNameStr != null);//Validação Nome do produto
-        
+
         boolean validLongName = (longNameStr.trim().length() <= 2000);
-        
-        boolean validStarsValue = starsStr.matches("[0-9]+") && starsStr.trim().length()<=5;
-        
+
+        boolean validStarsValue = starsStr.matches("[0-9]+") && (Integer.parseInt(starsStr) <= 5);
+        System.out.println(validStarsValue);
+        System.out.println(starsStr);
+
         boolean validStockValue = stockStr.matches("[0-9]+");
-        
-        boolean ValidStatus = starsStr.trim().length()>0;
-        
-       
-        
+
+        boolean ValidStatus = starsStr.trim().length() > 0;
+
         boolean validFields = validProductName && validLongName && validStarsValue && validStockValue && ValidStatus;
 
         if (!validFields) {
@@ -72,42 +61,40 @@ public class Product_Servlet_Save extends HttpServlet {
             if (!validProductName) {
                 request.setAttribute("ProductNameError", "O campo nome do produto deve ter mais de 3 caracters");
             }
-            
-            if(!validStarsValue){
+
+            if (!validStarsValue) {
                 request.setAttribute("StarsValueError", "Este campo aceita apenas números");
             }
-
+            
             request.setAttribute("product-name", productNameStr);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Regs_Form_Products.jsp");
+            request.setAttribute("long-name", longNameStr);
+            request.setAttribute("stars", starsStr);
+            request.setAttribute("stock", stockStr);
+            request.setAttribute("price", priceStr);
+            
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Form_Alter_Prod.jsp");
             dispatcher.forward(request, response);
             return;
         }
 
-        ProductDAO dao = new ProductDAO();
-        Product newProduct = new Product();
-        int productId = 0;
         try {
-            newProduct.setProductName(productNameStr);
-            newProduct.setProductFullName(longNameStr);
-            newProduct.setStars(Integer.parseInt(starsStr));
-            newProduct.setQuantity(Integer.parseInt(stockStr));
-            newProduct.setPrice(Double.parseDouble(priceStr));
-            newProduct.setStatus(statusStr);
-            productId = dao.addNewProduct(newProduct);
-            System.out.println(productId);
-        } catch (SQLException ex) {
-            System.out.println(ex);
+            ProductDAO dao = new ProductDAO();
+           Product prod = new Product();
+           prod.setProductId(Integer.parseInt(productId));
+           prod.setProductName(productNameStr);
+           prod.setProductFullName(longNameStr);
+           prod.setStars(Integer.parseInt(starsStr));
+           prod.setPrice(Double.parseDouble(priceStr));
+           prod.setQuantity(Integer.parseInt(stockStr));
+            dao.updateProduct(prod);
+             System.out.println("deu bom");
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
-        response.sendRedirect("UploadImageServlet?codProduto="+productId);
-
-
-                //request.setAttribute("add", "Produto Registrado");
-                //HttpSession sessao = request.getSession();
-                // sessao.setAttribute("newProduct", newProduct);
-
-                //response.sendRedirect("Product-Salvar");
+       
     }
 
 }

@@ -25,12 +25,12 @@
         <servlet-class>br.senac.sp.servlet.Product_Servlet_Alter</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ProductVisualizeServlet</servlet-name>
-        <servlet-class>br.senac.sp.servlet.ProductVisualizeServlet</servlet-class>
+        <servlet-name>Inactive_Reactive_Prod_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Inactive_Reactive_Prod_Servlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AlterImage</servlet-name>
-        <servlet-class>br.senac.sp.servlet.AlterImage</servlet-class>
+        <servlet-name>Alter_Product_Save</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Alter_Product_Save</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
@@ -63,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>AlterImage</servlet-name>
         <url-pattern>/AlterImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Inactive_Reactive_Prod_Servlet</servlet-name>
+        <url-pattern>/InactiveReactive</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Alter_Product_Save</servlet-name>
+        <url-pattern>/SaveChage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

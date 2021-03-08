@@ -37,6 +37,13 @@ public class Product {
 
     public Product() {
     }
+    
+    public boolean getValueStatus(String status){
+        if(status.equals("Ativo"))
+            return true;
+        else
+            return false;      
+}
 
     @Override
     public String toString() {
