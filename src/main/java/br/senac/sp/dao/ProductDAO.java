@@ -61,7 +61,7 @@ public class ProductDAO {
     }
 
     public ArrayList<Product> findProduct() {
-        String sql = "select * from products_list";
+        String sql = "select * from products";
         ArrayList<Product> prodBd = new ArrayList<>();
 
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
