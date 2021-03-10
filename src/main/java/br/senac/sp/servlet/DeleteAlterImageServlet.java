@@ -21,34 +21,37 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author luans
  */
-public class AlterImage extends HttpServlet {
+public class DeleteAlterImageServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        int productId = Integer.parseInt(request.getParameter("codProduto"));
-        List<Image> imageList = new ArrayList();
-        imageList = ImageDAO.getImages(productId);
-        request.setAttribute("imageList", imageList);
-        request.setAttribute("productId", productId);
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/alterarImagem.jsp");
-        requestDispatcher.forward(request, response);
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        String toBeDeleted[] = request.getParameterValues("deleteSelected");
+        int productId = Integer.parseInt(request.getParameter("productId"));
 
+        for (int i = 0; i < toBeDeleted.length; i++) {
+
+            ImageDAO.deleteImage(Integer.parseInt(toBeDeleted[i]));
+        }
+
+        List<Image> imageList = new ArrayList();
+        imageList = ImageDAO.getImages(productId);
+        request.setAttribute("imageList", imageList);
+        request.setAttribute("productId", productId);
+
+        String page = "/cadastrarImagem.jsp";
+
+        if (imageList.size() > 0) {
+            page = "/alterarImagem.jsp";
+        } else {
+            page = "/cadastrarImagem.jsp";
+        }
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(page);
+        requestDispatcher.forward(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

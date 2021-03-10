@@ -102,6 +102,43 @@ public class ImageDAO {
         return retorno;
 
     }
+    public static boolean alterImage(int imageId,String newPath) {
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("update product_img set path_img = ? where img_id=? and status_img = 'a';");
+
+            instrucaoSQL.setString(1, newPath);
+            instrucaoSQL.setInt(2, imageId);
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+            if (linhasAfetadas > 0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                conexao.close();
+
+            } catch (SQLException ex) {
+            }
+        }
+        return retorno;
+
+    }
 
     public static List<Image> getImages(int productId) throws IOException {
         ResultSet rs = null;
@@ -115,6 +152,38 @@ public class ImageDAO {
 
             instrucaoSQL = connection.prepareStatement("select * from product_img where status_img='a' and prod_id=?");
             instrucaoSQL.setInt(1, productId);
+            rs = instrucaoSQL.executeQuery();
+            while (rs.next()) {
+                int imageId = rs.getInt("img_id");
+                String path = rs.getString("path_img");
+                int pId = rs.getInt("prod_id");
+                String status = rs.getString("status_img");
+                String timestamp = rs.getString("date_register");
+                    
+                
+                Image image = new Image(imageId,pId,path,status,timestamp);
+                imageList.add(image);
+            }
+        } catch (ClassNotFoundException ex) {
+            //Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+           // Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return imageList;
+    }
+    
+        public static List<Image> getImageById(int imgId) throws IOException {
+        ResultSet rs = null;
+        Connection connection = null;
+        PreparedStatement instrucaoSQL = null;
+        List<Image> imageList = new ArrayList();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            connection = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = connection.prepareStatement("select * from product_img where status_img='a' and img_id=?");
+            instrucaoSQL.setInt(1, imgId);
             rs = instrucaoSQL.executeQuery();
             while (rs.next()) {
                 int imageId = rs.getInt("img_id");

@@ -1,71 +1,93 @@
-<%-- 
-    Document   : visualizarProduto
-    Created on : 06/03/2021, 19:34:56
-    Author     : luans
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link href="css/visualizeProductStyle.css" rel="stylesheet" type="text/css">
-        <script src="jquery-3.5.1.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title>Slider</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+
 
     </head>
     <body>
-            <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
-                <img src="icons/arrow_back.png">
-            </a>
-        <fieldset class="detail-field">
+        <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
+            <img src="icons/left-arrow.png">
+        </a>
 
-            <legend>Detalhes do produto</legend>
-            <div class="product-images">
+        <div id="content-wrapper">
 
-                <img src="${mainImage.path}" class="mainPic">
-                <img src="icons/arrow_back.png" class="arrows">
-                <c:forEach items="${imageList}" var="image">
-                    
-                    <img src="${image.path}" class="Pic">
-                </c:forEach>
-                <img src="icons/arrow_foward.png" class="arrows">
+            <div class="column">
+                <img id=featured src="${mainImage.path}">
+
+                <div id="slide-wrapper" >
+                    <img id="slideLeft" class="arrow" src="icons/left-chevron.png">
+
+                    <div id="slider">
+
+                        <c:forEach items="${imageList}" var="image">
+                            <img class="thumbnail" src="${image.path}">
+
+                        </c:forEach>
+                    </div>
+
+                    <img id="slideRight" class="arrow" src="icons/right-chevron.png">
+                </div>
             </div>
-            <div class="product-detail">
-                <p>${product.productName}</p>
 
+            <div class="column">
+                <h1>${product.productName}</h1>
+                <br>
                 <c:forEach items="${Stars}" var="stars">
                     <img src="icons/mushroom.png" class="mushrooms">
                 </c:forEach>
-                <div class="full-name-field">
-                    <p>${product.productFullName}</p>
-                </div>
+                <br>
+                <p>${product.productFullName}</p>
+
+            </div>
+            <div class="column">
+
+                <h3><p>R$ ${product.price}</p></h3>
+
 
             </div>
 
+        </div>
 
-        </fieldset>
-        <fieldset class="buy-field">
-            <legend>Venda</legend>
+        <script type="text/javascript">
+            let thumbnails = document.getElementsByClassName('thumbnail')
 
-            <p>R$ ${product.price}</p>
+            let activeImages = document.getElementsByClassName('active')
 
-            <button>Comprar</button>
-        </fieldset>
-            <script>       
-                $(document).ready(function(){
-                   $('.Pic').click(function(){
-                      $smallImages = $(this).attr('src');
-                      console.log('OIIII');
-                      $('.mainPic').attr('src',$smallImages);
-                   }) ;
-                    
-                });
-            </script>
+            for (var i = 0; i < thumbnails.length; i++) {
+
+                thumbnails[i].addEventListener('mouseover', function () {
+                    console.log(activeImages)
+
+                    if (activeImages.length > 0) {
+                        activeImages[0].classList.remove('active')
+                    }
 
 
+                    this.classList.add('active')
+                    document.getElementById('featured').src = this.src
+                })
+            }
+
+
+            let buttonRight = document.getElementById('slideRight');
+            let buttonLeft = document.getElementById('slideLeft');
+
+            buttonLeft.addEventListener('click', function () {
+                document.getElementById('slider').scrollLeft -= 180
+            })
+
+            buttonRight.addEventListener('click', function () {
+                document.getElementById('slider').scrollLeft += 180
+            })
+
+
+        </script>
 
     </body>
 </html>

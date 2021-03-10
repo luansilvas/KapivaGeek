@@ -27,7 +27,6 @@ public class DeleteImageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("ENTROU NO SERVLET DE EXCLUIR");
         String toBeDeleted[] = request.getParameterValues("deleteSelected");
         int productId = Integer.parseInt(request.getParameter("productId"));
 

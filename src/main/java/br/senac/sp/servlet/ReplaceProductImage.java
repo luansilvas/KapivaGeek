@@ -16,10 +16,8 @@ import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,44 +28,48 @@ import utils.ImageUploadUtils;
  *
  * @author luans
  */
-@MultipartConfig(maxFileSize = 20848820) // 5MB == 20848820 bytes == 5 * 1024 * 1024
-public class UploadImageServlet extends HttpServlet {
+public class ReplaceProductImage extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int productId = Integer.parseInt(request.getParameter("codProduto"));
+
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        int imageId = Integer.parseInt(request.getParameter("imageId"));
 
         List<Image> imageList = new ArrayList();
-        imageList = ImageDAO.getImages(productId);
-        request.setAttribute("imageList", imageList);
+        imageList = ImageDAO.getImageById(imageId);
         request.setAttribute("productId", productId);
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/cadastrarImagem.jsp");
+        request.setAttribute("imageId", imageId);
+        request.setAttribute("imageList", imageList);
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/substituirImagem.jsp");
         requestDispatcher.forward(request, response);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String caminho = null;
         InputStream conteudoArquivo = null;
         Path destino = null;
+
+        int imageId = Integer.parseInt(request.getParameter("imageId"));
         int productId = Integer.parseInt(request.getParameter("productId"));
         Part arquivo = request.getPart("image");
-        
-        System.out.println(productId +"OIIIIIIIIII");
 
         if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
             String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
 
-            nomeArquivo = ImageUploadUtils.valorAleatorio()+nomeArquivo;
-            
+            nomeArquivo = ImageUploadUtils.valorAleatorio() + nomeArquivo;
+
             String diretorioDestino = "/PI-FOTOS";
             conteudoArquivo = arquivo.getInputStream();
             destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
 
             caminho = "/PI-FOTOS/" + nomeArquivo;
-            ImageDAO.addImage(productId, caminho);
+            ImageDAO.alterImage(imageId, caminho);
 
             Files.copy(conteudoArquivo, destino);
 
@@ -76,12 +78,10 @@ public class UploadImageServlet extends HttpServlet {
             imageList = ImageDAO.getImages(productId);
             request.setAttribute("productId", productId);
             request.setAttribute("imageList", imageList);
-            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/adicionarImagem.jsp");
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/alterarImagem.jsp");
             requestDispatcher.forward(request, response);
         }
 
     }
-
-
 
 }

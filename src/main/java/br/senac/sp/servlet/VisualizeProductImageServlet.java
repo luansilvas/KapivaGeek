@@ -29,39 +29,45 @@ public class VisualizeProductImageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO productDAO = new ProductDAO();
-          int productId = Integer.parseInt(request.getParameter("productId"));
-            Product product = new Product();
-      
         try {
-            
-            product = productDAO.findProductById(productId);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductVisualizeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProductVisualizeServlet.class.getName()).log(Level.SEVERE, null, ex);
+            ProductDAO productDAO = new ProductDAO();
+            int productId = Integer.parseInt(request.getParameter("productId"));
+            Product product = new Product();
+
+            try {
+
+                product = productDAO.findProductById(productId);
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductVisualizeServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ProductVisualizeServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            List<Image> imageList = new ArrayList();
+            imageList = ImageDAO.getImages(productId);
+
+            Image mainPic = imageList.get(0);
+
+            List<String> stars = new ArrayList();
+
+            for (int i = 0; i < product.getStars(); i++) {
+                stars.add("estrela 1");
+                System.out.println("estrela" + i);
+            }
+            request.setAttribute("mainImage", mainPic);
+            request.setAttribute("product", product);
+            request.setAttribute("Stars", stars);
+
+            request.setAttribute("imageList", imageList);
+            request.setAttribute("productId", productId);
+
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/visualizarProduto.jsp");
+            requestDispatcher.forward(request, response);
+        } catch (Exception e) {
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/ProductList_Servlet");
+            requestDispatcher.forward(request, response);
         }
 
-        List<Image> imageList = new ArrayList();
-        imageList = ImageDAO.getImages(productId);
-
-        Image mainPic = imageList.get(0);
-
-        List<String> stars = new ArrayList();
-
-        for (int i = 0; i < product.getStars(); i++) {
-            stars.add("estrela 1");
-            System.out.println("estrela" + i);
-        }
-        request.setAttribute("mainImage", mainPic);
-        request.setAttribute("product", product);
-        request.setAttribute("Stars", stars);
-
-        request.setAttribute("imageList", imageList);
-        request.setAttribute("productId", productId);
-
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/visualizarProduto.jsp");
-        requestDispatcher.forward(request, response);
     }
 
     @Override

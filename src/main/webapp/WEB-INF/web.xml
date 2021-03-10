@@ -39,6 +39,20 @@
     <servlet>
         <servlet-name>Pagination_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.Pagination_Servlet</servlet-class>
+        <servlet-name>AlterImage</servlet-name>
+        <servlet-class>br.senac.sp.servlet.AlterImage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAlterImageServlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.DeleteAlterImageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReplaceProductImage</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ReplaceProductImage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReplaceProductImageServlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ReplaceProductImageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
@@ -77,8 +91,26 @@
         <url-pattern>/VisualizeProductImageServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+
         <servlet-name>Pagination_Servlet</servlet-name>
         <url-pattern>/Pagination_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterImage</servlet-name>
+        <url-pattern>/AlterImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAlterImageServlet</servlet-name>
+        <url-pattern>/DeleteAlterImageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReplaceProductImage</servlet-name>
+        <url-pattern>/ReplaceProductImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReplaceProductImageServlet</servlet-name>
+        <url-pattern>/ReplaceProductImageServlet</url-pattern>
+
     </servlet-mapping>
     <session-config>
         <session-timeout>

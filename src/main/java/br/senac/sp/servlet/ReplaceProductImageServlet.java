@@ -31,28 +31,31 @@ import utils.ImageUploadUtils;
  * @author luans
  */
 @MultipartConfig(maxFileSize = 20848820) // 5MB == 20848820 bytes == 5 * 1024 * 1024
-public class UploadImageServlet extends HttpServlet {
+public class ReplaceProductImageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int productId = Integer.parseInt(request.getParameter("codProduto"));
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        int imageId = Integer.parseInt(request.getParameter("imageId"));
 
         List<Image> imageList = new ArrayList();
-        imageList = ImageDAO.getImages(productId);
+        imageList = ImageDAO.getImageById(imageId);
         request.setAttribute("imageList", imageList);
         request.setAttribute("productId", productId);
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/cadastrarImagem.jsp");
+        request.setAttribute("imageId", imageId);
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/substituirImagem.jsp");
         requestDispatcher.forward(request, response);
     }
 
-    @Override
+     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String caminho = null;
         InputStream conteudoArquivo = null;
         Path destino = null;
         int productId = Integer.parseInt(request.getParameter("productId"));
+        int imageId = Integer.parseInt(request.getParameter("imageId"));
         Part arquivo = request.getPart("image");
         
         System.out.println(productId +"OIIIIIIIIII");
@@ -67,7 +70,7 @@ public class UploadImageServlet extends HttpServlet {
             destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
 
             caminho = "/PI-FOTOS/" + nomeArquivo;
-            ImageDAO.addImage(productId, caminho);
+            ImageDAO.alterImage(imageId, caminho);
 
             Files.copy(conteudoArquivo, destino);
 
@@ -81,7 +84,5 @@ public class UploadImageServlet extends HttpServlet {
         }
 
     }
-
-
 
 }
