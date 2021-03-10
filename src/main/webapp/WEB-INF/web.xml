@@ -39,6 +39,8 @@
     <servlet>
         <servlet-name>Pagination_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.Pagination_Servlet</servlet-class>
+      </servlet>  
+      <servlet>
         <servlet-name>AlterImage</servlet-name>
         <servlet-class>br.senac.sp.servlet.AlterImage</servlet-class>
     </servlet>
