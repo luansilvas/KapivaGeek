@@ -16,7 +16,7 @@
     <body>
         <section id="main" class="containerMain">
 
-            <form method="post" action="AlterarProduto" class="form">
+            <form method="post" action="SaveChage" class="form">
                 <fieldset>
                     <input type="hidden" name="Product-id" value="${id}">
                     <legend>Produto</legend>
@@ -25,7 +25,7 @@
                     <div class="divsForm">
                         <label>Nome do Produto:</label>
                         <br>
-                        <input type="text" name="product-name" value="${res.getProductName()}" >
+                        <input type="text" name="product-name" value="${res.getProductName()}">
                         <c:if
                             test="${ProductNameError != null}">
                             <span><c:out value="${ProductNameError}" /></span>

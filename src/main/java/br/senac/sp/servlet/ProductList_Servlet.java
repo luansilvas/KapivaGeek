@@ -31,8 +31,8 @@ public class ProductList_Servlet extends HttpServlet {
         ProductDAO productDAO = new ProductDAO();
         List<Product> lista = new ArrayList(); 
         lista = productDAO.findProduct();
-        System.out.println(lista.get(0).getProductName());
         request.setAttribute("productList", lista);
+        request.setAttribute("ultimoId", lista.get(lista.size()-1));
         
             RequestDispatcher dispatcher = request.getRequestDispatcher("/listarProdutos.jsp");
         dispatcher.forward(request, response);
@@ -43,7 +43,12 @@ public class ProductList_Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO productDAO = new ProductDAO();
+        String id = request.getParameter("lastId");
+        System.out.println(id);
+        
+        response.sendRedirect("Pagination_Servlet?id="+id);
+        
+       /* ProductDAO productDAO = new ProductDAO();
         String pesquisa = request.getParameter("pesquisa");
     
         List<Product> lista = new ArrayList(); 
@@ -51,7 +56,7 @@ public class ProductList_Servlet extends HttpServlet {
         
         request.setAttribute("productList", lista);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/listarProdutos.jsp");
-        dispatcher.forward(request, response);
+        dispatcher.forward(request, response);*/
         
         
     }

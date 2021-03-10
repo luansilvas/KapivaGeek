@@ -15,58 +15,63 @@
     </head>
     <body>
         <section id="main" class="containerMain">
-            <fieldset>
-                <legend>Produto</legend>
-                <form method="post" action="Product-Salvar" novalidate class="form">
-                <h1></h1>
-                
-                <div class="divsForm">
-                    <label>Nome do Produto:</label>
-                    <br>
-                    <input type="text" name="product-name" >
-                   
-                </div>
-                <div id="nomeExtenso" class="divsForm">
-                    <label>Nome Extenso:</label>
-                      <br>
-                    <textarea name="long-name" rows="4" cols="50" ></textarea>
-                </div>
-                <div class="divsForm">
-                    <label>Quantidade de estrelas:</label>
-                     <br>
-                    <input type="text" name="stars">
-                    
+            <form method="post" action="InactiveReactive" novalidate class="form">
+                <fieldset>
+                    <input type="hidden" id="ProductId" name="prodId" value="${IdProduto}">
+                    <legend>Produto</legend>
+                    <h1></h1>
 
-                </div>
-                <div class="divsForm">
-                    <label>Status:</label>
-                     <br>
-                     <input type="text" name="status" value="${product.getStatus()}">
-                </div>
-                <div class="divsForm">
-                    <label>Quantidade estoque</label>
-                     <br>
-                    <input type="text" name="stock">
-                </div>
-                <div class="divsForm">
-                    <label>Preço:</label>
-                     <br>
-                    <input type="text" name="price">
-                </div>
-                  </fieldset>
-            <div id="Botoes" class="divsForm" >
+                    <div class="divsForm">
+                        <label>Nome do Produto:</label>
+                        <br>
+                        <input type="text" name="product-name" value="${product.getProductName()}">
+
+                    </div>
+                    <div id="nomeExtenso" class="divsForm">
+                        <label>Nome Extenso:</label>
+                        <br>
+                        <textarea name="long-name" rows="4" cols="50" >${product.getProductFullName()}</textarea>
+                    </div>
+                    <div class="divsForm">
+                        <label>Quantidade de estrelas:</label>
+                        <br>
+                        <input type="text" name="stars" value="${product.getStars()}">
+
+
+                    </div>
+                    <div class="divsForm">
+                        <label>Status:</label>
+                        <br>
+                        <input type="text" name="status" value="${product.getStatus()}">
+                    </div>
+                    <div class="divsForm">
+                        <label>Quantidade estoque</label>
+                        <br>
+                        <input type="text" name="stock" value="${product.getQuantity()}">
+                    </div>
+                    <div class="divsForm">
+                        <label>Preço:</label>
+                        <br>
+                        <input type="text" name="price" value="${product.getPrice()}">
+                    </div>
+
+                </fieldset>
+                <div id="Botoes" class="divsForm" >
                     <button type="reset">Cancelar</button>
-                    
+
                     <c:if test="${statusValue == true}">
                         <button type="submit" name="Inativo">Inativar</button>
+                        <input type="hidden" name="novoStatus" value="Inativo">
                     </c:if> 
-                        
-                        <c:if test="${statusValue == false}">
-                            <button type="submit" name="Ativo">Ativar</button>
+
+                    <c:if test="${statusValue == false}">
+                        <button type="submit" name="Ativo">Ativar</button>
+                        <input type="hidden" name="novoStatus" value="Ativo">
                     </c:if>  
-                   
-                   
+
+
                 </div>              
+
             </form>
         </section>
     </body>

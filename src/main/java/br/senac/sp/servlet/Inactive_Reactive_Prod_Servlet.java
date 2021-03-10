@@ -30,15 +30,17 @@ public class Inactive_Reactive_Prod_Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //int productId = Integer.parseInt(request.getParameter("codProduto"));
-      
+        int productId = Integer.parseInt(request.getParameter("codProduto"));
+        System.out.println(productId);
         try {
             ProductDAO dao = new ProductDAO();
-            Product prod = dao.findProductById(1);
+            Product prod = dao.findProductById(productId);
             boolean statusValue = prod.getValueStatus(prod.getStatus());
+            request.setAttribute("IdProduto", productId);
             request.setAttribute("statusValue", statusValue);
             request.setAttribute("product", prod);
-            
+ 
+ 
          RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Inactive_Reactive_Product.jsp");
         dispatcher.forward(request, response);
         } catch (SQLException ex) {
@@ -47,11 +49,22 @@ public class Inactive_Reactive_Prod_Servlet extends HttpServlet {
             System.out.println(ex);
         }
       
-        
+       
        
     }
     
-
+ @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String productId = request.getParameter("prodId");
+        String newStatus = request.getParameter("novoStatus");
+        
+        ProductDAO dao = new ProductDAO();
+        dao.StatusUpdate(Integer.parseInt(productId), newStatus);
+        response.sendRedirect("ProductList_Servlet");
+        
+    }
   
    
 
