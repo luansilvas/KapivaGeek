@@ -37,18 +37,20 @@
                 <br>
                 <input type="submit">
             </form>
-            <fieldset>
+            <fieldset id="list-remove-images">
 
             <form action="<c:url value="/DeleteImageServlet"/>" method="POST">
                 <c:forEach items="${imageList}" var="image">
+                    <div class="product-images">
                     <input type="checkbox" name = "deleteSelected" value="${image.imageId}">
                     <a href="<c:url value="ReplaceProductImage?imageId=${image.imageId}&productId=${image.productId}"/>">
                         <img src="${image.path}" width="100" height="100">
                     </a>
                     <input type="text" name="productId" value="${image.productId}" hidden="hidden">
+                    </div>
                 </c:forEach>
                 <input type="text" value="${productId}" name="productId" hidden="hidden">
-                <input type="submit">
+                <input type="submit" value="Remover imagem">
             </form>
 
         </fieldset>

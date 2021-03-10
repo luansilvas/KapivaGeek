@@ -11,6 +11,7 @@
 
     </head>
     <body>
+
         <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
             <img src="icons/left-arrow.png">
         </a>
