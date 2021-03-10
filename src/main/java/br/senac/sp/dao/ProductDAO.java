@@ -61,7 +61,7 @@ public class ProductDAO {
     }
 
     public ArrayList<Product> findProduct() {
-        String sql = "select * from products_list";
+        String sql = "select * from products_list limit 3";
         ArrayList<Product> prodBd = new ArrayList<>();
 
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
@@ -146,6 +146,51 @@ public class ProductDAO {
                 }
             }
 
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return prodBd;
+    }
+    
+    public void StatusUpdate(int productId, String newStatus){
+    String sql = "  update products set status_prod = ? where prod_id =?";
+    
+    
+    try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, newStatus);
+            stmt.setInt(2, productId);
+            stmt.executeUpdate();
+
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+   public ArrayList<Product> findProductPaginationProx(int lastIdPag) {
+        String sql = "select * from products_list where prod_id >? limit 3";
+        ArrayList<Product> prodBd = new ArrayList<>();
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql); ) {
+                stmt.setInt(1, lastIdPag);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {// enquanto tiver empresas adiciona no array
+
+                    Product prod = new Product();
+                    prod.setProductId(rs.getInt("prod_id"));
+                    prod.setProductName(rs.getString("name_prod"));
+                    prod.setQuantity(rs.getInt("stock"));
+                    prod.setStatus(rs.getString("status_prod"));
+                    prodBd.add(prod);
+                }
+            }
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         } catch (SQLException ex) {
