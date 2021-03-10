@@ -2,6 +2,8 @@
     Document   : listarProdutos
     Created on : 04/03/2021, 22:33:47
     Author     : luans
+
+<input type="text" name="idTeste" value="${productList.getProductId()}">
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,12 +20,16 @@
             <fieldset>
                 <legend>Listar produtos</legend>  
 
-                <form method="post">
+                <form method="post" action="ProductList_Servlet">
                     <div id="input">
                         <label>Procurar</label>
                         <input type="text" name="pesquisa">
                         <label><img src="icons/search.png" alt="Lupa"></label>
+                         <input type="text" name="lastId" value="${ultimoId.getProductId()}">
+                        <button type="submit">proximo</button>
+                       
                     </div>
+                    
                 </form>
 
                 <br>
@@ -42,20 +48,22 @@
                         <c:forEach items="${productList}" var="p">
 
                             <tr>
+                            
                                 <td>${p.productName}</td>
-                                <td>30</td>
-                                <td>Ativo</td>
+                                <td>${p.getQuantity()}</td>
+                                <td>${p.getStatus()}</td>
                                 <td><a href="<c:url value="/AlterarProduto?codProduto=${p.productId}"/>">EDITAR</a></td>
-                                <td><a href="<c:url value="/AlterarProduto?codProduto=${p.productId}"/>">INATIVAR/REATIVAR</a></td>
+                                <td><a href="<c:url value="/InactiveReactive?codProduto=${p.productId}"/>">INATIVAR/REATIVAR</a></td>
                                 <td><a href="<c:url value="/AlterarProduto?codProduto=${p.productId}"/>">VISUALIZAR</a></td>
                             </tr>
                         </c:forEach>                    
-
+   
                     </table>
 
                 </div>
 
                 <div id="setas">
+                    
                     <img src="icons/seta2-left.png" alt="icone next">
                     <img src="icons/seta-left.png" alt="icone next">
                     <img src="icons/seta-right.png" alt="icone next">
