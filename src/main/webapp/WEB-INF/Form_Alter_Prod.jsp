@@ -14,8 +14,11 @@
         <title>Alterar Produto</title>
     </head>
     <body>
-        <section id="main" class="containerMain">
 
+        <section id="main" class="containerMain">
+        <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
+            <img src="icons/left-arrow.png">
+        </a>
             <form method="post" action="SaveChage" class="form">
                 <fieldset>
                     <input type="hidden" name="Product-id" value="${id}">
@@ -25,7 +28,7 @@
                     <div class="divsForm">
                         <label>Nome do Produto:</label>
                         <br>
-                        <input type="text" name="product-name" value="${res.getProductName()}">
+                        <input type="text" name="product-name" value="${res.productName}">
                         <c:if
                             test="${ProductNameError != null}">
                             <span><c:out value="${ProductNameError}" /></span>
@@ -35,12 +38,12 @@
                     <div id="nomeExtenso" class="divsForm">
                         <label>Nome Extenso:</label>
                         <br>
-                        <textarea name="long-name" rows="4" cols="50" >${res.getProductFullName()}</textarea>
+                        <textarea name="long-name" rows="4" cols="50" >${res.productFullName}</textarea>
                     </div>
                     <div class="divsForm">
                         <label>Quantidade de estrelas:</label>
                         <br>
-                        <input type="number" name="stars"  max="5"value="${res.getStars()}">
+                        <input type="number" name="stars"  max="5"value="${res.stars}">
                         <c:if test="${StarsValueError != null}">
                             <span><c:out value="${StarsValueError}"/></span>
                         </c:if>
@@ -61,12 +64,12 @@
                         <br>
                         <input type="text" name="price" value="${res.getPrice()}">
                     </div>
-                    
+
                 </fieldset>
-                    <div id="Botoes" class="divsForm" >
-                        <button type="reset">Cancelar</button>
-                        <button type="submit">Alterar - Ir Imagens</button>
-                    </div>  
+                <div id="Botoes" class="divsForm" >
+                   <!-- <button type="reset">Cancelar</button>-->
+                    <button type="submit">Alterar - Ir Imagens</button>
+                </div>  
             </form>
 
 

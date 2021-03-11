@@ -15,6 +15,9 @@
     </head>
     <body>
         <section id="main" class="containerMain">
+                    <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
+            <img src="icons/left-arrow.png">
+        </a>
             <fieldset>
                 <legend>Produto</legend>
                 <form method="post" action="Product-Salvar" novalidate class="form">

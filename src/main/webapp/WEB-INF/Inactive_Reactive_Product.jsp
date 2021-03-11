@@ -15,6 +15,9 @@
     </head>
     <body>
         <section id="main" class="containerMain">
+            <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
+                <img src="icons/left-arrow.png">
+            </a>
             <form method="post" action="InactiveReactive" novalidate class="form">
                 <fieldset>
                     <input type="hidden" id="ProductId" name="prodId" value="${IdProduto}" readonly>

@@ -39,8 +39,6 @@ public class Alter_Product_Save extends HttpServlet {
         String starsStr = request.getParameter("stars");
         String stockStr = request.getParameter("stock");
         String priceStr = request.getParameter("price");
-        
-    
 
         boolean validProductName = (productNameStr.trim().length() > 3 && productNameStr != null);//Validação Nome do produto
 
@@ -65,14 +63,17 @@ public class Alter_Product_Save extends HttpServlet {
             if (!validStarsValue) {
                 request.setAttribute("StarsValueError", "Este campo aceita apenas números");
             }
-            
+
             request.setAttribute("product-name", productNameStr);
             request.setAttribute("long-name", longNameStr);
             request.setAttribute("stars", starsStr);
             request.setAttribute("stock", stockStr);
             request.setAttribute("price", priceStr);
             
-
+  
+            Product result = new Product(Integer.parseInt(productId),productNameStr,longNameStr,Double.parseDouble(priceStr),Integer.parseInt(stockStr),Integer.parseInt(starsStr),"Ativo"); 
+            request.setAttribute("res", result);
+            request.setAttribute("id", productId);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Form_Alter_Prod.jsp");
             dispatcher.forward(request, response);
             return;
@@ -80,21 +81,23 @@ public class Alter_Product_Save extends HttpServlet {
 
         try {
             ProductDAO dao = new ProductDAO();
-           Product prod = new Product();
-           prod.setProductId(Integer.parseInt(productId));
-           prod.setProductName(productNameStr);
-           prod.setProductFullName(longNameStr);
-           prod.setStars(Integer.parseInt(starsStr));
-           prod.setPrice(Double.parseDouble(priceStr));
-           prod.setQuantity(Integer.parseInt(stockStr));
+            Product prod = new Product();
+            prod.setProductId(Integer.parseInt(productId));
+            prod.setProductName(productNameStr);
+            prod.setProductFullName(longNameStr);
+            prod.setStars(Integer.parseInt(starsStr));
+            prod.setPrice(Double.parseDouble(priceStr));
+            prod.setQuantity(Integer.parseInt(stockStr));
             dao.updateProduct(prod);
-             System.out.println("deu bom");
+            System.out.println(productId+" deu certo");
+            response.sendRedirect("AlterImage?codProduto="+productId);
+            
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-       
+
     }
 
 }

@@ -127,13 +127,13 @@ public class ProductDAO {
     }
 
     public ArrayList<Product> findProduct(String pesquisa) {
-        String sql = "select * from products where name_prod= ?";
+        String sql = "select * from products where name_prod like '%"+pesquisa+"%'";
         ArrayList<Product> prodBd = new ArrayList<>();
 
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
-            stmt.setString(1, pesquisa);
+
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {// enquanto tiver empresas adiciona no array
 

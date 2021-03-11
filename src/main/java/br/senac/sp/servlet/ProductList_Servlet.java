@@ -43,6 +43,7 @@ public class ProductList_Servlet extends HttpServlet {
         
        ProductDAO productDAO = new ProductDAO();
         String pesquisa = request.getParameter("pesquisa");
+        System.out.println(pesquisa);
     
         List<Product> lista = new ArrayList(); 
         lista = productDAO.findProduct(pesquisa);

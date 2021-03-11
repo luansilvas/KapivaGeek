@@ -35,24 +35,30 @@
                 <input type="checkbox" name="mainimage" id="mainimage">            
                 <label for="mainimage">Imagem da pagina Inicial</label>
                 <br>
-                <input type="submit">
+                <input type="submit" value="upload">
             </form>
             <fieldset id="list-remove-images">
 
-            <form action="<c:url value="/DeleteImageServlet"/>" method="POST">
-                <c:forEach items="${imageList}" var="image">
-                    <div class="product-images">
-                    <input type="checkbox" name = "deleteSelected" value="${image.imageId}">
-                    <a href="<c:url value="ReplaceProductImage?imageId=${image.imageId}&productId=${image.productId}"/>">
-                        <img src="${image.path}" width="100" height="100">
-                    </a>
-                    <input type="text" name="productId" value="${image.productId}" hidden="hidden">
-                    </div>
-                </c:forEach>
-                <input type="text" value="${productId}" name="productId" hidden="hidden">
-                <input type="submit" value="Remover imagem">
-            </form>
+                <form action="<c:url value="/DeleteImageServlet"/>" method="POST">
+                    <c:forEach items="${imageList}" var="image">
 
+                        <input type="checkbox" name = "deleteSelected" value="${image.imageId}">
+                        <a href="<c:url value="ReplaceProductImage?imageId=${image.imageId}&productId=${image.productId}"/>">
+                            <img src="${image.path}" width="100" height="100">
+                        </a>
+                        <input type="text" name="productId" value="${image.productId}" hidden="hidden">
+
+                    </c:forEach>
+                    <input type="text" value="${productId}" name="productId" hidden="hidden">
+                    <input type="submit" value="Remover imagem">
+                </form>
+
+            </fieldset
+            <button>
+                <a href="<c:url value="/ProductList_Servlet"/>" style="float: right">
+                    pronto
+                </a>
+            </button>
         </fieldset>
         <script>
             const realFileBtn = document.getElementById("image");

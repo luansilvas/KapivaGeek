@@ -17,7 +17,7 @@
 
     </head>
     <body>
-        <div class="containerList">
+        <div class="containerMain">
             <fieldset>
                 <legend>Listar produtos</legend>  
 
@@ -26,11 +26,20 @@
                         <label>Procurar</label>
 
                         <input type="text" name="pesquisa">
-                        <input type="hidden" name="firstId" value="${primeiroId.getProductId()}">
-                        <label><img src="icons/search.png" alt="Lupa"></label>
+                        <input type="hidden" name="firstId" value="${primeiroId.getProductId()}">                       
+                        <button style="border: none;color:white;background-color: white">
+                            <label>
+                                <img src="icons/search.png" alt="Lupa">
+                            </label>
+                            <input type="submit" value="" style="border: none;color:white;background-color: white">
+
+                        </button>
                         <input type="hidden" name="lastId" value="${ultimoId.getProductId()}">
 
-                        <p><a href="<c:url value="/Product_Servlet"/>">Adicionar produto</a></p>
+ 
+                        
+                        <a href="<c:url value="/Product_Servlet"/>"><img src="icons/simbolo-de-adicao-de-espessura.png" id="imgAdd" ></a>
+                        
                     </div>
 
                 </form>
@@ -72,7 +81,7 @@
                     <img src="icons/seta-left.png" alt="icone next">
                     <c:if test="${UltimiItem == null}">
                         <a href ="<c:url value="Pagination_Servlet?id=${ultimoId.getProductId()}"/>"><img src="icons/seta-right.png" alt="icone next" ></a>
-                    </c:if>
+                        </c:if>
                     <img src="icons/seta2-right.png" alt="icone next">
 
                 </div>

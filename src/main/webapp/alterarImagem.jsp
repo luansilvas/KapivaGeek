@@ -35,25 +35,26 @@
                 <input type="checkbox" name="mainimage" id="mainimage">            
                 <label for="mainimage">Imagem da pagina Inicial</label>
                 <br>
-                <input type="submit">
+                <input type="submit" value="upload">
             </form>
             <fieldset>
-
-
-            
-
                 <form action="<c:url value="/DeleteAlterImageServlet"/>" method="POST">
-                <c:forEach items="${imageList}" var="image">
-                    <input type="checkbox" name = "deleteSelected" value="${image.imageId}">
-                    <a href="<c:url value="/ReplaceProductImageServlet?imageId=${image.imageId}&productId=${image.productId}"/>">
-                    <img src="${image.path}" width="100" height="100">
-                    </a>
-                    <input type="text" name="productId" value="${image.productId}" hidden="hidden">
-                </c:forEach>
-                <input type="text" value="${productId}" name="productId" hidden="hidden">
-                <input type="submit">
-            </form>
-
+                    <c:forEach items="${imageList}" var="image">
+                        <input type="checkbox" name = "deleteSelected" value="${image.imageId}">
+                        <a href="<c:url value="/ReplaceProductImageServlet?imageId=${image.imageId}&productId=${image.productId}"/>">
+                            <img src="${image.path}" width="100" height="100">
+                        </a>
+                        <input type="text" name="productId" value="${image.productId}" hidden="hidden">
+                    </c:forEach>
+                    <input type="text" value="${productId}" name="productId" hidden="hidden">
+                    <input type="submit" value="remover">
+                </form>
+            </fieldset>
+                    <button style="float:right">
+                <a href="<c:url value="/ProductList_Servlet"/>" style="text-decoration: none;color: black;">
+                    pronto
+                </a>
+            </button>
         </fieldset>
         <script>
             const realFileBtn = document.getElementById("image");
