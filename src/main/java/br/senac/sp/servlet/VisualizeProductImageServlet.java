@@ -52,7 +52,7 @@ public class VisualizeProductImageServlet extends HttpServlet {
 
             for (int i = 0; i < product.getStars(); i++) {
                 stars.add("estrela 1");
-                System.out.println("estrela" + i);
+
             }
             request.setAttribute("mainImage", mainPic);
             request.setAttribute("product", product);

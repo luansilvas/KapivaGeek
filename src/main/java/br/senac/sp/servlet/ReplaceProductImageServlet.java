@@ -58,7 +58,7 @@ public class ReplaceProductImageServlet extends HttpServlet {
         int imageId = Integer.parseInt(request.getParameter("imageId"));
         Part arquivo = request.getPart("image");
         
-        System.out.println(productId +"OIIIIIIIIII");
+
 
         if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
             String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();

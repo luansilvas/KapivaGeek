@@ -45,8 +45,6 @@ public class Alter_Product_Save extends HttpServlet {
         boolean validLongName = (longNameStr.trim().length() <= 2000);
 
         boolean validStarsValue = starsStr.matches("[0-9]+") && (Integer.parseInt(starsStr) <= 5);
-        System.out.println(validStarsValue);
-        System.out.println(starsStr);
 
         boolean validStockValue = stockStr.matches("[0-9]+");
 
@@ -89,7 +87,6 @@ public class Alter_Product_Save extends HttpServlet {
             prod.setPrice(Double.parseDouble(priceStr));
             prod.setQuantity(Integer.parseInt(stockStr));
             dao.updateProduct(prod);
-            System.out.println(productId+" deu certo");
             response.sendRedirect("AlterImage?codProduto="+productId);
             
         } catch (ClassNotFoundException ex) {

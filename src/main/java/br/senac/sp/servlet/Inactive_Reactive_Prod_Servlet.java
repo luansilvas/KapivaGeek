@@ -31,7 +31,7 @@ public class Inactive_Reactive_Prod_Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int productId = Integer.parseInt(request.getParameter("codProduto"));
-        System.out.println(productId);
+
         try {
             ProductDAO dao = new ProductDAO();
             Product prod = dao.findProductById(productId);

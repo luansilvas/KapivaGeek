@@ -22,7 +22,7 @@ import java.util.logging.Level;
 public class ImageDAO {
 
     public static boolean addImage(int idProduto, String image) {
-        System.out.println("EU TENTEI");
+
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -38,7 +38,6 @@ public class ImageDAO {
                 
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
-            System.out.println("EU INSERI");
             if (linhasAfetadas > 0) {
                 retorno = true;
 

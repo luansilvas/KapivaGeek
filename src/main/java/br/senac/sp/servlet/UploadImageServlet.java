@@ -55,7 +55,7 @@ public class UploadImageServlet extends HttpServlet {
         int productId = Integer.parseInt(request.getParameter("productId"));
         Part arquivo = request.getPart("image");
         
-        System.out.println(productId +"OIIIIIIIIII");
+
 
         if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
             String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
