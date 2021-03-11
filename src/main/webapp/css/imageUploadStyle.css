@@ -35,4 +35,11 @@ body{
     float: left;
 
 }
-  
+#list-remove-images{
+   margin-top: 15%;
+}
+
+.product-images{
+ display: inline-block;   
+    
+}
