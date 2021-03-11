@@ -2,6 +2,7 @@ package br.senac.sp.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import br.senac.sp.dao.*;
 
 /**
  *
@@ -44,6 +45,15 @@ public class Product {
         else
             return false;      
 }
+    public boolean verifyLastId(int id){
+       ProductDAO dao = new ProductDAO();
+       if(dao.LastItemId() == id)
+           return true;
+       
+       
+       return false;
+       
+    }
 
     @Override
     public String toString() {

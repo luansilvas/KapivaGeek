@@ -1,4 +1,3 @@
-
 package br.senac.sp.servlet;
 
 import br.senac.sp.dao.ProductDAO;
@@ -19,44 +18,39 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ProductList_Servlet extends HttpServlet {
 
-
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+      
         ProductDAO productDAO = new ProductDAO();
-        List<Product> lista = new ArrayList(); 
+        List<Product> lista = new ArrayList();
         lista = productDAO.findProduct();
         request.setAttribute("productList", lista);
-        request.setAttribute("ultimoId", lista.get(lista.size()-1));
+        request.setAttribute("ultimoId", lista.get(lista.size() - 1));
+        request.setAttribute("primeiroId", lista.get(0));
         
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/listarProdutos.jsp");
+        
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/listarProdutos.jsp");
         dispatcher.forward(request, response);
-        
+
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("lastId");
-        System.out.println(id);
+       
         
-        response.sendRedirect("Pagination_Servlet?id="+id);
-        
-       /* ProductDAO productDAO = new ProductDAO();
+       ProductDAO productDAO = new ProductDAO();
         String pesquisa = request.getParameter("pesquisa");
     
         List<Product> lista = new ArrayList(); 
         lista = productDAO.findProduct(pesquisa);
+        System.out.println(pesquisa);
         
         request.setAttribute("productList", lista);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/listarProdutos.jsp");
-        dispatcher.forward(request, response);*/
-        
-        
+        dispatcher.forward(request, response);
     }
-
-  
 
 }

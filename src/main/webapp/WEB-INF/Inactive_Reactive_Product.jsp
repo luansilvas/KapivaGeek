@@ -17,42 +17,42 @@
         <section id="main" class="containerMain">
             <form method="post" action="InactiveReactive" novalidate class="form">
                 <fieldset>
-                    <input type="hidden" id="ProductId" name="prodId" value="${IdProduto}">
+                    <input type="hidden" id="ProductId" name="prodId" value="${IdProduto}" readonly>
                     <legend>Produto</legend>
                     <h1></h1>
 
                     <div class="divsForm">
                         <label>Nome do Produto:</label>
                         <br>
-                        <input type="text" name="product-name" value="${product.getProductName()}">
+                        <input type="text" name="product-name" value="${product.getProductName()}" readonly>
 
                     </div>
                     <div id="nomeExtenso" class="divsForm">
                         <label>Nome Extenso:</label>
                         <br>
-                        <textarea name="long-name" rows="4" cols="50" >${product.getProductFullName()}</textarea>
+                        <textarea name="long-name" rows="4" cols="50" readonly >${product.getProductFullName()}</textarea>
                     </div>
                     <div class="divsForm">
                         <label>Quantidade de estrelas:</label>
                         <br>
-                        <input type="text" name="stars" value="${product.getStars()}">
+                        <input type="text" name="stars" value="${product.getStars()}" readonly>
 
 
                     </div>
                     <div class="divsForm">
                         <label>Status:</label>
                         <br>
-                        <input type="text" name="status" value="${product.getStatus()}">
+                        <input type="text" name="status" value="${product.getStatus()}" readonly>
                     </div>
                     <div class="divsForm">
                         <label>Quantidade estoque</label>
                         <br>
-                        <input type="text" name="stock" value="${product.getQuantity()}">
+                        <input type="text" name="stock" value="${product.getQuantity()}" readonly>
                     </div>
                     <div class="divsForm">
                         <label>Preço:</label>
                         <br>
-                        <input type="text" name="price" value="${product.getPrice()}">
+                        <input type="text" name="price" value="${product.getPrice()}" readonly>
                     </div>
 
                 </fieldset>

@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>KapivaGeek - listar produtos</title>
         <link href="css/ProductStyle.css" rel="stylesheet">
+
     </head>
     <body>
         <div class="containerList">
@@ -23,14 +24,17 @@
                 <form method="post" action="ProductList_Servlet">
                     <div id="input">
                         <label>Procurar</label>
+
                         <input type="text" name="pesquisa">
+                        <input type="hidden" name="firstId" value="${primeiroId.getProductId()}">
                         <label><img src="icons/search.png" alt="Lupa"></label>
-                         <input type="text" name="lastId" value="${ultimoId.getProductId()}">
-                        <button type="submit">proximo</button>
-                       
+                        <input type="hidden" name="lastId" value="${ultimoId.getProductId()}">
+
+                        <p><a href="<c:url value="/Product_Servlet"/>">Adicionar produto</a></p>
                     </div>
-                    
+
                 </form>
+
 
                 <br>
                 <div>
@@ -48,25 +52,27 @@
                         <c:forEach items="${productList}" var="p">
 
                             <tr>
-                            
+
                                 <td>${p.productName}</td>
                                 <td>${p.getQuantity()}</td>
                                 <td>${p.getStatus()}</td>
                                 <td><a href="<c:url value="/AlterarProduto?codProduto=${p.productId}"/>">EDITAR</a></td>
-                                <td><a href="<c:url value="/AlterarProduto?codProduto=${p.productId}"/>">INATIVAR/REATIVAR</a></td>
+                                <td><a href="<c:url value="/InactiveReactive?codProduto=${p.productId}"/>">INATIVAR/REATIVAR</a></td>
                                 <td><a href="<c:url value="/VisualizeProductImageServlet?productId=${p.productId}"/>">VISUALIZAR</a></td>
                             </tr>
                         </c:forEach>                    
-   
+
                     </table>
 
                 </div>
 
                 <div id="setas">
-                    
+
                     <img src="icons/seta2-left.png" alt="icone next">
                     <img src="icons/seta-left.png" alt="icone next">
-                    <img src="icons/seta-right.png" alt="icone next">
+                    <c:if test="${UltimiItem == null}">
+                        <a href ="<c:url value="Pagination_Servlet?id=${ultimoId.getProductId()}"/>"><img src="icons/seta-right.png" alt="icone next" ></a>
+                    </c:if>
                     <img src="icons/seta2-right.png" alt="icone next">
 
                 </div>

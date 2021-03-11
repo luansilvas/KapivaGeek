@@ -154,12 +154,11 @@ public class ProductDAO {
 
         return prodBd;
     }
-    
-    public void StatusUpdate(int productId, String newStatus){
-    String sql = "  update products set status_prod = ? where prod_id =?";
-    
-    
-    try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+
+    public void StatusUpdate(int productId, String newStatus) {
+        String sql = "  update products set status_prod = ? where prod_id =?";
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, newStatus);
@@ -172,14 +171,14 @@ public class ProductDAO {
             System.out.println(ex);
         }
     }
-    
-   public ArrayList<Product> findProductPaginationProx(int lastIdPag) {
+
+    public ArrayList<Product> findProductPaginationProx(int lastIdPag) {
         String sql = "select * from products_list where prod_id >? limit 3";
         ArrayList<Product> prodBd = new ArrayList<>();
 
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
-                PreparedStatement stmt = conn.prepareStatement(sql); ) {
-                stmt.setInt(1, lastIdPag);
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setInt(1, lastIdPag);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {// enquanto tiver empresas adiciona no array
 
@@ -198,6 +197,54 @@ public class ProductDAO {
         }
 
         return prodBd;
+    }
+
+    public ArrayList<Product> findProductPaginationPrev(int firstId) {
+        String sql = "select * from products_list where prod_id <? limit 3";
+        ArrayList<Product> prodBd = new ArrayList<>();
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            stmt.setInt(1, firstId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {// enquanto tiver empresas adiciona no array
+
+                    Product prod = new Product();
+                    prod.setProductId(rs.getInt("prod_id"));
+                    prod.setProductName(rs.getString("name_prod"));
+                    prod.setQuantity(rs.getInt("stock"));
+                    prod.setStatus(rs.getString("status_prod"));
+                    prodBd.add(prod);
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return prodBd;
+    }
+
+    public int LastItemId() {
+        String sql = "select prod_id from products ORDER BY prod_id DESC LIMIT 1;";
+        int id = 0;
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {// enquanto tiver empresas adiciona no array
+                    id = rs.getInt("prod_id");
+
+                }
+            }
+
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return id;
+
     }
 
 }

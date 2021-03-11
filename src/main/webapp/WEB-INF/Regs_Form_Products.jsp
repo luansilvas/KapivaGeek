@@ -35,7 +35,7 @@
                     <div class="divsForm">
                         <label>Quantidade de estrelas:</label>
                         <br>
-                        <input type="text" name="stars">
+                        <input type="number" name="stars" max="5" value="0">
                         <c:if test="${StarsValueError != null}">
                             <span><c:out value="${StarsValueError}"/></span>
                         </c:if>

@@ -48,7 +48,7 @@
                     <div class="divsForm">
                         <label>Status:</label>
                         <br>
-                        <input type="text" name="status" value="${res.getStatus()}" disabled>
+                        <input type="text" name="status" value="${res.getStatus()}" readonly>
 
                     </div>
                     <div class="divsForm">
