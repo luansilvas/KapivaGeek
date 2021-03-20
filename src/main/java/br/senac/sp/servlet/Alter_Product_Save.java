@@ -39,6 +39,9 @@ public class Alter_Product_Save extends HttpServlet {
         String starsStr = request.getParameter("stars");
         String stockStr = request.getParameter("stock");
         String priceStr = request.getParameter("price");
+        String categoryStr = request.getParameter("category");
+        
+  
 
         boolean validProductName = (productNameStr.trim().length() > 3 && productNameStr != null);//Validação Nome do produto
 
@@ -49,6 +52,8 @@ public class Alter_Product_Save extends HttpServlet {
         boolean validStockValue = stockStr.matches("[0-9]+");
 
         boolean ValidStatus = starsStr.trim().length() > 0;
+        
+        boolean validCacetory = categoryStr.trim().length()>0 && categoryStr.matches("[a-zA-Z]+");
 
         boolean validFields = validProductName && validLongName && validStarsValue && validStockValue && ValidStatus;
 
@@ -61,15 +66,20 @@ public class Alter_Product_Save extends HttpServlet {
             if (!validStarsValue) {
                 request.setAttribute("StarsValueError", "Este campo aceita apenas números");
             }
+            
+            if(!validCacetory){
+                request.setAttribute("CategoryError", "Valor preenchido é inválido");
+            }
 
             request.setAttribute("product-name", productNameStr);
             request.setAttribute("long-name", longNameStr);
             request.setAttribute("stars", starsStr);
             request.setAttribute("stock", stockStr);
             request.setAttribute("price", priceStr);
+            request.setAttribute("category", categoryStr);
             
   
-            Product result = new Product(Integer.parseInt(productId),productNameStr,longNameStr,Double.parseDouble(priceStr),Integer.parseInt(stockStr),Integer.parseInt(starsStr),"Ativo"); 
+            Product result = new Product(Integer.parseInt(productId),productNameStr,longNameStr,Double.parseDouble(priceStr),Integer.parseInt(stockStr),Integer.parseInt(starsStr),"Ativo",categoryStr); 
             request.setAttribute("res", result);
             request.setAttribute("id", productId);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Form_Alter_Prod.jsp");
@@ -86,6 +96,8 @@ public class Alter_Product_Save extends HttpServlet {
             prod.setStars(Integer.parseInt(starsStr));
             prod.setPrice(Double.parseDouble(priceStr));
             prod.setQuantity(Integer.parseInt(stockStr));
+            prod.setCategory(categoryStr);
+          
             dao.updateProduct(prod);
             response.sendRedirect("AlterImage?codProduto="+productId);
             

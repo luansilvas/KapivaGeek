@@ -35,6 +35,12 @@
                         <br>
                         <textarea name="long-name" rows="4" cols="50" readonly >${product.getProductFullName()}</textarea>
                     </div>
+                      <div>
+                        <label>Categoria</label>
+                        <br>
+                        <input type="text" name="category" value="${product.getCategory()}">
+                       
+                    </div>
                     <div class="divsForm">
                         <label>Quantidade de estrelas:</label>
                         <br>

@@ -12,7 +12,7 @@ public class ProductTest {
 
     @Test
     public void ShouldBuildProduct() {
-        Product p = new Product(1, "product", "testing product fullname", 2.5, 500, 5,"ativo");
+        Product p = new Product(1, "product", "testing product fullname", 2.5, 500, 5,"ativo","ca");
         assertEquals(1, p.getProductId());
         assertEquals("product", p.getProductName());
         assertEquals("testing product fullname", p.getProductFullName());

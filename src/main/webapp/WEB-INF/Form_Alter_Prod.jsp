@@ -40,6 +40,18 @@
                         <br>
                         <textarea name="long-name" rows="4" cols="50" >${res.productFullName}</textarea>
                     </div>
+                     <div>
+                        <label>Categoria</label>
+                        <br>
+                        <input type="text" name="category" value="${res.getCategory()}">
+                        <c:if
+                            test="${CategoryError != null}">
+                            <span><c:out value="${CategoryError}"/></span>
+                        </c:if>
+                    </div>
+                    
+                    
+                   
                     <div class="divsForm">
                         <label>Quantidade de estrelas:</label>
                         <br>

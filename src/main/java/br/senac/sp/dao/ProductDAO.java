@@ -23,7 +23,7 @@ public class ProductDAO {
 
     public int addNewProduct(Product prod) throws SQLException, ClassNotFoundException {
 
-        String sql = "Insert into products(name_prod,long_name,amount_stars,status_prod,stock,price,date_register) values (?,?,?,?,?,?,sysdate());";
+        String sql = "Insert into products(name_prod,long_name,amount_stars,status_prod,stock,price,date_register,category) values (?,?,?,?,?,?,sysdate(),?);";
         int idProd = 0;
         try (Connection conn = ConexaoDB.abrirConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
@@ -36,6 +36,7 @@ public class ProductDAO {
                 stmt.setString(4, prod.getStatus());
                 stmt.setString(5, String.valueOf(prod.getQuantity()));
                 stmt.setString(6, String.valueOf(prod.getPrice()));
+                stmt.setString(7, String.valueOf(prod.getCategory()));
                 stmt.executeUpdate();
 
                 ResultSet generatedKeys = stmt.getGeneratedKeys();
@@ -73,6 +74,7 @@ public class ProductDAO {
                 prod.setProductName(rs.getString("name_prod"));
                 prod.setQuantity(rs.getInt("stock"));
                 prod.setStatus(rs.getString("status_prod"));
+                
                 prodBd.add(prod);
             }
         } catch (ClassNotFoundException ex) {
@@ -101,6 +103,7 @@ public class ProductDAO {
                     prod.setStatus(rs.getString("status_prod"));
                     prod.setQuantity(rs.getInt("stock"));
                     prod.setPrice(rs.getDouble("price"));
+                    prod.setCategory(rs.getString("category"));
 
                 }
 
@@ -110,7 +113,7 @@ public class ProductDAO {
     }
 
     public void updateProduct(Product prod) throws ClassNotFoundException, SQLException {
-        String sql = " update products set name_prod =?,long_name =?,amount_stars =?,stock =?,price=? where prod_id =?;";
+        String sql = " update products set name_prod =?,long_name =?,amount_stars =?,stock =?,price=?,category=? where prod_id =?;";
 
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -120,7 +123,9 @@ public class ProductDAO {
             stmt.setInt(3, prod.getStars());
             stmt.setInt(4, prod.getQuantity());
             stmt.setDouble(5, prod.getPrice());
-            stmt.setInt(6, prod.getProductId());
+            stmt.setString(6, prod.getCategory());
+            stmt.setInt(7, prod.getProductId());
+            
             stmt.executeUpdate();
         }
     }

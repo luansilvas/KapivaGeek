@@ -19,9 +19,10 @@ public class Product {
     private int quantity;
     private int stars;
     private String status;
+    private String category;
 
 
-    public Product(int productId, String productName, String productFullName, double price, int quantity, int stars, String status) {
+    public Product(int productId, String productName, String productFullName, double price, int quantity, int stars, String status, String category) {
         try {
             this.productId = productId;
             this.productName = productName;
@@ -30,6 +31,7 @@ public class Product {
             this.quantity = quantity;
             this.stars = stars;
             this.status = status;
+            this.category = category;
         } catch (Exception e) {
             System.out.println("There was an error building the product object");
             System.out.println("Full error message: {" + e.getLocalizedMessage() + "}");
@@ -57,9 +59,10 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "productId=" + productId + ", productName=" + productName + ", productFullName=" + productFullName + ", price=" + price + ", quantity=" + quantity + ", stars=" + stars + ", status=" + status + '}';
+        return "Product{" + "productId=" + productId + ", productName=" + productName + ", productFullName=" + productFullName + ", price=" + price + ", quantity=" + quantity + ", stars=" + stars + ", status=" + status + ", category=" + category + '}';
     }
 
+   
     
     
     

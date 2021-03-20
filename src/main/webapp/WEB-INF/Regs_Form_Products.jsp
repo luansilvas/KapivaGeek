@@ -15,12 +15,13 @@
     </head>
     <body>
         <section id="main" class="containerMain">
-                    <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
-            <img src="icons/left-arrow.png">
-        </a>
-            <fieldset>
-                <legend>Produto</legend>
-                <form method="post" action="Product-Salvar" novalidate class="form">
+            <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
+                <img src="icons/left-arrow.png">
+            </a>
+
+            <form method="post" action="Product-Salvar" novalidate class="form">
+                <fieldset>
+                    <legend>Produto</legend>
                     <div class="divsForm">
                         <label>Nome do Produto:</label>
                         <br>
@@ -34,6 +35,15 @@
                         <label>Nome Extenso:</label>
                         <br>
                         <textarea name="long-name" rows="4" cols="50" ></textarea>
+                    </div>
+                    <div>
+                        <label>Categoria</label>
+                        <br>
+                        <input type="text" name="category">
+                        <c:if
+                            test="${CategoryError != null}">
+                            <span><c:out value="${CategoryError}"/></span>
+                        </c:if>
                     </div>
                     <div class="divsForm">
                         <label>Quantidade de estrelas:</label>
@@ -62,15 +72,15 @@
                         <br>
                         <input type="text" name="price">
                     </div>
-            </fieldset>
-            <div id="Botoes" class="divsForm" >
-                <button type="reset">Cancelar</button>
-                <button type="submit">Cadastrar - Ir Imagens</button>
-            </div>         
-        </form>
+                </fieldset>
+                <div id="Botoes" class="divsForm" >
+                    <button type="reset">Cancelar</button>
+                    <button type="submit">Cadastrar - Ir Imagens</button>
+                </div>         
+            </form>
 
 
 
-    </section>
-</body>
+        </section>
+    </body>
 </html>

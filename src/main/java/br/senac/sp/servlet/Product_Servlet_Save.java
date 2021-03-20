@@ -52,7 +52,7 @@ public class Product_Servlet_Save extends HttpServlet {
         String stockStr = request.getParameter("stock");
         String priceStr = request.getParameter("price");
         String statusStr = request.getParameter("status");
-
+        String categoryStr = request.getParameter("category");
         boolean validProductName = (productNameStr.trim().length() > 3 && productNameStr != null);//Validação Nome do produto
         
         boolean validLongName = (longNameStr.trim().length() <= 2000);
@@ -63,7 +63,7 @@ public class Product_Servlet_Save extends HttpServlet {
         
         boolean ValidStatus = starsStr.trim().length()>0;
         
-       
+        boolean validCacetory = categoryStr.trim().length()>0 && categoryStr.matches("[a-zA-Z]+");
         
         boolean validFields = validProductName && validLongName && validStarsValue && validStockValue && ValidStatus;
 
@@ -75,6 +75,10 @@ public class Product_Servlet_Save extends HttpServlet {
             
             if(!validStarsValue){
                 request.setAttribute("StarsValueError", "Este campo aceita apenas números");
+            }
+            
+            if(!validCacetory){
+                request.setAttribute("CategoryError", "Valor preenchido é inválido");
             }
 
             request.setAttribute("product-name", productNameStr);
@@ -93,6 +97,7 @@ public class Product_Servlet_Save extends HttpServlet {
             newProduct.setQuantity(Integer.parseInt(stockStr));
             newProduct.setPrice(Double.parseDouble(priceStr));
             newProduct.setStatus(statusStr);
+            newProduct.setCategory(categoryStr);
             productId = dao.addNewProduct(newProduct);
             System.out.println(productId);
         } catch (SQLException ex) {
