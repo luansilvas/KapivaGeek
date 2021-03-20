@@ -21,7 +21,7 @@ import java.util.logging.Level;
  */
 public class ImageDAO {
 
-    public static boolean addImage(int idProduto, String image) {
+    public static boolean addImage(int idProduto, String image, String mainImage) {
 
         boolean retorno = false;
         Connection conexao = null;
@@ -31,10 +31,11 @@ public class ImageDAO {
 
             conexao = ConexaoDB.abrirConexao();
                 
-            instrucaoSQL = conexao.prepareStatement("insert into product_img(prod_id,path_img,status_img,date_register)values(?,?,'a',now());", Statement.RETURN_GENERATED_KEYS);
+            instrucaoSQL = conexao.prepareStatement("insert into product_img(prod_id,path_img,status_img,main_img,date_register)values(?,?,'a',?,now());", Statement.RETURN_GENERATED_KEYS);
 
             instrucaoSQL.setInt(1, idProduto);
             instrucaoSQL.setString(2, image);
+            instrucaoSQL.setString(3, mainImage);
                 
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
@@ -158,9 +159,11 @@ public class ImageDAO {
                 int pId = rs.getInt("prod_id");
                 String status = rs.getString("status_img");
                 String timestamp = rs.getString("date_register");
-                    
+                String mainImage = rs.getString("main_img");
                 
-                Image image = new Image(imageId,pId,path,status,timestamp);
+         
+                
+                Image image = new Image(imageId,pId,path,mainImage,status,timestamp);
                 imageList.add(image);
             }
         } catch (ClassNotFoundException ex) {
@@ -190,9 +193,11 @@ public class ImageDAO {
                 int pId = rs.getInt("prod_id");
                 String status = rs.getString("status_img");
                 String timestamp = rs.getString("date_register");
-                    
+                String mainImage = rs.getString("main_img");
                 
-                Image image = new Image(imageId,pId,path,status,timestamp);
+         
+                
+                Image image = new Image(imageId,pId,path,mainImage,status,timestamp);
                 imageList.add(image);
             }
         } catch (ClassNotFoundException ex) {

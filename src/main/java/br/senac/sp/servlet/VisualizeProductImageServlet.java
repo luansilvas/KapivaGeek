@@ -60,6 +60,11 @@ public class VisualizeProductImageServlet extends HttpServlet {
 
             request.setAttribute("imageList", imageList);
             request.setAttribute("productId", productId);
+            
+            
+            
+            
+            
 
             RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/visualizarProduto.jsp");
             requestDispatcher.forward(request, response);

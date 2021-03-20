@@ -39,6 +39,18 @@ public class ReplaceProductImage extends HttpServlet {
 
         List<Image> imageList = new ArrayList();
         imageList = ImageDAO.getImageById(imageId);
+
+        String hasMainImage = "";
+
+        for (Image i : imageList) {
+
+            if (i.getMainImage().equals("true")) {
+                hasMainImage = "true";
+                break;
+            }
+
+        }
+        request.setAttribute("hasMainImage", hasMainImage);
         request.setAttribute("productId", productId);
         request.setAttribute("imageId", imageId);
         request.setAttribute("imageList", imageList);
@@ -73,9 +85,21 @@ public class ReplaceProductImage extends HttpServlet {
 
             Files.copy(conteudoArquivo, destino);
 
-
             List<Image> imageList = new ArrayList();
             imageList = ImageDAO.getImages(productId);
+            
+            
+                        String hasMainImage = "";
+
+            for (Image i : imageList) {
+
+                if (i.getMainImage().equals("true")) {
+                    hasMainImage = "true";
+                    break;
+                }
+
+            }
+            request.setAttribute("hasMainImage", hasMainImage);
             request.setAttribute("productId", productId);
             request.setAttribute("imageList", imageList);
             RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/alterarImagem.jsp");

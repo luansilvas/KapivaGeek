@@ -40,8 +40,12 @@
                 <button type="button" id="custom-button"><img src="icons/search.png"></button>
 
                 <br>
-                <input type="checkbox" name="mainimage" id="mainimage">            
+                <c:if test="${hasMainImage eq 'true'}">
+                <!--<input type="checkbox" name="mainimage" id="mainimage">-->    
                 <label for="mainimage" class="mainimage">Imagem da pagina Inicial</label>
+                </c:if>
+                
+                
                 <br>
                 <input type="text"  value="${productId}" name="productId" hidden="hidden">
                 <input type="text" value="${imageId}" name="imageId" hidden="hidden">

@@ -44,11 +44,25 @@ public class ReplaceProductImageServlet extends HttpServlet {
         request.setAttribute("imageList", imageList);
         request.setAttribute("productId", productId);
         request.setAttribute("imageId", imageId);
+
+        String hasMainImage = "";
+
+        for (Image i : imageList) {
+
+            if (i.getMainImage().equals("true")) {
+                hasMainImage = "true";
+                break;
+            }
+            
+        }
+        System.out.println(">>>UMA IMAGEM HEIN" + hasMainImage);
+        request.setAttribute("hasMainImage", hasMainImage);
+
         RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/substituirImagem.jsp");
         requestDispatcher.forward(request, response);
     }
 
-     @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String caminho = null;
@@ -57,14 +71,12 @@ public class ReplaceProductImageServlet extends HttpServlet {
         int productId = Integer.parseInt(request.getParameter("productId"));
         int imageId = Integer.parseInt(request.getParameter("imageId"));
         Part arquivo = request.getPart("image");
-        
-
 
         if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
             String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
 
-            nomeArquivo = ImageUploadUtils.valorAleatorio()+nomeArquivo;
-            
+            nomeArquivo = ImageUploadUtils.valorAleatorio() + nomeArquivo;
+
             String diretorioDestino = "/PI-FOTOS";
             conteudoArquivo = arquivo.getInputStream();
             destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
@@ -73,7 +85,6 @@ public class ReplaceProductImageServlet extends HttpServlet {
             ImageDAO.alterImage(imageId, caminho);
 
             Files.copy(conteudoArquivo, destino);
-
 
             List<Image> imageList = new ArrayList();
             imageList = ImageDAO.getImages(productId);

@@ -7,6 +7,7 @@ package br.senac.sp.servlet;
 
 import br.senac.sp.dao.ImageDAO;
 import br.senac.sp.model.Image;
+import br.senac.sp.model.Product;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -41,7 +42,20 @@ public class UploadImageServlet extends HttpServlet {
         List<Image> imageList = new ArrayList();
         imageList = ImageDAO.getImages(productId);
         request.setAttribute("imageList", imageList);
+
         request.setAttribute("productId", productId);
+
+        String hasMainImage = "";
+
+        for (Image i : imageList) {
+
+            if (i.getMainImage().equals("true")) {
+                hasMainImage = "true";
+                break;
+            }
+
+        }
+        request.setAttribute("hasMainImage", hasMainImage);
         RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/cadastrarImagem.jsp");
         requestDispatcher.forward(request, response);
     }
@@ -52,28 +66,46 @@ public class UploadImageServlet extends HttpServlet {
         String caminho = null;
         InputStream conteudoArquivo = null;
         Path destino = null;
+        String mainImage = "";
         int productId = Integer.parseInt(request.getParameter("productId"));
-        Part arquivo = request.getPart("image");
-        
+        if (request.getParameter("mainimage") != null) {
+            mainImage = request.getParameter("mainimage");
+        }
 
+        System.out.println(">>>>" + mainImage);
+        Part arquivo = request.getPart("image");
 
         if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
             String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
 
-            nomeArquivo = ImageUploadUtils.valorAleatorio()+nomeArquivo;
-            
+            nomeArquivo = ImageUploadUtils.valorAleatorio() + nomeArquivo;
+
             String diretorioDestino = "/PI-FOTOS";
             conteudoArquivo = arquivo.getInputStream();
             destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
 
             caminho = "/PI-FOTOS/" + nomeArquivo;
-            ImageDAO.addImage(productId, caminho);
-
+            if (request.getParameter("mainimage") == null) {
+                ImageDAO.addImage(productId, caminho, "");
+            } else {
+                ImageDAO.addImage(productId, caminho, mainImage);
+            }
             Files.copy(conteudoArquivo, destino);
-
 
             List<Image> imageList = new ArrayList();
             imageList = ImageDAO.getImages(productId);
+
+            String hasMainImage = "";
+
+            for (Image i : imageList) {
+
+                if (i.getMainImage().equals("true")) {
+                    hasMainImage = "true";
+                    break;
+                }
+
+            }
+            request.setAttribute("hasMainImage", hasMainImage);
             request.setAttribute("productId", productId);
             request.setAttribute("imageList", imageList);
             RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/adicionarImagem.jsp");
@@ -81,7 +113,5 @@ public class UploadImageServlet extends HttpServlet {
         }
 
     }
-
-
 
 }

@@ -19,7 +19,7 @@
 
 
         <fieldset class="general-fieldset">
-            <legend>Adicionar/remover Imagens</legend>
+            <legend>Adicionar imagens</legend>
 
             <form action="<c:url value="/UploadImageServlet"/>" method="POST" enctype="multipart/form-data">
 
@@ -32,8 +32,10 @@
                 <button type="button" id="custom-button"><img src="icons/search.png"></button>
 
                 <br>
-                <input type="checkbox" name="mainimage" id="mainimage">            
+                <c:if test="${hasMainImage eq ''}">
+                <input type="checkbox" name="mainimage" id="mainimage" value="true">            
                 <label for="mainimage">Imagem da pagina Inicial</label>
+                </c:if>
                 <br>
                 <input type="submit">
             </form>

@@ -23,17 +23,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DeleteAlterImageServlet extends HttpServlet {
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         String toBeDeleted[] = request.getParameterValues("deleteSelected");
         int productId = Integer.parseInt(request.getParameter("productId"));
 
         for (int i = 0; i < toBeDeleted.length; i++) {
-
             ImageDAO.deleteImage(Integer.parseInt(toBeDeleted[i]));
         }
 
@@ -41,6 +38,18 @@ public class DeleteAlterImageServlet extends HttpServlet {
         imageList = ImageDAO.getImages(productId);
         request.setAttribute("imageList", imageList);
         request.setAttribute("productId", productId);
+
+        String hasMainImage = "";
+
+        for (Image i : imageList) {
+
+            if (i.getMainImage().equals("true")) {
+                hasMainImage = "true";
+                break;
+            }
+            System.out.println(">>>UMA IMAGEM HEIN"+i.getImageId());
+        }
+        request.setAttribute("hasMainImage", hasMainImage);
 
         String page = "/cadastrarImagem.jsp";
 
@@ -52,6 +61,5 @@ public class DeleteAlterImageServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(page);
         requestDispatcher.forward(request, response);
     }
-
 
 }

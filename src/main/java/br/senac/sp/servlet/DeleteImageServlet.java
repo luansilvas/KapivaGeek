@@ -40,6 +40,18 @@ public class DeleteImageServlet extends HttpServlet {
         request.setAttribute("imageList", imageList);
         request.setAttribute("productId", productId);
 
+        String hasMainImage = "";
+
+        for (Image i : imageList) {
+
+            if (i.getMainImage().equals("true")) {
+                hasMainImage = "true";
+                break;
+            }
+            System.out.println(">>>UMA IMAGEM HEIN" + i.getImageId());
+        }
+        request.setAttribute("hasMainImage", hasMainImage);
+
         String page = "/cadastrarImagem.jsp";
 
         if (imageList.size() > 0) {
