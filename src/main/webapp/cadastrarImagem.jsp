@@ -23,7 +23,7 @@
 
             <form action="<c:url value="/UploadImageServlet"/>" method="POST" enctype="multipart/form-data">
 
-                <input type="file" name="image" id="image" hidden="hidden">  
+                <input type="file" name="image" id="image" hidden="hidden" required="required" accept=".png, .jpg, .jpeg">  
                 <input type="text" hidden="hidden" value="${productId}" name="productId">
                 <label id="escolhaArquivoLabel">Escola seu arquivo:</label>    
                 <div class="search-field">

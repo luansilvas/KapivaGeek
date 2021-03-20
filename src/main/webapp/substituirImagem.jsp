@@ -32,7 +32,7 @@
 
             <form action="<c:url value="/ReplaceProductImageServlet"/>" method="POST" enctype="multipart/form-data">
 
-                <input type="file" name="image" id="image" hidden="hidden">  
+                <input type="file" name="image" id="image" hidden="hidden" accept=".png, .jpg, .jpeg">  
                 <label id="escolhaArquivoLabel">Escola o novo arquivo:</label>    
                 <div class="search-field">
                     <span id="custom-text"></span>

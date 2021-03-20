@@ -14,10 +14,9 @@
     </head>
     <body>
 
-        <a href="<c:url value="/ProductList_Servlet"/>"
-           cadastrarimagem
+        <a href="<c:url value="/ProductList_Servlet"/>">
+           Listar produtos
         </a>
-           
-           <p>TESTE</p>
+
     </body>
 </html>

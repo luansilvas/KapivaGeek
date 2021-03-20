@@ -2,8 +2,9 @@
 
 body{
     padding-top: 100px;
-    background-color: rgb(238,238,224);
+    background-color: 	rgb(211,211,211);
 }
+
 .go-back{
     margin-left:2%;
 }
@@ -20,7 +21,7 @@ body{
         width: 700px;
         padding: 10px;
         background-color: white;
-         margin-bottom: 15px;
+        margin-bottom: 15px;
 
     }
 }
@@ -30,14 +31,14 @@ body{
         width: 650px;
         padding: 10px;
         background-color: white;
-         margin-bottom: 15px;
+        margin-bottom: 15px;
 
     }
 }
 
 #featured{
-    width: 600px;
-    height: 400px;
+    width: auto;
+    height: auto;
     object-fit: cover;
     cursor: pointer;
     border: 2px solid black;
@@ -53,6 +54,14 @@ body{
     margin: 5px;
     border: 2px solid black;
 
+}
+#product-full-name p{
+    border: 0.5px solid gray;
+    margin: 5% auto;
+    border-radius: 5%;
+}
+#product-full-name{
+    padding: 7%;
 }
 
 .thumbnail:hover{

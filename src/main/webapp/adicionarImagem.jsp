@@ -21,11 +21,11 @@
         <fieldset class="general-fieldset">
             <legend>Adicionar/remover Imagens</legend>
 
-            <form action="<c:url value="/UploadImageServlet"/>" method="POST" enctype="multipart/form-data">
+            <form action="<c:url value="/UploadImageServlet"/>" method="POST" enctype="multipart/form-data" >
 
-                <input type="file" name="image" id="image" hidden="hidden">  
+                <input type="file" name="image" id="image" hidden="hidden" accept=".png, .jpg, .jpeg">  
                 <input type="text" hidden="hidden" value="${productId}" name="productId">
-                <label id="escolhaArquivoLabel">Escola seu arquivo:</label>    
+                <label id="escolhaArquivoLabel">Escolha seu arquivo:</label>    
                 <div class="search-field">
                     <span id="custom-text"></span>
                 </div>

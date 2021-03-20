@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Slider</title>
+        <title>Comprar ${product.productName}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -39,16 +39,21 @@
             <div class="column">
                 <h1>${product.productName}</h1>
                 <br>
+                <p>Classificação: </p>
                 <c:forEach items="${Stars}" var="stars">
                     <img src="icons/mushroom.png" class="mushrooms">
                 </c:forEach>
                 <br>
-                <p>${product.productFullName}</p>
+                <div id="product-full-name">
+                    <p>${product.productFullName}</p>
+                </div>
+
 
             </div>
             <div class="column">
 
                 <h3><p>R$ ${product.price}</p></h3>
+                <a class="btn btn-dark" href="#">Comprar</a>
 
 
             </div>

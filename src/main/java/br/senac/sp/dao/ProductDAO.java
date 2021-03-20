@@ -47,7 +47,6 @@ public class ProductDAO {
                     throw new SQLException("Falha ao obter o código do Pedido.");
                 }
 
-                System.out.println("Cadastrado com secesso");
 
                 conn.commit();
 
