@@ -207,5 +207,38 @@ public class ImageDAO {
         }
         return imageList;
     }
+        
+          public static List<Image> getImages() throws IOException {
+        ResultSet rs = null;
+        Connection connection = null;
+        PreparedStatement instrucaoSQL = null;
+        List<Image> imageList = new ArrayList();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            connection = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = connection.prepareStatement("select * from product_img where status_img='a'");
+            rs = instrucaoSQL.executeQuery();
+            while (rs.next()) {
+                int imageId = rs.getInt("img_id");
+                String path = rs.getString("path_img");
+                int pId = rs.getInt("prod_id");
+                String status = rs.getString("status_img");
+                String timestamp = rs.getString("date_register");
+                String mainImage = rs.getString("main_img");
+                
+         
+                
+                Image image = new Image(imageId,pId,path,mainImage,status,timestamp);
+                imageList.add(image);
+            }
+        } catch (ClassNotFoundException ex) {
+            //Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+           // Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return imageList;
+    }
 
 }

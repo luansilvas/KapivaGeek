@@ -60,6 +60,10 @@
         <servlet-name>Pagination_Prev_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.Pagination_Prev_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Home_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Home_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>Pagination_Prev_Servlet</servlet-name>
         <url-pattern>/PagPrevious</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home_Servlet</servlet-name>
+        <url-pattern>/Home_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

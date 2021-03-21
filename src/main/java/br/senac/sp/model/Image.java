@@ -27,6 +27,11 @@ public class Image {
         this.timestamp = timestamp;
     }
 
+    @Override
+    public String toString() {
+        return "Image{" + "imageId=" + imageId + ", productId=" + productId + ", path=" + path + ", mainImage=" + mainImage + ", status=" + status + ", timestamp=" + timestamp + '}';
+    }
+
 
   
 

@@ -20,6 +20,7 @@ public class Product {
     private int stars;
     private String status;
     private String category;
+    private String path_MainImg;
 
 
     public Product(int productId, String productName, String productFullName, double price, int quantity, int stars, String status, String category) {
@@ -32,6 +33,7 @@ public class Product {
             this.stars = stars;
             this.status = status;
             this.category = category;
+            
         } catch (Exception e) {
             System.out.println("There was an error building the product object");
             System.out.println("Full error message: {" + e.getLocalizedMessage() + "}");
