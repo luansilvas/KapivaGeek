@@ -19,17 +19,17 @@
 
 
         <fieldset class="general-fieldset">
-            <legend>Alterar Imagens</legend>
+            <legend id="titulo">Alterar Imagens</legend>
 
-            <form action="<c:url value="/UploadImageServlet"/>" method="POST" enctype="multipart/form-data">
+            <form id="formCadastro" action="<c:url value="/UploadImageServlet"/>" method="POST" enctype="multipart/form-data">
 
                 <input type="file" name="image" id="image" hidden="hidden">  
                 <input type="text" hidden="hidden" value="${productId}" name="productId">
-                <label id="escolhaArquivoLabel">Escola seu arquivo:</label>    
+                <label id="escolhaArquivoLabel">Escolha seu arquivo:</label>    
                 <div class="search-field">
                     <span id="custom-text"></span>
                 </div>
-                <button type="button" id="custom-button"><img src="icons/search.png"></button>
+                <button id="custom-button" type="button"><img src="icons/search.png"></button>
 
                 <br>
                 <c:if test="${hasMainImage eq ''}">
@@ -52,8 +52,8 @@
                     <input type="submit" value="remover">
                 </form>
             </fieldset>
-                    <button style="float:right">
-                <a href="<c:url value="/ProductList_Servlet"/>" style="text-decoration: none;color: black;">
+                    <button id="confirmar" style="float:right">
+                <a href="<c:url value="/ProductList_Servlet"/>" style="text-decoration: none; color: black;">
                     pronto
                 </a>
             </button>

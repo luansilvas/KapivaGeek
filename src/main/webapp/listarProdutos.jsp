@@ -14,6 +14,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>KapivaGeek - listar produtos</title>
         <link href="css/ProductStyle.css" rel="stylesheet">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -21,13 +26,12 @@
             <fieldset>
                 <legend>Listar produtos</legend>  
 
-                <form method="post" action="ProductList_Servlet">
+                <form id="barraPesquisa" method="post" action="ProductList_Servlet">
                     <div id="input">
-                        <label>Procurar</label>
-
-                        <input type="text" name="pesquisa">
+                     
+                        <input id="pesquisar"type="text" name="pesquisa" placeholder="Pesquise um produto">
                         <input type="hidden" name="firstId" value="${primeiroId.getProductId()}">                       
-                        <button style="border: none;color:white;background-color: white">
+                        <button id="lupa" style="border: none;color:white;background-color: white">
                             <label>
                                 <img src="icons/search.png" alt="Lupa">
                             </label>
@@ -47,9 +51,9 @@
 
                 <br>
                 <div>
-                    <table border=1>
-
-                        <tr>
+                    <table border =1 class="table table-striped" >
+                    <thead class="thead-dark">   
+                        <tr >
                             <th>Nome do produto</th>
                             <th>Qnt. Estoque</th> 
                             <th>Status</th>
@@ -57,6 +61,7 @@
                             <th>Inativar/Reativar</th>
                             <th>Visualizar</th>
                         </tr>
+                    </thead>
 
                         <c:forEach items="${productList}" var="p">
 

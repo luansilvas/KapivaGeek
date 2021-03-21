@@ -19,10 +19,10 @@
         <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
             <img src="icons/left-arrow.png">
         </a>
-            <form method="post" action="SaveChage" class="form">
-                <fieldset>
+            <form id="formCadastro" method="post" action="SaveChage" class="form">
+                <fieldset >
                     <input type="hidden" name="Product-id" value="${id}">
-                    <legend>Produto</legend>
+                    <legend>Editar Produto</legend>
                     <h1></h1>
 
                     <div class="divsForm">
@@ -40,7 +40,7 @@
                         <br>
                         <textarea name="long-name" rows="4" cols="50" >${res.productFullName}</textarea>
                     </div>
-                     <div>
+                     <div class="divsForm">
                         <label>Categoria</label>
                         <br>
                         <input type="text" name="category" value="${res.getCategory()}">
@@ -78,9 +78,9 @@
                     </div>
 
                 </fieldset>
-                <div id="Botoes" class="divsForm" >
+                <div class="divsForm" >
                    <!-- <button type="reset">Cancelar</button>-->
-                    <button type="submit">Alterar - Ir Imagens</button>
+                    <button id="alterar" type="submit">Alterar Produto</button>
                 </div>  
             </form>
 

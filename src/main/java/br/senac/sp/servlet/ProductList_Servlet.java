@@ -28,7 +28,7 @@ public class ProductList_Servlet extends HttpServlet {
         request.setAttribute("productList", lista);
         request.setAttribute("ultimoId", lista.get(lista.size() - 1));
         request.setAttribute("primeiroId", lista.get(0));
-        
+        System.out.println(lista.get(0));
         
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/listarProdutos.jsp");
