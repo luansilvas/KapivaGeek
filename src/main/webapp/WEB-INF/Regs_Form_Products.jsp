@@ -24,7 +24,7 @@
             <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
-            <form id="formCadastro" method="post" action="Product-Salvar" novalidate class="form">
+            <form id="formCadastro" method="post"  novalidate class="form">
                 <fieldset>
 
                     <legend>Cadastro de Produto</legend>
@@ -47,7 +47,7 @@
                         <label>Tipo</label>
                         <br>
                         
-                        <select id="" name="status">
+                        <select id="" name="category">
                             <option value="Ativo">Escolha...</option>
                             <option value="Objeto">Objeto</option>
                             <option value="Roupa">Roupa</option>
