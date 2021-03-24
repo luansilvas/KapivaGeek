@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>KapivaGeek - carregar imagem</title>
+        <title>KapivaGeek - Carregar imagem</title>
         <link href="css/imageUploadStyle.css" rel="stylesheet" type="text/css">
         <meta charset=utf-8 />
     </head>
