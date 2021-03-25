@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.senac.sp.model.*;
 import br.senac.sp.dao.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,39 +24,189 @@ import java.util.List;
  */
 public class Home_Servlet extends HttpServlet {
 
-    
-    
-
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO dao = new ProductDAO();
-       
-        
-        List<Product> produtos = new LinkedList();
-        List<Image> images = new LinkedList();
-        
-        produtos = dao.findProductSearch();
-        images = ImageDAO.getImages();
-        
-      request.setAttribute("produtos", produtos);
-      request.setAttribute("images", images);
-        
-      
+        System.out.println("CHEGUEI");
+        try{
+        String categoria = request.getParameter("categoria");
 
-        
-         RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-        dispatcher.forward(request, response);
-       
+        if (categoria.equals("all")) {
+            ProductDAO dao = new ProductDAO();
+
+            List<Product> bonecos = dao.findProductByCategory("Boneco");
+            List<Product> camisetasMasc = dao.findProductByCategory("Camiseta masculina");
+            List<Product> camisetasFem = dao.findProductByCategory("Camiseta Feminina");
+            List<Product> canecas = dao.findProductByCategory("Caneca");
+            List<Product> acessorios = dao.findProductByCategory("Acessorio");
+            List<Product> variedades = dao.findProductByCategory("Variedade");
+            List<Product> resultado = new ArrayList();
+            String hasBonecos = "", hasCM = "", hasCF = "", hasCaneca = "", hasAcessorio = "", hasVariedades = "", hasFiltro = "",filtro="";
+            if (bonecos.size() > 0) {
+                hasBonecos = "true";
+            }
+            if (camisetasMasc.size() > 0) {
+                hasCM = "true";
+
+            }
+            if (camisetasFem.size() > 0) {
+                hasCF = "true";
+            }
+            if (canecas.size() > 0) {
+                hasCaneca = "true";
+            }
+            if (acessorios.size() > 0) {
+                hasAcessorio = "true";
+            }
+            if (variedades.size() > 0) {
+                hasVariedades = "true";
+            }
+
+            request.setAttribute("hasFiltro", hasFiltro);
+            request.setAttribute("filtro", filtro);
+            request.setAttribute("resultado", resultado);
+            request.setAttribute("hasBonecos", hasBonecos);
+            request.setAttribute("hasCM", hasCM);
+            request.setAttribute("hasCF", hasCF);
+            request.setAttribute("hasCanecas", hasCaneca);
+            request.setAttribute("hasAcessorios", hasAcessorio);
+            request.setAttribute("hasVariedades", hasVariedades);
+            request.setAttribute("bonecos", bonecos);
+            request.setAttribute("camisetasMasc", camisetasMasc);
+            request.setAttribute("camisetasFem", camisetasFem);
+            request.setAttribute("canecas", canecas);
+            request.setAttribute("acessorios", acessorios);
+            request.setAttribute("variedades", variedades);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            ProductDAO dao = new ProductDAO();
+            System.out.println(">>>>>>>"+categoria);
+            List<Product> bonecos = new ArrayList();
+            List<Product> camisetasMasc = new ArrayList();
+            List<Product> camisetasFem = new ArrayList();
+            List<Product> canecas = new ArrayList();
+            List<Product> acessorios = new ArrayList();
+            List<Product> variedades = new ArrayList();
+            String hasBonecos = "", hasCM = "", hasCF = "", hasCaneca = "", hasAcessorio = "", hasVariedades = "", filtro = "", hasFiltro = "";
+            List<Product> resultado = dao.findProductByCategory(categoria);
+            if (resultado.size() > 0) {
+                hasFiltro = "true";
+                filtro = categoria;
+            }
+            request.setAttribute("filtro", filtro);
+            request.setAttribute("hasFiltro", hasFiltro);
+            request.setAttribute("resultado", resultado);
+            request.setAttribute("hasBonecos", hasBonecos);
+            request.setAttribute("hasCM", hasCM);
+            request.setAttribute("hasCF", hasCF);
+            request.setAttribute("hasCanecas", hasCaneca);
+            request.setAttribute("hasAcessorios", hasAcessorio);
+            request.setAttribute("hasVariedades", hasVariedades);
+            request.setAttribute("bonecos", bonecos);
+            request.setAttribute("camisetasMasc", camisetasMasc);
+            request.setAttribute("camisetasFem", camisetasFem);
+            request.setAttribute("canecas", canecas);
+            request.setAttribute("acessorios", acessorios);
+            request.setAttribute("variedades", variedades);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
+
+        }
+        }catch(Exception e){
+        ProductDAO dao = new ProductDAO();
+
+            List<Product> bonecos = dao.findProductByCategory("Boneco");
+            List<Product> camisetasMasc = dao.findProductByCategory("Camiseta masculina");
+            List<Product> camisetasFem = dao.findProductByCategory("Camiseta Feminina");
+            List<Product> canecas = dao.findProductByCategory("Caneca");
+            List<Product> acessorios = dao.findProductByCategory("Acessorio");
+            List<Product> variedades = dao.findProductByCategory("Variedade");
+            List<Product> resultado = new ArrayList();
+            String hasBonecos = "", hasCM = "", hasCF = "", hasCaneca = "", hasAcessorio = "", hasVariedades = "", hasFiltro = "",filtro="";
+            if (bonecos.size() > 0) {
+                hasBonecos = "true";
+            }
+            if (camisetasMasc.size() > 0) {
+                hasCM = "true";
+
+            }
+            if (camisetasFem.size() > 0) {
+                hasCF = "true";
+            }
+            if (canecas.size() > 0) {
+                hasCaneca = "true";
+            }
+            if (acessorios.size() > 0) {
+                hasAcessorio = "true";
+            }
+            if (variedades.size() > 0) {
+                hasVariedades = "true";
+            }
+
+            request.setAttribute("hasFiltro", hasFiltro);
+            request.setAttribute("filtro", filtro);
+            request.setAttribute("resultado", resultado);
+            request.setAttribute("hasBonecos", hasBonecos);
+            request.setAttribute("hasCM", hasCM);
+            request.setAttribute("hasCF", hasCF);
+            request.setAttribute("hasCanecas", hasCaneca);
+            request.setAttribute("hasAcessorios", hasAcessorio);
+            request.setAttribute("hasVariedades", hasVariedades);
+            request.setAttribute("bonecos", bonecos);
+            request.setAttribute("camisetasMasc", camisetasMasc);
+            request.setAttribute("camisetasFem", camisetasFem);
+            request.setAttribute("canecas", canecas);
+            request.setAttribute("acessorios", acessorios);
+            request.setAttribute("variedades", variedades);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
+            
+            
+            
+        }
+
     }
 
-  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        String categoria = request.getParameter("categoria");
+        ProductDAO dao = new ProductDAO();
+            System.out.println(">>>>>>>"+categoria);
+            List<Product> bonecos = new ArrayList();
+            List<Product> camisetasMasc = new ArrayList();
+            List<Product> camisetasFem = new ArrayList();
+            List<Product> canecas = new ArrayList();
+            List<Product> acessorios = new ArrayList();
+            List<Product> variedades = new ArrayList();
+            String hasBonecos = "", hasCM = "", hasCF = "", hasCaneca = "", hasAcessorio = "", hasVariedades = "", filtro = "", hasFiltro = "";
+            List<Product> resultado = dao.findProductBySearch(categoria);
+            if (resultado.size() > 0) {
+                hasFiltro = "pesquisa";
+                filtro = categoria;
+            }else{
+            hasFiltro = "naoachouresultado";
+            filtro = categoria;
+            }
+            request.setAttribute("filtro", filtro);
+            request.setAttribute("hasFiltro", hasFiltro);
+            request.setAttribute("resultado", resultado);
+            request.setAttribute("hasBonecos", hasBonecos);
+            request.setAttribute("hasCM", hasCM);
+            request.setAttribute("hasCF", hasCF);
+            request.setAttribute("hasCanecas", hasCaneca);
+            request.setAttribute("hasAcessorios", hasAcessorio);
+            request.setAttribute("hasVariedades", hasVariedades);
+            request.setAttribute("bonecos", bonecos);
+            request.setAttribute("camisetasMasc", camisetasMasc);
+            request.setAttribute("camisetasFem", camisetasFem);
+            request.setAttribute("canecas", canecas);
+            request.setAttribute("acessorios", acessorios);
+            request.setAttribute("variedades", variedades);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
+
     }
 
-   
 }

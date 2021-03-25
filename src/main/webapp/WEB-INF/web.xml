@@ -64,6 +64,10 @@
         <servlet-name>Home_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.Home_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>seeProductDetail</servlet-name>
+        <servlet-class>br.senac.sp.servlet.seeProductDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -128,10 +132,14 @@
         <servlet-name>Home_Servlet</servlet-name>
         <url-pattern>/Home_Servlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>seeProductDetail</servlet-name>
+        <url-pattern>/seeProductDetail</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>/Home_Servlet</welcome-file>
     </welcome-file-list>
 </web-app>

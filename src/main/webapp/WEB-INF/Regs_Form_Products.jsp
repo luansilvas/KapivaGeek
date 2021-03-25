@@ -24,7 +24,7 @@
             <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
-            <form id="formCadastro" method="post"  novalidate class="form">
+            <form id="formCadastro" method="post" action="Product_Servlet_Save" novalidate class="form">
                 <fieldset>
 
                     <legend>Cadastro de Produto</legend>
@@ -41,24 +41,27 @@
                         <br>
                         <textarea name="long-name" rows="4" cols="50" placeholder="Descrição do produto"></textarea>
                     </div>
-                    
+
                     <div class="divsForm">  
-                        
+
                         <label>Tipo</label>
                         <br>
-                        
+
                         <select id="" name="category">
                             <option value="Ativo">Escolha...</option>
-                            <option value="Objeto">Objeto</option>
-                            <option value="Roupa">Roupa</option>
-                            <option value="Acessório">Acessório</option>
+                            <option value="Boneco">Boneco</option>
+                            <option value="Camiseta masculina">Camiseta masculina</option>
+                            <option value="Camiseta feminina">Camiseta feminina</option>
+                            <option value="Caneca">Caneca</option>
+                            <option value="Acessorio">Acessório</option>
+                            <option value="Variedade">Variedade</option>
                         </select>
                         <c:if
                             test="${CategoryError != null}">
                             <span><c:out value="${CategoryError}"/></span>
                         </c:if>
                     </div>
-                    
+
                     <div class="divsForm">
                         <label>Estrelas</label>
                         <br>
@@ -67,9 +70,9 @@
                             <span><c:out value="${StarsValueError}"/></span>
                         </c:if>
                     </div>
-                    
+
                     <div class="divsForm">
-                       <label>Status</label>
+                        <label>Status</label>
                         <br>
                         <select id="" name="status">
                             <option value="Ativo">Escolha...</option>
@@ -78,21 +81,21 @@
                         </select>
                     </div>
                     <div class="divsForm">
-                        
+
 
                         <label>Quantidade</label>
                         <input type="text" name="stock" placeholder="Quantidade" >
                     </div>
                     <div class="divsForm">
-                      <label>Preço</label>
+                        <label>Preço</label>
                         <input type="text" name="price" placeholder="Preço">
                     </div>
                 </fieldset>
                 <div id="Botoes" class="divsForm" >
                     <button type="reset">Cancelar</button>
                     <button type="submit">Cadastrar - Imagens</button>
-                    
-                    
+
+
                 </div>         
             </form>
 

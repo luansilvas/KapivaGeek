@@ -118,8 +118,61 @@ public class ProductDAO {
 
         return prodBd;
     }
-    
+          public ArrayList<Product> findProductByCategory(String categoria) {
+        String sql = "select p.prod_id, p.name_prod,p.long_name,p.price,pi.path_img from products as p inner JOIN product_img as pi on pi.prod_id = p.prod_id where pi.Main_img = 'true' and p.category =  '"+categoria+"' and p.status_prod='Ativo'";
+        ArrayList<Product> prodBd = new ArrayList<>();
+        
 
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+                
+            while (rs.next()) {// enquanto tiver empresas adiciona no array
+
+                Product prod = new Product();
+                prod.setProductId(rs.getInt("prod_id"));
+                prod.setProductName(rs.getString("name_prod"));
+                prod.setProductFullName(rs.getString("long_name"));
+                prod.setPrice(rs.getDouble("price"));
+                prod.setPath_MainImg(rs.getString("path_img"));
+                
+                prodBd.add(prod);
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return prodBd;
+    }
+              public ArrayList<Product> findProductBySearch(String search) {
+        String sql = "select p.prod_id, p.name_prod,p.long_name,p.price,pi.path_img from products as p inner JOIN product_img as pi on pi.prod_id = p.prod_id where pi.main_img = 'true' and p.category like '%"+search+"%' or p.name_prod = '%"+search+"%' and p.status_prod='Ativo'";
+        ArrayList<Product> prodBd = new ArrayList<>();
+        
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+                
+            while (rs.next()) {// enquanto tiver empresas adiciona no array
+
+                Product prod = new Product();
+                prod.setProductId(rs.getInt("prod_id"));
+                prod.setProductName(rs.getString("name_prod"));
+                prod.setProductFullName(rs.getString("long_name"));
+                prod.setPrice(rs.getDouble("price"));
+                prod.setPath_MainImg(rs.getString("path_img"));
+                
+                prodBd.add(prod);
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return prodBd;
+    }      
+          
     public Product findProductById(int idProd) throws SQLException, ClassNotFoundException {
         String sql = "select * from products where prod_id = ?";
         Product prod = new Product();

@@ -10,12 +10,21 @@ and open the template in the editor.
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+
+
+@media (max-width: 1079px){
+    #links{
+        display: none;
+    }
+    
+}
 footer{
     background-image: url(../images/banner.png);
     clear: both;
     width:100%;
     position: relative;
     padding-bottom:50px;
+    margin-top: 20px;
 }
 
 .rodape p{
@@ -49,14 +58,15 @@ footer{
 
 }
 #cards{
-   margin: 0 auto;
-  
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 #cards img{
     margin: 0 auto;
+    widows: 270px;
+    height: 250px;
 }
-
 
 
 

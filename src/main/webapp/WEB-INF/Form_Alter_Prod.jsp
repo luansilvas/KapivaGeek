@@ -16,9 +16,9 @@
     <body>
 
         <section id="main" class="containerMain">
-        <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
-            <img src="icons/left-arrow.png">
-        </a>
+            <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
+                <img src="icons/left-arrow.png">
+            </a>
             <form id="formCadastro" method="post" action="SaveChage" class="form">
                 <fieldset >
                     <input type="hidden" name="Product-id" value="${id}">
@@ -40,18 +40,29 @@
                         <br>
                         <textarea name="long-name" rows="4" cols="50" >${res.productFullName}</textarea>
                     </div>
-                     <div class="divsForm">
+                    <div class="divsForm">
                         <label>Categoria</label>
                         <br>
-                        <input type="text" name="category" value="${res.getCategory()}">
+                        <select id="" name="category">
+                            <option value="${res.getCategory()}">${res.getCategory()}</option>
+                            <option value="Objeto">Bonecos</option>
+                            <option value="Camiseta masculina">Camiseta masculina</option>
+                            <option value="Camiseta faminina">Camiseta feminina</option>
+                            <option value="Caneca">Caneca</option>
+                            <option value="Acessórios">Acessórios</option>
+                            <option value="Variedades">Variedades</option>
+                        </select>
+
+
+
                         <c:if
                             test="${CategoryError != null}">
                             <span><c:out value="${CategoryError}"/></span>
                         </c:if>
                     </div>
-                    
-                    
-                   
+
+
+
                     <div class="divsForm">
                         <label>Quantidade de estrelas:</label>
                         <br>
@@ -79,7 +90,7 @@
 
                 </fieldset>
                 <div class="divsForm" >
-                   <!-- <button type="reset">Cancelar</button>-->
+                    <!-- <button type="reset">Cancelar</button>-->
                     <button id="alterar" type="submit">Alterar Produto</button>
                 </div>  
             </form>
