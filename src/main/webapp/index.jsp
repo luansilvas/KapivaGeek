@@ -84,7 +84,7 @@
             <div class="row">
                 <c:forEach items="${bonecos}" var="b">
                     <div id="cards" class="">
-                        <div class="card" style="width:300px; height:460;">
+                        <div class="card" style="width:300px; height:500px;">
                             <img class="card-img-top" src="${b.path_MainImg}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title">${b.productName}</h4>
@@ -103,7 +103,7 @@
             <div class="row">
                 <c:forEach items="${camisetasMasc}" var="cm">
                     <div id="cards" class="">
-                        <div class="card" style="width:300px; height:460;">
+                        <div class="card" style="width:300px; height:500px;">
                             <img class="card-img-top" src="${cm.path_MainImg}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title">${cm.productName}</h4>
@@ -123,7 +123,7 @@
             <div class="row">
                 <c:forEach items="${camisetasFem}" var="cf">
                     <div id="cards" class="">
-                        <div class="card" style="width:300px; height:460;">
+                        <div class="card" style="width:300px; height:500px;">
                             <img class="card-img-top" src="${cf.path_MainImg}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title">${cf.productName}</h4>
@@ -143,7 +143,7 @@
             <div class="row">
                 <c:forEach items="${canecas}" var="c">
                     <div id="cards" class="">
-                        <div class="card" style="width:300px; height:460;">
+                        <div class="card" style="width:300px; height:500px;">
                             <img class="card-img-top" src="${c.path_MainImg}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title">${c.productName}</h4>
@@ -162,7 +162,7 @@
             <div class="row">
                 <c:forEach items="${acessorios}" var="a">
                     <div id="cards" class="">
-                        <div class="card" style="width:300px; height:460;">
+                        <div class="card" style="width:300px; height:500px;">
                             <img class="card-img-top" src="${a.path_MainImg}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title">${a.productName}</h4>
@@ -181,7 +181,7 @@
             <div class="row">
                 <c:forEach items="${variedades}" var="v">
                     <div id="cards" class="">
-                        <div class="card" style="width:300px; height:460;">
+                        <div class="card" style="width:300px; height:500px;">
                             <img class="card-img-top" src="${v.path_MainImg}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title">${v.productName}</h4>
@@ -202,7 +202,7 @@
             <div class="row">
                 <c:forEach items="${resultado}" var="r">
                     <div id="cards" class="">
-                        <div class="card" style="width:300px; height:460;">
+                        <div class="card" style="width:300px; height:500px;">
                             <img class="card-img-top" src="${r.path_MainImg}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title">${r.productName}</h4>
@@ -223,7 +223,7 @@
             <div class="row">
                 <c:forEach items="${resultado}" var="r">
                     <div id="cards" class="">
-                        <div class="card" style="width:300px; height:460;">
+                        <div class="card" style="width:300px; height:500px;">
                             <img class="card-img-top" src="${r.path_MainImg}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title">${r.productName}</h4>

@@ -46,10 +46,10 @@
             <div class="column">
                 <h1>${product.productName}</h1>
                 <br>
-                <p>Classificação: </p>
-                <c:forEach items="${Stars}" var="stars">
+                <p>Classificação:<c:forEach items="${Stars}" var="stars">
                     <img src="icons/mushroom.png" class="mushrooms">
-                </c:forEach>
+                </c:forEach> </p>
+
                 <br>
                 <div id="product-full-name">
                     <p>${product.productFullName}</p>
