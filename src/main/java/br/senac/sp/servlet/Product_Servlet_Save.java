@@ -57,7 +57,7 @@ public class Product_Servlet_Save extends HttpServlet {
         
         boolean validLongName = (longNameStr.trim().length() <= 2000);
         
-        boolean validStarsValue = starsStr.matches("[0-9]+") && starsStr.trim().length()<=5;
+        boolean validStarsValue = starsStr.matches("[0-9]+") && Integer.parseInt(starsStr) <=5;
         
         boolean validStockValue = stockStr.matches("[0-9]+");
         
@@ -74,7 +74,7 @@ public class Product_Servlet_Save extends HttpServlet {
             }
             
             if(!validStarsValue){
-                request.setAttribute("StarsValueError", "Este campo aceita apenas números");
+                request.setAttribute("StarsValueError", "Este campo aceita apenas números e Valores menores ou igual a 5");
             }
             
             if(!validCacetory){
