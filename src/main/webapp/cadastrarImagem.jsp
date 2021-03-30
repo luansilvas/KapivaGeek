@@ -19,7 +19,7 @@
 
 
         <fieldset class="general-fieldset">
-            <legend>Adicionar imagens</legend>
+            <legend>Cadastrar imagens</legend>
 
             <form action="<c:url value="/UploadImageServlet"/>" method="POST" enctype="multipart/form-data">
 

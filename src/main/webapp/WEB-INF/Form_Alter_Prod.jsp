@@ -45,12 +45,12 @@
                         <br>
                         <select id="" name="category">
                             <option value="${res.getCategory()}">${res.getCategory()}</option>
-                            <option value="Objeto">Bonecos</option>
+                            <option value="Boneco">Boneco</option>
                             <option value="Camiseta masculina">Camiseta masculina</option>
-                            <option value="Camiseta faminina">Camiseta feminina</option>
+                            <option value="Camiseta feminina">Camiseta feminina</option>
                             <option value="Caneca">Caneca</option>
-                            <option value="Acessórios">Acessórios</option>
-                            <option value="Variedades">Variedades</option>
+                            <option value="Acessorio">Acessório</option>
+                            <option value="Variedade">Variedade</option>
                         </select>
 
 

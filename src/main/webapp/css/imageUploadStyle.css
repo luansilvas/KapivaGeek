@@ -21,8 +21,8 @@ and open the template in the editor.
     border: none;
     
 }
-custom-button{
-    background: white;
+#custom-button{
+    background-color:white;
     border:white;
     
 }

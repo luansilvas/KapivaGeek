@@ -35,11 +35,11 @@
                         <br>
                         <textarea name="long-name" rows="4" cols="50" readonly >${product.getProductFullName()}</textarea>
                     </div>
-                      <div>
+                    <div>
                         <label>Categoria</label>
                         <br>
                         <input type="text" name="category" value="${product.getCategory()}">
-                       
+
                     </div>
                     <div class="divsForm">
                         <label>Quantidade de estrelas:</label>
@@ -65,8 +65,11 @@
                     </div>
 
                 </fieldset>
+
                 <div id="Botoes" class="divsForm" >
-                    <button type="reset">Cancelar</button>
+                    <a href="<c:url value="/ProductList_Servlet"/>" class="go-back">
+                        <button type="reset">Cancelar</button>
+                    </a>
 
                     <c:if test="${statusValue == true}">
                         <button type="submit" name="Inativo">Inativar</button>
