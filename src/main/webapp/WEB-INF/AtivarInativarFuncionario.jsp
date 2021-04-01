@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/EmployeeFormStyle.css" type="text/css">
-        <title>Cadastrar Funcionário</title>
+        <title>${acao} Funcionário</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,16 +25,15 @@
             <a href="<c:url value="/EmployeeList_Servlet"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
-            <form class="formCadastro" method="post" action="<c:url value="/AlterEmployee_Servlet"/>" novalidate class="form">
+            <form id="formCadastro" novalidate class="form">
                 <fieldset>
 
-                    <legend>Alterar Funcionário</legend>
+                    <legend>${acao} Funcionário</legend>
 
                     <div class="divsForm">
                         <label>Nome</label>
                         <br>
-                        <input type="text" name="name" placeholder="Nome do funcionario" value="${employee.employeeName}">
-                        <input type="text" name="id" placeholder="Nome do funcionario" value="${employee.employeeId}" style="display:none">
+                        <input type="text" name="name" placeholder="Nome do funcionario" value="${employee.employeeName}" readonly="readonly">
 
                     </div>
 
@@ -42,56 +41,29 @@
 
                         <label>Cargo</label>
 
-
-                        <select id="" name="role">
-                            <option value="${employee.employeeRole}">${employee.employeeRole}</option>
-                            <option value="Estoquista">Estoquista</option>
-                            <option value="Gerente">Gerente</option>
-
-                        </select>
-
+                        <input value="${employee.employeeRole}" readonly="readonly">
                     </div>
+
                     <div class="divsForm">
-                        <label>email(somente leitura)</label>
+                        <label>email</label>
                         <br>
-                        <input type="email" value="${employee.employeeEmail}" readonly>
+                        <input value="${employee.employeeEmail}">
                     </div>
-                    <form class="formCadastro" method="post" action="<c:url value="/AlterEmployee_Servlet"/>" novalidate class="form">
-                        <div class="divsForm">
-                            <label>Status</label>
-                            <br>
-                            <select id="" name="status">
-                                <option value="Ativo">${employee.employeeStatus}</option>
-                                <option value="Ativo">Ativo</option>
-                                <option value="Inativo">Inativo</option>
-                            </select>
-                        </div>
-                        <div id="Botoes" class="divsForm" >
-                            <button type="reset">Limpar</button>
-                            <button type="submit">Atualizar </button>
 
+                    <div class="divsForm">
+                        <label>Status</label>
+                        <br>                            
+                        <input value="${employee.employeeStatus}" readonly="readonly">
 
-                        </div> 
-                    </form>
-                    <form method="post" action="<c:url value="/AlterEmployeePassword_Servlet"/>" novalidate class="form">
-
-                        <div class="divsForm" id="senha">
-                            <label>Alterar Senha</label>
-                            <input type="password" name="pass" placeholder="Senha">
-                            <input type="password" name="passConf" placeholder="Confirme a senha">
-                            <input type="text" name="id" placeholder="Nome do funcionario" value="${employee.employeeId}" style="display:none">
-                        </div>
-
-                        <div id="Botoes" class="divsForm" >
-                            <button type="reset">Limpar</button>
-                            <button type="submit">Atualizar Senha</button>
-
-
-                        </div> 
-                    </form>
+                    </div>
                 </fieldset>
+                <div id="Botoes" class="divsForm" >
+                    <button type="reset">Limpar</button>
+                    <button type="submit"><a href="ActivateInactivateEmployee_Servlet?employeeId=${employee.employeeId}&acao=${acao}">${acao}</a></button>
 
 
+                </div>         
+            </form>
         </section>
 
         <c:if test="${hasError eq 'true'}">

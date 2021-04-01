@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CadastrarFuncionario
-    Created on : 30/03/2021, 12:11:00
+    Document   : AtivarInativarFuncionario
+    Created on : 01/04/2021, 02:13:49
     Author     : luans
 --%>
 
@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/EmployeeFormStyle.css" type="text/css">
-        <title>Cadastrar Funcionário</title>
+        <title>${acao} Funcionário</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,17 +25,15 @@
             <a href="<c:url value="/EmployeeList_Servlet"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
-            <form id="formCadastro" method="post" action="<c:url value="/RegisterEmployee_Servlet"/>" novalidate class="form">
+            <form id="formCadastro" novalidate class="form">
                 <fieldset>
 
-                    <legend>Cadastro de Funcionário</legend>
-                    <c:forEach items="${errorList}" var="p">
-
-                    </c:forEach>
+                    <legend>Visualizar Funcionário</legend>
+<img src="images/kapiva.jpg" style="width: 180px;height: 140px;margin-left: 40%;border-radius: 100%;">
                     <div class="divsForm">
                         <label>Nome</label>
                         <br>
-                        <input type="text" name="name" placeholder="Nome do funcionario" value="${employee.employeeName}">
+                        <input type="text" name="name" placeholder="Nome do funcionario" value="${employee.employeeName}" readonly="readonly">
 
                     </div>
 
@@ -43,43 +41,22 @@
 
                         <label>Cargo</label>
 
-
-                        <select id="" name="role">
-                            <option value="${employee.employeeRole}">${employee.employeeRole}</option>
-                            <option value="Estoquista">Estoquista</option>
-                            <option value="Gerente">Gerente</option>
-
-                        </select>
-
+                        <input value="${employee.employeeRole}" readonly="readonly">
                     </div>
 
                     <div class="divsForm">
                         <label>email</label>
                         <br>
-                        <input type="email" name="email" placeholder="email" value="${employee.employeeEmail}">
+                        <input value="${employee.employeeEmail}">
                     </div>
 
                     <div class="divsForm">
                         <label>Status</label>
-                        <br>
-                        <select id="" name="status">
-                            <option value="${employee.employeeStatus}">${employee.employeeStatus}</option>
-                            <option value="Ativo">Ativo</option>
-                            <option value="Inativo">Inativo</option>
-                        </select>
-                    </div>
-                    <div class="divsForm" id="senha">
-                        <label>Senha</label>
-                        <input type="password" name="pass" placeholder="Senha">
-                        <input type="password" name="passConf" placeholder="Confirme a senha">
-                    </div>
-                </fieldset>
-                <div id="Botoes" class="divsForm" >
-                    <button type="reset">Limpar</button>
-                    <button type="submit">Cadastrar </button>
+                        <br>                            
+                        <input value="${employee.employeeStatus}" readonly="readonly">
 
-
-                </div>         
+                    </div>
+                </fieldset>         
             </form>
         </section>
 

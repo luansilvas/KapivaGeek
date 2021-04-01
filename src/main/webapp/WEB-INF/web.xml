@@ -80,6 +80,14 @@
         <servlet-name>AlterEmployeePassword_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.AlterEmployeePassword_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ActivateInactivateEmployee_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ActivateInactivateEmployee_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VisualizeEmployee_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.VisualizeEmployee_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -159,6 +167,14 @@
     <servlet-mapping>
         <servlet-name>AlterEmployeePassword_Servlet</servlet-name>
         <url-pattern>/AlterEmployeePassword_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActivateInactivateEmployee_Servlet</servlet-name>
+        <url-pattern>/ActivateInactivateEmployee_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VisualizeEmployee_Servlet</servlet-name>
+        <url-pattern>/VisualizeEmployee_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

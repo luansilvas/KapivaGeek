@@ -234,4 +234,70 @@ public class EmployeeDAO {
         }
     }
 
+    public static boolean ActivateEmployee(Employee emp) {
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("update employee set status_employee='Ativo' where employee_id=?");
+
+            instrucaoSQL.setInt(1, emp.getEmployeeId());
+            instrucaoSQL.execute();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                retorno = true;
+                conexao.close();
+
+            } catch (SQLException ex) {
+            }
+
+            return retorno;
+
+        }
+    }
+
+    public static boolean InactivateEmployee(Employee emp) {
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("update employee set status_employee='Inativo' where employee_id=?");
+
+            instrucaoSQL.setInt(1, emp.getEmployeeId());
+            instrucaoSQL.execute();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                retorno = true;
+                conexao.close();
+
+            } catch (SQLException ex) {
+            }
+
+            return retorno;
+
+        }
+    }
+
 }
