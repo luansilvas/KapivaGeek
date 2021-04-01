@@ -33,6 +33,7 @@ body .go-back{
     width: 40%;
     margin: 12% auto;
     background-color: white;
+    
 }
 
 fieldset legend{
@@ -41,6 +42,7 @@ fieldset legend{
     font-size: 30px;
     text-align: center;
     border-color: deeppink;
+    
 
 }
 fieldset table{
@@ -52,6 +54,7 @@ fieldset table{
 fieldset{
     margin: 0 auto;
     witdth: 500px;
+    
     
 }
 
