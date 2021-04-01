@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CadastrarFuncionario
-    Created on : 30/03/2021, 12:11:00
+    Document   : AtivarInativarFuncionario
+    Created on : 01/04/2021, 02:13:49
     Author     : luans
 --%>
 
@@ -25,17 +25,16 @@
             <a href="<c:url value="/EmployeeList_Servlet"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
-            <form id="formCadastro" method="post" action="<c:url value="/RegisterEmployee_Servlet"/>" novalidate class="form">
+            <form class="formCadastro" method="post" action="<c:url value="/AlterEmployee_Servlet"/>" novalidate class="form">
                 <fieldset>
 
-                    <legend>Cadastro de Funcionário</legend>
-                    <c:forEach items="${errorList}" var="p">
+                    <legend>Alterar Funcionário</legend>
 
-                    </c:forEach>
                     <div class="divsForm">
                         <label>Nome</label>
                         <br>
                         <input type="text" name="name" placeholder="Nome do funcionario" value="${employee.employeeName}">
+                        <input type="text" name="id" placeholder="Nome do funcionario" value="${employee.employeeId}" style="display:none">
 
                     </div>
 
@@ -52,35 +51,47 @@
                         </select>
 
                     </div>
-
                     <div class="divsForm">
-                        <label>email</label>
+                        <label>email(somente leitura)</label>
                         <br>
-                        <input type="email" name="email" placeholder="email" value="${employee.employeeEmail}">
+                        <input type="email" value="${employee.employeeEmail}" readonly>
                     </div>
+                    <form class="formCadastro" method="post" action="<c:url value="/AlterEmployee_Servlet"/>" novalidate class="form">
+                        <div class="divsForm">
+                            <label>Status</label>
+                            <br>
+                            <select id="" name="status">
+                                <option value="Ativo">${employee.employeeStatus}</option>
+                                <option value="Ativo">Ativo</option>
+                                <option value="Inativo">Inativo</option>
+                            </select>
+                        </div>
+                        <div id="Botoes" class="divsForm" >
+                            <button type="reset">Limpar</button>
+                            <button type="submit">Atualizar </button>
 
-                    <div class="divsForm">
-                        <label>Status</label>
-                        <br>
-                        <select id="" name="status">
-                            <option value="Ativo">${employee.employeeStatus}</option>
-                            <option value="Ativo">Ativo</option>
-                            <option value="Inativo">Inativo</option>
-                        </select>
-                    </div>
-                    <div class="divsForm" id="senha">
-                        <label>Senha</label>
-                        <input type="password" name="pass" placeholder="Senha">
-                        <input type="password" name="passConf" placeholder="Confirme a senha">
-                    </div>
+
+                        </div> 
+                    </form>
+                    <form method="post" action="<c:url value="/AlterEmployeePassword_Servlet"/>" novalidate class="form">
+
+                        <div class="divsForm" id="senha">
+                            <label>Alterar Senha</label>
+                            <input type="password" name="pass" placeholder="Senha">
+                            <input type="password" name="passConf" placeholder="Confirme a senha">
+                            <input type="text" name="id" placeholder="Nome do funcionario" value="${employee.employeeId}" style="display:none">
+                        </div>
+
+                        <div id="Botoes" class="divsForm" >
+                            <button type="reset">Limpar</button>
+                            <button type="submit">Atualizar Senha</button>
+
+
+                        </div> 
+                    </form>
                 </fieldset>
-                <div id="Botoes" class="divsForm" >
-                    <button type="reset">Limpar</button>
-                    <button type="submit">Cadastrar </button>
 
 
-                </div>         
-            </form>
         </section>
 
         <c:if test="${hasError eq 'true'}">
@@ -119,21 +130,21 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 
         <script>
-                  var option =
-                          {
-                              animation: true,
-                              delay: 9000
-                          };
+                var option =
+                        {
+                            animation: true,
+                            delay: 9000
+                        };
 
-                  function Toasty( )
-                  {
-                      var toastHTMLElement = document.getElementById('EpicToast');
+                function Toasty( )
+                {
+                    var toastHTMLElement = document.getElementById('EpicToast');
 
-                      var toastElement = new bootstrap.Toast(toastHTMLElement, option);
+                    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
 
-                      toastElement.show( );
-                  }
-                  Toasty( );
+                    toastElement.show( );
+                }
+                Toasty( );
 
         </script>
     </body>

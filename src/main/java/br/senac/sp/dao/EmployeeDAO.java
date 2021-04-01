@@ -14,15 +14,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author luans
  */
 public class EmployeeDAO {
-    public static boolean addFuncionario(Employee emp) {
+
+    public static boolean addEmployee(Employee emp) throws SQLException, ClassNotFoundException {
 
         boolean retorno = false;
         Connection conexao;
@@ -30,13 +29,13 @@ public class EmployeeDAO {
         try {
             conexao = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("insert into Funcionario(nome,cpf,email,celular,ativo,Unidade_codUnidade) values(?,?,?,?,1,?);", Statement.RETURN_GENERATED_KEYS);
+            instrucaoSQL = conexao.prepareStatement("insert into employee(name_employee,role_employee,email_employee,password_employee,status_employee) values(?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
 
-            instrucaoSQL.setString(1, func.getNome());
-            instrucaoSQL.setString(2, func.getCpf());
-            instrucaoSQL.setString(3, func.getEmail());
-            instrucaoSQL.setString(4, func.getCelular());
-            instrucaoSQL.setInt(5, func.getCodUnidade());
+            instrucaoSQL.setString(1, emp.getEmployeeName());
+            instrucaoSQL.setString(2, emp.getEmployeeRole());
+            instrucaoSQL.setString(3, emp.getEmployeeEmail());
+            instrucaoSQL.setString(4, emp.codificarSenha(emp.getEmployeePassword()));
+            instrucaoSQL.setString(5, emp.getEmployeeStatus());
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             if (linhasAfetadas > 0) {
@@ -44,9 +43,7 @@ public class EmployeeDAO {
 
                 ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys();
                 if (generatedKeys.next()) {
-
-                    func.setCodFuncionario(generatedKeys.getInt(1));
-
+                    emp.setEmployeeId(generatedKeys.getInt(1));
 
                 } else {
                     throw new SQLException("Falha ao obter o código do Funcionário.");
@@ -56,7 +53,7 @@ public class EmployeeDAO {
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
+            throw ex;
         } finally {
             try {
                 if (instrucaoSQL != null) {
@@ -66,11 +63,10 @@ public class EmployeeDAO {
                 System.out.println("Houve erro ao encerrar sua conexão. Tente novamente.");
             }
         }
-        UsuarioDAO.addFuncionario(func);
         return retorno;
     }
 
-    public static boolean deleteFuncionario(int codFuncionario) {
+    public static boolean inativateEmployee(int idEmployee) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -78,9 +74,9 @@ public class EmployeeDAO {
         try {
             conexao = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("update Funcionario set ativo = 0 where codFuncionario=?");
+            instrucaoSQL = conexao.prepareStatement("update employee set status_employee = 'inative' where codFuncionario=?");
 
-            instrucaoSQL.setInt(1, codFuncionario);
+            instrucaoSQL.setInt(1, idEmployee);
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             if (linhasAfetadas > 0) {
                 retorno = true;
@@ -107,79 +103,68 @@ public class EmployeeDAO {
 
     }
 
-    public static Usuario getFuncionario(int codFuncionario) {
-        Usuario func = null;
+    public static Employee getEmployee(int codFuncionario) {
+        Employee emp = null;
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
 
         try {
             conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from usuario inner join Funcionario on Funcionario_codFuncionario = codFuncionario where codFuncionario=? and ativo=1");
+            instrucaoSQL = conexao.prepareStatement("select * from employee where employee_id=?");
             instrucaoSQL.setInt(1, codFuncionario);
             rs = instrucaoSQL.executeQuery();
 
             while (rs.next()) {
-                int codUsuario = rs.getInt("codUsuario");
-                String cargo = rs.getString("cargo");
-                String log = rs.getString("login");
-                String pass = rs.getString("senha");
 
-                int codFunc = rs.getInt("Funcionario_codFuncionario");
-                int idFuncionario = rs.getInt("codFuncionario");
-                String nome = rs.getString("nome");
-                String cpf = rs.getString("cpf");
-                String email = rs.getString("email");
-                String celular = rs.getString("celular");
-                int codUnidade = rs.getInt("Unidade_codUnidade");
+                int employeeId = rs.getInt("employee_id");
+                String employeeName = rs.getString("name_employee");
+                String employeeRole = rs.getString("role_employee");
+                String employeeEmail = rs.getString("email_employee");
+                String employeePassword = "";
+                String employeeStatus = rs.getString("status_employee");
 
-                func = new Usuario(codUsuario, log, cargo, pass, codFunc, idFuncionario, nome, cpf, email, celular, codUnidade);
+                emp = new Employee(employeeId, employeeName, employeeRole, employeeEmail, employeePassword, employeeStatus);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
-        return func;
+        return emp;
     }
 
-    public static List<Usuario> getFuncionarios(int codFuncionario) {
+    public static List<Employee> getEmployeeWithList(int codFuncionario) {
 
-        List<Usuario> listaFuncionarios = new ArrayList();
+        List<Employee> EmployeeList = new ArrayList();
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
 
         try {
             conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from usuario inner join Funcionario on Funcionario_codFuncionario = codFuncionario where ativo=1 and codFuncionario<>?");
+            instrucaoSQL = conexao.prepareStatement("select * from employee where employee_id=?");
             instrucaoSQL.setInt(1, codFuncionario);
             rs = instrucaoSQL.executeQuery();
 
             while (rs.next()) {
-                int codUsuario = rs.getInt("codUsuario");
-                String cargo = rs.getString("cargo");
-                String log = rs.getString("login");
-                String pass = rs.getString("senha");
-                int codFunc = rs.getInt("Funcionario_codFuncionario");
-                int idFuncionario = rs.getInt("codFuncionario");
-                String nome = rs.getString("nome");
-                String cpf = rs.getString("cpf");
-                String email = rs.getString("email");
-                String celular = rs.getString("celular");
-                int codUnidade = rs.getInt("Unidade_codUnidade");
+                int employeeId = rs.getInt("employee_id");
+                String employeeName = rs.getString("name_employee");
+                String employeeRole = rs.getString("role_employee");
+                String employeeEmail = rs.getString("email_employee");
+                String employeePassword = "";
+                String employeeStatus = rs.getString("status_employee");
 
-                Usuario func = new Usuario(codUsuario, log, cargo, pass, codFunc, idFuncionario, nome, cpf, email, celular, codUnidade);
+                Employee emp = new Employee(employeeId, employeeName, employeeRole, employeeEmail, employeePassword, employeeStatus);
 
-                listaFuncionarios.add(func);
+                EmployeeList.add(emp);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return listaFuncionarios;
+        return EmployeeList;
     }
 
-    public static boolean updateFuncionario(Usuario func) {
+    public static boolean updateEmployee(Employee emp) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -187,14 +172,12 @@ public class EmployeeDAO {
         try {
             conexao = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("update Funcionario set nome=?,cpf=?,email=?,celular=?,Unidade_codUnidade=? where codFuncionario=?");
+            instrucaoSQL = conexao.prepareStatement("update employee set name_employee=?,role_employee=?,status_employee=? where employee_id=?");
 
-            instrucaoSQL.setString(1, func.getNome());
-            instrucaoSQL.setString(2, func.getCpf());
-            instrucaoSQL.setString(3, func.getEmail());
-            instrucaoSQL.setString(4, func.getCelular());
-            instrucaoSQL.setInt(5, func.getCodUnidade());
-            instrucaoSQL.setInt(6, func.getCodFuncionario());
+            instrucaoSQL.setString(1, emp.getEmployeeName());
+            instrucaoSQL.setString(2, emp.getEmployeeRole());
+            instrucaoSQL.setString(3, emp.getEmployeeStatus());
+            instrucaoSQL.setInt(4, emp.getEmployeeId());
             instrucaoSQL.execute();
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -211,10 +194,44 @@ public class EmployeeDAO {
 
             } catch (SQLException ex) {
             }
+
+            return retorno;
+
         }
-
-        UsuarioDAO.updateFuncionario(func);
-        return retorno;
-
     }
+
+    public static boolean updateEmployeePassword(Employee emp) {
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("update employee set password_employee = ? where employee_id=?");
+
+            instrucaoSQL.setString(1, emp.codificarSenha(emp.getEmployeePassword()));
+            instrucaoSQL.setInt(2, emp.getEmployeeId());
+            instrucaoSQL.execute();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+                retorno = true;
+                conexao.close();
+
+            } catch (SQLException ex) {
+            }
+
+            return retorno;
+
+        }
+    }
+
 }
