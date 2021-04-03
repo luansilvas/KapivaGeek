@@ -88,6 +88,10 @@
         <servlet-name>VisualizeEmployee_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.VisualizeEmployee_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListEmployee_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.ListEmployee_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>VisualizeEmployee_Servlet</servlet-name>
         <url-pattern>/VisualizeEmployee_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListEmployee_Servlet</servlet-name>
+        <url-pattern>/ListEmployee_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

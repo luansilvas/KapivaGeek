@@ -3,7 +3,7 @@
     Created on : 01/04/2021, 19:10:34
     Author     : raque
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,7 +38,7 @@
 
  
                         
-                        <a href="<c:url value="/Product_Servlet"/>"><img src="icons/simbolo-de-adicao-de-espessura.png" id="imgAdd" ></a>
+                        <a href="<c:url value="/RegisterEmployee_Servlet"/>"><img src="icons/simbolo-de-adicao-de-espessura.png" id="imgAdd" ></a>
                         
                     </div>
 
@@ -53,19 +53,23 @@
                             <th>Nome</th> 
                             <th>Tipo</th>
                             <th>Status</th>
+                            <th>Editar</th>
                             <th>Inativar/Reativar</th>
                         </tr>
                     </thead>
 
-                        <c:forEach items="${productList}" var="p">
+                        <c:forEach items="${emp}" var="p">
 
                             <tr>
 
-                                <td>${p.productName}</td>
-                                <td>${p.getStatus()}</td>
-                                <td>${p.getStatus()}</td>
-                                <td><a href="<c:url value="/InactiveReactive?codProduto=${p.productId}"/>">INATIVAR/REATIVAR</a></td>
+                                <td>${p.employeeName}</td>
+                                <td>${p.employeeRole}</td>
+                                <td>${p.employeeStatus}</td>
+                                <td><a href="<c:url value="/AlterEmployee_Servlet?employeeId=${p.employeeId}"/>">Editar</a></td>
+                                <td><a href="<c:url value="/ActivateInactivateEmployee_Servlet?employeeId=${p.employeeId}&acao=consulta"/>">Inativar/Reativar</a></td>
                                 
+                                
+                            
                             </tr>
                         </c:forEach>                    
 
