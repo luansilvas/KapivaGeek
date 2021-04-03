@@ -7,6 +7,7 @@ package br.senac.sp.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 /**
  *
@@ -23,9 +24,17 @@ public class Employee {
     private String employeePassword;
     private String employeeStatus;
 
-   
-        
-       
+    public Employee() {
+    }
+
+    public Employee(int employeeId, String employeeName, String employeeRole, String employeeEmail, String employeePassword, String employeeStatus) {
+        this.employeeId = employeeId;
+        this.employeeName = employeeName;
+        this.employeeRole = employeeRole;
+        this.employeeEmail = employeeEmail;
+        this.employeePassword = employeePassword;
+        this.employeeStatus = employeeStatus;
+    }
     public boolean verifyStatus(String status){
         if(status.equals("Ativo"))
             return true;
@@ -33,10 +42,12 @@ public class Employee {
             return false;
     }
     
-    @Override
-    public String toString() {
-        return "Employee{" + "employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeRole=" + employeeRole + ", employeeEmail=" + employeeEmail + ", employeePassword=" + employeePassword + ", employeeStatus=" + employeeStatus + '}';
+    
+        public String codificarSenha(String senha){
+    return BCrypt.withDefaults().hashToString(12, senha.toCharArray());
     }
-    
-    
+    public boolean validarSenha(String senha){
+    BCrypt.Result response = BCrypt.verifyer().verify(senha.toCharArray(),this.employeePassword);
+    return response.verified;
+    }
 }
