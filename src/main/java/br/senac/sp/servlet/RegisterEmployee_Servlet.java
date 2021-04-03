@@ -52,7 +52,7 @@ public class RegisterEmployee_Servlet extends HttpServlet {
             try {
                 EmployeeDAO.addEmployee(emp);
                 request.setAttribute("hasError","false");
-                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/Home_Servlet");
+                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/ListaFuncionario.jsp");
                 requestDispatcher.forward(request, response);
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterEmployee_Servlet.class.getName()).log(Level.SEVERE, null, ex);
