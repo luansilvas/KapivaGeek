@@ -69,6 +69,19 @@ public class AutorizacaoFilter implements Filter {
          else if (pagenaAcessada.endsWith("/RegisterEmployee_Servlet")
                 && emp.getEmployeeRole().equals(role)) 
             return true;
+                 else if (pagenaAcessada.endsWith("/RegisterEmployee_Servlet")
+                && emp.getEmployeeRole().equals(role)) 
+            return true;
+                 else if(pagenaAcessada.endsWith("/AlterEmployee_Servlet")
+                && emp.getEmployeeRole().equals(role))
+            return true;
+                 else if(pagenaAcessada.endsWith("/AlterEmployeePassword_Servlet")
+                && emp.getEmployeeRole().equals(role))
+            return true;        
+                 else if(pagenaAcessada.endsWith("/ActivateInactivateEmployee_Servlet")
+                && emp.getEmployeeRole().equals(role))
+            return true;                       
+        
         
 
         return false;

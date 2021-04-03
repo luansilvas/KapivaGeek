@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/Principal.css" type="text/css">
 
@@ -66,7 +67,7 @@
                     </div>
                 </form>
             </div>
-            
+            <p>${sessionScope.emp.employeeEmail}</p>
             <div class="row" id="links">
                 <div class="col s12">
                     <div class="select-field col s2"><a class="btn-flat"  id="" href="<c:url value="/Home_Servlet?categoria=Boneco"/>">Boneco<i class="material-icons right"></i></a></div>
