@@ -47,7 +47,7 @@
                         <select id="" name="role">
                             <option value="${employee.employeeRole}">${employee.employeeRole}</option>
                             <option value="Estoquista">Estoquista</option>
-                            <option value="Gerente">Gerente</option>
+                            <option value="Administrador">Administrador</option>
 
                         </select>
 
