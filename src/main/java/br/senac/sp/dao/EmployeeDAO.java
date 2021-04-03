@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * @author luans
  */
 public class EmployeeDAO {
-    public static boolean addFuncionario(Employee emp) {
+   /* public static boolean addFuncionario(Employee emp) {
 
         boolean retorno = false;
         Connection conexao;
@@ -68,7 +68,7 @@ public class EmployeeDAO {
         }
         UsuarioDAO.addFuncionario(func);
         return retorno;
-    }
+    }*/
 
     public static boolean deleteFuncionario(int codFuncionario) {
         boolean retorno = false;
@@ -107,42 +107,29 @@ public class EmployeeDAO {
 
     }
 
-    public static Usuario getFuncionario(int codFuncionario) {
-        Usuario func = null;
-        ResultSet rs = null;
-        Connection conexao = null;
-        PreparedStatement instrucaoSQL = null;
+    public static Employee getFuncionario(String userName, String password) 
+            throws ClassNotFoundException, SQLException {
+        Employee emp = new Employee();
+        String sql = "select * from employee where email_employee ='"+userName+"' and password_employee ='"+password+"'";
+      
+        try (Connection conn = ConexaoDB.abrirConexao();
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
-        try {
-            conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from usuario inner join Funcionario on Funcionario_codFuncionario = codFuncionario where codFuncionario=? and ativo=1");
-            instrucaoSQL.setInt(1, codFuncionario);
-            rs = instrucaoSQL.executeQuery();
-
-            while (rs.next()) {
-                int codUsuario = rs.getInt("codUsuario");
-                String cargo = rs.getString("cargo");
-                String log = rs.getString("login");
-                String pass = rs.getString("senha");
-
-                int codFunc = rs.getInt("Funcionario_codFuncionario");
-                int idFuncionario = rs.getInt("codFuncionario");
-                String nome = rs.getString("nome");
-                String cpf = rs.getString("cpf");
-                String email = rs.getString("email");
-                String celular = rs.getString("celular");
-                int codUnidade = rs.getInt("Unidade_codUnidade");
-
-                func = new Usuario(codUsuario, log, cargo, pass, codFunc, idFuncionario, nome, cpf, email, celular, codUnidade);
+            if (rs.next()) {
+                emp.setEmployeeName(rs.getString("name_employee"));
+                emp.setEmployeeRole(rs.getString("role_employee"));
+                emp.setEmployeeEmail(rs.getString("email_employee"));
+                emp.setEmployeePassword(rs.getString("password_employee"));
+                emp.setEmployeeStatus(rs.getString("status_employee"));
+                 return emp;
             }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ServletBD.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        return func;
+        }
+        
+        return null;
     }
 
-    public static List<Usuario> getFuncionarios(int codFuncionario) {
+   /* public static List<Usuario> getFuncionarios(int codFuncionario) {
 
         List<Usuario> listaFuncionarios = new ArrayList();
         ResultSet rs = null;
@@ -216,5 +203,5 @@ public class EmployeeDAO {
         UsuarioDAO.updateFuncionario(func);
         return retorno;
 
-    }
+}*/
 }

@@ -22,4 +22,21 @@ public class Employee {
     private String employeeEmail;
     private String employeePassword;
     private String employeeStatus;
+
+   
+        
+       
+    public boolean verifyStatus(String status){
+        if(status.equals("Ativo"))
+            return true;
+        else
+            return false;
+    }
+    
+    @Override
+    public String toString() {
+        return "Employee{" + "employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeRole=" + employeeRole + ", employeeEmail=" + employeeEmail + ", employeePassword=" + employeePassword + ", employeeStatus=" + employeeStatus + '}';
+    }
+    
+    
 }
