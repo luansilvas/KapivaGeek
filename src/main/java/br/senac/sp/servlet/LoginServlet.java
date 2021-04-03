@@ -41,17 +41,22 @@ public class LoginServlet extends HttpServlet {
        
        String username = request.getParameter("username");
         String senha = request.getParameter("password");
+        
+        
        
         
         try {
-            Employee emp = EmployeeDAO.getFuncionario(username, senha);
+            Employee emp = new Employee();
+             emp = EmployeeDAO.getFuncionario(username);
+           
+            System.out.println(emp.toString());
             if(!emp.verifyStatus(emp.getEmployeeStatus())){
-               
+                System.out.println(emp.verifyStatus(emp.getEmployeeStatus()));
                 request.setAttribute("UserErro", "Seu usuário foi desativado, entre em contato com um administrador!!");
                 request.getRequestDispatcher("/login2.jsp").forward(request, response);
             }
 
-           else if(emp!= null){
+           else if(emp!= null && emp.validarSenha(senha)){
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("emp", emp);
                 response.sendRedirect(request.getContextPath() + "/ProductList_Servlet");

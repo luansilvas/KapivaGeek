@@ -35,19 +35,27 @@ public class Employee {
         this.employeePassword = employeePassword;
         this.employeeStatus = employeeStatus;
     }
-    public boolean verifyStatus(String status){
-        if(status.equals("Ativo"))
+
+    public boolean verifyStatus(String status) {
+        if (status.equals("Ativo")) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
-    
-    
-        public String codificarSenha(String senha){
-    return BCrypt.withDefaults().hashToString(12, senha.toCharArray());
+
+    public String codificarSenha(String senha) {
+        return BCrypt.withDefaults().hashToString(12, senha.toCharArray());
     }
-    public boolean validarSenha(String senha){
-    BCrypt.Result response = BCrypt.verifyer().verify(senha.toCharArray(),this.employeePassword);
-    return response.verified;
+
+    public boolean validarSenha(String senha) {
+        BCrypt.Result response = BCrypt.verifyer().verify(senha.toCharArray(), this.employeePassword);
+        return response.verified;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" + "employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeRole=" + employeeRole + ", employeeEmail=" + employeeEmail + ", employeePassword=" + employeePassword + ", employeeStatus=" + employeeStatus + '}';
+    }
+
 }
