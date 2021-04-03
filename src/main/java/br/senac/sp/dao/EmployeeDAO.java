@@ -102,27 +102,36 @@ public class EmployeeDAO {
         return retorno;
 
     }
- public static Employee getFuncionario(String userName, String password) throws ClassNotFoundException, SQLException {
-        Employee emp = new Employee();
-        String sql = "select * from employee where email_employee ='"+userName+"' and password_employee ='"+password+"'";
-      
-        try (Connection conn = ConexaoDB.abrirConexao();
-                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
-            if (rs.next()) {
-                emp.setEmployeeName(rs.getString("name_employee"));
-                emp.setEmployeeRole(rs.getString("role_employee"));
-                emp.setEmployeeEmail(rs.getString("email_employee"));
-                emp.setEmployeePassword(rs.getString("password_employee"));
-                emp.setEmployeeStatus(rs.getString("status_employee"));
-                 return emp;
+    public static Employee getEmployee(int codFuncionario) {
+        Employee emp = null;
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("select * from employee where employee_id=?");
+            instrucaoSQL.setInt(1, codFuncionario);
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+
+                int employeeId = rs.getInt("employee_id");
+                String employeeName = rs.getString("name_employee");
+                String employeeRole = rs.getString("role_employee");
+                String employeeEmail = rs.getString("email_employee");
+                String employeePassword = "";
+                String employeeStatus = rs.getString("status_employee");
+
+                emp = new Employee(employeeId, employeeName, employeeRole, employeeEmail, employeePassword, employeeStatus);
             }
+        } catch (ClassNotFoundException | SQLException ex) {
 
         }
-        
-        return null;
+
+        return emp;
     }
-  
 
     public static List<Employee> getEmployeeWithList(int codFuncionario) {
 
@@ -289,6 +298,30 @@ public class EmployeeDAO {
             return retorno;
 
         }
+    }
+    
+    
+    
+    
+     public static Employee getFuncionario(String userName, String password) throws ClassNotFoundException, SQLException {
+        Employee emp = new Employee();
+        String sql = "select * from employee where email_employee ='"+userName+"' and password_employee ='"+password+"'";
+      
+        try (Connection conn = ConexaoDB.abrirConexao();
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                emp.setEmployeeName(rs.getString("name_employee"));
+                emp.setEmployeeRole(rs.getString("role_employee"));
+                emp.setEmployeeEmail(rs.getString("email_employee"));
+                emp.setEmployeePassword(rs.getString("password_employee"));
+                emp.setEmployeeStatus(rs.getString("status_employee"));
+                 return emp;
+            }
+
+        }
+        
+        return null;
     }
 
 }
