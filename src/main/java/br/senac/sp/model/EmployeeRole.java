@@ -11,5 +11,5 @@ package br.senac.sp.model;
  */
 public enum EmployeeRole {
  
-    Gerente,Estoquista
+    Administrador,Estoquista
 }

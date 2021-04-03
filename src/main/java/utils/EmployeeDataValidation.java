@@ -42,9 +42,9 @@ public class EmployeeDataValidation {
             errorList.add(erro);
         }
 
-        if (!role.equals(EmployeeRole.Gerente.name())
+        if (!role.equals(EmployeeRole.Administrador.name())
                 && !role.equals(EmployeeRole.Estoquista.name())) {
-            erro = "Não foi selecionada uma categoria válida.";
+            erro = "Não foi selecionada um cargo válido.";
             System.out.println(erro);
             errorList.add(erro);
         }
@@ -93,9 +93,9 @@ public class EmployeeDataValidation {
             errorList.add(erro);
         }
 
-        if (!role.equals(EmployeeRole.Gerente.name())
+        if (!role.equals(EmployeeRole.Administrador.name())
                 && !role.equals(EmployeeRole.Estoquista.name())) {
-            erro = "Não foi selecionada uma categoria válida.";
+            erro = "Não foi selecionada um cargo válido.";
             System.out.println(erro);
             errorList.add(erro);
         }
