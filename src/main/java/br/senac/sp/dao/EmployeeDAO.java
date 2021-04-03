@@ -23,6 +23,8 @@ public class EmployeeDAO {
 
     public static boolean addEmployee(Employee emp) throws SQLException, ClassNotFoundException {
 
+        System.out.println(emp.toString());
+        
         boolean retorno = false;
         Connection conexao;
         PreparedStatement instrucaoSQL = null;
@@ -328,6 +330,27 @@ public class EmployeeDAO {
             return retorno;
 
         }
+    }
+    
+     public static Employee getFuncionario(String userName) throws ClassNotFoundException, SQLException {
+        Employee emp = new Employee();
+        String sql = "select * from employee where email_employee ='"+userName+"'";
+      
+        try (Connection conn = ConexaoDB.abrirConexao();
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                emp.setEmployeeName(rs.getString("name_employee"));
+                emp.setEmployeeRole(rs.getString("role_employee"));
+                emp.setEmployeeEmail(rs.getString("email_employee"));
+                emp.setEmployeePassword(rs.getString("password_employee"));
+                emp.setEmployeeStatus(rs.getString("status_employee"));
+                 return emp;
+            }
+
+        }
+        
+        return null;
     }
 
 }

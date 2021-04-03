@@ -29,7 +29,7 @@
                 <fieldset>
 
                     <legend>Visualizar Funcionário</legend>
-<img src="images/kapiva.jpg" style="width: 180px;height: 140px;margin-left: 40%;border-radius: 100%;">
+                    <img src="images/kapiva.jpg" style="width: 180px;height: 140px;margin-left: 40%;border-radius: 100%;">
                     <div class="divsForm">
                         <label>Nome</label>
                         <br>
