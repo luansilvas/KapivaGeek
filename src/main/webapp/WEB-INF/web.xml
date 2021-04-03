@@ -8,6 +8,11 @@
         <filter-name>AutorizacaoFilter</filter-name>
         <url-pattern>/ProductList_Servlet</url-pattern>
         <url-pattern>/Product_Servlet</url-pattern>
+        <url-pattern>/RegisterEmployee_Servlet</url-pattern>
+        <url-pattern>/VisualizeProductImageServlet/*</url-pattern>
+        <url-pattern>/InactiveReactive/*</url-pattern>
+        <url-pattern>/AlterarProduto/*</url-pattern>
+        
     </filter-mapping>
     <servlet>
         <servlet-name>UploadImageServlet</servlet-name>

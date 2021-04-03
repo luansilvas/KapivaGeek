@@ -39,11 +39,10 @@ public class AutorizacaoFilter implements Filter {
             return;
         }
         Employee usuario = (Employee) sessao.getAttribute("emp");
-        
-        if(verificarAcesso(usuario, httpRequest)){
+
+        if (verificarAcesso(usuario, httpRequest)) {
             chain.doFilter(request, response);
-        }
-        else{
+        } else {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/erro.jsp");
         }
     }
@@ -61,20 +60,19 @@ public class AutorizacaoFilter implements Filter {
     private boolean verificarAcesso(Employee emp, HttpServletRequest httprequest) {
         String pagenaAcessada = httprequest.getRequestURI();
         String role = "Administrador";
-       
-        if(pagenaAcessada.endsWith("/ProductList_Servlet")){
-        return true;
-        }
-       else if(pagenaAcessada.endsWith("/Product_Servlet") 
-               && emp.getEmployeeRole().equals(role)) {
- 
-            System.out.println(emp.getEmployeeRole() );
-                   return true;
-        }
- 
+
+        if (pagenaAcessada.endsWith("/ProductList_Servlet")) 
+            return true;
+         else if (pagenaAcessada.endsWith("/Product_Servlet")
+                && emp.getEmployeeRole().equals(role)) 
+            return true;
+         else if (pagenaAcessada.endsWith("/RegisterEmployee_Servlet")
+                && emp.getEmployeeRole().equals(role)) 
+            return true;
+        
+
         return false;
-                
+
     }
-    
 
 }
