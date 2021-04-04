@@ -76,7 +76,7 @@
                     </table>
 
                 </div>
-
+                
                 <div id="setas">
                     <a href ="<c:url value="ListEmployee_Servlet?currentRecord=${currentRecord}&acao=First"/>">
                         <img src="icons/seta2-left.png" alt="icone next">

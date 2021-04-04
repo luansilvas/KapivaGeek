@@ -23,13 +23,13 @@
 
     </head>
     <body>
-<%@include file="menuFuncionario.jsp" %>  
+        <%@include file="menuFuncionario.jsp" %>  
 
         <c:choose>
             <c:when test="${sessionScope.emp!= null}">
                 <div class="containerMain">
                     <p>Bem vindo!! <c:out value="${sessionScope.emp.employeeEmail}" /></p>
-                  
+
                     <a href="${pageContext.request.contextPath}/LogoutServlet">SAIR</a>
                     <fieldset>
                         <legend>Listar produtos</legend>  
@@ -51,64 +51,65 @@
 
                                 <c:if test="${sessionScope.emp.employeeRole.equals('Administrador')}">
                                     <a href="<c:url value="/Product_Servlet"/>"><img src="icons/simbolo-de-adicao-de-espessura.png" id="imgAdd" ></a>
-                                        </c:if>
+                                    </c:if>
 
-                                    </div>
-
-                                </form>
-
-
-                                <br>
-                                <div>
-                                    <table border =1 class="table table-striped" >
-                                        <thead class="thead-dark">   
-                                            <tr >
-                                                <th>Nome do produto</th>
-                                                <th>Qnt. Estoque</th> 
-                                                <th>Status</th>
-                                                <th>Editar</th>
-                                                <th>Inativar/Reativar</th>
-                                                <th>Visualizar</th>
-                                            </tr>
-                                        </thead>
-
-                                        <c:forEach items="${productList}" var="p">
-
-                                            <tr>
-
-                                                <td>${p.productName}</td>
-                                                <td>${p.getQuantity()}</td>
-                                                <td>${p.getStatus()}</td>
-                                                <td><a href="<c:url value="/AlterarProduto?codProduto=${p.productId}"/>">EDITAR</a></td>
-                                                <td><a href="<c:url value="/InactiveReactive?codProduto=${p.productId}"/>">INATIVAR/REATIVAR</a></td>
-                                                <td><a href="<c:url value="/VisualizeProductImageServlet?productId=${p.productId}"/>">VISUALIZAR</a></td>
-                                            </tr>
-                                        </c:forEach>                    
-
-                                    </table>
-
-                                </div>
-
-                                <div id="setas">
-
-                                    <img src="icons/seta2-left.png" alt="icone next">
-                                    <img src="icons/seta-left.png" alt="icone next">
-                                    <c:if test="${UltimiItem == null}">
-                                        <a href ="<c:url value="Pagination_Servlet?id=${ultimoId.getProductId()}"/>"><img src="icons/seta-right.png" alt="icone next" ></a>
-                                        </c:if>
-                                    <img src="icons/seta2-right.png" alt="icone next">
-
-                                </div>
-
-                            </fieldset>
-                        </div>
-                        </c:when>
-                        <c:otherwise>
-                            <div>
-                                <p>Usuário não logado no sistema</p>
                             </div>
 
-                        </c:otherwise>
-                        </c:choose>
-                    </body>
-                </html>
+                        </form>
+
+
+                        <br>
+                        <div>
+                            <table border =1 class="table table-striped" >
+                                <thead class="thead-dark">   
+                                    <tr >
+                                        <th>Nome do produto</th>
+                                        <th>Qnt. Estoque</th> 
+                                        <th>Status</th>
+                                        <th>Editar</th>
+                                        <th>Inativar/Reativar</th>
+                                        <th>Visualizar</th>
+                                    </tr>
+                                </thead>
+
+                                <c:forEach items="${productList}" var="p">
+
+                                    <tr>
+
+                                        <td>${p.productName}</td>
+                                        <td>${p.getQuantity()}</td>
+                                        <td>${p.getStatus()}</td>
+                                        <td><a href="<c:url value="/AlterarProduto?codProduto=${p.productId}"/>">EDITAR</a></td>
+                                        <td><a href="<c:url value="/InactiveReactive?codProduto=${p.productId}"/>">INATIVAR/REATIVAR</a></td>
+                                        <td><a href="<c:url value="/VisualizeProductImageServlet?productId=${p.productId}"/>">VISUALIZAR</a></td>
+                                    </tr>
+                                </c:forEach>                    
+
+                            </table>
+
+                        </div>
+                       
+                        <div id="setas">
+
+                            <img src="icons/seta2-left.png" alt="icone next">
+                            <img src="icons/seta-left.png" alt="icone next">
+                            <c:if test="${UltimiItem == null}">
+                                <a href ="<c:url value="Pagination_Servlet?id=${ultimoId.getProductId()}"/>"><img src="icons/seta-right.png" alt="icone next" ></a>
+                                </c:if>
+                            <img src="icons/seta2-right.png" alt="icone next">
+
+                        </div>
+                       
+
+                    </fieldset>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div>
+                    <p>Usuário não logado no sistema</p>
+                </div>
+
+            </c:otherwise>
+        </c:choose>
+    </body>
+</html>

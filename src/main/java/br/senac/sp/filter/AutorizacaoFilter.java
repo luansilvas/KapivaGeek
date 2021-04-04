@@ -80,7 +80,11 @@ public class AutorizacaoFilter implements Filter {
             return true;        
                  else if(pagenaAcessada.endsWith("/ActivateInactivateEmployee_Servlet")
                 && emp.getEmployeeRole().equals(role))
-            return true;                       
+            return true;  
+                 else if(pagenaAcessada.endsWith("/InactiveReactive"))
+                     return true;
+        else if(pagenaAcessada.endsWith("/AlterarProduto"))
+                     return true;
         
         
 

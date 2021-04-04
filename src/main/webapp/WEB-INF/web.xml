@@ -15,6 +15,7 @@
         <url-pattern>/AlterEmployee_Servlet/*</url-pattern>
         <url-pattern>/AlterEmployeePassword_Servlet/*</url-pattern>
         <url-pattern>/ActivateInactivateEmployee_Servlet/*</url-pattern>
+        <url-pattern>/AlterarProduto</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>UploadImageServlet</servlet-name>
