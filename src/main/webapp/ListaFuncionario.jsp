@@ -18,6 +18,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <%@include file="menuFuncionario.jsp" %>  
+        
+         <div class="containerMain">
         <div class="containerMain">
             <fieldset>
                 <legend>Lista funcionários</legend>  

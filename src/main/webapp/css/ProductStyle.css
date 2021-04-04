@@ -65,6 +65,14 @@ body{
     
 }
 
+#welcome{
+    color: black;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 15px;
+    margin-left: 3%;
+    margin-top: 10px; 
+}
+
 #setas{
     text-align: center;
     margin-top: 40px;
