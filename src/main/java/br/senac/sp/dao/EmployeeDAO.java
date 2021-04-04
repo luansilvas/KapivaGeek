@@ -195,6 +195,37 @@ public class EmployeeDAO {
 
         return EmployeeList;
     }
+    public static List<Employee> getEmployeePaginated(int first,int last) {
+
+        List<Employee> EmployeeList = new ArrayList();
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+            String querySQL = "select * from employee limit "+first+","+last+";";
+            instrucaoSQL = conexao.prepareStatement(querySQL);
+
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+                int employeeId = rs.getInt("employee_id");
+
+                String employeeName = rs.getString("name_employee");
+                String employeeRole = rs.getString("role_employee");
+                String employeeEmail = rs.getString("email_employee");
+                String employeePassword = "";
+                String employeeStatus = rs.getString("status_employee");
+
+                Employee emp = new Employee(employeeId, employeeName, employeeRole, employeeEmail, employeePassword, employeeStatus);
+
+                EmployeeList.add(emp);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+        }        
+        return EmployeeList;
+    }
 
     public static boolean updateEmployee(Employee emp) {
         boolean retorno = false;

@@ -28,26 +28,55 @@ public class ListEmployee_Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         List<Employee> lista = new ArrayList();
-        lista = EmployeeDAO.getEmployees();
-        
+        List<Employee> listaAuxiliar = new ArrayList();
+        EmployeeDAO.getEmployeePaginated(0, 10);
+        int currentPage = Integer.parseInt(request.getParameter("currentRecord"));
+        String acao = request.getParameter("acao");
+
+        switch (acao) {
+            case "FirstAccess":
+                lista = EmployeeDAO.getEmployeePaginated(0, 10);
+                currentPage = 10;
+                break;
+            case "Previous":
+                lista = EmployeeDAO.getEmployeePaginated(currentPage-10, 10);
+                currentPage = currentPage - 10;
+                break;
+            case "First":
+                lista = EmployeeDAO.getEmployeePaginated(0, 10);
+                currentPage = 0;
+                break;
+            case "Next":
+                lista = EmployeeDAO.getEmployeePaginated(currentPage+10, 10);
+                currentPage = currentPage + 10;
+                break;
+            case "Last":
+                listaAuxiliar = EmployeeDAO.getEmployees();
+                for (int i = listaAuxiliar.size() - 10; i < listaAuxiliar.size(); i++) {
+                    lista.add(listaAuxiliar.get(i));
+                }
+                currentPage = listaAuxiliar.size() - 10;
+                break;
+
+        }
+
         request.setAttribute("emp", lista);
-        
-        
+        request.setAttribute("currentRecord", currentPage);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/ListaFuncionario.jsp");
         dispatcher.forward(request, response);
-        
-        
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        
+        
+        
         
     }
-
-   
 
 }
