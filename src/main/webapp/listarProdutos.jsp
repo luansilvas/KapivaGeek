@@ -28,9 +28,7 @@
         <c:choose>
             <c:when test="${sessionScope.emp!= null}">
                 <div class="containerMain">
-                    <p>Bem vindo!! <c:out value="${sessionScope.emp.employeeEmail}" /></p>
-
-                    <a href="${pageContext.request.contextPath}/LogoutServlet">SAIR</a>
+               
                     <fieldset>
                         <legend>Listar produtos</legend>  
 

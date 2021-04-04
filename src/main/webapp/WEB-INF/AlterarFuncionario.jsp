@@ -22,7 +22,7 @@
 
         <section id="main" class="containerMain">
 
-            <a href="<c:url value="/ListEmployee_Servlet"/>" class="go-back">
+            <a href="<c:url value="/ListEmployee_Servlet?currentRecord=0&acao=FirstAccess"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
             <form class="formCadastro" method="post" action="<c:url value="/AlterEmployee_Servlet"/>" novalidate class="form">

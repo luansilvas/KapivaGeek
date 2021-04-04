@@ -21,8 +21,8 @@
     <body>
 
         <section id="main" class="containerMain">
-
-            <a href="<c:url value="/ListEmployee_Servlet"/>" class="go-back">
+            
+            <a href="<c:url value="/ListEmployee_Servlet?currentRecord=0&acao=FirstAccess"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
             <form id="formCadastro" novalidate class="form">
@@ -47,7 +47,7 @@
                     <div class="divsForm">
                         <label>email</label>
                         <br>
-                        <input value="${employee.employeeEmail}">
+                        <input value="${employee.employeeEmail}" readonly>
                     </div>
 
                     <div class="divsForm">

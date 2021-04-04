@@ -85,6 +85,10 @@ public class AutorizacaoFilter implements Filter {
                      return true;
         else if(pagenaAcessada.endsWith("/AlterarProduto"))
                      return true;
+        else if(pagenaAcessada.endsWith("/VisualizeProductImageServlet"))
+            return true;
+        else if(pagenaAcessada.endsWith("/ListEmployee_Servlet"))
+            return true;
         
         
 
