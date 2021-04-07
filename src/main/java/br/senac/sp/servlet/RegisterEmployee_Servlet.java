@@ -9,6 +9,7 @@ import br.senac.sp.dao.EmployeeDAO;
 import br.senac.sp.model.Employee;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,16 +52,44 @@ public class RegisterEmployee_Servlet extends HttpServlet {
 
             try {
                 EmployeeDAO.addEmployee(emp);
-                request.setAttribute("hasError","false");
-                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/ListaFuncionario.jsp");
-                requestDispatcher.forward(request, response);
+                request.setAttribute("hasError", "false");
+                List<Employee> lista = new ArrayList();
+                List<Employee> listaAuxiliar = EmployeeDAO.getEmployees();
+                EmployeeDAO.getEmployeePaginated(0, 10);
+
+                lista = EmployeeDAO.getEmployeePaginated(0, 10);
+                int currentPage = 10;
+
+                String hasFirst = "", hasPrevious = "", hasNext = "", hasLast = "";
+
+                if (currentPage > 10) {
+                    hasFirst = "true";
+                    hasPrevious = "true";
+                }
+                int diferenca = listaAuxiliar.size() - (currentPage);
+
+                if (diferenca > 0 && lista.size() == 10) {
+                    hasNext = "true";
+                    hasLast = "true";
+                }
+
+                request.setAttribute("hasPrevious", hasPrevious);
+                request.setAttribute("hasFirst", hasFirst);
+                request.setAttribute("hasLast", hasLast);
+                request.setAttribute("hasNext", hasNext);
+                request.setAttribute("emp", lista);
+                request.setAttribute("currentRecord", currentPage);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/ListaFuncionario.jsp");
+
+                dispatcher.forward(request, response);
+
             } catch (SQLException ex) {
                 Logger.getLogger(RegisterEmployee_Servlet.class.getName()).log(Level.SEVERE, null, ex);
                 if (ex.getMessage().contains("Duplicate")) {
                     System.out.println("E-mail já existe no banco.");
                     errorList.add("E-mail já existe no banco.");
                     request.setAttribute("employee", emp);
-                    request.setAttribute("hasError","true");
+                    request.setAttribute("hasError", "true");
                     request.setAttribute("errorList", errorList);
                     RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/CadastrarFuncionario.jsp");
                     requestDispatcher.forward(request, response);
@@ -70,7 +99,7 @@ public class RegisterEmployee_Servlet extends HttpServlet {
                 System.out.println("Houve erro no registro no banco.");
                 errorList.add("Houve erro no registro no banco.");
                 request.setAttribute("employee", emp);
-                request.setAttribute("hasError","true");
+                request.setAttribute("hasError", "true");
                 request.setAttribute("errorList", errorList);
                 RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/CadastrarFuncionario.jsp");
                 requestDispatcher.forward(request, response);
@@ -79,7 +108,7 @@ public class RegisterEmployee_Servlet extends HttpServlet {
         if (errorList.size() > 0) {
             request.setAttribute("employee", emp);
             request.setAttribute("errorList", errorList);
-            request.setAttribute("hasError","true");
+            request.setAttribute("hasError", "true");
             RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/CadastrarFuncionario.jsp");
             requestDispatcher.forward(request, response);
         }

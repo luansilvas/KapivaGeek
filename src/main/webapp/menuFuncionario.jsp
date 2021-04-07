@@ -52,7 +52,7 @@
                        
                         
                         <li class="nav-item" id="navItem" >
-                            <a class="nav-link" href="${pageContext.request.contextPath}/ListEmployee_Servlet?currentRecord=0&acao=FirstAccess">Funcionários</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/ListEmployee_Servlet?currentRecord=10&acao=FirstAccess">Funcionários</a>
                         </li>
                         
                          <li class="nav-item" id="navItem" >

@@ -1,8 +1,9 @@
 <%-- 
-    Document   : ListaFuncionario
-    Created on : 01/04/2021, 19:10:34
-    Author     : raque
+    Document   : ResultadoPesquisaFuncionario
+    Created on : 06/04/2021, 23:41:06
+    Author     : luans
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
         <div class="containerMain">
             <div class="containerMain">
                 <fieldset>
-                    <legend>Lista funcionários</legend>  
+                    <legend>Resultados para '${search}'</legend>  
 
                     <form id="barraPesquisa" method="post" action="ListEmployee_Servlet?currentRecord=0&acao=FirstAccess">
                         <div id="input">
@@ -85,26 +86,17 @@
 
                     <div id="setas">
 
-                        <c:if test="${hasFirst eq 'true'}">
-                            <a href ="<c:url value="ListEmployee_Servlet?currentRecord=${currentRecord}&acao=First"/>">
-                                <img src="icons/seta2-left.png" alt="icone next">
-                            </a>
-                        </c:if>
                         <c:if test="${hasPrevious eq 'true'}">
-                            <a href ="<c:url value="ListEmployee_Servlet?currentRecord=${currentRecord}&acao=Previous"/>">
+                            <a href ="<c:url value="SearchEmployee_Servlet?currentRecord=${currentRecord}&acao=Previous&pesquisa=${search}"/>">
                                 <img src="icons/seta-left.png" alt="icone next">
                             </a>
                         </c:if>
                         <c:if test="${hasNext eq 'true'}">
-                            <a href ="<c:url value="ListEmployee_Servlet?currentRecord=${currentRecord}&acao=Next"/>">
+                            <a href ="<c:url value="SearchEmployee_Servlet?currentRecord=${currentRecord}&acao=Next&pesquisa=${search}"/>">
                                 <img src="icons/seta-right.png" alt="icone next" >
                             </a>
                         </c:if>
-                        <c:if test="${hasLast eq 'true'}">
-                            <a href ="<c:url value="ListEmployee_Servlet?currentRecord=${currentRecord}&acao=Last"/>">
-                                <img src="icons/seta2-right.png" alt="icone next">
-                            </a>
-                        </c:if>
+
                     </div>
 
                 </fieldset>

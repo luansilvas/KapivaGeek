@@ -135,6 +135,40 @@ public class EmployeeDAO {
         return emp;
     }
 
+    
+    public static List<Employee> getEmployeesBySearch(String pesquisa) {
+
+        List<Employee> EmployeeList = new ArrayList();
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("select * from employee where name_employee like '%"+pesquisa+"%' or role_employee like '%"+pesquisa+"%'");
+            
+            System.out.println("ESSSA AQUI É MINHA PESQUISA \n"+"select * from employee where name_employee like '%"+pesquisa+"%' or role_employee like '%"+pesquisa+"%'");
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+                int employeeId = rs.getInt("employee_id");
+                String employeeName = rs.getString("name_employee");
+                String employeeRole = rs.getString("role_employee");
+                String employeeEmail = rs.getString("email_employee");
+                String employeePassword = "";
+                String employeeStatus = rs.getString("status_employee");
+
+                Employee emp = new Employee(employeeId, employeeName, employeeRole, employeeEmail, employeePassword, employeeStatus);
+
+                EmployeeList.add(emp);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+        }
+
+        return EmployeeList;
+    }
+    
+    
     public static List<Employee> getEmployeeWithList(int codFuncionario) {
 
         List<Employee> EmployeeList = new ArrayList();
@@ -205,6 +239,40 @@ public class EmployeeDAO {
         try {
             conexao = ConexaoDB.abrirConexao();
             String querySQL = "select * from employee limit "+first+","+last+";";
+            instrucaoSQL = conexao.prepareStatement(querySQL);
+
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+                int employeeId = rs.getInt("employee_id");
+
+                String employeeName = rs.getString("name_employee");
+                String employeeRole = rs.getString("role_employee");
+                String employeeEmail = rs.getString("email_employee");
+                String employeePassword = "";
+                String employeeStatus = rs.getString("status_employee");
+
+                Employee emp = new Employee(employeeId, employeeName, employeeRole, employeeEmail, employeePassword, employeeStatus);
+
+                EmployeeList.add(emp);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+        }        
+        return EmployeeList;
+    }
+    
+    public static List<Employee> getEmployeePaginatedBySeach(int first,int last,String pesquisa) {
+
+        List<Employee> EmployeeList = new ArrayList();
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+            conexao = ConexaoDB.abrirConexao();
+            String querySQL = "select * from employee where name_employee like '%"+pesquisa+"%' or role_employee like '%"+pesquisa+"%' limit "+first+","+last+";";
+            
+            System.out.println("ESSA AQUI É A NOSSA PESQUISA "+"select * from employee where name_employee like '%"+pesquisa+"%' or role_employee like '%"+pesquisa+"%' limit "+first+","+last+";");
             instrucaoSQL = conexao.prepareStatement(querySQL);
 
             rs = instrucaoSQL.executeQuery();
