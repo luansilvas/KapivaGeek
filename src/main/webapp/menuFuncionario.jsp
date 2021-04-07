@@ -3,8 +3,9 @@
     Created on : 03/04/2021, 18:05:43
     Author     : luans
 --%>    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
     #logo{
-       width: 100px;
+       width: 150px;
     }
     #navItem{
         font-size: 20px;
@@ -14,8 +15,10 @@
     #navItem-transp a{
         margin: 5px;
         text-indent: -9999px;
+        font-size: 20px;
         
     }
+    
     
     #sair{
        font-size: 20px;

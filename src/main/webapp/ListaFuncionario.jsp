@@ -20,7 +20,6 @@
     <body>
         <%@include file="menuFuncionario.jsp" %>  
 
-        <div class="containerMain">
             <div class="containerMain">
                 <fieldset>
                     <legend>Lista funcionários</legend>  
