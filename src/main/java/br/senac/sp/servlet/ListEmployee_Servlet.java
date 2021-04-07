@@ -70,6 +70,8 @@ public class ListEmployee_Servlet extends HttpServlet {
         if (currentPage > 10) {
             hasFirst = "true";
             hasPrevious = "true";
+        }else if(acao.equals("Last")||acao.equals("Next")){
+        hasFirst = "true";
         }
         int diferenca = listaAuxiliar.size() - (currentPage);
 
