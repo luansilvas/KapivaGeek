@@ -21,7 +21,7 @@
     <body>
 
         <section id="main" class="containerMain">
-            
+
             <a href="<c:url value="/ListEmployee_Servlet?currentRecord=0&acao=FirstAccess"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
@@ -57,11 +57,8 @@
 
                     </div>
                 </fieldset>
-                <div id="Botoes" class="divsForm" >
-                    <button type="reset">Limpar</button>
-                    <button type="submit"><a href="ActivateInactivateEmployee_Servlet?employeeId=${employee.employeeId}&acao=${acao}">${acao}</a></button>
-
-
+                <div id="Botoes" class="divsForm" style="margin-left: 45%;margin-top: 2%;">
+                    <a href="ActivateInactivateEmployee_Servlet?employeeId=${employee.employeeId}&acao=${acao}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">${acao}</a>
                 </div>         
             </form>
         </section>

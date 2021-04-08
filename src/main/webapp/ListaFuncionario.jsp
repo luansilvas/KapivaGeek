@@ -66,7 +66,7 @@
 
                                 <tr>
 
-                                    <td>${p.employeeId}. ${p.employeeName}</td>
+                                    <td>${p.employeeName}</td>
                                     <td>${p.employeeRole}</td>
                                     <td>${p.employeeStatus}</td>
                                     <c:if test="${sessionScope.emp.employeeRole.equals('Administrador')}">

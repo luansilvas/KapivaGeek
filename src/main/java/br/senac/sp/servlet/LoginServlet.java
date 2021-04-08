@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NullPointerException ex) {
-            request.setAttribute("msgErro", "Usuário e senha não cadastrados.");
+            request.setAttribute("msgErro", "Usuário não cadastrado.");
             request.getRequestDispatcher("/login2.jsp").forward(request, response);
         }
 

@@ -48,7 +48,6 @@
                             <option value="${employee.employeeRole}">${employee.employeeRole}</option>
                             <option value="Estoquista">Estoquista</option>
                             <option value="Administrador">Administrador</option>
-
                         </select>
 
                     </div>
@@ -59,13 +58,11 @@
                         <input type="email" name="email" placeholder="email" value="${employee.employeeEmail}">
                     </div>
 
-                    <div class="divsForm">
+                    <div class="divsForm"style="display: none">
                         <label>Status</label>
                         <br>
-                        <select id="" name="status">
-                            <option value="${employee.employeeStatus}">${employee.employeeStatus}</option>
-                            <option value="Ativo">Ativo</option>
-                            <option value="Inativo">Inativo</option>
+                        <select id="" name="status" >
+                            <option value="Ativo" selected>Ativo</option>
                         </select>
                     </div>
                     <div class="divsForm" id="senha">
@@ -77,8 +74,6 @@
                 <div id="Botoes" class="divsForm" >
                     <button type="reset">Limpar</button>
                     <button type="submit">Cadastrar </button>
-
-
                 </div>         
             </form>
         </section>

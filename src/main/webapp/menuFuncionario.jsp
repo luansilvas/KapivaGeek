@@ -40,7 +40,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         
                          <li class="nav-item" id="navItem">
-                             <a class="nav-link active"><c:out value="Welcome ${sessionScope.emp.employeeName}"/></a>
+                             <a class="nav-link active"><c:out value="Welcome, ${sessionScope.emp.employeeName}!"/></a>
                         </li>
                       
                         

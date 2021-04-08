@@ -61,14 +61,14 @@
                             <label>Status</label>
                             <br>
                             <select id="" name="status">
-                                <option value="Ativo">${employee.employeeStatus}</option>
+                                <option value="${employee.employeeStatus}">${employee.employeeStatus}</option>
                                 <option value="Ativo">Ativo</option>
                                 <option value="Inativo">Inativo</option>
                             </select>
                         </div>
-                        <div id="Botoes" class="divsForm" >
-                            <button type="reset">Limpar</button>
-                            <button type="submit">Atualizar </button>
+                        <div id="Botoes" class="divsForm">
+                           
+                            <button type="submit" style="margin-left:30%">Atualizar dados </button>
 
 
                         </div> 
@@ -83,8 +83,7 @@
                         </div>
 
                         <div id="Botoes" class="divsForm" >
-                            <button type="reset">Limpar</button>
-                            <button type="submit">Atualizar Senha</button>
+                            <button type="submit" style="margin-left:30%">Atualizar Senha</button>
 
 
                         </div> 
@@ -103,10 +102,7 @@
 
             <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 20px; right: 20px;">
                 <div class="toast-header">
-                    <strong class="mr-auto">Erro ao cadastrar</strong>
-
-                    <small>Mensagem</small>
-
+                    <strong class="mr-auto">Mensagem</strong>
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

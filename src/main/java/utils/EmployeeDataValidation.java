@@ -21,6 +21,7 @@ public class EmployeeDataValidation {
 
         List<String> errorList = new ArrayList();
         String erro = "";
+
         if (name.equals("")
                 || name.equals("")
                 || role.equals("")
@@ -33,7 +34,7 @@ public class EmployeeDataValidation {
             return errorList;
         }
         if (!verificaPalavra(name)) {
-            erro = "O campo Nome contém números";
+            erro = "O campo Nome pode conter apenas letras";
             System.out.println(erro);
             errorList.add(erro);
         } else if (name.length() < 5) {
@@ -50,8 +51,11 @@ public class EmployeeDataValidation {
         }
 
         if (!email.contains("@")
-                || !email.contains(".com")) {
-            erro = "Não inserido um e-mail válido.";
+                || !email.contains(".com")
+                || email.contains(" ")
+                || email.contains("@.com")
+                || !hasDominio(email)) {
+            erro = "Não foi inserido um e-mail válido.";
             System.out.println(erro);
             errorList.add(erro);
         }
@@ -70,7 +74,7 @@ public class EmployeeDataValidation {
 
         return errorList;
     }
-    
+
     public List<String> validateChanges(String name, String role, String status) {
 
         List<String> errorList = new ArrayList();
@@ -84,11 +88,11 @@ public class EmployeeDataValidation {
             return errorList;
         }
         if (!verificaPalavra(name)) {
-            erro = "O campo Nome contém números";
+            erro = "O campo Nome permite apenas letras";
             System.out.println(erro);
             errorList.add(erro);
         } else if (name.length() < 5) {
-            erro = "O campo Nome não tem carácteres o suficiente";
+            erro = "O campo Nome precisa ter pelo menos 5 caracteres";
             System.out.println(erro);
             errorList.add(erro);
         }
@@ -102,7 +106,7 @@ public class EmployeeDataValidation {
 
         return errorList;
     }
-    
+
     public List<String> validatePassword(String pass, String passConf) {
 
         List<String> errorList = new ArrayList();
@@ -122,7 +126,7 @@ public class EmployeeDataValidation {
 
         return errorList;
     }
-    
+
     public static boolean verificaPalavra(String palavra) {
         boolean retorno = true;
         for (int i = 0; i < palavra.length(); i++) {
@@ -139,15 +143,30 @@ public class EmployeeDataValidation {
         String temp = Character.toString(caract);
 
         Pattern pattern = Pattern.compile("[qwertyuiopasdfghjklzxcvbnmQWERTYÇUIOPASDFGHJKLZXCVBN M]");
-        Matcher matcher = pattern.matcher(temp); 
-        while (matcher.find()) { 
+        Matcher matcher = pattern.matcher(temp);
+        while (matcher.find()) {
             letra = true;
         }
 
         return letra;
     }
-    
-    
-    
+
+    private boolean hasDominio(String email) {
+        boolean dominio = true;
+        if (email.contains("@") && email.contains(".")) {
+            int indexArroba = email.indexOf("@");
+            int indexPonto = email.indexOf(".");
+            String resultado = email.substring(indexArroba + 1, indexPonto);
+
+            if (resultado.length() < 2) {
+                System.out.println("O e-mail dado não possui domínio");
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        return dominio;
+    }
 
 }

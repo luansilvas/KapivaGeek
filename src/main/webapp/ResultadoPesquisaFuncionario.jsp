@@ -43,7 +43,9 @@
 
                         <c:if test="${sessionScope.emp.employeeRole.equals('Administrador')}">
                             <a href="<c:url value="/RegisterEmployee_Servlet"/>"><img src="icons/simbolo-de-adicao-de-espessura.png" id="imgAdd" ></a>
+                            
                             </c:if>
+                            <a href="<c:url value="/ListEmployee_Servlet?currentRecord=10&acao=FirstAccess"/>"><img src="icons/filter.png" id="imgAdd" ></a>
                     </div>
 
                 </form>
@@ -68,7 +70,7 @@
 
                             <tr>
 
-                                <td>${p.employeeId}. ${p.employeeName}</td>
+                                <td>${p.employeeName}</td>
                                 <td>${p.employeeRole}</td>
                                 <td>${p.employeeStatus}</td>
                                 <c:if test="${sessionScope.emp.employeeRole.equals('Administrador')}">
