@@ -27,6 +27,10 @@
         <a href="<c:url value="/ProductList_Servlet"/>">
             Listar produtos
         </a>
+        <a href="<c:url value="/ProductList_Servlet"/>">
+            Cadastrar Cliente
+        </a>
+            
         <section id="principal" class="container">
             <div id="boasVindas">
                 <h1>4Geeks<img src="images/mario.png"></h1>
@@ -67,7 +71,7 @@
                     </div>
                 </form>
             </div>
-            <p>${sessionScope.emp.employeeEmail}</p>
+
             <div class="row" id="links">
                 <div class="col s12">
                     <div class="select-field col s2"><a class="btn-flat"  id="" href="<c:url value="/Home_Servlet?categoria=Boneco"/>">Boneco<i class="material-icons right"></i></a></div>
