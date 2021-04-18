@@ -27,7 +27,7 @@
         <a href="<c:url value="/ProductList_Servlet"/>">
             Listar produtos
         </a>
-        <a href="<c:url value="/ProductList_Servlet"/>">
+        <a href="<c:url value="/RegisterCustomer_Servlet"/>">
             Cadastrar Cliente
         </a>
             

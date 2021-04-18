@@ -142,6 +142,10 @@
         <servlet-name>SearchEmployee_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.SearchEmployee_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterCustomer_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.RegisterCustomer_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -245,6 +249,10 @@
     <servlet-mapping>
         <servlet-name>SearchEmployee_Servlet</servlet-name>
         <url-pattern>/SearchEmployee_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterCustomer_Servlet</servlet-name>
+        <url-pattern>/RegisterCustomer_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
