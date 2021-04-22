@@ -33,22 +33,22 @@
                     <div class="divsForm">
                         <label>Nome</label>
                         <br>
-                        <input type="text" name="name" placeholder="Nome completo" value="${customer.name}">
+                        <input type="text" name="name" placeholder="Nome completo" value="${customer.customer_name}">
                     </div>
                     <div class="divsForm">  
                         <label>CPF</label>
                         <br>
-                        <input type="text" name="cpf" placeholder="CPF" value="${customer.cpf}">
+                        <input type="text" name="cpf" placeholder="CPF" value="${customer.customer_cpf}">
                     </div>
                     <div class="divsForm">
                         <label>email</label>
                         <br>
-                        <input type="email" value="${customer.email}">
+                        <input type="email" name="email" value="${customer.customer_email}">
                     </div>
                     <div class="divsForm" id="senha">
                         <label>Senha</label>
                         <input type="password" name="pass" placeholder="Senha">
-                        <input type="password" name="passConf" placeholder="Confirme a senha">
+                        <input type="password" name="Confpass" placeholder="Confirme a senha">
                     </div>
                     <legend id="end-faturamento">Endereço</legend>
                     <div class="divsForm">
@@ -60,51 +60,51 @@
                     <div class="divsForm" id="senha">
                         <label>Logradouro</label>
                         <br>
-                        <input type="text" placeholder="Logradouro" name="address" id="logradouro">
-                        <input type="text" placeholder="Número" name="number" id="numero">
+                        <input type="text" placeholder="Logradouro" name="street" id="logradouro" value="${address.address_street}">
+                        <input type="text" placeholder="Número" name="number" id="numero" value="${address.address_number}">
                     </div>
 
                     <div class="divsForm">
                         <label>Complemento</label>
                         <br>
-                        <input type="text" value="" name="complement" id="complemento">
+                        <input type="text" value="" name="complement" id="complemento" value="${address.address_complement}">
                     </div>
                     <div class="divsForm">
                         <label>Bairro</label>
                         <br>
-                        <input type="text" value=""  name="neighborhood" id="bairro">
+                        <input type="text" value=""  name="neighborhood" id="bairro" value="${address.address_neighborhood}">
                     </div>
                     <div class="divsForm">
                         <label>Estado</label>
                         <select id="uf" name="uf">
-                            <option value="">Estado</option>
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
+                            <option value="${address.address_state_abbreviation}">${address.address_state_abbreviation}</option>
+                            <option value="AC">Ac</option>
+                            <option value="AL">AL</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BH</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SC</option>
+                            <option value="SP">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
                         </select>
                     </div>
                     <div id="Botoes" class="divsForm">
@@ -148,20 +148,20 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 
         <script>
-//                var option =
-//                        {
-//                            animation: true,
-//                            delay: 9000
-//                        };
-//                function Toasty( )
-//                {
-//                    var toastHTMLElement = document.getElementById('EpicToast');
-//
-//                    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
-//
-//                    toastElement.show( );
-//                }
-//                Toasty( );
+                var option =
+                        {
+                            animation: true,
+                            delay: 9000
+                        };
+                function Toasty( )
+                {
+                    var toastHTMLElement = document.getElementById('EpicToast');
+
+                    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
+
+                    toastElement.show( );
+                }
+
 
                 $("#cep").focusout(function () {
                     $.ajax({

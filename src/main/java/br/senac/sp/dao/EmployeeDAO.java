@@ -22,9 +22,7 @@ import java.util.List;
 public class EmployeeDAO {
 
     public static boolean addEmployee(Employee emp) throws SQLException, ClassNotFoundException {
-
-        System.out.println(emp.toString());
-        
+      
         boolean retorno = false;
         Connection conexao;
         PreparedStatement instrucaoSQL = null;
