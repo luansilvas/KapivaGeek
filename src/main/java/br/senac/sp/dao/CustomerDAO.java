@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class CustomerDAO {
 
-    public static int addCustomer(Customer customer) throws SQLException, ClassNotFoundException {
+    public static int addCustomer(Customer customer){
         boolean retorno = false;
         Connection conexao;
         PreparedStatement instrucaoSQL = null;
@@ -51,7 +51,7 @@ public class CustomerDAO {
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
-            throw ex;
+            System.out.println("Houve erro na conexão");
         } finally {
             try {
                 if (instrucaoSQL != null) {
@@ -230,4 +230,70 @@ public static boolean deleteCustomer(int customerId) {
         }
     }
 
+
+    public static boolean CPFExists(String CPF) {
+
+        List<Customer> CustomerList = new ArrayList();
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        Customer customer = null;
+        try {
+            conexao = ConexaoDB.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("select * from customer where customer_cpf=?");
+            instrucaoSQL.setString(1, CPF);
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+
+                int customerCode = rs.getInt("customer_id");
+                String customerName = rs.getString("customer_name");
+                String customerCPF = rs.getString("customer_cpf");
+                String customerEmail = rs.getString("customer_email");
+                String customerPassword = "";
+
+                customer = new Customer(customerCode, customerName, customerCPF, customerEmail, customerPassword);
+
+                CustomerList.add(customer);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Erro ao realizar a busca "+ex.getMessage());
+        }
+
+        if (CustomerList.size()>0) return true;
+        return false;
+    }
+
+        public static boolean EmailExists(String email) {
+
+        List<Customer> CustomerList = new ArrayList();
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        Customer customer = null;
+        try {
+            conexao = ConexaoDB.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("select * from customer where customer_email=?");
+            instrucaoSQL.setString(1, email);
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+
+                int customerCode = rs.getInt("customer_id");
+                String customerName = rs.getString("customer_name");
+                String customerCPF = rs.getString("customer_cpf");
+                String customerEmail = rs.getString("customer_email");
+                String customerPassword = "";
+
+                customer = new Customer(customerCode, customerName, customerCPF, customerEmail, customerPassword);
+
+                CustomerList.add(customer);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Erro ao realizar a busca "+ex.getMessage());
+        }
+
+        if (CustomerList.size()>0) return true;
+        return false;
+    }
 }

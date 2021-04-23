@@ -50,33 +50,33 @@
                         <input type="password" name="pass" placeholder="Senha">
                         <input type="password" name="Confpass" placeholder="Confirme a senha">
                     </div>
-                    <legend id="end-faturamento">Endereço</legend>
+                    <legend id="end-faturamento">Endereço de faturamento</legend>
                     <div class="divsForm">
                         <label>CEP</label>
                         <br>
-                        <input type="text" name="cep" placeholder="CEP" id="cep">
+                        <input type="text" name="cep" placeholder="CEP" id="cep" value="${address.address_code}">
                         <br>
                     </div>
                     <div class="divsForm" id="senha">
                         <label>Logradouro</label>
                         <br>
-                        <input type="text" placeholder="Logradouro" name="street" id="logradouro" value="${address.address_street}">
+                        <input type="text" placeholder="Logradouro" name="street" id="logradouro" value="${address.address_street}" readonly>
                         <input type="text" placeholder="Número" name="number" id="numero" value="${address.address_number}">
                     </div>
 
                     <div class="divsForm">
                         <label>Complemento</label>
                         <br>
-                        <input type="text" value="" name="complement" id="complemento" value="${address.address_complement}">
+                        <input type="text" name="complement" id="complemento" value="${address.address_complement}">
                     </div>
                     <div class="divsForm">
                         <label>Bairro</label>
                         <br>
-                        <input type="text" value=""  name="neighborhood" id="bairro" value="${address.address_neighborhood}">
+                        <input type="text" name="neighborhood" id="bairro" value="${address.address_neighborhood}" readonly>
                     </div>
                     <div class="divsForm">
                         <label>Estado</label>
-                        <select id="uf" name="uf">
+                        <select id="uf" name="uf" readonly="readonly" tabindex="-1" aria-disabled="true">
                             <option value="${address.address_state_abbreviation}">${address.address_state_abbreviation}</option>
                             <option value="AC">Ac</option>
                             <option value="AL">AL</option>
@@ -107,21 +107,23 @@
                             <option value="TO">TO</option>
                         </select>
                     </div>
+                    
+                        
+                        
+                        <input type="checkbox" name="copiarFaturamento" id="copiar">
+                        <label for="copiar">Usar o endereço de faturamento para entregas</label>
+                    
                     <div id="Botoes" class="divsForm">
                         <button type="submit" style="margin-left:30%">Cadastrar</button>
                     </div> 
+
                 </fieldset>
             </form>
 
         </section>
 
         <c:if test="${hasError eq 'true'}">
-            <script>Toasty( )</script>  
-
-
-
-
-
+            <script>Toasty();</script>  
             <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 20px; right: 20px;">
                 <div class="toast-header">
                     <strong class="mr-auto">Mensagem</strong>
@@ -156,11 +158,14 @@
                 function Toasty( )
                 {
                     var toastHTMLElement = document.getElementById('EpicToast');
-
                     var toastElement = new bootstrap.Toast(toastHTMLElement, option);
-
                     toastElement.show( );
                 }
+            <c:if test="${hasError eq 'true'}">
+                Toasty();
+            </c:if>
+
+
 
 
                 $("#cep").focusout(function () {
