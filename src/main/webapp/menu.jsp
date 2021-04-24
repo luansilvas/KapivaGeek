@@ -1,162 +1,93 @@
-<%-- 
-    Document   : menu
-    Created on : 17/10/2020, 13:55:27
-    Author     : luans
---%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+!DOCTYPE html>
+<html lang="en">
     <head>
-        <title></title>
+        <title>Kapiva Geek - A maior loja geek do país</title>
 
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link href="https://fonts.googleapis.com/css2?family=Mandali&display=swap" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/style_menu.css">
+        <link rel="stylesheet" type="text/css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" type="text/css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+
+
     </head>
     <body>
+        <nav class="nav-wrapper white" id="menu-navbar">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo" id="title"><img src="icons/kapiva(logo).png" alt="" id="logo-icon">Kapiva
+                    Geek</a>
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons"
+                                                                               id="menu-icon">menu</i></a>
+                <a href="Comprar.html" data-target="slide-out" id="menu-quantity-link" class="itemM">0</a>
+                <a href="carrinho.html" data-target="slide-out" id="menu-cart-link"><i class="material-icons"
+                                                                                       id="menu-cart-icon">shopping_cart</i></a>
+                <a href="#icon_prefix" data-target="slide-out" id="menu-search-link"><i class="material-icons"
+                                                                                        id="menu-search-icon">search</i></a>
 
 
 
+                <ul class="left hide-on-med-and-down" id="categories">
+                    <li><a href="#miniaturas"><img src="" alt="" id="universe-icon">Personagens</a></li>
+                    <li><a href="#camisetas"><img src="" alt="" id="acessories-icon">Camisetas</a></li>
+                    <li><a href="#acessorios"><img src="" alt="" id="universe-icon">Acessórios</a></li>
+                    <li><a href="#canecas"><img src="" alt="" id="cart-icon">Canecas</a></li>
+                    <li><a href="#utilidades"><img src="" alt="" id="user-icon">Utilidades</a></li>
 
-        <nav>
-            <div class="nav-wrapper grey lighten-1">
-                <a href="index.jsp" data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">arrow_forward_ios</i></a>
-                <a href="protegido/index.jsp" class="brand-logo"><img src="<c:url value="/icons/kapiva.png"/>"  style="width: 70px"></a>
-                <ul class="right hide">
-                    <li><a href="https://codepen.io/collection/nbBqgY/" target="_blank">Sass</a></li>
-                    <li><a href="https://codepen.io/collection/nbBqgY/" target="_blank">Components</a></li>
-                    <li><a href="https://codepen.io/collection/nbBqgY/" target="_blank">Javascript</a></li>
-                    <li><a href="https://codepen.io/collection/nbBqgY/" target="_blank">Mobile</a></li>
                 </ul>
 
-                <ul class="side-nav grey darken-2" id="mobile-demo">
+                <form action="" method="post" id="search-topbar">
+                    <div class="input-field">
+                        <input id="#search" type="search" name="search">
+                        <label class="label-icon" for="search"><i class="material-icons" style="color: black;"
+                                                                  id="search-topbar-label">search</i></label>
+                    </div>
+                </form>
 
 
-                    <li class="sidenav-header grey lighten-1">
-                        <div class="row">
-                            <div class="col s4" style="align-components:center;">
-                                <img src="<c:url value="/icons/person.jpg"/>" width="42px" height="42px" alt="" class="circle responsive-img valign profile-image">
+                <ul class="right hide-on-med-and-down" id="options">
 
-                            </div>
+                    <li><a href=""><img src="icons/heart.png" alt="" id="universe-icon"></a></li>
 
+                    <li><a href="carrinho.html"><img src="icons/shopping-cart.png" alt="" id="cart-icon"></a></li>
+                    <li class="itemD" id="itemD-quantity">0</li>
 
+                    <li><a href=""><img src="icons/user.png" id="user-icon">Login</a></li>
 
-                            <div>
-                                <a class="btn-flat dropdown-button waves-effect waves-light white-text" href="#" data-activates="profile-dropdown"><c:out value="${sessionScope.emp.employeeName}"/><i class="mdi-navigation-arrow-drop-down"></i></a>
-                                <!--
-                                 <ul id="profile-dropdown" class="dropdown-content">
-                                     <li><a href="#" ><i class="material-icons">person</i>Profile</a></li>
-                                     <li><a href="#" ><i class="material-icons">settings</i>Setting</a></li>
-                                     <li><a href="#" ><i class="material-icons">help</i>Help</a></li>
-                                     <li class="divider"></li>
-                                     <li><a href="#" ><i class="material-icons">lock</i>Lock</a></li>
-                                     <li><a href="#"><i class="material-icons">exit_to_app</i>Logout</a></li>
-                                 </ul>-->
-
-                                <a href="<c:url value="/LogoutServlet"/>"><i class="material-icons">power_settings_new</i></a>
-
-                            </div>
-
-                        </div>
-                    </li>
-
-
-
-
-
-
-
-                        <li class="white"><a href="<c:url value="/Loja?codFuncionario=${sessionScope.usuario.codFuncionario}"/>"><i><img src="<c:url value="/icons/store.png"/>"></i>Loja</a> 
-
-                        <li class="white"><a href="<c:url value="/ListarCliente"/>"><i><img src="<c:url value="/icons/customer.png"/>"></i>Clientes</a> 
-
-                                
-
-                        <li class="white"><a href="<c:url value="/ListarProdutos"/>"><i><img src="<c:url value="/icons/product.png"/>"></i>Produtos</a> 
-
-                        <li class="white"><a href="<c:url value="/ListarFuncionario"/>"><i><img src="<c:url value="/icons/employee.png"/>"></i>FuncionÃ¡rios<span class="new badge right yellow darken-3" data-badge-caption="Novo"></span></a>
- 
-                        <li class="white"><a href="<c:url value="/ListarVendas"/>"><i><img src="<c:url value="/icons/bar-chart.png"/>"></i>Vendas</a> 
-
-                    <li class="white"><a href="index.jsp" ><i><img src="<c:url value="/icons/bug.png"/>"></i>Chamado<span class="new badge right yellow darken-3" data-badge-caption="Em Breve"></span></a></li>    
                 </ul>
-
             </div>
+
         </nav>
 
 
-        <div >
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="img/kapivaradormindo.jpg" alt="">
+                    </div>
 
-
-
-
-        </div>
-
-
-
-
-
-
-
-
-
-
-        <style>
-            .botao{
-                padding: 0px;
-
-            }
-
-            img{
-                width: 160%;
-
-            }
-            .side-nav li
-            a {
-                padding: 0 16px;
-
-            }
-
-
-            body{
-                font-family: 'Mandali', sans-serif;
-            }
-
-            /*.sidenav-header {
-            background: url("../images/user-bg.jpg") no-repeat center center;
-            background-size: cover;
-            padding: 15px 0 0 15px;
-              
-            }*/
-
-            .row {
-                margin-bottom: 0;
-
-            }
-            .social-icons {
-            }
-            a {
-                opacity: 1;
-                &:hover {
-                    background-color:inherit;
-                    opacity: 1;
-                }
-            }
-
-
-
-
-
-        </style>
+                    <a href="#"><span class="black-text name">Faça login</span></a>
+                    <a href="#"><span class="black-text email">ou cadastra-se</span></a>
+                </div>
+            </li>
+            <li><a class="subheader">Navegue por categorias</a></li>
+            <li><a href="#miniaturas"><i class="material-icons">smart_toy</i>Miniaturas</a></li>
+            <li><a class="waves-effect" href="#camisetas"> <i class="material-icons">checkroom</i>Camisetas</a></li>
+            <li><a class="waves-effect" href="#canecas"><i class="material-icons">local_cafe</i>Canecas</a></li>
+            <li><a class="waves-effect" href="#acessorios"><i class="material-icons">luggage</i>Acessórios</a></li>
+            <li><a class="waves-effect" href="#utilidades"><i class="material-icons">public</i>Variedades</a></li>
+        </ul>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-
-
         <script>
-
-
+    
+    
             $('.button-collapse').sideNav({
                 menuWidth: 300, // Default is 300
                 edge: 'left', // Choose the horizontal origin
@@ -164,7 +95,39 @@
                 draggable: true // Choose whether you can drag to open on touch screens,
             }
             );
+    
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.sidenav');
+                var instances = M.Sidenav.init(elems);
+            });
+    
+    
+            $(document).ready(function () {
+                $('.slider').slider();
+            });
+    
+    
+    
+    
+    
+    
+    
+            function ComprarItem() {
+                var numeroString = new String(document.querySelector('.itemM').innerHTML);
+                numero = Number(numeroString);
+                soma = numero + 1;
+                Retorno = String(Object(soma));
+                document.querySelector('.itemM').innerHTML = Retorno;
+                document.querySelector('.itemD').innerHTML = Retorno;
+            }
+    
+            document.getElementById('comprar');
+            comprar.addEventListener('click', function () {
+                ComprarItem();
+            });
+    
         </script>
-
     </body>
+
 </html>
+

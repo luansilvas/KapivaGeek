@@ -146,6 +146,14 @@
         <servlet-name>RegisterCustomer_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.RegisterCustomer_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserLogin</servlet-name>
+        <servlet-class>br.senac.sp.servlet.UserLogin.UserLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserLogout</servlet-name>
+        <servlet-class>br.senac.sp.servlet.UserLogin.UserLogout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -253,6 +261,14 @@
     <servlet-mapping>
         <servlet-name>RegisterCustomer_Servlet</servlet-name>
         <url-pattern>/RegisterCustomer_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserLogin</servlet-name>
+        <url-pattern>/Loginusr</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserLogout</servlet-name>
+        <url-pattern>/UserLogout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

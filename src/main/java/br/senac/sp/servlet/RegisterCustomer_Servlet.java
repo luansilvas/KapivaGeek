@@ -64,7 +64,7 @@ public class RegisterCustomer_Servlet extends HttpServlet {
             }
 
             Customer customer = new Customer(name, cpf, email, password);
-
+            System.out.println(customer);
             CustomerDataValidation customerData = new CustomerDataValidation();
             errorList = customerData.validParamethers(name, cpf, email, "Ativo", password, confPassword);
             Address address = new Address(street, cep, uf, number, neighborhood, complement, "Faturamento", "Ativo");

@@ -50,4 +50,11 @@ public class Customer {
         return response.verified;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" + "customer_id=" + customer_id + ", customer_name=" + customer_name + ", customer_cpf=" + customer_cpf + ", customer_email=" + customer_email + ", customer_password=" + customer_password + '}';
+    }
+    
+    
+
 }

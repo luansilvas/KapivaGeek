@@ -296,4 +296,23 @@ public static boolean deleteCustomer(int customerId) {
         if (CustomerList.size()>0) return true;
         return false;
     }
+        
+     public static Customer validaLogin(String email, String senha) throws ClassNotFoundException, SQLException {
+        Customer customer = new Customer();
+        String sql = "select * from customer where customer_email ='"+email+"' and customer_password = '"+senha+"'";
+        try (Connection conn = ConexaoDB.abrirConexao();
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                customer.setCustomer_id(rs.getInt("customer_id"));
+                customer.setCustomer_name(rs.getString("customer_name"));
+                customer.setCustomer_cpf(rs.getString("customer_cpf"));
+                customer.setCustomer_email(rs.getString("customer_email"));
+                customer.setCustomer_password(rs.getString("customer_password"));
+
+                return customer;
+            }
+        }
+        return null;
+    }   
 }

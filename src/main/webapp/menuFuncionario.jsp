@@ -19,14 +19,11 @@
         
     }
     
-    
     #sair{
        font-size: 20px;
        
     }
     
- 
-
         </style>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">

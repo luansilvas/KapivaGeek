@@ -9,28 +9,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/Principal.css" type="text/css">
-
-
+        <link rel="stylesheet" href="css/style_menu.css" type="text/css">
+        
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+       
         <title>Home</title>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
         <a href="<c:url value="/ProductList_Servlet"/>">
             Listar produtos
         </a>
         <a href="<c:url value="/RegisterCustomer_Servlet"/>">
             Cadastrar Cliente
         </a>
-            
+        <c:choose>
+            <c:when test="${sessionScope.user != null}">
+                <h2>Bem vindo!! ${sessionScope.user.customer_name} </h2>
+                <a class="nav-link" href="${pageContext.request.contextPath}/UserLogout">Sair</a>
+            </c:when>
+        </c:choose>
         <section id="principal" class="container">
             <div id="boasVindas">
                 <h1>4Geeks<img src="images/mario.png"></h1>
@@ -84,174 +96,174 @@
                 </div>
             </div>
 
-<c:if test="${hasBonecos eq 'true'}">
-            <h2>Bonecos</h2>
-            <div class="row">
-                <c:forEach items="${bonecos}" var="b">
-                    <div id="cards" class="">
-                        <div class="card" style="width:300px; height:500px;">
-                            <img class="card-img-top" src="${b.path_MainImg}" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title">${b.productName}</h4>
-                                <p class="card-text">${b.productFullName}</p>
-                                <p class="card-text">${b.price}</p>
-                                <a href="<c:url value="/seeProductDetail?productId=${b.productId}"/>" class="btn btn-primary">Detalhes</a>
+            <c:if test="${hasBonecos eq 'true'}">
+                <h2>Bonecos</h2>
+                <div class="row">
+                    <c:forEach items="${bonecos}" var="b">
+                        <div id="cards" class="">
+                            <div class="card" style="width:300px; height:500px;">
+                                <img class="card-img-top" src="${b.path_MainImg}" alt="Card image">
+                                <div class="card-body">
+                                    <h4 class="card-title">${b.productName}</h4>
+                                    <p class="card-text">${b.productFullName}</p>
+                                    <p class="card-text">${b.price}</p>
+                                    <a href="<c:url value="/seeProductDetail?productId=${b.productId}"/>" class="btn btn-primary">Detalhes</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
 
-            </div>
-</c:if>            
+                </div>
+            </c:if>            
             <c:if test="${hasCM eq 'true'}">
-            <h2>Camiseta masculina</h2>
-            <div class="row">
-                <c:forEach items="${camisetasMasc}" var="cm">
-                    <div id="cards" class="">
-                        <div class="card" style="width:300px; height:500px;">
-                            <img class="card-img-top" src="${cm.path_MainImg}" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title">${cm.productName}</h4>
-                                <p class="card-text">${cm.productFullName}</p>
-                                <p class="card-text">${cm.price}</p>
-                                <a href="<c:url value="/seeProductDetail?productId=${cm.productId}"/>" class="btn btn-primary">Detalhes</a>
+                <h2>Camiseta masculina</h2>
+                <div class="row">
+                    <c:forEach items="${camisetasMasc}" var="cm">
+                        <div id="cards" class="">
+                            <div class="card" style="width:300px; height:500px;">
+                                <img class="card-img-top" src="${cm.path_MainImg}" alt="Card image">
+                                <div class="card-body">
+                                    <h4 class="card-title">${cm.productName}</h4>
+                                    <p class="card-text">${cm.productFullName}</p>
+                                    <p class="card-text">${cm.price}</p>
+                                    <a href="<c:url value="/seeProductDetail?productId=${cm.productId}"/>" class="btn btn-primary">Detalhes</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
 
-            </div>
-            
+                </div>
+
             </c:if>
             <c:if test="${hasCF eq 'true'}">
-            <h2>Camiseta feminina</h2>
-            <div class="row">
-                <c:forEach items="${camisetasFem}" var="cf">
-                    <div id="cards" class="">
-                        <div class="card" style="width:300px; height:500px;">
-                            <img class="card-img-top" src="${cf.path_MainImg}" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title">${cf.productName}</h4>
-                                <p class="card-text">${cf.productFullName}</p>
-                                <p class="card-text">${cf.price}</p>
-                                <a href="<c:url value="/seeProductDetail?productId=${cf.productId}"/>" class="btn btn-primary">Detalhes</a>
+                <h2>Camiseta feminina</h2>
+                <div class="row">
+                    <c:forEach items="${camisetasFem}" var="cf">
+                        <div id="cards" class="">
+                            <div class="card" style="width:300px; height:500px;">
+                                <img class="card-img-top" src="${cf.path_MainImg}" alt="Card image">
+                                <div class="card-body">
+                                    <h4 class="card-title">${cf.productName}</h4>
+                                    <p class="card-text">${cf.productFullName}</p>
+                                    <p class="card-text">${cf.price}</p>
+                                    <a href="<c:url value="/seeProductDetail?productId=${cf.productId}"/>" class="btn btn-primary">Detalhes</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
 
-            </div>
+                </div>
             </c:if>
-            
+
             <c:if test="${hasCanecas eq 'true'}">
-            <h2>Canecas</h2>
-            <div class="row">
-                <c:forEach items="${canecas}" var="c">
-                    <div id="cards" class="">
-                        <div class="card" style="width:300px; height:500px;">
-                            <img class="card-img-top" src="${c.path_MainImg}" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title">${c.productName}</h4>
-                                <p class="card-text">${c.productFullName}</p>
-                                <p class="card-text">${c.price}</p>
-                                <a href="<c:url value="/seeProductDetail?productId=${c.productId}"/>" class="btn btn-primary">Detalhes</a>
+                <h2>Canecas</h2>
+                <div class="row">
+                    <c:forEach items="${canecas}" var="c">
+                        <div id="cards" class="">
+                            <div class="card" style="width:300px; height:500px;">
+                                <img class="card-img-top" src="${c.path_MainImg}" alt="Card image">
+                                <div class="card-body">
+                                    <h4 class="card-title">${c.productName}</h4>
+                                    <p class="card-text">${c.productFullName}</p>
+                                    <p class="card-text">${c.price}</p>
+                                    <a href="<c:url value="/seeProductDetail?productId=${c.productId}"/>" class="btn btn-primary">Detalhes</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
 
-            </div>
+                </div>
             </c:if>
             <c:if test="${hasAcessorios eq 'true'}">
-            <h2>Acessórios</h2>
-            <div class="row">
-                <c:forEach items="${acessorios}" var="a">
-                    <div id="cards" class="">
-                        <div class="card" style="width:300px; height:500px;">
-                            <img class="card-img-top" src="${a.path_MainImg}" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title">${a.productName}</h4>
-                                <p class="card-text">${a.productFullName}</p>
-                                <p class="card-text">${a.price}</p>
-                                <a href="<c:url value="/seeProductDetail?productId=${a.productId}"/>" class="btn btn-primary">Detalhes</a>
+                <h2>Acessórios</h2>
+                <div class="row">
+                    <c:forEach items="${acessorios}" var="a">
+                        <div id="cards" class="">
+                            <div class="card" style="width:300px; height:500px;">
+                                <img class="card-img-top" src="${a.path_MainImg}" alt="Card image">
+                                <div class="card-body">
+                                    <h4 class="card-title">${a.productName}</h4>
+                                    <p class="card-text">${a.productFullName}</p>
+                                    <p class="card-text">${a.price}</p>
+                                    <a href="<c:url value="/seeProductDetail?productId=${a.productId}"/>" class="btn btn-primary">Detalhes</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
 
-            </div>
+                </div>
             </c:if>
             <c:if test="${hasVariedades eq 'true'}">
-            <h2>Variedades</h2>
-            <div class="row">
-                <c:forEach items="${variedades}" var="v">
-                    <div id="cards" class="">
-                        <div class="card" style="width:300px; height:500px;">
-                            <img class="card-img-top" src="${v.path_MainImg}" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title">${v.productName}</h4>
-                                <p class="card-text">${v.productFullName}</p>
-                                <p class="card-text">${v.price}</p>
-                                <a href="<c:url value="/seeProductDetail?productId=${v.productId}"/>" class="btn btn-primary">Detalhes</a>
+                <h2>Variedades</h2>
+                <div class="row">
+                    <c:forEach items="${variedades}" var="v">
+                        <div id="cards" class="">
+                            <div class="card" style="width:300px; height:500px;">
+                                <img class="card-img-top" src="${v.path_MainImg}" alt="Card image">
+                                <div class="card-body">
+                                    <h4 class="card-title">${v.productName}</h4>
+                                    <p class="card-text">${v.productFullName}</p>
+                                    <p class="card-text">${v.price}</p>
+                                    <a href="<c:url value="/seeProductDetail?productId=${v.productId}"/>" class="btn btn-primary">Detalhes</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
 
-            </div>
+                </div>
             </c:if>
-            
-            
+
+
             <c:if test="${hasFiltro eq 'true'}">
-            <h2>${filtro}</h2>
-            <div class="row">
-                <c:forEach items="${resultado}" var="r">
-                    <div id="cards" class="">
-                        <div class="card" style="width:300px; height:500px;">
-                            <img class="card-img-top" src="${r.path_MainImg}" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title">${r.productName}</h4>
-                                <p class="card-text">${r.productFullName}</p>
-                                <p class="card-text">${r.price}</p>
-                                <a href="<c:url value="/seeProductDetail?productId=${r.productId}"/>" class="btn btn-primary">Detalhes</a>
+                <h2>${filtro}</h2>
+                <div class="row">
+                    <c:forEach items="${resultado}" var="r">
+                        <div id="cards" class="">
+                            <div class="card" style="width:300px; height:500px;">
+                                <img class="card-img-top" src="${r.path_MainImg}" alt="Card image">
+                                <div class="card-body">
+                                    <h4 class="card-title">${r.productName}</h4>
+                                    <p class="card-text">${r.productFullName}</p>
+                                    <p class="card-text">${r.price}</p>
+                                    <a href="<c:url value="/seeProductDetail?productId=${r.productId}"/>" class="btn btn-primary">Detalhes</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
 
-            </div>
+                </div>
             </c:if>
-            
+
             <c:if test="${hasFiltro eq 'pesquisa'}">
-            <h2>Resultados para '${filtro}'</h2>
+                <h2>Resultados para '${filtro}'</h2>
 
-            <div class="row">
-                <c:forEach items="${resultado}" var="r">
-                    <div id="cards" class="">
-                        <div class="card" style="width:300px; height:500px;">
-                            <img class="card-img-top" src="${r.path_MainImg}" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title">${r.productName}</h4>
-                                <p class="card-text">${r.productFullName}</p>
-                                <p class="card-text">${r.price}</p>
-                                <a href="<c:url value="/seeProductDetail?productId=${r.productId}"/>" class="btn btn-primary">Detalhes</a>
+                <div class="row">
+                    <c:forEach items="${resultado}" var="r">
+                        <div id="cards" class="">
+                            <div class="card" style="width:300px; height:500px;">
+                                <img class="card-img-top" src="${r.path_MainImg}" alt="Card image">
+                                <div class="card-body">
+                                    <h4 class="card-title">${r.productName}</h4>
+                                    <p class="card-text">${r.productFullName}</p>
+                                    <p class="card-text">${r.price}</p>
+                                    <a href="<c:url value="/seeProductDetail?productId=${r.productId}"/>" class="btn btn-primary">Detalhes</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
 
-            </div>
+                </div>
             </c:if>
-                        <c:if test="${hasFiltro eq 'naoachouresultado'}">
-            <h2>Resultados para '${filtro}'</h2>
+            <c:if test="${hasFiltro eq 'naoachouresultado'}">
+                <h2>Resultados para '${filtro}'</h2>
 
-            <div class="row">
-                <h5>Não achamos nenhum produto nesse nome</h5>
+                <div class="row">
+                    <h5>Não achamos nenhum produto nesse nome</h5>
 
-            </div>
+                </div>
             </c:if>
-            
-            
+
+
 
         </section>
 

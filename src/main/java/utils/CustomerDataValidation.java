@@ -81,8 +81,7 @@ public class CustomerDataValidation {
         if (!email.contains("@")
                 || !email.contains(".com")
                 || email.contains(" ")
-                || email.contains("@.com")
-                || !hasDominio(email)) {
+                || email.contains("@.com")) {
             erro = "Não foi inserido um e-mail válido.";
             System.out.println(erro);
             errorList.add(erro);
@@ -125,7 +124,7 @@ public class CustomerDataValidation {
         return isValid;
     }
 
-    private boolean hasDominio(String email) {
+   /* private boolean hasDominio(String email) {
         boolean dominio = true;
         if (email.contains("@") && email.contains(".")) {
             int indexArroba = email.indexOf("@");
@@ -141,7 +140,7 @@ public class CustomerDataValidation {
         }
 
         return dominio;
-    }
+    }*/
 
     public List<String> validaEndereco(String street, String code, String uf, String number, String neighborhood, String complement, String type, String isActive, List<String> currentErrorList) {
         String erro = "";
