@@ -297,9 +297,9 @@ public static boolean deleteCustomer(int customerId) {
         return false;
     }
         
-     public static Customer validaLogin(String email, String senha) throws ClassNotFoundException, SQLException {
+     public static Customer validaLogin(String email) throws ClassNotFoundException, SQLException {
         Customer customer = new Customer();
-        String sql = "select * from customer where customer_email ='"+email+"' and customer_password = '"+senha+"'";
+        String sql = "select * from customer where customer_email ='"+email+"'";
         try (Connection conn = ConexaoDB.abrirConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 

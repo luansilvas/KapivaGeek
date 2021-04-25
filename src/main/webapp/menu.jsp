@@ -1,5 +1,6 @@
-!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html lang="pt-br">
     <head>
         <title>Kapiva Geek - A maior loja geek do país</title>
 
@@ -56,8 +57,17 @@
 
                     <li><a href="carrinho.html"><img src="icons/shopping-cart.png" alt="" id="cart-icon"></a></li>
                     <li class="itemD" id="itemD-quantity">0</li>
+                        <c:choose>
+                            <c:when test="${sessionScope.user != null}">
+                            <li><a href="<c:url value="/alterRegister_Costumer" />"><img src="icons/user.png" id="user-icon">${user.getCustomer_name()}</a></li>
 
-                    <li><a href=""><img src="icons/user.png" id="user-icon">Login</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="<c:url value="/Loginusr" />"><img src="icons/user.png" id="user-icon">Login</a></li>
+                        </c:otherwise>
+                    </c:choose>
+
+
 
                 </ul>
             </div>
@@ -86,8 +96,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
         <script>
-    
-    
+
+
             $('.button-collapse').sideNav({
                 menuWidth: 300, // Default is 300
                 edge: 'left', // Choose the horizontal origin
@@ -95,23 +105,23 @@
                 draggable: true // Choose whether you can drag to open on touch screens,
             }
             );
-    
+
             document.addEventListener('DOMContentLoaded', function () {
                 var elems = document.querySelectorAll('.sidenav');
                 var instances = M.Sidenav.init(elems);
             });
-    
-    
+
+
             $(document).ready(function () {
                 $('.slider').slider();
             });
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
             function ComprarItem() {
                 var numeroString = new String(document.querySelector('.itemM').innerHTML);
                 numero = Number(numeroString);
@@ -120,14 +130,13 @@
                 document.querySelector('.itemM').innerHTML = Retorno;
                 document.querySelector('.itemD').innerHTML = Retorno;
             }
-    
+
             document.getElementById('comprar');
             comprar.addEventListener('click', function () {
                 ComprarItem();
             });
-    
+
         </script>
     </body>
 
 </html>
-

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.senac.sp.dao.*;
 import br.senac.sp.model.*;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -44,11 +45,13 @@ public class UserLogin extends HttpServlet {
         
         try {
         
-          Customer customer = CustomerDAO.validaLogin(username, senha);
-            System.out.println(customer.getCustomer_name());
-            if(customer != null){
+          Customer customer = CustomerDAO.validaLogin(username);
+            if(customer != null && customer.validarSenha(senha)){
+                 List<Address> addr = AddressDAO.getCustomerAddresses(customer.getCustomer_id());
+                 System.out.println(addr.toString());
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("user", customer);
+                sessao.setAttribute("addr", addr);
                 response.sendRedirect(request.getContextPath() + "/Home_Servlet");
                 System.out.println("validado...");
             }

@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+
+
+
+#formulario{
+    border: 1px solid black;
+    border-radius: 5px;
+
+}
+#demo{
+    margin: 10px;
+    
+}
+#demo form{
+    padding: 10px;
+    
+}
+
+#titulo{
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+#titulo:focus{
+    outline: 0;
+}
+
+.infosForm{
+    margin: 10px;
+    font-family: 'Courier Prime', monospace;
+
+}
+button{
+    width: 40%;
+    margin: 5px;
+    border-radius: 5px;
+    
+}
+.infosForm button[type=submit]{
+    color: white;
+ 
+    background-color: black;
+}
+.infosForm button:hover{
+    transition: all 0.6s;
+    transform: scale(1.1);
+    box-shadow: 0 0 5px #333;
+}
+
+.infosForm button[type=reset]{
+    background-color: white;
+    color: black;
+}
+
+.infosForm input{
+    width: 40%;
+
+}
+

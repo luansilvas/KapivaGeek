@@ -8,77 +8,130 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/EmployeeFormStyle.css" type="text/css">
-
-
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style_Perfil.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <title>Alterar cadastro</title>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+        <script>
+            function changeImage(objeto, caminhoNovaImagem) {
+
+                document.getElementById(objeto).src = caminhoNovaImagem;
+            }
+
+        </script>
+        <title>Document</title>
     </head>
-     <body>
+    <body>
 
-        <section id="main" class="containerMain">
-
+        <section id="main" class="container">
             <a href="<c:url value="/Home_Servlet"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
-            <form class="formCadastro" method="post" action="<c:url value="/RegisterCustomer_Servlet"/>" novalidate class="form">
+            <form id="FormAlterar" method="post" action="<c:url value="/RegisterCustomer_Servlet"/>" novalidate class="form">
                 <fieldset>
+                    <legend>Meus dados</legend>
 
-                    <legend>Cadastro</legend>
-
-                    <div class="divsForm">
-                        <label>Nome</label>
+                    <div class="divsForm infosForm">
+                        <label>Nome:</label>
                         <br>
-                        <input type="text" name="name" placeholder="Nome completo" value="${customer.customer_name}">
+                        <input type="text" name="name" placeholder="Nome completo" value="${user.customer_name}">
                     </div>
-                    <div class="divsForm">  
-                        <label>CPF</label>
+                    <div class="divsForm infosForm">  
+                        <label>CPF:</label>
                         <br>
-                        <input type="text" name="cpf" placeholder="CPF" value="${customer.customer_cpf}">
+                        <input type="text" name="cpf" placeholder="CPF" value="${user.customer_cpf}">
                     </div>
-                    <div class="divsForm">
-                        <label>email</label>
+                    <div class="divsForm infosForm">
+                        <label>email:</label>
                         <br>
-                        <input type="email" name="email" value="${customer.customer_email}">
-                    </div>
-                    <div class="divsForm" id="senha">
-                        <label>Senha</label>
-                        <input type="password" name="pass" placeholder="Senha">
-                        <input type="password" name="Confpass" placeholder="Confirme a senha">
-                    </div>
-                    <legend id="end-faturamento">Endereço de faturamento</legend>
-                    <div class="divsForm">
-                        <label>CEP</label>
-                        <br>
-                        <input type="text" name="cep" placeholder="CEP" id="cep" value="${address.address_code}">
-                        <br>
-                    </div>
-                    <div class="divsForm" id="senha">
-                        <label>Logradouro</label>
-                        <br>
-                        <input type="text" placeholder="Logradouro" name="street" id="logradouro" value="${address.address_street}" readonly>
-                        <input type="text" placeholder="Número" name="number" id="numero" value="${address.address_number}">
+                        <input type="email" name="email" value="${user.customer_email}">
                     </div>
 
-                    <div class="divsForm">
-                        <label>Complemento</label>
+                    <div  class="infosForm">
+                        <button type="submit" style="margin-left:30%">Alterar</button>
+                    </div> 
+                </fieldset>
+            </form>
+
+            <div id="endCadastrado">
+                <legend>Endereços cadastrados:</legend>
+                <c:forEach items="${addr}" var="a">
+                  <form id="formulario">
+                    <div class="divsForm infosForm">
+                        <input type="text" name="titulo"  id="titulo">
                         <br>
-                        <input type="text" name="complement" id="complemento" value="${address.address_complement}">
                     </div>
-                    <div class="divsForm">
-                        <label>Bairro</label>
+                    <div class="divsForm infosForm">
+                        <label>CEP:</label>
                         <br>
-                        <input type="text" name="neighborhood" id="bairro" value="${address.address_neighborhood}" readonly>
+                        <input type="text" name="cep" placeholder="CEP" value="${a.address_code}" readonly="" >
+                        <br>
                     </div>
-                    <div class="divsForm">
-                        <label>Estado</label>
-                        <select id="uf" name="uf" readonly="readonly" tabindex="-1" aria-disabled="true">
-                            <option value="${address.address_state_abbreviation}">${address.address_state_abbreviation}</option>
+                    <div class=" divsForm infosForm" id="senha">
+                        <label>Rua:</label>
+                        <br>
+                        <input type="text" value="${a.address_street}" readonly>
+                        <input type="text"  value="${a.address_number}" readonly>
+                    </div>
+
+                    <div class="divsForm infosForm">
+                        <label>Complemento:</label>
+                        <br>
+                        <input type="text" value="${a.address_complement}" readonly>
+                    </div>
+                    <div class="divsForm infosForm">
+                        <label>Bairro:</label>
+                        <br>
+                        <input type="text" value="${a.address_neighborhood}" readonly>
+                    </div>
+                  </form>
+                </c:forEach>
+            </div>
+        </section>
+
+        <div class="container">
+            <legend>Adicionar Novo Endereço:</legend>
+            <a class="imgCollapse" type="button" data-toggle="collapse" data-target="#demo"
+               onclick="changeImage('image', 'images/minus.png')"><img id="image" src="images/add.png"></a>
+            <div id="demo" class="collapse">
+                <form id="formulario" method="post" action="${pageContext.request.contextPath}/salvarEndereco">
+                    <input type="hidden" name="UserId" value="${user.customer_id}">
+                    <div class="divsForm infosForm">
+                        <input type="text" name="NovoTitulo" placeholder="Digite um nome de verificação" id="titulo">
+                        <br>
+                    </div>
+                    <div class="divsForm infosForm">
+                        <label>CEP:</label>
+                        <br>
+                        <input type="text" name="Novocep" placeholder="CEP" id="cep" >
+                        <br>
+                    </div>
+                    <div class=" divsForm infosForm" id="senha">
+                        <label>Rua:</label>
+                        <br>
+                        <input type="text" placeholder="Rua" name="NovaRua" id="logradouro" readonly>
+                        <input type="text" placeholder="Número" name="NovoNumero" id="numero">
+                    </div>
+
+                    <div class="divsForm infosForm">
+                        <label>Complemento:</label>
+                        <br>
+                        <input type="text" name="NovoComplemento" id="complemento">
+                    </div>
+                    <div class="divsForm infosForm">
+                        <label>Bairro:</label>
+                        <br>
+                        <input type="text" name="NovoBairro" id="bairro" readonly>
+                    </div>
+                    <div class="divsForm infosForm">
+                        <label>Estado:</label>
+                        <select id="uf" name="Novouf" readonly="readonly" tabindex="-1" aria-disabled="true">
+                            <option>Escolha...</option>
                             <option value="AC">Ac</option>
                             <option value="AL">AL</option>
                             <option value="AP">AP</option>
@@ -108,20 +161,15 @@
                             <option value="TO">TO</option>
                         </select>
                     </div>
-                    
-                        
-                        
-                        <input type="checkbox" name="copiarFaturamento" id="copiar">
-                        <label for="copiar">Usar o endereço de faturamento para entregas</label>
-                    
-                    <div id="Botoes" class="divsForm">
-                        <button type="submit" style="margin-left:30%">Cadastrar</button>
-                    </div> 
+                    <div class="infosForm">
+                        <button type="submit">Salvar</button>
+                        <button type="reset">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-                </fieldset>
-            </form>
-
-        </section>
+        <a class="nav-link" href="${pageContext.request.contextPath}/UserLogout">Sair</a>
 
         <c:if test="${hasError eq 'true'}">
             <script>Toasty();</script>  
@@ -147,42 +195,41 @@
 
         <!-- Optional JavaScript -->
         <!-- Popper.js first, then Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
 
         <script>
-                var option =
-                        {
-                            animation: true,
-                            delay: 9000
-                        };
-                function Toasty( )
-                {
-                    var toastHTMLElement = document.getElementById('EpicToast');
-                    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
-                    toastElement.show( );
-                }
+            var option =
+                    {
+                        animation: true,
+                        delay: 9000
+                    };
+            function Toasty( )
+            {
+                var toastHTMLElement = document.getElementById('EpicToast');
+                var toastElement = new bootstrap.Toast(toastHTMLElement, option);
+                toastElement.show( );
+            }
             <c:if test="${hasError eq 'true'}">
-                Toasty();
+            Toasty();
             </c:if>
 
 
 
 
-                $("#cep").focusout(function () {
-                    $.ajax({
-                        url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode/',
-                        dataType: 'json',
-                        success: function (resposta) {
-                            $("#logradouro").val(resposta.logradouro);
-                            $("#complemento").val(resposta.complemento);
-                            $("#bairro").val(resposta.bairro);
-                            $("#cidade").val(resposta.localidade);
-                            $("#uf").val(resposta.uf);
-                            $("#numero").focus();
-                        }
-                    });
+            $("#cep").focusout(function () {
+                $.ajax({
+                    url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode/',
+                    dataType: 'json',
+                    success: function (resposta) {
+                        $("#logradouro").val(resposta.logradouro);
+                        $("#complemento").val(resposta.complemento);
+                        $("#bairro").val(resposta.bairro);
+                        $("#cidade").val(resposta.localidade);
+                        $("#uf").val(resposta.uf);
+                        $("#numero").focus();
+                    }
                 });
+            });
 
 
 

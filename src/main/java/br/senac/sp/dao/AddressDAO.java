@@ -199,7 +199,7 @@ public class AddressDAO {
         Customer customer = null;
         try {
             conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from address where customer_customer_id=? and isActive='Ativo'");
+            instrucaoSQL = conexao.prepareStatement("select * from customer_address where customer_customer_id=?");
             instrucaoSQL.setInt(1, customerId);
             rs = instrucaoSQL.executeQuery();
 

@@ -66,5 +66,12 @@ public class Address {
     
     public Address() {
     }
+
+    @Override
+    public String toString() {
+        return "Address{" + "address_id=" + address_id + ", customer_customer_id=" + customer_customer_id + ", address_street=" + address_street + ", address_code=" + address_code + ", address_state_abbreviation=" + address_state_abbreviation + ", address_number=" + address_number + ", address_neighborhood=" + address_neighborhood + ", address_complement=" + address_complement + ", address_type=" + address_type + ", isActive=" + isActive + '}';
+    }
+    
+    
     
 }

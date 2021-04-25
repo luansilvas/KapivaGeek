@@ -14,16 +14,15 @@
 
         <link rel="stylesheet" href="css/style_menu.css" type="text/css">
         <link rel="stylesheet" href="css/styleFront.css" type="text/css">
+
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
         <title>Home</title>
@@ -36,357 +35,363 @@
         <a href="<c:url value="/RegisterCustomer_Servlet"/>">
             Cadastrar Cliente
         </a>
-        <c:choose>
-            <c:when test="${sessionScope.user != null}">
-                <h2>Bem vindo!! ${sessionScope.user.customer_name} </h2>
-                <a class="nav-link" href="${pageContext.request.contextPath}/UserLogout">Sair</a>
-            </c:when>
-        </c:choose>
-        <section id="principal" class="container">
-            <div id="boasVindas">
+       
+             
+                
+        
 
-            </div>
+
+        <div class="row">
+            <form class="col s12" action="#" method="POST">
+                <div class="row" id="search-bar">
+                    <div class="input-field col s12">
+                        <input id="icon_prefix" type="text" class="validate" name="categoria">
+                        <label for="icon_prefix">Pesquise aqui</label>
+                        <i class="material-icons prefix">search</i>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="slider">
+            <ul class="slides">
+                <li>
+                    <img src="cover-images/cover-starwars.jpg">
+                    <!-- random image -->
+                    <div class="caption center-align">
+                        <h3>A maior geek store do país!</h3>
+                        <h5 class="light grey-text text-lighten-3">Qualidade e preço de fábrica</h5>
+                    </div>
+                </li>
+                <li>
+                    <img src="cover-images/Drax-and-Rocket-Guardians-of-the-Galaxy-and-Avengers-1920x500.png">
+                    <!-- random image -->
+                    <div class="caption center-align">
+                        <h3>Melhores oportunidades</h3>
+                        <h5 class="light grey-text text-lighten-3">Preços camaradas</h5>
+                    </div>
+                </li>
+                <li>
+                    <img src="cover-images/spider.jpg"> <!-- random image -->
+                    <div class="caption center-align">
+                        <h3>Cobrimos oferta!</h3>
+                        <h5 class="light grey-text text-lighten-3">Cobrimos o valor da concorrência</h5>
+                    </div>
+                </li>
+                <li>
+                    <img src="cover-images/Lord-Of-The-Rings-Fellowship-Of-The-Ring-1920x500.jpeg">
+                    <!-- random image -->
+                    <div class="caption center-align">
+                        <h3>Variedade dos produtos</h3>
+                        <h5 class="light grey-text text-lighten-3">Pesquise o nome da sua série, anime ou filme para
+                            conferir</h5>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+        <c:if test="${hasPromocoes eq 'true'}">
 
             <div class="row">
-                <form class="col s12" action="#" method="POST">
-                    <div class="row" id="search-bar">
-                        <div class="input-field col s12">
-                            <input id="icon_prefix" type="text" class="validate" name="categoria">
-                            <label for="icon_prefix">Pesquise aqui</label>
-                            <i class="material-icons prefix">search</i>
+                <c:forEach items="${promocoes}" var="b">
+                    <section class="category-carousel" id="miniaturas">
+                        <h3 class="category-title">Bonecos</h3>
+                        <div class="category-category-carousel-container">
+                            <div class="product-card">
+                                <a href="#">
+                                    <img class="product-img" src="product_img/hf1.jpg">
+                                </a>
+                                <div class="add-cart-field">
+                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                </div>
+                                <div class="info">
+                                    <a href="#"></a>
+                                    <a>
+                                        <h3 class="">${b.productName}</h3>
+                                    </a>
+                                    <h5 class="price">${b.price}</h5>
+                                    <br>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </c:forEach>
+
+            </div>
+        </c:if>       
+        <c:if test="${hasBonecos eq 'true'}">
+
+            <div class="row">
+                <section class="category-carousel" id="miniaturas">
+                    <h3 class="category-title">Bonecos</h3>
+                    <div class="category-category-carousel-container">
+                        <c:forEach items="${bonecos}" var="b">
+
+                            <div class="product-card">
+                                <a href="#">
+                                    <img class="product-img" src="product_img/hf1.jpg">
+                                </a>
+                                <div class="add-cart-field">
+                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                </div>
+                                <div class="info">
+                                    <a href="#">
+                                        <a>
+                                            <h3 class="">${b.productName}</h3>
+                                        </a>
+                                        <h5 class="price">${b.price}</h5>
+                                        <br>
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </c:forEach>
+                    </div>
+                </section>
+            </div>
+        </c:if>            
+        <c:if test="${hasCM eq 'true'}">
+            <div class="row">
+                <section class="category-carousel" id="miniaturas">
+                    <h3 class="category-title">Camiseta masculina</h3>
+                    <div class="category-category-carousel-container">
+                        <c:forEach items="${camisetasMasc}" var="cm">
+
+                            <div class="product-card">
+                                <a href="Comprar.html">
+                                    <img class="product-img" src="product_img/9fox.jpg">
+                                </a>
+                                <div class="add-cart-field" id="comprar">
+                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                </div>
+                                <div class="info">
+                                    <a href="Comprar.html">
+                                        <a>
+                                            <h3 class="">${cm.productName}</h3>
+                                        </a>
+                                        <h5 class="price">${cm.price}</h5>
+                                        <br>
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </c:forEach>
+                    </div>
+                </section>
+            </div>
+        </c:if>
+        <c:if test="${hasCF eq 'true'}">
+            <h2>Camiseta feminina</h2>
+            <div class="row">
+                <c:forEach items="${camisetasFem}" var="cf">
+                    <div class="product-card">
+                        <a href="#">
+                            <img class="product-img" src="${cf.path_MainImg}">
+                        </a>
+                        <div class="add-cart-field">
+                            <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                        </div>
+                        <div class="info">
+                            <a href="#">
+                                <a>
+                                    <h3 class="">${cf.productName}</h3>
+                                </a>
+                                <h5 class="price">de<s>${cf.price}</s> por R$19.90</h5>
+
+                                <br>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </form>
+                </c:forEach>
+
             </div>
+        </c:if>
 
+        <c:if test="${hasCanecas eq 'true'}">
+            <h2>Canecas</h2>
+            <div class="row">
+                <c:forEach items="${canecas}" var="c">
+                    <div class="product-card">
+                        <a href="#">
+                            <img class="product-img" src="${c.path_MainImg}">
+                        </a>
+                        <div class="add-cart-field">
+                            <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                        </div>
+                        <div class="info">
+                            <a href="#">
+                                <a>
+                                    <h3 class="">${c.productName}</h3>
+                                </a>
+                                <h5 class="price">${c.price}</h5>
+                                <br>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div> 
+                </c:forEach>
 
-            <div class="slider">
-                <ul class="slides">
-                    <li>
-                        <img src="cover-images/cover-starwars.jpg">
-                        <!-- random image -->
-                        <div class="caption center-align">
-                            <h3>A maior geek store do país!</h3>
-                            <h5 class="light grey-text text-lighten-3">Qualidade e preço de fábrica</h5>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="cover-images/Drax-and-Rocket-Guardians-of-the-Galaxy-and-Avengers-1920x500.png">
-                        <!-- random image -->
-                        <div class="caption center-align">
-                            <h3>Melhores oportunidades</h3>
-                            <h5 class="light grey-text text-lighten-3">Preços camaradas</h5>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="cover-images/spider.jpg"> <!-- random image -->
-                        <div class="caption center-align">
-                            <h3>Cobrimos oferta!</h3>
-                            <h5 class="light grey-text text-lighten-3">Cobrimos o valor da concorrência</h5>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="cover-images/Lord-Of-The-Rings-Fellowship-Of-The-Ring-1920x500.jpeg">
-                        <!-- random image -->
-                        <div class="caption center-align">
-                            <h3>Variedade dos produtos</h3>
-                            <h5 class="light grey-text text-lighten-3">Pesquise o nome da sua série, anime ou filme para
-                                conferir</h5>
-                        </div>
-                    </li>
-                </ul>
             </div>
-
-
-            <c:if test="${hasPromocoes eq 'true'}">
-                <h2>Bonecos</h2>
-                <div class="row">
-                    <c:forEach items="${promocoes}" var="b">
-                        <div class="product-card">
-                            <a href="#">
-                                <img class="product-img" src="product_img/hf1.jpg">
-                            </a>
-                            <div class="add-cart-field">
-                                <a href="#!" class="fas fa-cart-plus fa-2x"></a>
-                            </div>
-                            <div class="info">
-                                <a href="#">
-                                    <a>
-                                        <h3 class="">${b.productName}</h3>
-                                    </a>
-                                    <h5 class="price">${b.price}</h5>
-                                    <br>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </a>
-                            </div>
+        </c:if>
+        <c:if test="${hasAcessorios eq 'true'}">
+            <h2>Acessórios</h2>
+            <div class="row">
+                <c:forEach items="${acessorios}" var="a">
+                    <div class="product-card">
+                        <a href="#">
+                            <img class="product-img" src="${a.path_MainImg}">
+                        </a>
+                        <div class="add-cart-field">
+                            <a href="#!" class="fas fa-cart-plus fa-2x"></a>
                         </div>
-                    </c:forEach>
-
-                </div>
-            </c:if>       
-            <c:if test="${hasBonecos eq 'true'}">
-                <h2>Bonecos</h2>
-                <div class="row">
-                    <c:forEach items="${bonecos}" var="b">
-                        <div class="product-card">
+                        <div class="info">
                             <a href="#">
-                                <img class="product-img" src="product_img/hf1.jpg">
-                            </a>
-                            <div class="add-cart-field">
-                                <a href="#!" class="fas fa-cart-plus fa-2x"></a>
-                            </div>
-                            <div class="info">
-                                <a href="#">
-                                    <a>
-                                        <h3 class="">${b.productName}</h3>
-                                    </a>
-                                    <h5 class="price">${b.price}</h5>
-                                    <br>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
+                                <a>
+                                    <h3 class="">${a.productName}</h3>
                                 </a>
-                            </div>
-                        </div>
-                    </c:forEach>
+                                <h5 class="price">${a.price}</h5>
+                                <br>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
 
-                </div>
-            </c:if>            
-            <c:if test="${hasCM eq 'true'}">
-                <h2>Camiseta masculina</h2>
-                <div class="row">
-                    <c:forEach items="${camisetasMasc}" var="cm">
-                        <div class="product-card">
-                            <a href="Comprar.html">
-                                <img class="product-img" src="product_img/9fox.jpg">
-                            </a>
-                            <div class="add-cart-field" id="comprar">
-                                <a href="#!" class="fas fa-cart-plus fa-2x"></a>
-                            </div>
-                            <div class="info">
-                                <a href="Comprar.html">
-                                    <a>
-                                        <h3 class="">${cm.productName}</h3>
-                                    </a>
-                                    <h5 class="price">${cm.price}</h5>
-                                    <br>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </c:forEach>
-
-                </div>
-
-            </c:if>
-            <c:if test="${hasCF eq 'true'}">
-                <h2>Camiseta feminina</h2>
-                <div class="row">
-                    <c:forEach items="${camisetasFem}" var="cf">
-                        <div class="product-card">
-                            <a href="#">
-                                <img class="product-img" src="${cf.path_MainImg}">
-                            </a>
-                            <div class="add-cart-field">
-                                <a href="#!" class="fas fa-cart-plus fa-2x"></a>
-                            </div>
-                            <div class="info">
-                                <a href="#">
-                                    <a>
-                                        <h3 class="">${cf.productName}</h3>
-                                    </a>
-                                    <h5 class="price">de<s>${cf.price}</s> por R$19.90</h5>
-
-                                    <br>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </c:forEach>
-
-                </div>
-            </c:if>
-
-            <c:if test="${hasCanecas eq 'true'}">
-                <h2>Canecas</h2>
-                <div class="row">
-                    <c:forEach items="${canecas}" var="c">
-                        <div class="product-card">
-                            <a href="#">
-                                <img class="product-img" src="${c.path_MainImg}">
-                            </a>
-                            <div class="add-cart-field">
-                                <a href="#!" class="fas fa-cart-plus fa-2x"></a>
-                            </div>
-                            <div class="info">
-                                <a href="#">
-                                    <a>
-                                        <h3 class="">${c.productName}</h3>
-                                    </a>
-                                    <h5 class="price">${c.price}</h5>
-                                    <br>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </a>
-                            </div>
-                        </div> 
-                    </c:forEach>
-
-                </div>
-            </c:if>
-            <c:if test="${hasAcessorios eq 'true'}">
-                <h2>Acessórios</h2>
-                <div class="row">
-                    <c:forEach items="${acessorios}" var="a">
-                        <div class="product-card">
-                            <a href="#">
-                                <img class="product-img" src="${a.path_MainImg}">
-                            </a>
-                            <div class="add-cart-field">
-                                <a href="#!" class="fas fa-cart-plus fa-2x"></a>
-                            </div>
-                            <div class="info">
-                                <a href="#">
-                                    <a>
-                                        <h3 class="">${a.productName}</h3>
-                                    </a>
-                                    <h5 class="price">${a.price}</h5>
-                                    <br>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </c:forEach>
-
-                </div>
-            </c:if>
-            <c:if test="${hasVariedades eq 'true'}">
-                <h2>Variedades</h2>
-                <div class="row">
-                    <c:forEach items="${variedades}" var="v">
-                        <div class="product-card">
-                            <a href="#">
-                                <img class="product-img" src="${v.path_MainImg}">
-                            </a>
-                            <div class="add-cart-field">
-                                <a href="#!" class="fas fa-cart-plus fa-2x"></a>
-                            </div>
-                            <div class="info">
-                                <a href="#">
-                                    <a>
-                                        <h3 class="">${v.productName}</h3>
-                                    </a>
-                                    <h5 class="price">${v.price}</h5>
-                                    <br>
-                                    <div class="stars">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </c:forEach>
-
-                </div>
-            </c:if>
-
-
-            <c:if test="${hasFiltro eq 'true'}">
-                <h2>${filtro}</h2>
-                <div class="row">
-                    <c:forEach items="${resultado}" var="r">
-                        <div id="cards" class="">
-                            <div class="card" style="width:300px; height:500px;">
-                                <img class="card-img-top" src="${r.path_MainImg}" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">${r.productName}</h4>
-                                    <p class="card-text">${r.productFullName}</p>
-                                    <p class="card-text">${r.price}</p>
-                                    <a href="<c:url value="/seeProductDetail?productId=${r.productId}"/>" class="btn btn-primary">Detalhes</a>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                    </c:forEach>
+                    </div>
+                </c:forEach>
 
-                </div>
-            </c:if>
-
-            <c:if test="${hasFiltro eq 'pesquisa'}">
-                <h2>Resultados para '${filtro}'</h2>
-
-                <div class="row">
-                    <c:forEach items="${resultado}" var="r">
-                        <div id="cards" class="">
-                            <div class="card" style="width:300px; height:500px;">
-                                <img class="card-img-top" src="${r.path_MainImg}" alt="Card image">
-                                <div class="card-body">
-                                    <h4 class="card-title">${r.productName}</h4>
-                                    <p class="card-text">${r.productFullName}</p>
-                                    <p class="card-text">${r.price}</p>
-                                    <a href="<c:url value="/seeProductDetail?productId=${r.productId}"/>" class="btn btn-primary">Detalhes</a>
+            </div>
+        </c:if>
+        <c:if test="${hasVariedades eq 'true'}">
+            <h2>Variedades</h2>
+            <div class="row">
+                <c:forEach items="${variedades}" var="v">
+                    <div class="product-card">
+                        <a href="#">
+                            <img class="product-img" src="${v.path_MainImg}">
+                        </a>
+                        <div class="add-cart-field">
+                            <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                        </div>
+                        <div class="info">
+                            <a href="#">
+                                <a>
+                                    <h3 class="">${v.productName}</h3>
+                                </a>
+                                <h5 class="price">${v.price}</h5>
+                                <br>
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
                                 </div>
+                            </a>
+                        </div>
+                    </div>
+                </c:forEach>
+
+            </div>
+        </c:if>
+
+
+        <c:if test="${hasFiltro eq 'true'}">
+            <h2>${filtro}</h2>
+            <div class="row">
+                <c:forEach items="${resultado}" var="r">
+                    <div id="cards" class="">
+                        <div class="card" style="width:300px; height:500px;">
+                            <img class="card-img-top" src="${r.path_MainImg}" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title">${r.productName}</h4>
+                                <p class="card-text">${r.productFullName}</p>
+                                <p class="card-text">${r.price}</p>
+                                <a href="<c:url value="/seeProductDetail?productId=${r.productId}"/>" class="btn btn-primary">Detalhes</a>
                             </div>
                         </div>
-                    </c:forEach>
+                    </div>
+                </c:forEach>
 
-                </div>
-            </c:if>
-            <c:if test="${hasFiltro eq 'naoachouresultado'}">
-                <h2>Resultados para '${filtro}'</h2>
+            </div>
+        </c:if>
 
+        <c:if test="${hasFiltro eq 'pesquisa'}">
+            <h2>Resultados para '${filtro}'</h2>
+
+            <div class="row">
+                <c:forEach items="${resultado}" var="r">
+                    <div id="cards" class="">
+                        <div class="card" style="width:300px; height:500px;">
+                            <img class="card-img-top" src="${r.path_MainImg}" alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title">${r.productName}</h4>
+                                <p class="card-text">${r.productFullName}</p>
+                                <p class="card-text">${r.price}</p>
+                                <a href="<c:url value="/seeProductDetail?productId=${r.productId}"/>" class="btn btn-primary">Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+
+            </div>
+        </c:if>
+        <c:if test="${hasFiltro eq 'naoachouresultado'}">
+            <h2>Resultados para '${filtro}'</h2>
+
+            <div class="row">
+                <h5>Não achamos nenhum produto nesse nome</h5>
+
+            </div>
+        </c:if>
+
+        <footer class="page-footer brown">
+            <div class="container">
                 <div class="row">
-                    <h5>Não achamos nenhum produto nesse nome</h5>
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Kapiva Geek</h5>
+                        <p class="grey-text text-lighten-4">Todos os direitos reservados do uso de imagem.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
 
+                    </div>
                 </div>
-            </c:if>
-
-
-
-        </section>
-
-       <footer class="page-footer brown">
-		<div class="container">
-			<div class="row">
-				<div class="col l6 s12">
-					<h5 class="white-text">Kapiva Geek</h5>
-					<p class="grey-text text-lighten-4">Todos os direitos reservados do uso de imagem.</p>
-				</div>
-				<div class="col l4 offset-l2 s12">
-
-				</div>
-			</div>
-		</div>
-		<div class="footer-copyright">
-			<div class="container">
-				<a class="grey-text text-lighten-4 right" href="#!"> © 2021 Copyright KapivaGeek</a>
-			</div>
-		</div>
-	</footer>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    <a class="grey-text text-lighten-4 right" href="#!"> © 2021 Copyright KapivaGeek</a>
+                </div>
+            </div>
+        </footer>
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
