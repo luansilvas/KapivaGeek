@@ -60,11 +60,13 @@
                         <c:choose>
                             <c:when test="${sessionScope.user != null}">
                             <li><a href="<c:url value="/alterRegister_Costumer" />"><img src="icons/user.png" id="user-icon">${user.getCustomer_name()}</a></li>
-
+                            <li><a href="${pageContext.request.contextPath}/UserLogout"><img src="icons/logout.png" id="user-icon"></a></li>
                         </c:when>
                         <c:otherwise>
                             <li><a href="<c:url value="/Loginusr" />"><img src="icons/user.png" id="user-icon">Login</a></li>
+                            
                                 </c:otherwise>
+                            
                             </c:choose>
 
 
