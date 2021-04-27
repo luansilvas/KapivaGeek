@@ -56,8 +56,38 @@ button{
     color: black;
 }
 
-.infosForm input{
+#formulario .infosForm input{
     width: 40%;
 
 }
 
+#FormAlterar .infosForm{
+margin-left: 30%;
+}
+#FormAlterar .infosForm input{
+    width: 550px;
+    background-color: lightgrey;
+    text-align: center;
+    border: none;
+    height: 60px;
+}
+
+#personal-data-label{
+ margin-left: 49%;   
+}
+
+#profilepic{
+    width: 200px;
+    height: 200px;
+    margin-top: 10%;
+    margin-left: 44%;
+}
+.table{
+    margin-left: 10%;
+}
+.table-title{
+    margin-left: 10%;
+}
+#add-address{
+    margin-left: 28%;
+}

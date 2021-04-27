@@ -34,12 +34,12 @@
 
 
                 <ul class="left hide-on-med-and-down" id="categories">
-                    <li><a href="#miniaturas"><img src="" alt="" id="universe-icon">Personagens</a></li>
-                    <li><a href="#camisetas"><img src="" alt="" id="acessories-icon">Camisetas</a></li>
-                    <li><a href="#acessorios"><img src="" alt="" id="universe-icon">Acessórios</a></li>
-                    <li><a href="#canecas"><img src="" alt="" id="cart-icon">Canecas</a></li>
-                    <li><a href="#utilidades"><img src="" alt="" id="user-icon">Utilidades</a></li>
-
+                    <li><a href="<c:url value="/Home_Servlet?categoria=Boneco"/>"><img src="" alt="" id="universe-icon">Personagens</a></li>
+                    <li><a href="<c:url value="/Home_Servlet?categoria=Camiseta+masculina"/>"><img src="" alt="" id="acessories-icon">Camisetas</a></li>
+                    <li><a href="<c:url value="/Home_Servlet?categoria=Acessorio"/>"><img src="" alt="" id="universe-icon">Acessórios</a></li>
+                    <li><a href="<c:url value="/Home_Servlet?categoria=Caneca"/>"><img src="" alt="" id="cart-icon">Canecas</a></li>
+                    <li><a href="<c:url value="/Home_Servlet?categoria=variedade"/>><img src="" alt="" id="user-icon">Utilidades</a></li>
+           
                 </ul>
 
                 <form action="" method="post" id="search-topbar">
@@ -64,8 +64,8 @@
                         </c:when>
                         <c:otherwise>
                             <li><a href="<c:url value="/Loginusr" />"><img src="icons/user.png" id="user-icon">Login</a></li>
-                        </c:otherwise>
-                    </c:choose>
+                                </c:otherwise>
+                            </c:choose>
 
 
 
@@ -82,8 +82,19 @@
                         <img src="img/kapivaradormindo.jpg" alt="">
                     </div>
 
-                    <a href="#"><span class="black-text name">Faça login</span></a>
-                    <a href="#"><span class="black-text email">ou cadastra-se</span></a>
+
+
+
+                    <c:choose>
+                        <c:when test="${sessionScope.user != null}">
+                            <a href="<c:url value="/alterRegister_Costumer" />"><span class="black-text email">${user.getCustomer_name()}</span></a>
+                            </c:when>
+                            <c:otherwise>
+
+                            <a href="#"><span class="black-text name">Faça login</span></a>
+                            <a href="#"><span class="black-text email">ou cadastra-se</span></a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </li>
             <li><a class="subheader">Navegue por categorias</a></li>

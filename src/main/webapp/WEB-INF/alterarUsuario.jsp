@@ -17,9 +17,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
         <script>
             function changeImage(objeto, caminhoNovaImagem) {
-
                 document.getElementById(objeto).src = caminhoNovaImagem;
             }
 
@@ -27,87 +27,103 @@
         <title>Document</title>
     </head>
     <body>
-       
+
 
         <section id="main" class="container">
             <a href="<c:url value="/Home_Servlet"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
+            <img src="images/profile-userpic.png" id="profilepic">
             <form id="FormAlterar" method="post" action="<c:url value="/RegisterCustomer_Servlet"/>" novalidate class="form">
                 <fieldset>
-                    <legend>Meus dados</legend>
-                    
+                    <legend id="personal-data-label">Meus dados <a href="<c:url value="/RegisterCustomer_Servlet"/>"><i><img src="icons/pen32px.png"></i></a></legend>
+
                     <div class="divsForm infosForm">
                         <label>Nome:</label>
                         <br>
-                        <input type="text" name="name" placeholder="Nome completo" value="${user.customer_name}">
+                        <input type="text" name="name" placeholder="Nome completo" value="${user.customer_name}" readonly>
                     </div>
                     <div class="divsForm infosForm">  
                         <label>CPF:</label>
                         <br>
-                        <input type="text" name="cpf" placeholder="CPF" value="${user.customer_cpf}">
+                        <input type="text" name="cpf" placeholder="CPF" value="${user.customer_cpf}" readonly>
                     </div>
                     <div class="divsForm infosForm">
                         <label>email:</label>
                         <br>
-                        <input type="email" name="email" value="${user.customer_email}">
+                        <input type="email" name="email" value="${user.customer_email}" readonly>
                     </div>
-
-                    <div  class="infosForm">
-                        <button type="submit" style="margin-left:30%">Alterar</button>
-                    </div> 
+                    <!--
+                                        <div  class="infosForm">
+                                            <button type="submit" style="margin-left:30%">Alterar</button>
+                                        </div> -->
                 </fieldset>
             </form>
 
-            <div id="endCadastrado">
-                <legend>Endereços cadastrados:</legend>
-                <c:forEach items="${addr}" var="a">
-                    <form id="formulario" method="post" action="${pageContext.request.contextPath}/Alterar_InativarAddr">
-                      <input type="hidden" name="UserId" value="${user.customer_id}">
-                        <input type="text" name="addrId" value="${a.address_id}">
-                    <div class="divsForm infosForm">
-                        <input type="text" name="titulo"  id="titulo" value="${a.address_title}" readonly>
-                        <br>
-                    </div>
-                    <div class="divsForm infosForm">
-                        <label>CEP:</label>
-                        <br>
-                        <input type="text" name="cep" placeholder="CEP" value="${a.address_code}" readonly="" >
-                        <br>
-                    </div>
-                    <div class=" divsForm infosForm" id="senha">
-                        <label>Rua:</label>
-                        <br>
-                        <input type="text" value="${a.address_street}" readonly>
-                        <input type="text"  value="${a.address_number}" readonly>
-                    </div>
 
-                    <div class="divsForm infosForm">
-                        <label>Complemento:</label>
-                        <br>
-                        <input type="text" value="${a.address_complement}" readonly>
-                    </div>
-                    <div class="divsForm infosForm">
-                        <label>Bairro:</label>
-                        <br>
-                        <input type="text" value="${a.address_neighborhood}" readonly>
-                    </div>
-                    <div class="divsForm infosForm" id="estado">
-                        <label>Estado:</label>
-                        <br>
-                        <input type="text" value="${a.address_state_abbreviation}" readonly>
-                    </div>
-                    <div>
-                        <br>
-                        <button type="submit" name="Atualizar" value="Atualizar">Atualizar</button>
-                        <button type="submit" name="Excluir" value="Excluir">Excluir</button>
-                    </div>
-                  </form>
-                </c:forEach>
+            <div id="endCadastrado">
+               
+            <div id="endCadastrado">
+                <legend class="table-title">Endereços de Faturamento</legend>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Endereço</th>
+                            <th scope="col">Acoes</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td>${addrFat.address_street},${addrFat.address_number} - ${addrFat.address_neighborhood},${addrFat.address_state_abbreviation} - ${addrFat.address_code}</td>
+                                <td>
+                                    <a href="<c:url value="/AlterAddress_Servlet?address_id=${addrFat.address_id}"/>"><i><img src="icons/pen32px.png"></i></a>
+ 
+                                </td>
+
+                            </tr>
+
+                    </tbody>
+                </table>
             </div>
+                    
+            <div id="endCadastrado">
+                <legend class="table-title">Endereços de Entrega</legend>
+                <table class="table" style="border: none">
+                    <thead>
+                        <tr>
+                            <th scope="col">${addrFat.address_title}</th>
+                            <th scope="col">Acoes</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <c:forEach items="${addr}" var="a">
+                        <tr>                            
+                         <td> ${addrFat.address_title}  </td>
+                         <td></td>
+                        </tr>
+                            <tr>
+                                <td>${a.address_street},${a.address_number} - ${a.address_neighborhood},${a.address_state_abbreviation} - ${a.address_code}</td>
+                                <td>
+                                    <a href="<c:url value="/AlterAddress_Servlet?address_id=${a.address_id}"/>"><i><img src="icons/pen32px.png"></i></a>
+                                    <a href="<c:url value="/DeleteAddress_Servlet?address_id=${a.address_id}"/>"><i><img src="icons/delete.png"></i></a>
+                                </td>
+
+                            </tr>
+
+                        </c:forEach>
+
+                            
+                    </tbody>
+                </table>
+            </div>
+
+
         </section>
 
-        <div class="container">
+        <div class="container" id="add-address">
             <legend>Adicionar Novo Endereço:</legend>
             <a class="imgCollapse" type="button" data-toggle="collapse" data-target="#demo"
                onclick="changeImage('image', 'images/minus.png')"><img id="image" src="images/add.png"></a>

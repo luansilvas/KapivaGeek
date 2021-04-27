@@ -202,7 +202,7 @@ public class AddressDAO {
         Customer customer = null;
         try {
             conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from customer_address where customer_customer_id=? and isActive = 'Ativo' ");
+            instrucaoSQL = conexao.prepareStatement("select * from customer_address where customer_customer_id=? and isActive = 'Ativo' and address_type='Entrega';");
             instrucaoSQL.setInt(1, customerId);
             rs = instrucaoSQL.executeQuery();
 
@@ -228,6 +228,42 @@ public class AddressDAO {
             System.out.println(ex.getMessage());
         }
         return AddressList;
+    }
+        public static Address getCustomerIncomeAddresses(int customerId) {
+
+        List<Address> AddressList = new ArrayList();
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        Customer customer = null;
+        try {
+            conexao = ConexaoDB.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("select * from customer_address where customer_customer_id=? and isActive = 'Ativo' and address_type='Faturamento';");
+            instrucaoSQL.setInt(1, customerId);
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+
+                int addressCode = rs.getInt("address_id");
+                int customer_id = rs.getInt("customer_customer_id");
+                String address_title = rs.getString("address_title");
+                String address_street = rs.getString("address_street");
+                String address_code = rs.getString("address_code");
+                String address_state_abbreviation = rs.getString("address_state_abbreviation");
+                String address_number = rs.getString("address_number");
+                String address_neighborhood = rs.getString("address_neighborhood");
+                String address_complement = rs.getString("address_complement");
+                String address_type = rs.getString("address_type");
+                String isActive = rs.getString("isActive");
+
+                Address address = new Address(addressCode, customer_id, address_title,address_street, address_code, address_state_abbreviation, address_number, address_neighborhood, address_complement, address_type, isActive);
+
+                AddressList.add(address);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return AddressList.get(0);
     }
     
     public static void isInactive (int address_id) throws ClassNotFoundException, SQLException{

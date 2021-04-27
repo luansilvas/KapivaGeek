@@ -48,10 +48,12 @@ public class UserLogin extends HttpServlet {
           Customer customer = CustomerDAO.validaLogin(username);
             if(customer != null && customer.validarSenha(senha)){
                  List<Address> addr = AddressDAO.getCustomerAddresses(customer.getCustomer_id());
+                 Address addrFat = AddressDAO.getCustomerIncomeAddresses(customer.getCustomer_id());
                  System.out.println(addr.toString());
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("user", customer);
                 sessao.setAttribute("addr", addr);
+                sessao.setAttribute("addrFat", addrFat);
                 response.sendRedirect(request.getContextPath() + "/alterRegister_Costumer");
                 System.out.println("validado...");
             }
