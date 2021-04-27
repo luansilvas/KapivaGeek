@@ -12,7 +12,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <link rel="stylesheet" href="css/style_menu.css" type="text/css">
+       
         <link rel="stylesheet" href="css/styleFront.css" type="text/css">
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

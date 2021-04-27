@@ -4,6 +4,15 @@
         <filter-name>AutorizacaoFilter</filter-name>
         <filter-class>br.senac.sp.filter.AutorizacaoFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>AutorizacaoUsuarioFilter</filter-name>
+        <filter-class>br.senac.sp.filter.AutorizacaoUsuarioFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AutorizacaoUsuarioFilter</filter-name>
+        <url-pattern>/alterRegister_Costumer</url-pattern>
+        <url-pattern>/salvarEndereco/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>AutorizacaoFilter</filter-name>
         <url-pattern>/ProductList_Servlet</url-pattern>
@@ -162,6 +171,10 @@
         <servlet-name>NovoEnderecoServlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.Address.NovoEnderecoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Alterar_InativarAddr</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Address.Alterar_InativarAddr</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -285,6 +298,10 @@
     <servlet-mapping>
         <servlet-name>NovoEnderecoServlet</servlet-name>
         <url-pattern>/salvarEndereco</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Alterar_InativarAddr</servlet-name>
+        <url-pattern>/Alterar_InativarAddr</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

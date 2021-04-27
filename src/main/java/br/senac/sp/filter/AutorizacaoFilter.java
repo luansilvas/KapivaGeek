@@ -5,7 +5,7 @@
  */
 package br.senac.sp.filter;
 
-import br.senac.sp.model.Employee;
+import br.senac.sp.model.*;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -56,7 +56,7 @@ public class AutorizacaoFilter implements Filter {
     public void init(FilterConfig filterconfig) {
 
     }
-
+    
     private boolean verificarAcesso(Employee emp, HttpServletRequest httprequest) {
         String pagenaAcessada = httprequest.getRequestURI();
         String role = "Administrador";

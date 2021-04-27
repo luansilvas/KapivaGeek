@@ -29,7 +29,7 @@ public class AddressDAO {
         try {
             conexao = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("insert into customer_address(customer_customer_id,address_street,address_code,address_state_abbreviation,address_number,address_neighborhood,address_complement,address_type,isActive) values(?,?,?,?,?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
+            instrucaoSQL = conexao.prepareStatement("insert into customer_address(customer_customer_id,address_street,address_code,address_state_abbreviation,address_number,address_neighborhood,address_complement,address_type,address_title,isActive) values(?,?,?,?,?,?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
             instrucaoSQL.setInt(1, address.getCustomer_customer_id());
             instrucaoSQL.setString(2, address.getAddress_street());
             instrucaoSQL.setString(3, address.getAddress_code());
@@ -38,7 +38,8 @@ public class AddressDAO {
             instrucaoSQL.setString(6, address.getAddress_neighborhood());
             instrucaoSQL.setString(7, address.getAddress_complement());
             instrucaoSQL.setString(8, address.getAddress_type());
-            instrucaoSQL.setString(9, "Ativo");
+            instrucaoSQL.setString(9, address.getAddress_title());
+            instrucaoSQL.setString(10, "Ativo");
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             if (linhasAfetadas > 0) {
                 retorno = true;
@@ -79,6 +80,7 @@ public class AddressDAO {
             while (rs.next()) {
                 int addressCode = rs.getInt("address_id");
                 int customer_id = rs.getInt("customer_customer_id");
+                String address_title = rs.getString("address_title");
                 String address_street = rs.getString("address_street");
                 String address_code = rs.getString("address_code");
                 String address_state_abbreviation = rs.getString("address_state_abbreviation");
@@ -88,7 +90,7 @@ public class AddressDAO {
                 String address_type = rs.getString("address_type");
                 String isActive = rs.getString("isActive");
 
-                address = new Address(addressCode, customer_id, address_street, address_code, address_state_abbreviation, address_number, address_neighborhood, address_complement, address_type, isActive);
+                address = new Address(addressCode,customer_id, address_title,address_street, address_code, address_state_abbreviation, address_number, address_neighborhood, address_complement, address_type, isActive);
 
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -115,6 +117,7 @@ public class AddressDAO {
 
                 int addressCode = rs.getInt("address_id");
                 int customer_id = rs.getInt("customer_customer_id");
+                String address_title = rs.getString("address_title");
                 String address_street = rs.getString("address_street");
                 String address_code = rs.getString("address_code");
                 String address_state_abbreviation = rs.getString("address_state_abbreviation");
@@ -124,7 +127,7 @@ public class AddressDAO {
                 String address_type = rs.getString("address_type");
                 String isActive = rs.getString("isActive");
 
-                Address address = new Address(addressCode, customer_id, address_street, address_code, address_state_abbreviation, address_number, address_neighborhood, address_complement, address_type, isActive);
+                Address address = new Address(addressCode, customer_id, address_title,address_street, address_code, address_state_abbreviation, address_number, address_neighborhood, address_complement, address_type, isActive);
 
                 AddressList.add(address);
             }
@@ -199,7 +202,7 @@ public class AddressDAO {
         Customer customer = null;
         try {
             conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from customer_address where customer_customer_id=?");
+            instrucaoSQL = conexao.prepareStatement("select * from customer_address where customer_customer_id=? and isActive = 'Ativo' ");
             instrucaoSQL.setInt(1, customerId);
             rs = instrucaoSQL.executeQuery();
 
@@ -207,6 +210,7 @@ public class AddressDAO {
 
                 int addressCode = rs.getInt("address_id");
                 int customer_id = rs.getInt("customer_customer_id");
+                String address_title = rs.getString("address_title");
                 String address_street = rs.getString("address_street");
                 String address_code = rs.getString("address_code");
                 String address_state_abbreviation = rs.getString("address_state_abbreviation");
@@ -216,7 +220,7 @@ public class AddressDAO {
                 String address_type = rs.getString("address_type");
                 String isActive = rs.getString("isActive");
 
-                Address address = new Address(addressCode, customer_id, address_street, address_code, address_state_abbreviation, address_number, address_neighborhood, address_complement, address_type, isActive);
+                Address address = new Address(addressCode, customer_id, address_title,address_street, address_code, address_state_abbreviation, address_number, address_neighborhood, address_complement, address_type, isActive);
 
                 AddressList.add(address);
             }
@@ -224,6 +228,16 @@ public class AddressDAO {
             System.out.println(ex.getMessage());
         }
         return AddressList;
+    }
+    
+    public static void isInactive (int address_id) throws ClassNotFoundException, SQLException{
+    String sql = "update customer_address set isActive = 'Inativo' where address_id = '"+address_id+"'";
+    try (Connection conn = ConexaoDB.abrirConexao();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.executeUpdate();
+           
+        }
+            
     }
 
 }

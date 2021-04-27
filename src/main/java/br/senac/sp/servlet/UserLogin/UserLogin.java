@@ -52,7 +52,7 @@ public class UserLogin extends HttpServlet {
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("user", customer);
                 sessao.setAttribute("addr", addr);
-                response.sendRedirect(request.getContextPath() + "/Home_Servlet");
+                response.sendRedirect(request.getContextPath() + "/alterRegister_Costumer");
                 System.out.println("validado...");
             }
             else {
@@ -66,7 +66,4 @@ public class UserLogin extends HttpServlet {
         }
         
     }
-
-   
-   
 }

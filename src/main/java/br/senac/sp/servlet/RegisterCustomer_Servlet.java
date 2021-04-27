@@ -50,6 +50,7 @@ public class RegisterCustomer_Servlet extends HttpServlet {
             String password = request.getParameter("pass");
             String confPassword = request.getParameter("Confpass");
 
+            String title = request.getParameter("titulo");
             String street = request.getParameter("street");
             String cep = request.getParameter("cep");
             String number = request.getParameter("number");
@@ -73,8 +74,8 @@ public class RegisterCustomer_Servlet extends HttpServlet {
                 try {
                     int idCustomer = CustomerDAO.addCustomer(customer);
 
-                    Address addressWithCustomerId = new Address(idCustomer, street, cep, uf, number, neighborhood, complement, "Faturamento", "Ativo");
-                    Address addressWithCustomerIdToDeliver = new Address(idCustomer, street, cep, uf, number, neighborhood, complement, "Entrega", "Ativo");
+                    Address addressWithCustomerId = new Address(idCustomer, title,street, cep, uf, number, neighborhood, complement, "Faturamento", "Ativo");
+                    Address addressWithCustomerIdToDeliver = new Address(idCustomer,title ,street, cep, uf, number, neighborhood, complement, "Entrega", "Ativo");
                     try {
                         AddressDAO.addAddress(addressWithCustomerId);
                         if (copiarEnderecoFaturamento != "") {

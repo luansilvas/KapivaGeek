@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import br.senac.sp.dao.*;
 import br.senac.sp.model.*;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,16 +25,18 @@ import java.util.logging.Logger;
  */
 public class NovoEnderecoServlet extends HttpServlet {
 
-   
-
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        int costumerId = Integer.parseInt(request.getParameter("id"));
+        System.out.println(costumerId);
+        List<Address> addr = AddressDAO.getCustomerAddresses(costumerId);
+        HttpSession sessao = request.getSession();
+        sessao.setAttribute("addr", addr);
+        response.sendRedirect(request.getContextPath() + "/alterRegister_Costumer");
+
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,21 +48,18 @@ public class NovoEnderecoServlet extends HttpServlet {
         String complementoStr = request.getParameter("NovoComplemento");
         String ufStr = request.getParameter("Novouf");
         String bairroStr = request.getParameter("NovoBairro");
-        
-        Address addr = new Address(userId, ruaStr, cepStr, ufStr, numeroStr, bairroStr, complementoStr, "Entrega", "Ativo");
-        
+
+        Address addr = new Address(userId, tituloStr, ruaStr, cepStr, ufStr, numeroStr, bairroStr, complementoStr, "Entrega", "Ativo");
+
         try {
             AddressDAO.addAddress(addr);
-            response.sendRedirect(request.getContextPath() + "/alterRegister_Costumer");
+            response.sendRedirect("salvarEndereco?id=" + userId);
         } catch (SQLException ex) {
             Logger.getLogger(NovoEnderecoServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(NovoEnderecoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
-
-
 
 }

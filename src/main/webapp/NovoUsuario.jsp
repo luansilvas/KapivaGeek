@@ -49,8 +49,13 @@
                         <label>Senha</label>
                         <input type="password" name="pass" placeholder="Senha">
                         <input type="password" name="Confpass" placeholder="Confirme a senha">
-                    </div>
+                    </div >
                     <legend id="end-faturamento">Endereço de faturamento</legend>
+                    <div class="divsForm">
+                        <label>Titulo</label>
+                        <br>
+                        <input type="text" name="titulo" placeholder="Digite um titulo de identificação">
+                    </div>
                     <div class="divsForm">
                         <label>CEP</label>
                         <br>

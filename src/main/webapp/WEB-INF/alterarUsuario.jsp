@@ -27,6 +27,7 @@
         <title>Document</title>
     </head>
     <body>
+       
 
         <section id="main" class="container">
             <a href="<c:url value="/Home_Servlet"/>" class="go-back">
@@ -35,7 +36,7 @@
             <form id="FormAlterar" method="post" action="<c:url value="/RegisterCustomer_Servlet"/>" novalidate class="form">
                 <fieldset>
                     <legend>Meus dados</legend>
-
+                    
                     <div class="divsForm infosForm">
                         <label>Nome:</label>
                         <br>
@@ -61,9 +62,11 @@
             <div id="endCadastrado">
                 <legend>Endereços cadastrados:</legend>
                 <c:forEach items="${addr}" var="a">
-                  <form id="formulario">
+                    <form id="formulario" method="post" action="${pageContext.request.contextPath}/Alterar_InativarAddr">
+                      <input type="hidden" name="UserId" value="${user.customer_id}">
+                        <input type="text" name="addrId" value="${a.address_id}">
                     <div class="divsForm infosForm">
-                        <input type="text" name="titulo"  id="titulo">
+                        <input type="text" name="titulo"  id="titulo" value="${a.address_title}" readonly>
                         <br>
                     </div>
                     <div class="divsForm infosForm">
@@ -88,6 +91,16 @@
                         <label>Bairro:</label>
                         <br>
                         <input type="text" value="${a.address_neighborhood}" readonly>
+                    </div>
+                    <div class="divsForm infosForm" id="estado">
+                        <label>Estado:</label>
+                        <br>
+                        <input type="text" value="${a.address_state_abbreviation}" readonly>
+                    </div>
+                    <div>
+                        <br>
+                        <button type="submit" name="Atualizar" value="Atualizar">Atualizar</button>
+                        <button type="submit" name="Excluir" value="Excluir">Excluir</button>
                     </div>
                   </form>
                 </c:forEach>
