@@ -73,7 +73,7 @@ public class AddressDAO {
 
         try {
             conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from address where address_id=? and isActive='Ativo'");
+            instrucaoSQL = conexao.prepareStatement("select * from customer_address where address_id=? and isActive='Ativo'");
             instrucaoSQL.setInt(1, addressId);
             rs = instrucaoSQL.executeQuery();
 
@@ -171,6 +171,7 @@ public class AddressDAO {
             return retorno;
         }
     }
+    
 
     public static Customer getCustomer(String userName) throws ClassNotFoundException, SQLException {
         Customer customer = new Customer();
@@ -266,14 +267,18 @@ public class AddressDAO {
         return AddressList.get(0);
     }
     
-    public static void isInactive (int address_id) throws ClassNotFoundException, SQLException{
-    String sql = "update customer_address set isActive = 'Inativo' where address_id = '"+address_id+"'";
+    public static void inativate (int address_id){
+ 
+        String sql = "update customer_address set isActive = 'Inativo' where address_id = '"+address_id+"'";
+        try{
     try (Connection conn = ConexaoDB.abrirConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.executeUpdate();
            
         }
-            
+        }catch(ClassNotFoundException | SQLException ex){
+            System.out.println(ex.getLocalizedMessage());
+        }
     }
 
 }

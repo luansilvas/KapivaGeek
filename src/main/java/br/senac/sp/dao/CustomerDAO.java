@@ -132,7 +132,7 @@ public class CustomerDAO {
         try {
             conexao = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("update customer set customer_name where customer_id=?");
+            instrucaoSQL = conexao.prepareStatement("update customer set customer_name=? where customer_id=?");
 
             instrucaoSQL.setString(1, customer.getCustomer_name());
             instrucaoSQL.setInt(2, customer.getCustomer_id());

@@ -175,6 +175,22 @@
         <servlet-name>Alterar_InativarAddr</servlet-name>
         <servlet-class>br.senac.sp.servlet.Address.Alterar_InativarAddr</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateCustomer_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.updateCustomer_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateCustomerPassword_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.updateCustomerPassword_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterCustomerAddress_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.AlterCustomerAddress_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InativateAddress_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.InativateAddress_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -302,6 +318,22 @@
     <servlet-mapping>
         <servlet-name>Alterar_InativarAddr</servlet-name>
         <url-pattern>/Alterar_InativarAddr</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateCustomer_Servlet</servlet-name>
+        <url-pattern>/updateCustomer_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateCustomerPassword_Servlet</servlet-name>
+        <url-pattern>/updateCustomerPassword_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterCustomerAddress_Servlet</servlet-name>
+        <url-pattern>/AlterCustomerAddress_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InativateAddress_Servlet</servlet-name>
+        <url-pattern>/InativateAddress_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

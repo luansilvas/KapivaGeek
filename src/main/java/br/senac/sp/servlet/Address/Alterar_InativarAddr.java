@@ -38,24 +38,24 @@ public class Alterar_InativarAddr extends HttpServlet {
             throws ServletException, IOException {
     
         
-       String opExcluir = request.getParameter("Excluir");
-       String opAtualizar = request.getParameter("Atualizar");
-       String addrId = request.getParameter("addrId");
-       String userId = request.getParameter("UserId");
-
-       if(opExcluir.equals("Excluir")){
-           try {
-               AddressDAO.isInactive(Integer.parseInt(addrId));
-               response.sendRedirect("salvarEndereco?id=" + userId);
-           } catch (ClassNotFoundException ex) {
-               Logger.getLogger(Alterar_InativarAddr.class.getName()).log(Level.SEVERE, null, ex);
-           } catch (SQLException ex) {
-               Logger.getLogger(Alterar_InativarAddr.class.getName()).log(Level.SEVERE, null, ex);
-           }
-       }
-       else if(opAtualizar.equals("Atualizar")){
-       
-       }
+//       String opExcluir = request.getParameter("Excluir");
+//       String opAtualizar = request.getParameter("Atualizar");
+//       String addrId = request.getParameter("addrId");
+//       String userId = request.getParameter("UserId");
+//
+//       if(opExcluir.equals("Excluir")){
+//           try {
+//               AddressDAO.isInactive(Integer.parseInt(addrId));
+//               response.sendRedirect("salvarEndereco?id=" + userId);
+//           } catch (ClassNotFoundException ex) {
+//               Logger.getLogger(Alterar_InativarAddr.class.getName()).log(Level.SEVERE, null, ex);
+//           } catch (SQLException ex) {
+//               Logger.getLogger(Alterar_InativarAddr.class.getName()).log(Level.SEVERE, null, ex);
+//           }
+//       }
+//       else if(opAtualizar.equals("Atualizar")){
+//       
+//       }
        
        
     }

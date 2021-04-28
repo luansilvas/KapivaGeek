@@ -36,7 +36,7 @@
             <img src="images/profile-userpic.png" id="profilepic">
             <form id="FormAlterar" method="post" action="<c:url value="/RegisterCustomer_Servlet"/>" novalidate class="form">
                 <fieldset>
-                    <legend id="personal-data-label">Meus dados <a href="<c:url value="/RegisterCustomer_Servlet"/>"><i><img src="icons/pen32px.png"></i></a></legend>
+                    <legend id="personal-data-label">Meus dados <a href="<c:url value="/updateCustomer_Servlet?customerId=${user.customer_id}"/>"> <i><img src="icons/pen32px.png"></i></a></legend>
 
                     <div class="divsForm infosForm">
                         <label>Nome:</label>
@@ -57,6 +57,7 @@
                                         <div  class="infosForm">
                                             <button type="submit" style="margin-left:30%">Alterar</button>
                                         </div> -->
+                    <legend id="personal-data-label">Trocar Senha <a href="<c:url value="/updateCustomerPassword_Servlet?customerId=${user.customer_id}"/>"> <i><img src="icons/padlock.png"></i></a></legend>
                 </fieldset>
             </form>
 
@@ -77,7 +78,7 @@
                             <tr>
                                 <td>${addrFat.address_street},${addrFat.address_number} - ${addrFat.address_neighborhood},${addrFat.address_state_abbreviation} - ${addrFat.address_code}</td>
                                 <td>
-                                    <a href="<c:url value="/AlterAddress_Servlet?address_id=${addrFat.address_id}"/>"><i><img src="icons/pen32px.png"></i></a>
+                                    <a href="<c:url value="/AlterCustomerAddress_Servlet?address_id=${addrFat.address_id}"/>"><i><img src="icons/pen32px.png"></i></a>
  
                                 </td>
 
@@ -100,15 +101,12 @@
                     <tbody>
                         
                         <c:forEach items="${addr}" var="a">
-                        <tr>                            
-                         <td> ${addrFat.address_title}  </td>
-                         <td></td>
-                        </tr>
+
                             <tr>
                                 <td>${a.address_street},${a.address_number} - ${a.address_neighborhood},${a.address_state_abbreviation} - ${a.address_code}</td>
                                 <td>
-                                    <a href="<c:url value="/AlterAddress_Servlet?address_id=${a.address_id}"/>"><i><img src="icons/pen32px.png"></i></a>
-                                    <a href="<c:url value="/DeleteAddress_Servlet?address_id=${a.address_id}"/>"><i><img src="icons/delete.png"></i></a>
+                                    <a href="<c:url value="/AlterCustomerAddress_Servlet?address_id=${a.address_id}"/>"><i><img src="icons/pen32px.png"></i></a>
+                                    <a href="<c:url value="/InativateAddress_Servlet?address_id=${a.address_id}&acao=consulta"/>"><i><img src="icons/delete.png"></i></a>
                                 </td>
 
                             </tr>

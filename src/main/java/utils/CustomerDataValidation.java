@@ -95,19 +95,90 @@ public class CustomerDataValidation {
         return errorList;
     }
 
+    public List<String> validParamethersUpdate(String Newname) {
+
+        List<String> errorList = new ArrayList();
+        String erro = "";
+
+        if (Newname.equals("")) {
+            erro = "Nome não foi preenchido.";
+            errorList.add(erro);
+        }
+        if (!verificaPalavra(Newname)) {
+            erro = "O campo Nome pode conter apenas letras";
+            System.out.println(erro);
+            errorList.add(erro);
+        } else if (Newname.length() < 5) {
+            erro = "O campo Nome não tem carácteres o suficiente";
+            System.out.println(erro);
+            errorList.add(erro);
+        }
+        if (!validaQtdeNomes(Newname)) {
+            erro = "É necessário um nome completo válido com pelo menos um sobrenome";
+            System.out.println(erro);
+            errorList.add(erro);
+        }
+        if (!validaTamanhoNomes(Newname)) {
+            erro = "Cada nome deve ter pelo menos 3 letras";
+            System.out.println(erro);
+            errorList.add(erro);
+        }
+
+        return errorList;
+    }
+
+    public List<String> validParamethersUpdatePassword(String pass, String passConf) {
+
+        List<String> errorList = new ArrayList();
+        String erro = "";
+        if (pass.equals("") || passConf.equals("")) {
+            erro = "Existem campos que não foram preenchidos.";
+            errorList.add(erro);
+        }
+        if (!pass.equals(passConf)) {
+            erro = "Foram inseridas senhas divergentes.";
+            System.out.println("senha 1" + pass);
+            System.out.println("senha 2" + passConf);
+
+            System.out.println(erro);
+            errorList.add(erro);
+        }
+        if (pass.length() < 3
+                || passConf.length() < 3) {
+            erro = "A senha precisa ter no mínimo 3 caracteres";
+            System.out.println(erro);
+            errorList.add(erro);
+        }
+
+        return errorList;
+    }
+
     private boolean validaTamanhoNomes(String nome) {
-        int tamAtual = 0;
-        for (int i = 0; i < nome.length(); i++) {
-            if (nome.charAt(i) == ' ') {
-                if (tamAtual < 3) {
-                    return false;
-                }
-                tamAtual = 0;
-            } else {
-                tamAtual++;
+//        int tamAtual = 0;
+//        for (int i = 0; i < nome.length(); i++) {
+//            if (nome.charAt(i) == ' ') {
+//                if (tamAtual < 3) {
+//                    return false;
+//                }
+//                System.out.println("A PALAVRA QUE EU PEGUEI, hein tem  "+tamAtual);
+//                tamAtual = 0;
+//            } else {
+//                tamAtual++;
+//            }
+//        }
+//        return true;
+        String[] nomes = nome.split(" ");
+        for (int i = 0; i < nomes.length; i++) {
+            System.out.println(">>>>"+nomes[i]);
+        }
+        for (int i = 0; i<nomes.length; i++) {
+            if (nomes[i].length() < 3) {
+                System.out.println("A PALAVRA QUE EU PEGUEI, hein tem  " +nomes[i].length() );
+                return false;
             }
         }
         return true;
+
     }
 
     private boolean validaQtdeNomes(String nome) {
@@ -124,7 +195,7 @@ public class CustomerDataValidation {
         return isValid;
     }
 
-   /* private boolean hasDominio(String email) {
+    /* private boolean hasDominio(String email) {
         boolean dominio = true;
         if (email.contains("@") && email.contains(".")) {
             int indexArroba = email.indexOf("@");
@@ -141,7 +212,6 @@ public class CustomerDataValidation {
 
         return dominio;
     }*/
-
     public List<String> validaEndereco(String street, String code, String uf, String number, String neighborhood, String complement, String type, String isActive, List<String> currentErrorList) {
         String erro = "";
         if (street.equals("")
@@ -157,6 +227,23 @@ public class CustomerDataValidation {
             currentErrorList.add(erro);
         }
         return currentErrorList;
+    }
+
+    public List<String> validaAtualizaEndereco(String street, String code, String uf, String number, String neighborhood, String complement, String type, String isActive) {
+        String erro = "";
+        List<String> errorList = new ArrayList();
+        if (street.equals("")
+                || code.equals("")
+                || uf.equals("")
+                || number.equals("")
+                || neighborhood.equals("")
+                || uf.equals("")
+                || isActive.equals("")
+                || type.equals("")) {
+            erro = "Existem campos de endereço que não foram preenchidos.";
+            errorList.add(erro);
+        }
+        return errorList;
     }
 
     public static boolean isCPF(String CPF) {
