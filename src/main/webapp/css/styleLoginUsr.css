@@ -7,19 +7,73 @@ and open the template in the editor.
     Created on : 21/04/2021, 00:38:34
     Author     : adm
 */
-@media (min-width: 1079px) {
-    #loginusr{
 
+
+
+@media (min-width: 1079px) {
+
+    #loginusr{
         margin-top: 10px ;
+        text-align: center;
     }
     #loginusr form{
         border: 1px solid #CDC5BF;
-        width: 40%;
+        width: 50%;
         margin: 40px auto;
         padding: 10px;
         border-radius: 5px;
+        
     }
-
+    #botoes input{
+        display: inline-block;
+        width: 20%;
+        border-radius: 5px;
+    }
+    
+     input[type=submit]{
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 10px;
+        width: 30%;
+        border-radius: 10px;
+    }
+    
+    input[type=submit]:active{
+         transform: translateY(-1px);
+         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        
+    }
+     input[type=reset]{
+        background-color: white;
+        color: black;
+      
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 10px;
+        width: 30%;
+        border-radius: 10px;
+    }
+    input[type=reset]:active{
+         transform: translateY(-1px);
+         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        
+    }
+    
+    #sub{
+       margin-top: 5px;
+       margin-bottom: 5px;
+    }
+    label,input{
+        display: table;
+    }
+ 
+     label,input{
+        margin: 0 auto;
+    }
+    
     #logo{
         text-align: center;
         margin-top: 50px;
@@ -31,7 +85,10 @@ and open the template in the editor.
     }
 }
 @media (max-width: 1079px) {
-
+    #loginusr{
+        text-align: center;
+    }
+    
     #container{
       margin: 200px 0;
         

@@ -24,7 +24,7 @@
                     <span class="msgErro"><c:out value="${msgErro}"/></span>
                 </c:if>
                 <form method="post" action="${pageContext.request.contextPath}/Loginusr" >
-                    <div id="usuario">
+                    <div id="usuario" class="form">
                         <label>Usuário:</label>
                         <input type="text" name="username"/>
                     </div>
@@ -33,13 +33,15 @@
                         <input type="password" name="password"/>
                     </div>
                     <div id="botoes">
-                        <input type="submit" value="Entrar">
+                        <input type="submit" value="Entrar" id="sub">
                         <input type="reset" value="Cancelar">
                     </div>
-
                 </form>
-
+                    <div id="loginCadastro">
+                        <p style="text-align: center">Se ainda não é cadastrado <a href="${pageContext.request.contextPath}/RegisterCustomer_Servlet">Cadastre-se</a></p>
+                </div>
             </div>
+
         </section>
     </body>
 </html>
