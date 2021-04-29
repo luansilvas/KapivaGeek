@@ -145,7 +145,7 @@ public class AddressDAO {
         try {
             conexao = ConexaoDB.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("update customer_address set address_street=?,address_code=?,address_state_abbreviation=?,address_number=?,address_neighborhood=?,address_complement=? where address_id=?");
+            instrucaoSQL = conexao.prepareStatement("update customer_address set address_street=?,address_code=?,address_state_abbreviation=?,address_number=?,address_neighborhood=?,address_complement=?,address_title=? where address_id=?");
 
             instrucaoSQL.setString(1, address.getAddress_street());
             instrucaoSQL.setString(2, address.getAddress_code());
@@ -153,7 +153,8 @@ public class AddressDAO {
             instrucaoSQL.setString(4, address.getAddress_number());
             instrucaoSQL.setString(5, address.getAddress_neighborhood());
             instrucaoSQL.setString(6, address.getAddress_complement());
-            instrucaoSQL.setInt(7, address.getAddress_id());
+            instrucaoSQL.setString(7, address.getAddress_title());
+            instrucaoSQL.setInt(8, address.getAddress_id());
             instrucaoSQL.execute();
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());

@@ -10,6 +10,8 @@ import br.senac.sp.model.EmployeeRole;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import static utils.EmployeeDataValidation.verificaPalavra;
 
 /**
@@ -154,31 +156,24 @@ public class CustomerDataValidation {
     }
 
     private boolean validaTamanhoNomes(String nome) {
-//        int tamAtual = 0;
-//        for (int i = 0; i < nome.length(); i++) {
-//            if (nome.charAt(i) == ' ') {
-//                if (tamAtual < 3) {
-//                    return false;
-//                }
-//                System.out.println("A PALAVRA QUE EU PEGUEI, hein tem  "+tamAtual);
-//                tamAtual = 0;
-//            } else {
-//                tamAtual++;
-//            }
-//        }
-//        return true;
         String[] nomes = nome.split(" ");
         for (int i = 0; i < nomes.length; i++) {
             System.out.println(">>>>"+nomes[i]);
         }
         for (int i = 0; i<nomes.length; i++) {
-            if (nomes[i].length() < 3) {
-                System.out.println("A PALAVRA QUE EU PEGUEI, hein tem  " +nomes[i].length() );
+            if (nomes[i].length() < 3&&!isPreposicao(nomes[i])) {
                 return false;
             }
         }
         return true;
-
+    }
+    
+    private boolean isPreposicao(String name){
+        if (name.equals("da")||name.equals("de")||name.equals("do")||name.equals("du")) {
+            return true;
+        }
+        
+        return false;
     }
 
     private boolean validaQtdeNomes(String nome) {
@@ -195,35 +190,18 @@ public class CustomerDataValidation {
         return isValid;
     }
 
-    /* private boolean hasDominio(String email) {
-        boolean dominio = true;
-        if (email.contains("@") && email.contains(".")) {
-            int indexArroba = email.indexOf("@");
-            int indexPonto = email.indexOf(".");
-            String resultado = email.substring(indexArroba + 1, indexPonto);
-
-            if (resultado.length() < 2) {
-                System.out.println("O e-mail dado não possui domínio");
-                return false;
-            }
-        } else {
-            return false;
-        }
-
-        return dominio;
-    }*/
     public List<String> validaEndereco(String street, String code, String uf, String number, String neighborhood, String complement, String type, String isActive, List<String> currentErrorList) {
         String erro = "";
         if (street.equals("")
                 || code.equals("")
                 || uf.equals("")
                 || number.equals("")
-                || complement.equals("")
                 || neighborhood.equals("")
                 || uf.equals("")
+                || !verificaCEP(code)
                 || isActive.equals("")
                 || type.equals("")) {
-            erro = "Existem campos de endereço que não foram preenchidos.";
+            erro = "Existem campos de endereço que não foram preenchidos ou não corrigidos corretamente.";
             currentErrorList.add(erro);
         }
         return currentErrorList;
@@ -238,6 +216,7 @@ public class CustomerDataValidation {
                 || number.equals("")
                 || neighborhood.equals("")
                 || uf.equals("")
+                || !verificaCEP(code)
                 || isActive.equals("")
                 || type.equals("")) {
             erro = "Existem campos de endereço que não foram preenchidos.";
@@ -306,6 +285,60 @@ public class CustomerDataValidation {
         } catch (InputMismatchException erro) {
             return (false);
         }
+    }
+    
+        public static boolean verificaCEP(String cep){
+                boolean retorno = true;
+            if (cep.length()<8) {
+                retorno = false;
+            }
+        
+        for (int i = 0; i < cep.length(); i++) {
+            if (verificaCEPCaracteres(cep.charAt(i)) == false) {
+                return false;
+            }
+
+        }
+        return retorno;
+        }
+    
+        public static boolean verificaPalavra(String palavra) {
+        boolean retorno = true;
+        for (int i = 0; i < palavra.length(); i++) {
+            if (verificaLetra(palavra.charAt(i)) == false) {
+                return false;
+            }
+
+        }
+        return retorno;
+    }
+
+    public static boolean verificaLetra(char caract) {
+        boolean letra = false;
+        String temp = Character.toString(caract);
+
+        Pattern pattern = Pattern.compile("[qwertyuiopasdfghjklzxcvbnmQWERTYÇUIOPASDFGHJKLZXCVBN M]");
+        Matcher matcher = pattern.matcher(temp);
+        while (matcher.find()) {
+            letra = true;
+        }
+
+        return letra;
+    }
+    
+    
+    
+    public static boolean verificaCEPCaracteres(char caract) {
+        boolean letra = false;
+        String temp = Character.toString(caract);
+
+        Pattern pattern = Pattern.compile("[0123456789 -]");
+        Matcher matcher = pattern.matcher(temp);
+        while (matcher.find()) {
+            letra = true;
+        }
+        
+        return letra;
     }
 
 }
