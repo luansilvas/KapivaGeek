@@ -24,31 +24,20 @@ import utils.CustomerDataValidation;
  *
  * @author luans
  */
-public class AlterCustomerAddress_Servlet extends HttpServlet {
+public class AddDeliveryAddress_Servlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int address_id = Integer.parseInt(request.getParameter("address_id"));
-        Address address = AddressDAO.getAddress(address_id);
-        request.setAttribute("address", address);
 
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/atualizaEnderecoUsuario.jsp");
-
-        requestDispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String complement = " ";
-        int addressId = Integer.parseInt(request.getParameter("addressId"));
         int customerId = Integer.parseInt(request.getParameter("customerId"));
-        String title = "";
-        if (request.getParameter("title")!=null) {
-            title= title = request.getParameter("title");
-        }
+        String title = request.getParameter("titulo");
         String street = request.getParameter("street");
         String cep = request.getParameter("cep");
         String number = request.getParameter("number");
@@ -62,46 +51,32 @@ public class AlterCustomerAddress_Servlet extends HttpServlet {
         CustomerDataValidation customerData = new CustomerDataValidation();
         List<String> errorList = customerData.validaAtualizaEndereco(street, cep, uf, number, neighborhood, complement, cep, street);
 
-        Address currentAddress = AddressDAO.getAddress(addressId);
-        Address address = new Address(addressId,customerId,title,street, cep, uf, number, neighborhood, complement, currentAddress.getAddress_type(), "Ativo");
+        Address address = new Address(customerId,title,street, cep, uf, number, neighborhood, complement, "Entrega", "Ativo");
 
         if (errorList.size() == 0) {
             try {
 
-                AddressDAO.updateAddress(address);
-                address = AddressDAO.getAddress(addressId);
-                
-                Customer customer = CustomerDAO.getCustomer(address.getCustomer_customer_id());
-                List<Address> addr = AddressDAO.getCustomerAddresses(customer.getCustomer_id());
-                Address addrFat = AddressDAO.getCustomerIncomeAddresses(customer.getCustomer_id());
-                HttpSession sessao = request.getSession(); 
-                sessao.removeAttribute("addr");
-                sessao.removeAttribute("addrFat");
-                sessao.setAttribute("addr", addr);
-                sessao.setAttribute("addrFat", addrFat);
-                errorList.add("Endreco atualizado com sucesso");
-                request.setAttribute("errorList", errorList);
-                request.setAttribute("address", address);
-                request.setAttribute("hasError", "true");
-                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/atualizaEnderecoUsuario.jsp");
+                AddressDAO.addAddress(address);
+                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/UserLogin.jsp");
                 requestDispatcher.forward(request, response);
             } catch (Exception e) {
                 errorList.add("Houve erro. Tente novamente mais tarde.");
                 request.setAttribute("errorList", errorList);
                 request.setAttribute("address", address);
                 request.setAttribute("hasError", "true");
-                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/atualizaEnderecoUsuario.jsp");
+                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/adicionarEnderecoEntrega.jsp");
                 requestDispatcher.forward(request, response);
             }
         } else {
             request.setAttribute("errorList", errorList);
             request.setAttribute("address", address);
             request.setAttribute("hasError", "true");
-            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/atualizaEnderecoUsuario.jsp");
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/adicionarEnderecoEntrega.jsp");
             requestDispatcher.forward(request, response);
 
         }
-
+        
     }
+
 
 }

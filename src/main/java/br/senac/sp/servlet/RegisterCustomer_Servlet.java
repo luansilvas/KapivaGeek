@@ -49,12 +49,17 @@ public class RegisterCustomer_Servlet extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("pass");
             String confPassword = request.getParameter("Confpass");
-
-            String title = request.getParameter("titulo");
+            String title = " ";
+            if (request.getParameter("titulo")!=null) {
+                title = request.getParameter("titulo");
+            }
             String street = request.getParameter("street");
             String cep = request.getParameter("cep");
             String number = request.getParameter("number");
-            String complement = request.getParameter("complement");
+            String complement = " ";
+            if (request.getParameter("complement")!=null) {
+            complement = request.getParameter("complement");    
+            }
             String neighborhood = request.getParameter("neighborhood");
             String uf = request.getParameter("uf");
             String destino = "";
@@ -80,9 +85,11 @@ public class RegisterCustomer_Servlet extends HttpServlet {
                         AddressDAO.addAddress(addressWithCustomerId);
                         if (copiarEnderecoFaturamento != "") {
                             AddressDAO.addAddress(addressWithCustomerIdToDeliver);
-                            destino = "/WEB-INF/telaCadastroFinalizado.jsp";
+                            destino = "/WEB-INF/UserLogin.jsp";
                         } else {
-                            destino = "/index.jsp";
+                            Address addressCustomerId = new Address(idCustomer, "","", "", "", "", "", "", "", "");
+                            request.setAttribute("address", addressCustomerId);                                                 
+                            destino = "/adicionarEnderecoEntrega.jsp";
                         }
 
                     } catch (Exception e) {//no caso de existirem erros ao salvar o endereco.

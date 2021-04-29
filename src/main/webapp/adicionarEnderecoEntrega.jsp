@@ -1,9 +1,8 @@
 <%-- 
-    Document   : atualizaEnderecoUsuario
-    Created on : 27/04/2021, 18:56:31
+    Document   : adicionarEnderecoEntrega
+    Created on : 28/04/2021, 21:30:41
     Author     : luans
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,17 +22,14 @@
 
         <section id="main" class="containerMain">
 
-            <a href="<c:url value="/alterRegister_Costumer"/>" class="go-back">
-                <img src="icons/left-arrow.png">
-            </a>
-            <form class="formCadastro" method="post" action="<c:url value="/AlterCustomerAddress_Servlet"/>" novalidate class="form">
+            <form class="formCadastro" method="post" action="<c:url value="/AddDeliveryAddress_Servlet"/>" novalidate class="form">
                 <fieldset>
-                    <legend>Atualiza Endereco</legend>
+                    <legend>Cadastra Endereco entrega</legend>
 
                     <div class="divsForm">
                         <label>Titulo</label>
                         <br>
-                        <input type="text" name="title" placeholder="Digite um titulo de identificação" value="${address.address_title}">
+                        <input type="text" name="titulo" placeholder="Digite um titulo de identificação">
                     </div>
                     <div class="divsForm">
                         <label>CEP</label>
@@ -91,11 +87,10 @@
                             <option value="TO">TO</option>
                         </select>
                     </div>
-<input type="text" name="addressId" value="${address.address_id}" readonly style="display:none">
-<input type="text" name="customerId" value="${address.customer_customer_id}" readonly style="display:none">
+<input type="text" name="customerId" value="${address.customer_customer_id}" style="display:none">
                     
                     <div id="Botoes" class="divsForm">
-                        <button type="submit" style="margin-left:30%">Atualiza</button>
+                        <button type="submit" style="margin-left:30%">Cadastrar</button>
                     </div> 
 
                 </fieldset>
