@@ -93,7 +93,8 @@
                 <table class="table" style="border: none">
                     <thead>
                         <tr>
-                            <th scope="col">${addrFat.address_title}</th>
+                            <th>Título</th>
+                            <th scope="col">Endereço</th>
                             <th scope="col">Acoes</th>
 
                         </tr>
@@ -101,8 +102,9 @@
                     <tbody>
                         
                         <c:forEach items="${addr}" var="a">
-
+                           
                             <tr>
+                               <td>${a.address_title}</td>
                                 <td>${a.address_street},${a.address_number} - ${a.address_neighborhood},${a.address_state_abbreviation} - ${a.address_code}</td>
                                 <td>
                                     <a href="<c:url value="/AlterCustomerAddress_Servlet?address_id=${a.address_id}"/>"><i><img src="icons/pen32px.png"></i></a>
@@ -110,6 +112,7 @@
                                 </td>
 
                             </tr>
+                            
 
                         </c:forEach>
 
