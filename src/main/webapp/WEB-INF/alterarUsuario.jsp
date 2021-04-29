@@ -30,6 +30,7 @@
 
 
         <section id="main" class="container">
+
             <a href="<c:url value="/Home_Servlet"/>" class="go-back">
                 <img src="icons/left-arrow.png">
             </a>
@@ -62,9 +63,11 @@
             </form>
 
 
+
+
+
             <div id="endCadastrado">
-               
-            <div id="endCadastrado">
+
                 <legend class="table-title">Endereços de Faturamento</legend>
                 <table class="table">
                     <thead>
@@ -75,19 +78,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                                <td>${addrFat.address_street},${addrFat.address_number} - ${addrFat.address_neighborhood},${addrFat.address_state_abbreviation} - ${addrFat.address_code}</td>
-                                <td>
-                                    <a href="<c:url value="/AlterCustomerAddress_Servlet?address_id=${addrFat.address_id}"/>"><i><img src="icons/pen32px.png"></i></a>
- 
-                                </td>
+                        <tr>
+                            <td>${addrFat.address_street},${addrFat.address_number} - ${addrFat.address_neighborhood},${addrFat.address_state_abbreviation} - ${addrFat.address_code}</td>
+                            <td>
+                                <a href="<c:url value="/AlterCustomerAddress_Servlet?address_id=${addrFat.address_id}"/>"><i><img src="icons/pen32px.png"></i></a>
 
-                            </tr>
+                            </td>
+
+                        </tr>
 
                     </tbody>
                 </table>
             </div>
-                    
+
             <div id="endCadastrado">
                 <legend class="table-title">Endereços de Entrega</legend>
                 <table class="table" style="border: none">
@@ -100,11 +103,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         <c:forEach items="${addr}" var="a">
-                           
+
                             <tr>
-                               <td>${a.address_title}</td>
+                                <td>${a.address_title}</td>
                                 <td>${a.address_street},${a.address_number} - ${a.address_neighborhood},${a.address_state_abbreviation} - ${a.address_code}</td>
                                 <td>
                                     <a href="<c:url value="/AlterCustomerAddress_Servlet?address_id=${a.address_id}"/>"><i><img src="icons/pen32px.png"></i></a>
@@ -112,19 +115,25 @@
                                 </td>
 
                             </tr>
-                            
+
 
                         </c:forEach>
 
-                            
+
                     </tbody>
                 </table>
             </div>
 
 
         </section>
+        <div id="error">
+            <c:if
+                test="${CepError != null}">
+                <span class="ERRO"><c:out value="${CepError}" /></span>
+            </c:if>
+        </div>
+        <div class="" id="add-address">
 
-        <div class="container" id="add-address">
             <legend>Adicionar Novo Endereço:</legend>
             <a class="imgCollapse" type="button" data-toggle="collapse" data-target="#demo"
                onclick="changeImage('image', 'images/minus.png')"><img id="image" src="images/add.png"></a>

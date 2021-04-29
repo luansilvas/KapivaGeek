@@ -2,6 +2,16 @@
 
 
 
+#error {
+   text-align: center;
+    background-color: #FFC1C1;
+   
+}
+.ERRO{
+    color: red;
+    font-size: 20px;
+    width: 100%;
+}
 
 #formulario{
     border-radius: 5px;
@@ -73,17 +83,18 @@ margin-left: 30%;
 }
 
 #personal-data-label{
- margin-left: 49%;   
+    margin-left: 50px;
+    text-align: center;
 }
 
 #profilepic{
     width: 200px;
     height: 200px;
     margin-top: 10%;
-    margin-left: 44%;
+    margin-left: 43%;
 }
 .table{
-    margin-left: 10%;
+   margin: 0 auto;
 }
 .table-title{
     margin-left: 10%;
