@@ -35,32 +35,7 @@ public class Carrinho extends HttpServlet {
 
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession sessao = request.getSession();
-
-        try {
-
-            if (sessao.getAttribute("listaCarrinho") == null) {
-                sessao.setAttribute("listaCarrinho", new ArrayList<Product>());
-            }
-
-            List<Product> listCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
-
-            int produto = Integer.parseInt(request.getParameter("ProductId"));
-            Product p = ProductDAO.findProductById(produto);
-            listCarrinho.add(p);
-               System.out.println(p.toString());
-
-            response.sendRedirect(request.getContextPath() + "/carrinho");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Carrinho.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Carrinho.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+ 
+       
 
 }

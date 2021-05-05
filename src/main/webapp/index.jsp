@@ -176,12 +176,11 @@
                                     <img class="product-img" src="${cm.path_MainImg}">
                                 </a>
 
-                                <form method="post" action="carrinho">
-                                    <input type="hidden" name="ProductId" value="${cm.productId}">
+                              
                                     <div class="add-cart-field" id="comprar">
-                                        <button type="submit" class="fas fa-cart-plus fa-2x"></button>
+                                        <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  class="fas fa-cart-plus fa-2x"></a>
                                     </div>
-                                </form>
+                     
 
                                 <div class="info">
 
