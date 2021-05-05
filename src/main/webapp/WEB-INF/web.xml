@@ -12,6 +12,7 @@
         <filter-name>AutorizacaoUsuarioFilter</filter-name>
         <url-pattern>/alterRegister_Costumer</url-pattern>
         <url-pattern>/salvarEndereco/*</url-pattern>
+        <url-pattern>/InativateAddress_Servlet/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AutorizacaoFilter</filter-name>
@@ -195,6 +196,10 @@
         <servlet-name>AddDeliveryAddress_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.AddDeliveryAddress_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Carrinho</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Carrinho.Carrinho</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -342,6 +347,10 @@
     <servlet-mapping>
         <servlet-name>AddDeliveryAddress_Servlet</servlet-name>
         <url-pattern>/AddDeliveryAddress_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Carrinho</servlet-name>
+        <url-pattern>/carrinho</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

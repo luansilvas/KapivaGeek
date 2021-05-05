@@ -173,7 +173,7 @@ public class ProductDAO {
         return prodBd;
     }      
           
-    public Product findProductById(int idProd) throws SQLException, ClassNotFoundException {
+    public static Product findProductById(int idProd) throws SQLException, ClassNotFoundException {
         String sql = "select * from products where prod_id = ?";
         Product prod = new Product();
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão

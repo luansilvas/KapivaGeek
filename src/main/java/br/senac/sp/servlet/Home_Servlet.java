@@ -35,7 +35,7 @@ public class Home_Servlet extends HttpServlet {
             ProductDAO dao = new ProductDAO();
 
             List<Product> bonecos = dao.findProductByCategory("Boneco");
-            List<Product> camisetasMasc = dao.findProductByCategory("Camiseta masculina");
+            List<Product> camisetasMasc = dao.findProductByCategory("Camiseta masculina"); System.out.println(camisetasMasc.get(0).getProductId());;
             List<Product> camisetasFem = dao.findProductByCategory("Camiseta Feminina");
             List<Product> canecas = dao.findProductByCategory("Caneca");
             List<Product> acessorios = dao.findProductByCategory("Acessorio");

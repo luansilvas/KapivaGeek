@@ -104,10 +104,10 @@
                                     <img class="product-img" src="${b.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
-                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                    <a href="${pageContext.request.contextPath}/carrinho" class="fas fa-cart-plus fa-2x"></a>
                                 </div>
                                 <div class="info">
-                                    <a href="#"></a>
+                                    <a href=""></a>
                                     <a>
                                         <h3 class="">${b.productName}</h3>
                                     </a>
@@ -139,8 +139,9 @@
                                 <a href="#">
                                     <img class="product-img" src="${b.path_MainImg}">
                                 </a>
+
                                 <div class="add-cart-field">
-                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                    <a class="fas fa-cart-plus fa-2x"></a>
                                 </div>
                                 <div class="info">
                                     <a href="#">
@@ -174,22 +175,27 @@
                                 <a href="Comprar.html">
                                     <img class="product-img" src="${cm.path_MainImg}">
                                 </a>
-                                <div class="add-cart-field" id="comprar">
-                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
-                                </div>
-                                <div class="info">
-                                    <a href="Comprar.html">
-                                        <a>
-                                            <h3 class="">${cm.productName}</h3>
-                                        </a>
-                                        <h5 class="price">${cm.price}</h5>
-                                        <br>
-                                        <div class="stars">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
 
-                                        </div>
+                                <form method="post" action="carrinho">
+                                    <input type="hidden" name="ProductId" value="${cm.productId}">
+                                    <div class="add-cart-field" id="comprar">
+                                        <button type="submit" class="fas fa-cart-plus fa-2x"></button>
+                                    </div>
+                                </form>
+
+                                <div class="info">
+
+                                    <a>
+                                        <h3 class="">${cm.productName}</h3>
                                     </a>
+                                    <h5 class="price">${cm.price}</h5>
+                                    <br>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -273,6 +279,7 @@
                     <h3 class="category-title">Acessórios</h3>
                     <div class="category-category-carousel-container">
                         <c:forEach items="${acessorios}" var="a">
+                            <form></form>
                             <div class="product-card">
                                 <a href="#">
                                     <img class="product-img" src="${a.path_MainImg}">
@@ -340,7 +347,43 @@
                 <section class="category-carousel" id="camisetas-femininas">
                     <h3 class="category-title">${filtro}</h3>
                     <div class="category-category-carousel-container">
-                                 <c:forEach items="${resultado}" var="r">
+                        <c:forEach items="${resultado}" var="r">
+
+                            <div class="product-card">
+                                <a href="#">
+                                    <img class="product-img" src="${r.path_MainImg}">
+                                </a>
+                                <div class="add-cart-field">
+                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                </div>
+                                <div class="info">
+                                    <a href="#">
+                                        <a>
+                                            <h3 class="">${r.productName}</h3>
+                                        </a>
+                                        <h5 class="price">${r.price}</h5>
+                                        <br>
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div> 
+                        </c:forEach>
+                    </div>
+                </section>
+            </div>
+        </c:if>
+
+        <c:if test="${hasFiltro eq 'pesquisa'}">
+            <div class="row">
+                <section class="category-carousel" id="camisetas-femininas">
+                    <h3 class="category-title">Resultados para '${filtro}'</h3>
+                    <div class="category-category-carousel-container">
+                        <div class="row">
+                            <c:forEach items="${resultado}" var="r">
 
                                 <div class="product-card">
                                     <a href="#">
@@ -363,51 +406,15 @@
                                             </div>
                                         </a>
                                     </div>
-                                </div> 
-                            </c:forEach>
-                        </div>
-                </section>
-            </div>
-        </c:if>
+                                </div>
 
-        <c:if test="${hasFiltro eq 'pesquisa'}">
-            <div class="row">
-                <section class="category-carousel" id="camisetas-femininas">
-                    <h3 class="category-title">Resultados para '${filtro}'</h3>
-                    <div class="category-category-carousel-container">
-            <div class="row">
-                <c:forEach items="${resultado}" var="r">
-                        
-                            <div class="product-card">
-                                <a href="#">
-                                    <img class="product-img" src="${r.path_MainImg}">
-                                </a>
-                                <div class="add-cart-field">
-                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
-                                </div>
-                                <div class="info">
-                                    <a href="#">
-                                        <a>
-                                            <h3 class="">${r.productName}</h3>
-                                        </a>
-                                        <h5 class="price">${r.price}</h5>
-                                        <br>
-                                        <div class="stars">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                </c:forEach>
+
+
+
+
+
+
+                            </c:forEach>
                         </div>
                 </section>
             </div>
