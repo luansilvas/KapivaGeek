@@ -30,12 +30,29 @@ public class Carrinho extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sessao = request.getSession();
+        if (sessao.getAttribute("listaCarrinho") != null) {
+            double valorTotal = 0;
 
+            List<Product> listaCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
+            valorTotal = valorTotal(listaCarrinho);
+
+            request.setAttribute("valorTotal", valorTotal);
+        }
+        
+        
+        
         request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
 
     }
 
- 
-       
+    public double valorTotal(List<Product> li) {
+        double valorTotal = 0;
+        for (Product p : li) {
+            valorTotal += p.getPrice();
+        }
+
+        return valorTotal;
+    }
 
 }

@@ -24,7 +24,7 @@ public class UserLogout extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
-        sessao.invalidate();
+        sessao.removeAttribute("user");
         response.sendRedirect("Home_Servlet");
     }
 

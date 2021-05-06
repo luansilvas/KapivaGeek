@@ -31,6 +31,7 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
+      
 
         try {
 
@@ -41,9 +42,11 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             List<Product> listCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
 
             int produto = Integer.parseInt(request.getParameter("productId"));
+            
+          
             Product p = ProductDAO.findProductById(produto);
             listCarrinho.add(p);
-            System.out.println(p.toString());
+
 
             response.sendRedirect(request.getContextPath() + "/Home_Servlet");
 
@@ -54,5 +57,7 @@ public class AdicionarDadosCarrinho extends HttpServlet {
         }
 
     }
+    
+
 
 }

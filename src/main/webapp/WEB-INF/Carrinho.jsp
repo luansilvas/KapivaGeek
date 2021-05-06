@@ -11,24 +11,58 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Carrinho</title>
+        <link href="css/EstiloCarrinho.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <h1>Hello World!</h1>
         <c:choose >
             <c:when test="${sessionScope.listaCarrinho != null && !sessionScope.itensSelecionados.isEmpty()}">
-        <c:forEach items="${listaCarrinho}" var="p">
-            <ul>
-                <li>${p.productName}</li>
-                <li>${p.price}</li>
-                <li>${p.quantity}</li>
-              
-            </ul>
-        </c:forEach>
-        </c:when>
+
+                <section id="listaCarrinho">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="tituloTabela">
+                                    <p id="prod" class="titulos">Produto</p>
+                                </th>
+                                <th class="tituloTabelaQtd">
+                                    <p class="titulos">Quantidade</p>
+                                </th>
+                                <th class="valores">
+                                    <p class="titulos">Valor Unit.</p>
+                                </th>
+                              
+                            </tr>
+                        </thead>
+                        <c:forEach items="${listaCarrinho}" var="p">
+                            <tbody>
+                                <tr>
+                                    <td id="produto">
+                                        <img src="${p.path_MainImg}">
+                                        <p>${p.productName}</p>
+                                    </td>
+                                    <td id="qtd" class="borda">
+                                        <input type="number" min="1" value="1">
+                                    </td>
+                                    <td class="preco">
+                                        <p>R$ ${p.price}</p>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </c:forEach>
+                    </table>
+                    
+                    <h3>Valor total: R$ ${valorTotal}</h3>
+                </section>
+
+            </c:when>
             <c:otherwise>
                 <p>Carrinho vazio</p>
             </c:otherwise>
-     </c:choose>  
+        </c:choose>  
         <a href="${pageContext.request.contextPath}/Home_Servlet">Voltar</a>
     </body>
 </html>

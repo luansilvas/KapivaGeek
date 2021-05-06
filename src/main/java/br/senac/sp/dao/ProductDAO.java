@@ -174,7 +174,7 @@ public class ProductDAO {
     }      
           
     public static Product findProductById(int idProd) throws SQLException, ClassNotFoundException {
-        String sql = "select * from products where prod_id = ?";
+        String sql = "select p.prod_id, p.name_prod,p.long_name,p.amount_stars,p.price,p.status_prod,p.stock,p.category,pi.path_img from products as p INNER JOIN product_img as pi on p.prod_id = pi.prod_id WHERE p.prod_id = ? and pi.Main_img = 'true';";
         Product prod = new Product();
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -191,6 +191,7 @@ public class ProductDAO {
                     prod.setQuantity(rs.getInt("stock"));
                     prod.setPrice(rs.getDouble("price"));
                     prod.setCategory(rs.getString("category"));
+                    prod.setPath_MainImg(rs.getString("path_img"));
 
                 }
 
