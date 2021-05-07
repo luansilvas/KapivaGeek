@@ -67,6 +67,7 @@
                     </table>
 
                     <h3>Valor total: R$ ${valorTotal}</h3>
+                    <a>Finalizar</a>
                 </section>
 
             </c:when>
