@@ -27,22 +27,58 @@ import javax.servlet.http.HttpSession;
  */
 public class Carrinho extends HttpServlet {
 
+    private int quantidade =1;
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+    
+    
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
-        if (sessao.getAttribute("listaCarrinho") != null) {
-            double valorTotal = 0;
+        List<Product> listaCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
+        
+        
+        
+        String acao = request.getParameter("acao");
+        System.out.println(acao);
 
-            List<Product> listaCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
-            valorTotal = valorTotal(listaCarrinho);
+        if (acao.equals("abrirCarrinho")) {
+            if (sessao.getAttribute("listaCarrinho") != null) {
+                double valorTotal = 0;
+               
+                request.setAttribute("quantidade", getQuantidade());
+                valorTotal = valorTotal(listaCarrinho);
+                request.setAttribute("valorTotal", valorTotal);
+                
+            }
 
-            request.setAttribute("valorTotal", valorTotal);
         }
         
+       else if(acao.equals("adicionar")){
+           int id = Integer.parseInt(request.getParameter("productId"));
+       
+           int qtd = (getQuantidade()+1);
+            setQuantidade(qtd);
+             request.setAttribute("quantidade", getQuantidade());
+        }
         
-        
-        request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
+       else if(acao.equals("excluir")){
+            int prodId = Integer.parseInt(request.getParameter("productId"));
+           
+            listaCarrinho.remove(findProduct(prodId, listaCarrinho));
+          
+            
+        }
+
+       request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
 
     }
 
@@ -53,6 +89,15 @@ public class Carrinho extends HttpServlet {
         }
 
         return valorTotal;
+    }
+    
+    public Product findProduct(int id, List<Product> li){
+      
+        for(Product p: li){
+            if(p.getProductId() == id)
+                return p;
+        }
+        return null;
     }
 
 }

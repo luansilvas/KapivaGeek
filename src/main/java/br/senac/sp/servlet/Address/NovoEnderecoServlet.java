@@ -87,7 +87,7 @@ public class NovoEnderecoServlet extends HttpServlet {
         String caracter = String.valueOf(letra);
         if(caracter.matches("[0-9]+") || caracter.equalsIgnoreCase("-"))
             return true;
-        
+       
         return false;
     
     }

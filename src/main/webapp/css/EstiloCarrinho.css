@@ -8,16 +8,16 @@ and open the template in the editor.
     Author     : adm
 */
 
-img{
-     width: 60px;
-     height: 60px;
-     border: 1px solid;
+#produto img{
+    width: 60px;
+    height: 60px;
+    border: 1px solid;
 }
 
 #produto{
     border: 1px solid;
-    width: 50%;
-   
+    width: 20%;
+
 }
 
 #produto p{
@@ -28,12 +28,30 @@ img{
     margin: 0 90px 0 2px;
 }
 
-#preco{
+
+#input{
+    width: 50%;
+    height: 20%;
     border: 1px solid;
-    
 }
- input {
-    width: 20%;
+tr th{
+    text-align: left;
+    margin-left: 10px;
+
+}
+
+.tituloTabelaQtd{
+    width: 30%;
+}
+#valorQuantidade{
+    border: 1px solid;
+    width: 10%;
     text-align: center;
     margin: 0 auto;
+}
+
+
+#input img{
+    width: 4%;
+
 }

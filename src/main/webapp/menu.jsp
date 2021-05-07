@@ -55,7 +55,7 @@
 
                     <li><a href=""><img src="icons/heart.png" alt="" id="universe-icon"></a></li>
 
-                    <li><a href="${pageContext.request.contextPath}/carrinho"><img src="icons/shopping-cart.png" alt="" id="cart-icon"></a></li>
+                    <li><a href="${pageContext.request.contextPath}/carrinho?acao=abrirCarrinho"><img src="icons/shopping-cart.png" alt="" id="cart-icon"></a></li>
                     <li class="itemD" id="itemD-quantity">0</li>
                         <c:choose>
                             <c:when test="${sessionScope.user != null}">

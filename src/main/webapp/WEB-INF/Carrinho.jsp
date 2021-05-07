@@ -13,6 +13,7 @@
         <title>Carrinho</title>
         <link href="css/EstiloCarrinho.css" type="text/css" rel="stylesheet">
     </head>
+
     <body>
         <h1>Hello World!</h1>
         <c:choose >
@@ -32,7 +33,10 @@
                                 <th class="valores">
                                     <p class="titulos">Valor Unit.</p>
                                 </th>
-                              
+                                <th>
+                                    <p>Acões</p>
+                                </th>
+
                             </tr>
                         </thead>
                         <c:forEach items="${listaCarrinho}" var="p">
@@ -43,10 +47,17 @@
                                         <p>${p.productName}</p>
                                     </td>
                                     <td id="qtd" class="borda">
-                                        <input type="number" min="1" value="1">
+                                        <div id="input">
+                                            <a id="add" href="${pageContext.request.contextPath}/carrinho?productId=${p.productId}&acao=adicionar" ><img src="icons/add.png"></a>
+                                            <p id="valorQuantidade">${quantidade}</p>
+                                            <a id="sub" href="#" ><img src="icons/sub.png"></a>
+                                        </div>
                                     </td>
                                     <td class="preco">
                                         <p>R$ ${p.price}</p>
+                                    </td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/carrinho?productId=${p.productId}&acao=excluir" ><img id="delete" src="icons/delete2.png"></a>
                                     </td>
 
                                 </tr>
@@ -54,7 +65,7 @@
                             </tbody>
                         </c:forEach>
                     </table>
-                    
+
                     <h3>Valor total: R$ ${valorTotal}</h3>
                 </section>
 
