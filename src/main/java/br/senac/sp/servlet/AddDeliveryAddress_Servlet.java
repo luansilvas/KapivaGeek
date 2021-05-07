@@ -37,7 +37,10 @@ public class AddDeliveryAddress_Servlet extends HttpServlet {
             throws ServletException, IOException {
         String complement = " ";
         int customerId = Integer.parseInt(request.getParameter("customerId"));
-        String title = request.getParameter("titulo");
+        String title = " ";
+        if (request.getParameter("titulo")!=null) {
+            request.getParameter("titulo");
+        }           
         String street = request.getParameter("street");
         String cep = request.getParameter("cep");
         String number = request.getParameter("number");

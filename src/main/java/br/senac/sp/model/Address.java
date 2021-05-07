@@ -56,7 +56,8 @@ public class Address {
         this.isActive = isActive;
     }
 
-    public Address(String address_street, String address_code, String address_state_abbreviation, String address_number, String address_neighborhood, String address_complement, String address_type, String isActive) {
+    public Address(String address_title,String address_street, String address_code, String address_state_abbreviation, String address_number, String address_neighborhood, String address_complement, String address_type, String isActive) {
+        this.address_title = address_title;
         this.address_street = address_street;
         this.address_code = address_code;
         this.address_state_abbreviation = address_state_abbreviation;

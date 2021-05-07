@@ -73,7 +73,7 @@ public class RegisterCustomer_Servlet extends HttpServlet {
             System.out.println(customer);
             CustomerDataValidation customerData = new CustomerDataValidation();
             errorList = customerData.validParamethers(name, cpf, email, "Ativo", password, confPassword);
-            Address address = new Address(street, cep, uf, number, neighborhood, complement, "Faturamento", "Ativo");
+            Address address = new Address(title,street, cep, uf, number, neighborhood, complement, "Faturamento", "Ativo");
             errorList = customerData.validaEndereco(street, cep, uf, number, neighborhood, complement, cep, street, errorList);
             if (errorList.size() == 0) {
                 try {
