@@ -54,7 +54,7 @@
                     <div class="divsForm">
                         <label>Titulo</label>
                         <br>
-                        <input type="text" name="titulo" placeholder="Digite um titulo de identificação">
+                        <input type="text" name="titulo" value="${address.address_title}" placeholder="Digite um titulo de identificação">
                     </div>
                     <div class="divsForm">
                         <label>CEP</label>

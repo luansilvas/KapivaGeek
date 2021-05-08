@@ -204,6 +204,10 @@
         <servlet-name>AdicionarDadosCarrinho</servlet-name>
         <servlet-class>br.senac.sp.servlet.Carrinho.AdicionarDadosCarrinho</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReviewOrder</servlet-name>
+        <servlet-class>Pedido.ReviewOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -360,10 +364,14 @@
         <servlet-name>AdicionarDadosCarrinho</servlet-name>
         <url-pattern>/AdicionarDadosCarrinho</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReviewOrder</servlet-name>
+        <url-pattern>/ReviewOrder</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>login2.jsp</welcome-file>
+        <welcome-file>Home_Servlet</welcome-file>
     </welcome-file-list>
 </web-app>

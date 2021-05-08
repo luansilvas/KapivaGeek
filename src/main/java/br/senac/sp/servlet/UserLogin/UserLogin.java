@@ -54,7 +54,12 @@ public class UserLogin extends HttpServlet {
                 sessao.setAttribute("user", customer);
                 sessao.setAttribute("addr", addr);
                 sessao.setAttribute("addrFat", addrFat);
-                response.sendRedirect(request.getContextPath() + "/alterRegister_Costumer");
+                if (sessao.getAttribute("listaCarrinho")==null) {
+                    response.sendRedirect(request.getContextPath() + "/alterRegister_Costumer");
+                }else{
+                response.sendRedirect(request.getContextPath() + "/ReviewOrder");
+                }
+                
                 System.out.println("validado...");
             }
             else {
