@@ -208,6 +208,14 @@
         <servlet-name>ReviewOrder</servlet-name>
         <servlet-class>Pedido.ReviewOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeCartItem_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Carrinho.ChangeCartItem_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>choosePayment_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Pagamento.choosePayment_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -367,6 +375,14 @@
     <servlet-mapping>
         <servlet-name>ReviewOrder</servlet-name>
         <url-pattern>/ReviewOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeCartItem_Servlet</servlet-name>
+        <url-pattern>/ChangeCartItem_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>choosePayment_Servlet</servlet-name>
+        <url-pattern>/choosePayment_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

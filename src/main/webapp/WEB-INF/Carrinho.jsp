@@ -67,7 +67,7 @@
                     </table>
 
                     <h3>Valor total: R$ ${valorTotal}</h3>
-                    <a>Finalizar</a>
+                    <a href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar</a>
                 </section>
 
             </c:when>
