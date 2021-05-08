@@ -57,6 +57,7 @@ public class UserLogin extends HttpServlet {
                 if (sessao.getAttribute("listaCarrinho")==null) {
                     response.sendRedirect(request.getContextPath() + "/alterRegister_Costumer");
                 }else{
+                    request.setAttribute("user", customer);
                 response.sendRedirect(request.getContextPath() + "/ReviewOrder");
                 }
                 

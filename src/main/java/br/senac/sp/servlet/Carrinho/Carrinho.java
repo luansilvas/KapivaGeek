@@ -55,14 +55,14 @@ public class Carrinho extends HttpServlet {
 
             listaCarrinho = addQuantidade(listaCarrinho, id, qtd);
             valorTotal = valorTotal(listaCarrinho);
-            request.setAttribute("valorTotal", valorTotal);
+            sessao.setAttribute("valorTotal", valorTotal);
 
         } else if (acao.equals("excluir")) {
             int prodId = Integer.parseInt(request.getParameter("productId"));
 
             listaCarrinho.remove(findProduct(prodId, listaCarrinho));
             valorTotal = valorTotal(listaCarrinho);
-            request.setAttribute("valorTotal", valorTotal);
+            sessao.setAttribute("valorTotal", valorTotal);
 
         } else if (acao.equals("subtrair")) {
 
@@ -79,7 +79,7 @@ public class Carrinho extends HttpServlet {
             }
 
             valorTotal = valorTotal(listaCarrinho);
-            request.setAttribute("valorTotal", valorTotal);
+            sessao.setAttribute("valorTotal", valorTotal);
         }
 
         request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);

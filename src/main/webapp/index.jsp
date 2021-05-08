@@ -16,10 +16,8 @@
         <link rel="stylesheet" href="css/styleFront.css" type="text/css">
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+        <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -58,7 +56,6 @@
             <ul class="slides">
                 <li>
                     <img src="cover-images/cover-starwars.jpg">
-                    <!-- random image -->
                     <div class="caption center-align">
                         <h3>A maior geek store do país!</h3>
                         <h5 class="light grey-text text-lighten-3">Qualidade e preço de fábrica</h5>
@@ -66,14 +63,13 @@
                 </li>
                 <li>
                     <img src="cover-images/Drax-and-Rocket-Guardians-of-the-Galaxy-and-Avengers-1920x500.png">
-                    <!-- random image -->
                     <div class="caption center-align">
                         <h3>Melhores oportunidades</h3>
                         <h5 class="light grey-text text-lighten-3">Preços camaradas</h5>
                     </div>
                 </li>
                 <li>
-                    <img src="cover-images/spider.jpg"> <!-- random image -->
+                    <img src="cover-images/spider.jpg">
                     <div class="caption center-align">
                         <h3>Cobrimos oferta!</h3>
                         <h5 class="light grey-text text-lighten-3">Cobrimos o valor da concorrência</h5>
@@ -81,7 +77,6 @@
                 </li>
                 <li>
                     <img src="cover-images/Lord-Of-The-Rings-Fellowship-Of-The-Ring-1920x500.jpeg">
-                    <!-- random image -->
                     <div class="caption center-align">
                         <h3>Variedade dos produtos</h3>
                         <h5 class="light grey-text text-lighten-3">Pesquise o nome da sua série, anime ou filme para
@@ -141,7 +136,7 @@
                                 </a>
 
                                 <div class="add-cart-field">
-                                    <a class="fas fa-cart-plus fa-2x"></a>
+                                    <a class="fas fa-cart-plus fa-2x" href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${b.productId}"></a>
                                 </div>
                                 <div class="info">
                                     <a href="#">
@@ -214,7 +209,7 @@
                                     <img class="product-img" src="${cf.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
-                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                    <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cf.productId}"  class="fas fa-cart-plus fa-2x"></a>
                                 </div>
                                 <div class="info">
                                     <a href="#">
@@ -244,11 +239,11 @@
                     <div class="category-category-carousel-container">
                         <c:forEach items="${canecas}" var="c">
                             <div class="product-card">
-                                <a href="#">
+                                <a href=#">
                                     <img class="product-img" src="${c.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
-                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                    <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${c.productId}" class="fas fa-cart-plus fa-2x"></a>
                                 </div>
                                 <div class="info">
                                     <a href="#">
@@ -280,11 +275,11 @@
                         <c:forEach items="${acessorios}" var="a">
                             <form></form>
                             <div class="product-card">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  >
                                     <img class="product-img" src="${a.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
-                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                    <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${a.productId}" class="fas fa-cart-plus fa-2x"></a>
                                 </div>
                                 <div class="info">
                                     <a href="#">
@@ -313,11 +308,11 @@
                     <div class="category-category-carousel-container">
                         <c:forEach items="${variedades}" var="v">
                             <div class="product-card">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  >
                                     <img class="product-img" src="${v.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
-                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                    <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${v.productId}" class="fas fa-cart-plus fa-2x"></a>
                                 </div>
                                 <div class="info">
                                     <a href="#">
@@ -349,11 +344,11 @@
                         <c:forEach items="${resultado}" var="r">
 
                             <div class="product-card">
-                                <a href="#">
+                                <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  >
                                     <img class="product-img" src="${r.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
-                                    <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                    <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${r.productId}" class="fas fa-cart-plus fa-2x"></a>
                                 </div>
                                 <div class="info">
                                     <a href="#">
@@ -389,7 +384,7 @@
                                         <img class="product-img" src="${r.path_MainImg}">
                                     </a>
                                     <div class="add-cart-field">
-                                        <a href="#!" class="fas fa-cart-plus fa-2x"></a>
+                                        <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${r.productId}" class="fas fa-cart-plus fa-2x"></a>
                                     </div>
                                     <div class="info">
                                         <a href="#">

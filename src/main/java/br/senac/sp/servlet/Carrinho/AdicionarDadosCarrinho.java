@@ -60,7 +60,9 @@ public class AdicionarDadosCarrinho extends HttpServlet {
     }
 
     public static Product iniciarQtd(Product p) {
+
         p.setQuantity(1);
+        System.out.println(p.toString());
         return p;
     }
 

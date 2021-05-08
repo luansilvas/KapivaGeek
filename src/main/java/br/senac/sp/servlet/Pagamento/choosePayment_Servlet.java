@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Pedido;
+package br.senac.sp.servlet.Pagamento;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,32 +11,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author luans
  */
-public class ReviewOrder extends HttpServlet {
+public class choosePayment_Servlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession sessao = request.getSession(); 
-
-        if (sessao.getAttribute("user")==null) {
-            request.getRequestDispatcher("/WEB-INF/UserLogin.jsp").forward(request, response);
-        }else{
-            request.getRequestDispatcher("/WEB-INF/revisarPedido.jsp").forward(request, response);       
-        }
+        request.getRequestDispatcher("/WEB-INF/EscolherFormaPagamento.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    }
 
+    }
 
 }
