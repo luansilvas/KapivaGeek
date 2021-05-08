@@ -34,7 +34,6 @@ public class Carrinho extends HttpServlet {
         List<Product> listaCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
         double valorTotal = 0;
         String acao = request.getParameter("acao");
-        System.out.println(acao);
 
         if (acao.equals("abrirCarrinho")) {
             if (sessao.getAttribute("listaCarrinho") != null) {
@@ -111,7 +110,6 @@ public class Carrinho extends HttpServlet {
         for (Product p : li) {
             if (p.getProductId() == id) {
                 p.setQuantity(quantidade + 1);
-                System.out.println(p.toString());
             }
         }
         return li;
@@ -122,11 +120,10 @@ public class Carrinho extends HttpServlet {
         for (Product p : li) {
             if (p.getProductId() == id) {
                 p.setQuantity(quantidade - 1);
-                System.out.println(p.toString());
             }
         }
         return li;
 
     }
-
+    
 }
