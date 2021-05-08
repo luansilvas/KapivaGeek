@@ -31,7 +31,6 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
-      
 
         try {
 
@@ -42,11 +41,13 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             List<Product> listCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
 
             int produto = Integer.parseInt(request.getParameter("productId"));
-            
-          
-            Product p = ProductDAO.findProductById(produto);
-            listCarrinho.add(p);
 
+            //INICIALIZA A QUANTIDADE DO PRODUTO =1
+            Product p = iniciarQtd(ProductDAO.findProductById(produto));
+            // System.out.println(p.toString());
+            if (!find(listCarrinho, p.getProductId()) || listCarrinho.isEmpty()) {
+                listCarrinho.add(p);
+            }
 
             response.sendRedirect(request.getContextPath() + "/Home_Servlet");
 
@@ -57,7 +58,21 @@ public class AdicionarDadosCarrinho extends HttpServlet {
         }
 
     }
-    
 
+    public static Product iniciarQtd(Product p) {
+        p.setQuantity(1);
+        return p;
+    }
+
+    public static boolean find(List<Product> li, int id) {
+        for (Product p : li) {
+            if (p.getProductId() == id) {
+                Carrinho.addQuantidade(li, id, p.getQuantity());
+                return true;
+            } 
+        }
+
+        return false;
+    }
 
 }

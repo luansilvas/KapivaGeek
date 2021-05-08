@@ -27,77 +27,106 @@ import javax.servlet.http.HttpSession;
  */
 public class Carrinho extends HttpServlet {
 
-    private int quantidade =1;
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-    
-    
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         List<Product> listaCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
-        
-        
-        
+        double valorTotal = 0;
         String acao = request.getParameter("acao");
         System.out.println(acao);
 
         if (acao.equals("abrirCarrinho")) {
             if (sessao.getAttribute("listaCarrinho") != null) {
-                double valorTotal = 0;
-               
-                request.setAttribute("quantidade", getQuantidade());
+
                 valorTotal = valorTotal(listaCarrinho);
-                request.setAttribute("valorTotal", valorTotal);
-                
+                sessao.setAttribute("valorTotal", valorTotal);
+
             }
 
-        }
-        
-       else if(acao.equals("adicionar")){
-           int id = Integer.parseInt(request.getParameter("productId"));
-       
-           int qtd = (getQuantidade()+1);
-            setQuantidade(qtd);
-             request.setAttribute("quantidade", getQuantidade());
-        }
-        
-       else if(acao.equals("excluir")){
+        } else if (acao.equals("adicionar")) {
+
+            if (sessao.getAttribute("listaCarrinho") == null) {
+                request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
+            }
+
+            int id = Integer.parseInt(request.getParameter("productId"));
+            Product p = findProduct(id, listaCarrinho);
+            int qtd = p.getQuantity();
+
+            listaCarrinho = addQuantidade(listaCarrinho, id, qtd);
+            valorTotal = valorTotal(listaCarrinho);
+            request.setAttribute("valorTotal", valorTotal);
+
+        } else if (acao.equals("excluir")) {
             int prodId = Integer.parseInt(request.getParameter("productId"));
-           
+
             listaCarrinho.remove(findProduct(prodId, listaCarrinho));
-          
-            
+            valorTotal = valorTotal(listaCarrinho);
+            request.setAttribute("valorTotal", valorTotal);
+
+        } else if (acao.equals("subtrair")) {
+
+            if (sessao.getAttribute("listaCarrinho") == null) {
+                request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
+            }
+
+            int id = Integer.parseInt(request.getParameter("productId"));
+            Product p = findProduct(id, listaCarrinho);
+            int qtd = p.getQuantity();
+
+            if (qtd > 1) {
+                listaCarrinho = subQuantidade(listaCarrinho, id, qtd);
+            }
+
+            valorTotal = valorTotal(listaCarrinho);
+            request.setAttribute("valorTotal", valorTotal);
         }
 
-       request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
 
     }
 
     public double valorTotal(List<Product> li) {
         double valorTotal = 0;
         for (Product p : li) {
-            valorTotal += p.getPrice();
+            valorTotal += (p.getPrice() * p.getQuantity());
         }
 
         return valorTotal;
     }
-    
-    public Product findProduct(int id, List<Product> li){
-      
-        for(Product p: li){
-            if(p.getProductId() == id)
+
+    public Product findProduct(int id, List<Product> li) {
+
+        for (Product p : li) {
+            if (p.getProductId() == id) {
                 return p;
+            }
         }
         return null;
+    }
+
+    public static List<Product> addQuantidade(List<Product> li, int id, int quantidade) {
+
+        for (Product p : li) {
+            if (p.getProductId() == id) {
+                p.setQuantity(quantidade + 1);
+                System.out.println(p.toString());
+            }
+        }
+        return li;
+
+    }
+
+    public static List<Product> subQuantidade(List<Product> li, int id, int quantidade) {
+        for (Product p : li) {
+            if (p.getProductId() == id) {
+                p.setQuantity(quantidade - 1);
+                System.out.println(p.toString());
+            }
+        }
+        return li;
+
     }
 
 }

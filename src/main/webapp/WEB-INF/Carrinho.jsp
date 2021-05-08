@@ -49,8 +49,8 @@
                                     <td id="qtd" class="borda">
                                         <div id="input">
                                             <a id="add" href="${pageContext.request.contextPath}/carrinho?productId=${p.productId}&acao=adicionar" ><img src="icons/add.png"></a>
-                                            <p id="valorQuantidade">${quantidade}</p>
-                                            <a id="sub" href="#" ><img src="icons/sub.png"></a>
+                                            <p id="valorQuantidade">${p.quantity}</p>
+                                            <a id="sub" href="${pageContext.request.contextPath}/carrinho?productId=${p.productId}&acao=subtrair" ><img src="icons/sub.png"></a>
                                         </div>
                                     </td>
                                     <td class="preco">
