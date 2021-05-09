@@ -216,6 +216,18 @@
         <servlet-name>choosePayment_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.Pagamento.choosePayment_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EscolherEnderecoEntrega</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Address.EscolherEnderecoEntrega</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FinalizarPedido</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Carrinho.FinalizarPedido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GerarComprovante</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Carrinho.GerarComprovante</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -383,6 +395,18 @@
     <servlet-mapping>
         <servlet-name>choosePayment_Servlet</servlet-name>
         <url-pattern>/choosePayment_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EscolherEnderecoEntrega</servlet-name>
+        <url-pattern>/EscolherEnderecoEntrega</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FinalizarPedido</servlet-name>
+        <url-pattern>/FinalizarPedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GerarComprovante</servlet-name>
+        <url-pattern>/GerarComprovante</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

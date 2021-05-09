@@ -38,3 +38,17 @@ and open the template in the editor.
     margin-left: 20%;
     margin-right: 20%;
 }
+
+
+#endCadastrado{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 6%;
+}
+.radiobutton-label{
+    color: black;
+}
+#send-button{
+    margin-left: 45%;
+    margin-top: 5%;
+}
