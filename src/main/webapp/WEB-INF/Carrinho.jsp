@@ -11,8 +11,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Carrinho</title>
-        <link href="css/EstiloCarrinho.css" type="text/css" rel="stylesheet">
-        
+
+        <link href="css/EstiloRevisarPedido.css" type="text/css" rel="stylesheet">
+
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -24,14 +25,15 @@
     </head>
 
     <body>
+
         <%@include file="../menu.jsp" %>
-        
+
         <c:choose >
             <c:when test="${sessionScope.listaCarrinho != null && !sessionScope.itensSelecionados.isEmpty()}">
 
                 <section id="listaCarrinho">
 
-                    <table class="highlight">
+                    <table class="highlight" id="product-listing">
                         <thead>
                             <tr>
                                 <th class="tituloTabela">
@@ -53,14 +55,14 @@
                             <tbody>
                                 <tr>
                                     <td id="produto">
-                                        <img src="${p.path_MainImg}">
+                                        <img class = "prod-img" src="${p.path_MainImg}">
                                         <p>${p.productName}</p>
                                     </td>
                                     <td id="qtd" class="borda">
                                         <div id="input">
-                                            <a id="add" href="${pageContext.request.contextPath}/carrinho?productId=${p.productId}&acao=adicionar" ><img src="icons/add.png"></a>
-                                            <p id="valorQuantidade">${p.quantity}</p>
-                                            <a id="sub" href="${pageContext.request.contextPath}/carrinho?productId=${p.productId}&acao=subtrair" ><img src="icons/sub.png"></a>
+                                            <a  href="${pageContext.request.contextPath}/carrinho?productId=${p.productId}&acao=subtrair" ><img class="change-quantity" src="icons/minus24px.png"></a>
+                                                ${p.quantity}
+                                            <a href="${pageContext.request.contextPath}/carrinho?productId=${p.productId}&acao=adicionar" ><img class="change-quantity" src="icons/add24px.png"></a>
                                         </div>
                                     </td>
                                     <td class="preco">
@@ -75,9 +77,9 @@
                             </tbody>
                         </c:forEach>
                     </table>
-
-                    <h3>Valor total: R$ ${valorTotal}</h3>
-                    <a href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar</a>
+                    
+                    <h3 id="valorTotal"  >Valor total: R$ ${valorTotal}</h3>
+                    <a id="finalizar" href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar</a>
                 </section>
 
             </c:when>
@@ -85,6 +87,6 @@
                 <p>Carrinho vazio</p>
             </c:otherwise>
         </c:choose>  
-        <a href="${pageContext.request.contextPath}/Home_Servlet">Voltar</a>
+        <a href="${pageContext.request.contextPath}/Home_Servlet">Continuar comprando</a>
     </body>
 </html>
