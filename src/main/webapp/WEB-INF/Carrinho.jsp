@@ -77,16 +77,61 @@
                             </tbody>
                         </c:forEach>
                     </table>
-                    
+                    <div id="formCep">
+                        <fieldset id="teste" >
+                            <form method="POST" action="${pageContext.request.contextPath}/carrinho">
+                                <legend>Calcular frete</legend>
+                                <label>Cep</label>
+                                <input type="number" name="cep" id="cep">
+                                 <input type="hidden" id="logradouro" name="rua">
+                                <input type="hidden" id="bairro" name="bairro">
+                                <input type="hidden" id="cidade" name="cidade">
+                                <input type="hidden" id="uf" name="uf">
+
+                                <input id="" class="inputCep" type="submit" value="Calcular frete">
+
+                               
+                            </form>
+                        </fieldset>
+
+                    </div>
+                  
+                        <c:if test="${addr != null}">
+                            <div id="endereco">
+                                <span><c:out value="${addr.address_street}, ${addr.address_neighborhood}, ${addr.address_state_abbreviation}" /></span>
+                            </div>
+                        </c:if>
+                   
                     <h3 id="valorTotal"  >Valor total: R$ ${valorTotal}</h3>
                     <a id="finalizar" href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar</a>
                 </section>
 
             </c:when>
             <c:otherwise>
-                <p>Carrinho vazio</p>
+                <div id="vazio">
+                    <p>Carrinho está Vazio</p>
+                </div>
             </c:otherwise>
         </c:choose>  
         <a href="${pageContext.request.contextPath}/Home_Servlet">Continuar comprando</a>
+
+
+        <script>
+
+            $("#cep").focusout(function () {
+                $.ajax({
+                    url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode/',
+                    dataType: 'json',
+                    success: function (resposta) {
+                        $("#logradouro").val(resposta.logradouro);
+                        $("#complemento").val(resposta.complemento);
+                        $("#bairro").val(resposta.bairro);
+                        $("#cidade").val(resposta.localidade);
+                        $("#uf").val(resposta.uf);
+                        $("#numero").focus();
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

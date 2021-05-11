@@ -43,7 +43,11 @@ public class Carrinho extends HttpServlet {
 
             }
 
-        } else if (acao.equals("adicionar")) {
+        } 
+        else if(acao.equals("CalcularCep")){
+            System.out.println("deu bom");
+        }
+        else if (acao.equals("adicionar")) {
 
             if (sessao.getAttribute("listaCarrinho") == null) {
                 request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
@@ -85,6 +89,27 @@ public class Carrinho extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
 
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        String ruaStr = request.getParameter("rua");
+        String bairooStr = request.getParameter("bairro");
+        String cidadeStr = request.getParameter("cidade");
+        String ufStr = request.getParameter("uf");
+        
+        Address addr = new Address();
+        addr.setAddress_street(ruaStr);
+        addr.setAddress_state_abbreviation(ufStr);
+        addr.setAddress_neighborhood(bairooStr);
+        addr.setAddress_complement(cidadeStr);
+        
+        request.setAttribute("addr", addr);
+         request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
+        
+    }
+    
 
     public double valorTotal(List<Product> li) {
         double valorTotal = 0;

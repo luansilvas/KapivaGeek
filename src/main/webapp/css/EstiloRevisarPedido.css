@@ -57,3 +57,29 @@ and open the template in the editor.
     margin-left: 45%;
     margin-top: 5%;
 }
+
+#formCep{
+    margin-top: 50px;
+    width: 50%;
+    margin: 50px auto;
+     
+}
+#formCep  #cep{
+    width: 40%;
+}
+input[type=submit]{
+    display: block;
+    margin: 10px;
+    
+}
+#endereco{
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    
+}
+
+#vazio{
+    margin-top: 300px;
+    text-align: center;
+}
