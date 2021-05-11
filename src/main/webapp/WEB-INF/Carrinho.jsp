@@ -69,6 +69,9 @@
                                         <p>R$ ${p.price}</p>
                                     </td>
                                     <td>
+                                        
+                                    </td>
+                                    <td>
                                         <a href="${pageContext.request.contextPath}/carrinho?productId=${p.productId}&acao=excluir" ><img id="delete" src="icons/delete2.png"></a>
                                     </td>
 

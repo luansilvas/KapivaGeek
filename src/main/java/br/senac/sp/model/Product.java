@@ -21,6 +21,7 @@ public class Product {
     private String status;
     private String category;
     private String path_MainImg;
+    private double totalPrice;
 
 
     public Product(int productId, String productName, String productFullName, double price, int quantity, int stars, String status, String category) {
