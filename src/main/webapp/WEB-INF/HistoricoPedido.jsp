@@ -22,6 +22,7 @@
         <title>Histórico Pedido</title>
     </head>
     <body>
+        <h1 id="titulo">Histórico de Pedidos</h1>
         <table class="highlight" id="product-listing">
                         <thead>
                             <tr>

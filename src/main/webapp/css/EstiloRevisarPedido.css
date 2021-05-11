@@ -7,7 +7,9 @@ and open the template in the editor.
     Created on : 07/05/2021, 20:32:13
     Author     : luans
 */
-
+.titulo{
+    margin-left: 50%;
+}
 .prod-img{
     height: 80px;
     width: 90px;
