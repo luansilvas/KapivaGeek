@@ -44,7 +44,6 @@ public class AdicionarDadosCarrinho extends HttpServlet {
 
             //INICIALIZA A QUANTIDADE DO PRODUTO =1
             Product p = iniciarQtd(ProductDAO.findProductById(produto));
-            // System.out.println(p.toString());
             if (!find(listCarrinho, p.getProductId()) || listCarrinho.isEmpty()) {
                 listCarrinho.add(p);
             }
@@ -60,9 +59,7 @@ public class AdicionarDadosCarrinho extends HttpServlet {
     }
 
     public static Product iniciarQtd(Product p) {
-
         p.setQuantity(1);
-        System.out.println(p.toString());
         return p;
     }
 

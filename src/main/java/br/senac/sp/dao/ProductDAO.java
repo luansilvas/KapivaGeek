@@ -192,6 +192,7 @@ public class ProductDAO {
                     prod.setPrice(rs.getDouble("price"));
                     prod.setCategory(rs.getString("category"));
                     prod.setPath_MainImg(rs.getString("path_img"));
+                    prod.setTotalPrice(rs.getDouble("price"));
 
                 }
 

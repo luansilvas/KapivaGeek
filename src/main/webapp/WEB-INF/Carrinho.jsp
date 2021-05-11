@@ -29,9 +29,9 @@
         <%@include file="../menu.jsp" %>
 
         <c:choose >
-            <c:when test="${sessionScope.listaCarrinho != null && !sessionScope.itensSelecionados.isEmpty()}">
+            <c:when test="${sessionScope.listaCarrinho != null && !sessionScope.listaCarrinho.isEmpty()}">
 
-                <section id="listaCarrinho">
+             <section id="listaCarrinho">
 
                     <table class="highlight" id="product-listing">
                         <thead>
@@ -44,6 +44,9 @@
                                 </th>
                                 <th class="valores">
                                     <p class="titulos">Valor Unit.</p>
+                                </th>
+                                <th>
+                                    <p>Valor Total</p>
                                 </th>
                                 <th>
                                     <p>Acões</p>
@@ -69,6 +72,7 @@
                                         <p>R$ ${p.price}</p>
                                     </td>
                                     <td>
+                                        <p>${p.totalPrice}</p>
                                         
                                     </td>
                                     <td>
@@ -98,12 +102,12 @@
                         </fieldset>
 
                     </div>
-                  
-                        <c:if test="${addr != null}">
+                  <c:if test="${addre != null}">
                             <div id="endereco">
                                 <span><c:out value="${addr.address_street}, ${addr.address_neighborhood}, ${addr.address_state_abbreviation}" /></span>
                             </div>
                         </c:if>
+                     
                    
                     <h3 id="valorTotal"  >Valor total: R$ ${valorTotal}</h3>
                     <a id="finalizar" href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar</a>

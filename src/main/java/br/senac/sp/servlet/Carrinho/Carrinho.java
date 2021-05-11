@@ -44,9 +44,6 @@ public class Carrinho extends HttpServlet {
             }
 
         } 
-        else if(acao.equals("CalcularCep")){
-            System.out.println("deu bom");
-        }
         else if (acao.equals("adicionar")) {
 
             if (sessao.getAttribute("listaCarrinho") == null) {
@@ -56,9 +53,11 @@ public class Carrinho extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("productId"));
             Product p = findProduct(id, listaCarrinho);
             int qtd = p.getQuantity();
+      
 
             listaCarrinho = addQuantidade(listaCarrinho, id, qtd);
             valorTotal = valorTotal(listaCarrinho);
+          
             sessao.setAttribute("valorTotal", valorTotal);
 
         } else if (acao.equals("excluir")) {
@@ -105,7 +104,7 @@ public class Carrinho extends HttpServlet {
         addr.setAddress_neighborhood(bairooStr);
         addr.setAddress_complement(cidadeStr);
         
-        request.setAttribute("addr", addr);
+        request.setAttribute("addre", addr);
          request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
         
     }
@@ -119,7 +118,7 @@ public class Carrinho extends HttpServlet {
 
         return valorTotal;
     }
-
+    
     public Product findProduct(int id, List<Product> li) {
 
         for (Product p : li) {
@@ -135,6 +134,7 @@ public class Carrinho extends HttpServlet {
         for (Product p : li) {
             if (p.getProductId() == id) {
                 p.setQuantity(quantidade + 1);
+                p.setTotalPrice(p.getPrice()*(quantidade+1));
             }
         }
         return li;
@@ -145,6 +145,7 @@ public class Carrinho extends HttpServlet {
         for (Product p : li) {
             if (p.getProductId() == id) {
                 p.setQuantity(quantidade - 1);
+                p.setTotalPrice(p.getTotalPrice() - p.getPrice());
             }
         }
         return li;
