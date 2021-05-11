@@ -10,7 +10,6 @@ import br.senac.sp.dao.CustomerDAO;
 import br.senac.sp.model.Address;
 import br.senac.sp.model.Customer;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

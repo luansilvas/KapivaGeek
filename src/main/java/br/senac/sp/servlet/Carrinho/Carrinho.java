@@ -12,13 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.senac.sp.model.*;
-import br.senac.sp.dao.*;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -32,6 +26,8 @@ public class Carrinho extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         List<Product> listaCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
+        int qtdeCarrinho = (int)sessao.getAttribute("qtdeItensCarrinho");
+        
         double valorTotal = 0;
         String acao = request.getParameter("acao");
 
@@ -53,17 +49,25 @@ public class Carrinho extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("productId"));
             Product p = findProduct(id, listaCarrinho);
             int qtd = p.getQuantity();
-      
+            
+            qtdeCarrinho=+1;
 
             listaCarrinho = addQuantidade(listaCarrinho, id, qtd);
             valorTotal = valorTotal(listaCarrinho);
+            sessao.removeAttribute("qtdeItensCarrinho");
+            sessao.setAttribute("qtdeItensCarrinho",qtdeCarrinho);
           
             sessao.setAttribute("valorTotal", valorTotal);
 
         } else if (acao.equals("excluir")) {
             int prodId = Integer.parseInt(request.getParameter("productId"));
+               
+            qtdeCarrinho-=contarQtdeProduto(listaCarrinho,prodId);
 
             listaCarrinho.remove(findProduct(prodId, listaCarrinho));
+            
+            sessao.removeAttribute("qtdeItensCarrinho");
+            sessao.setAttribute("qtdeItensCarrinho",qtdeCarrinho);
             valorTotal = valorTotal(listaCarrinho);
             sessao.setAttribute("valorTotal", valorTotal);
 
@@ -78,9 +82,12 @@ public class Carrinho extends HttpServlet {
             int qtd = p.getQuantity();
 
             if (qtd > 1) {
+                qtde-=1;
                 listaCarrinho = subQuantidade(listaCarrinho, id, qtd);
             }
 
+            sessao.removeAttribute("qtdeItensCarrinho");
+            sessao.setAttribute("qtdeItensCarrinho",qtdeCarrinho);
             valorTotal = valorTotal(listaCarrinho);
             sessao.setAttribute("valorTotal", valorTotal);
         }
@@ -149,7 +156,19 @@ public class Carrinho extends HttpServlet {
             }
         }
         return li;
-
     }
+    
+        public static int contarQtdeProduto(List<Product> li, int id) {
+        int qtde =0;
+        for (Product p : li) {
+            if (p.getProductId() == id) {
+                qtde++;
+            }
+        }
+        return qtde;
+    }
+    
+    
+    
     
 }

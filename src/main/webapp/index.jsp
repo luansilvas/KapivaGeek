@@ -99,7 +99,7 @@
                                     <img class="product-img" src="${b.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
-                                    <a href="${pageContext.request.contextPath}/carrinho" class="fas fa-cart-plus fa-2x"></a>
+                                    <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${b.productId}" class="fas fa-cart-plus fa-2x"></a>
                                 </div>
                                 <div class="info">
                                     <a href=""></a>

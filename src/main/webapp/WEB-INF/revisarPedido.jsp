@@ -32,9 +32,9 @@
             <div class="nav-wrapper brown">
                 <div class="col s12" id="step">
                     <a href="${pageContext.request.contextPath}/Home_Servlet" class="breadcrumb white-text">Loja</a>
-                    <a href="${pageContext.request.contextPath}/ReviewOrder" class="breadcrumb white-text">Meu carrinho</a>
-                    <a class="breadcrumb grey-text" disabled>Pagamento</a>
-                    <a class="breadcrumb grey-text">Endereco</a>
+                    <a href="${pageContext.request.contextPath}/EscolherEnderecoEntrega" class="breadcrumb white-text">Endereco</a>
+                    <a href="${pageContext.request.contextPath}/choosePayment_Servlet" class="breadcrumb white-text" disabled>Pagamento</a>                                     
+                    <a href="${pageContext.request.contextPath}/ReviewOrder" class="breadcrumb white-text">Revisar</a>                 
                     <a href="#!" class="breadcrumb grey-text">Confirma</a>
                 </div>
             </div>

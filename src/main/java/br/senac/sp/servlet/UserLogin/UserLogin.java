@@ -51,6 +51,9 @@ public class UserLogin extends HttpServlet {
                  Address addrFat = AddressDAO.getCustomerIncomeAddresses(customer.getCustomer_id());
                  System.out.println(addr.toString());
                 HttpSession sessao = request.getSession();
+                Address mainAddress =addr.get(0);
+                sessao.setAttribute("mainAddress", mainAddress);
+                sessao.setAttribute("qtdeItensCarrinho",0);
                 sessao.setAttribute("user", customer);
                 sessao.setAttribute("addr", addr);
                 sessao.setAttribute("addrFat", addrFat);

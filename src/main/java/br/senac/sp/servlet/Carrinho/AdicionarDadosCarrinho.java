@@ -39,6 +39,12 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             }
 
             List<Product> listCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
+            int qtdeCarrinho = 0;
+            if (sessao.getAttribute("qtdeItensCarrinho") == null) {
+                sessao.setAttribute("qtdeItensCarrinho",1);
+            } else {
+                qtdeCarrinho = (int) sessao.getAttribute("qtdeItensCarrinho");
+            }
 
             int produto = Integer.parseInt(request.getParameter("productId"));
 
@@ -46,8 +52,11 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             Product p = iniciarQtd(ProductDAO.findProductById(produto));
             if (!find(listCarrinho, p.getProductId()) || listCarrinho.isEmpty()) {
                 listCarrinho.add(p);
-            }
+                qtdeCarrinho = +1;
 
+            }
+            sessao.removeAttribute("qtdeItensCarrinho");
+            sessao.setAttribute("qtdeItensCarrinho", 9000);
             response.sendRedirect(request.getContextPath() + "/Home_Servlet");
 
         } catch (SQLException ex) {
@@ -68,7 +77,7 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             if (p.getProductId() == id) {
                 Carrinho.addQuantidade(li, id, p.getQuantity());
                 return true;
-            } 
+            }
         }
 
         return false;

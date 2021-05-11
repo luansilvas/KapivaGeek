@@ -113,20 +113,12 @@
         <servlet-class>br.senac.sp.servlet.AlterEmployee_Servlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AlterEmployeePassword_Servlet</servlet-name>
-        <servlet-class>br.senac.sp.servlet.AlterEmployeePassword_Servlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ActivateInactivateEmployee_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.ActivateInactivateEmployee_Servlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>VisualizeEmployee_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.VisualizeEmployee_Servlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RegisterEmployee_Servlet</servlet-name>
-        <servlet-class>br.senac.sp.servlet.RegisterEmployee_Servlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AlterEmployee_Servlet</servlet-name>
@@ -227,6 +219,10 @@
     <servlet>
         <servlet-name>GerarComprovante</servlet-name>
         <servlet-class>br.senac.sp.servlet.Carrinho.GerarComprovante</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastrarEnderecoParaEntrega</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Address.CadastrarEnderecoParaEntrega</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
@@ -407,6 +403,10 @@
     <servlet-mapping>
         <servlet-name>GerarComprovante</servlet-name>
         <url-pattern>/GerarComprovante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarEnderecoParaEntrega</servlet-name>
+        <url-pattern>/CadastrarEnderecoParaEntrega</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

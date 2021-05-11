@@ -48,29 +48,153 @@
                     </thead>
                     <tbody>
 
-                        <c:forEach items="${addr}" var="a">
 
-                            <tr>
-                                <td>
-                                    <input type="radio" id="${a.address_code}" name="end" value="${a.address_id}" required>
-                                    <label for="${a.address_code}" class="radiobutton-label">
-                                        <b>${a.address_title}</b>
-                                        <br>
-                                        ${a.address_street},${a.address_number} - ${a.address_neighborhood},${a.address_state_abbreviation} - ${a.address_code}
-                                    </label>
-                                </td>
-                                <td>R$ ${Math.ceil(valorTotal*0.2)}<td>
+                        <tr>
+                            <td>
+                                <input type="radio" id="${mainAddress.address_code}" name="end" value="${mainAddress.address_id}" required>
+                                <label for="${mainAddress.address_code}" class="radiobutton-label">
+                                    <b>${mainAddress.address_title}</b>
+                                    <br>
+                                    ${mainAddress.address_street},${mainAddress.address_number} - ${mainAddress.address_neighborhood},${mainAddress.address_state_abbreviation} - ${mainAddress.address_code}
+                                </label>
+                            </td>
+                            <td>R$ ${Math.ceil(valorTotal*0.2)}<td>
 
-                            </tr>
-                        </c:forEach>               
+                        </tr>
+
 
                     </tbody>
                 </table>
-                <button class="btn waves-effect waves-light" type="submit" name="action" id="send-button">Submit
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="send-button">Prosseguir
                     <i class="material-icons right"></i>
                 </button>
 
             </form>
-        </div>
+
+            <h3 id="other-option" style="margin-top: 5%;">ou cadastre um novo</h3> 
+
+            <form class="formCadastro" method="post" action="<c:url value="/CadastrarEnderecoParaEntrega"/>" novalidate class="form">
+                <c:if test="${hasError eq 'true'}">
+                    <div class="msg msg-error z-depth-3 scale-transition">
+                        <ul>
+                        <c:forEach items="${errorList}" var="p">
+                            <li>${p}</li>
+                        </c:forEach>
+                            </ul>
+                    </div>
+                </c:if>
+                <fieldset>
+                    <legend>Cadastra Endereco entrega</legend>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" id="tit" name="titulo"value="${deliveryAddr.address_title}" class="validate" required>
+                            <label for="tit">Identificação</label>
+                        </div>
+
+
+                        <div class="input-field col s6">
+                            <input type="text" name="cep" id="cep" value="${deliveryAddr.address_code}" class="validate" required>
+                            <label for="cep">CEP</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+
+                            <input type="text" placeholder="Logradouro" name="street" id="logradouro" value="${deliveryAddr.address_street}" class="validate"readonly>
+                            <label for="logradouro">Logradouro</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input type="text" placeholder="Número" name="number" id="numero" value="${deliveryAddr.address_number}" class="validate" required>
+                            <label for="numero">Numero</label>
+                        </div>
+                        <div class="input-field col s4">  
+                            <input type="text" name="neighborhood" id="bairro" value="${deliveryAddr.address_neighborhood}" class="validate" readonly>
+                            <label for="bairro">Bairro</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" name="complement" id="complemento" value="${deliveryAddr.address_complement}" class="validate">
+                            <label for="complemento">Complemento</label>
+                        </div>
+                        <div class="input-field col s6">
+
+                            <select id="uf" name="uf" class="browser-default" readonly="readonly" tabindex="-1" aria-disabled="true" class="validate">
+                                <option value="${deliveryAddr.address_state_abbreviation}">${deliveryAddr.address_state_abbreviation}</option>
+                                <option value="AC">Ac</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BH</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <input type="text" name="customerId" value="${deliveryAddr.customer_customer_id}" style="display:none">
+                    <h5 id="valor-estimado"></h5>
+                    
+                    
+                    <button class="btn waves-effect waves-light" type="submit" name="action" id="send-button">Cadastrar
+                        <i class="material-icons right"></i>
+                    </button>
+
+
+
+                </fieldset>
+
+
+
+
+
+            </form>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js">
+
+            </script>
+
+            <script>
+                $("#cep").focusout(function () {
+                    $.ajax({
+                        url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode/',
+                        dataType: 'json',
+                        success: function (resposta) {
+                            $("#logradouro").val(resposta.logradouro);
+                            $("#complemento").val(resposta.complemento);
+                            $("#bairro").val(resposta.bairro);
+                            $("#cidade").val(resposta.localidade);
+                            $("#uf").val(resposta.uf);
+                            $("#numero").focus();
+                            document.getElementById("valor-estimado").innerHTML = "valor estimado para frete: R$"+${Math.ceil((valorTotal*0.4))};
+                            
+
+                        }
+                    });
+                });
+
+            </script>
     </body>
 </html>
