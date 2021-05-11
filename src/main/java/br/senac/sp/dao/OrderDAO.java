@@ -9,11 +9,14 @@ import bd.ConexaoDB;
 import br.senac.sp.model.Employee;
 import br.senac.sp.model.Order;
 import br.senac.sp.model.Payment;
+import br.senac.sp.model.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -62,5 +65,35 @@ public class OrderDAO {
             }
         }
         return retorno;
+    }
+    
+    public static List<Order> getOrders(int customerId){
+        String sql = "select * from purchaseorder where customer_customer_id="+customerId + ";";
+        System.out.println(sql);
+        ArrayList<Order> prodBd = new ArrayList<>();
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {// enquanto tiver empresas adiciona no array
+
+                Order pedido = new Order();
+                pedido.setPurchaseorder_id(rs.getString("purchaseorder_id"));
+                pedido.setPurchaseorder_amount(rs.getDouble("purchaseorder_amount"));
+                pedido.setCustomer_customer_id(rs.getInt("customer_customer_id"));
+                pedido.setPayment_payment_id(rs.getInt("payment_payment_id"));
+                pedido.setPurchaseorder_status(rs.getString("purchaseorder_status"));
+                pedido.setAddress_address_id(rs.getInt("address_address_id"));
+                pedido.setDiaPedido(rs.getString("diaPedido"));
+                System.out.println("ESSE É O ID DO PEDIDO " + pedido.getPurchaseorder_id());
+                prodBd.add(pedido);
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return prodBd;
     }
 }
