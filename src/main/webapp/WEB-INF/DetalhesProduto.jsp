@@ -47,7 +47,6 @@
                                     <td class="preco">
                                         <p> ${p.quantity}</p>
                                     </td>
-                                  
                                     
                                 </tr>
 

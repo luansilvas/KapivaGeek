@@ -35,9 +35,13 @@
                 <img src="icons/left-arrow.png">
             </a>
             <img src="images/profile-userpic.png" id="profilepic">
+            
+            
+         
             <form id="FormAlterar" method="post" action="<c:url value="/RegisterCustomer_Servlet"/>" novalidate class="form">
                 <fieldset>
                     <legend id="personal-data-label">Meus dados <a href="<c:url value="/updateCustomer_Servlet?customerId=${user.customer_id}"/>"> <i><img src="icons/pen32px.png"></i></a></legend>
+                    <a href="${request.pageContext.contextPath}OrderHistory_Servlet"><img src ="icons/historico.png"> </a>
 
                     <div class="divsForm infosForm">
                         <label>Nome:</label>
@@ -209,7 +213,7 @@
         </div>
 
         <a class="nav-link" href="${pageContext.request.contextPath}/UserLogout">Sair</a>
-
+    
         <c:if test="${hasError eq 'true'}">
             <script>Toasty();</script>  
             <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 20px; right: 20px;">

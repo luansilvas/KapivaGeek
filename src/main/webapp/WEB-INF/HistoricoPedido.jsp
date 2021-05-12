@@ -60,7 +60,6 @@
                                      <td>
                                         <p>${p.purchaseorder_status}</p>
                                     </td>
-                                    
                                    
                                     <td>
                                         <a href="${pageContext.request.contextPath}/VerDetalhes_Servlet?orderId=${p.purchaseorder_id}"><img id="delete" src="icons/loupe.png"></a>
