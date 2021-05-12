@@ -31,7 +31,7 @@
         <c:choose >
             <c:when test="${sessionScope.listaCarrinho != null && !sessionScope.listaCarrinho.isEmpty()}">
 
-             <section id="listaCarrinho">
+                <section id="listaCarrinho">
 
                     <table class="highlight" id="product-listing">
                         <thead>
@@ -73,7 +73,7 @@
                                     </td>
                                     <td>
                                         <p>${p.totalPrice}</p>
-                                        
+
                                     </td>
                                     <td>
                                         <a href="${pageContext.request.contextPath}/carrinho?productId=${p.productId}&acao=excluir" ><img id="delete" src="icons/delete2.png"></a>
@@ -90,26 +90,31 @@
                                 <legend>Calcular frete</legend>
                                 <label>Cep</label>
                                 <input type="number" name="cep" id="cep">
-                                 <input type="hidden" id="logradouro" name="rua">
+                                <input type="hidden" id="logradouro" name="rua">
                                 <input type="hidden" id="bairro" name="bairro">
                                 <input type="hidden" id="cidade" name="cidade">
                                 <input type="hidden" id="uf" name="uf">
 
                                 <input id="" class="inputCep" type="submit" value="Calcular frete">
 
-                               
+
                             </form>
                         </fieldset>
 
                     </div>
-                  <c:if test="${addre != null}">
-                            <div id="endereco">
-                                <span><c:out value="${addr.address_street}, ${addr.address_neighborhood}, ${addr.address_state_abbreviation}" /></span>
-                            </div>
+                    <c:if test="${addre != null}">
+                        <p>${valorCarrinho}</p>
+                        <div id="endereco">
+                            <span><c:out value="${addre.address_street}, ${addre.address_neighborhood}, ${addre.address_state_abbreviation}" /></span>
+                        </div>
+                    </c:if>
+
+
+                    <h3 id="valorTotal"  >Valor total: R$ ${valorTotal}
+                        <c:if test="${addre != null}" >
+                            + Frete R$ ${valorCarrinho}
                         </c:if>
-                     
-                   
-                    <h3 id="valorTotal"  >Valor total: R$ ${valorTotal}</h3>
+                    </h3>
                     <a id="finalizar" href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar</a>
                 </section>
 
