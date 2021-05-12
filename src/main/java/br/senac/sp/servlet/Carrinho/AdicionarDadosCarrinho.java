@@ -39,15 +39,28 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             }
 
             List<Product> listCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
+            int qtdeCarrinho = 0;
+            if (sessao.getAttribute("qtdeItensCarrinho") == null) {
+                System.out.println("NÃO TEM CARRINHO ADICIONADO");
+                sessao.setAttribute("qtdeItensCarrinho", 1);
+            } else {
+                qtdeCarrinho = (int) sessao.getAttribute("qtdeItensCarrinho");
+            }
 
             int produto = Integer.parseInt(request.getParameter("productId"));
 
             //INICIALIZA A QUANTIDADE DO PRODUTO =1
             Product p = iniciarQtd(ProductDAO.findProductById(produto));
             if (!find(listCarrinho, p.getProductId()) || listCarrinho.isEmpty()) {
+                System.out.println("NÃO TEM NA LISTA");
+                qtdeCarrinho+=1;
                 listCarrinho.add(p);
+            }else{
+                qtdeCarrinho += 1;
             }
 
+            sessao.removeAttribute("qtdeItensCarrinho");
+            sessao.setAttribute("qtdeItensCarrinho", qtdeCarrinho);
             response.sendRedirect(request.getContextPath() + "/Home_Servlet");
 
         } catch (SQLException ex) {
@@ -67,8 +80,9 @@ public class AdicionarDadosCarrinho extends HttpServlet {
         for (Product p : li) {
             if (p.getProductId() == id) {
                 Carrinho.addQuantidade(li, id, p.getQuantity());
+                System.out.println("TEM NA LISTA HEIN");
                 return true;
-            } 
+            }
         }
 
         return false;

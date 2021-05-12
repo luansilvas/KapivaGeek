@@ -64,6 +64,52 @@ public class AddressDAO {
         }
         return retorno;
     }
+    public static int addAddressReturnId(Address address){
+        boolean retorno = false;
+        Connection conexao;
+        PreparedStatement instrucaoSQL = null;
+        try {
+            conexao = ConexaoDB.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("insert into customer_address(customer_customer_id,address_street,address_code,address_state_abbreviation,address_number,address_neighborhood,address_complement,address_type,address_title,isActive) values(?,?,?,?,?,?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);
+            instrucaoSQL.setInt(1, address.getCustomer_customer_id());
+            instrucaoSQL.setString(2, address.getAddress_street());
+            instrucaoSQL.setString(3, address.getAddress_code());
+            instrucaoSQL.setString(4, address.getAddress_state_abbreviation());
+            instrucaoSQL.setString(5, address.getAddress_number());
+            instrucaoSQL.setString(6, address.getAddress_neighborhood());
+            instrucaoSQL.setString(7, address.getAddress_complement());
+            instrucaoSQL.setString(8, address.getAddress_type());
+            instrucaoSQL.setString(9, address.getAddress_title());
+            instrucaoSQL.setString(10, "Ativo");
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+            if (linhasAfetadas > 0) {
+                retorno = true;
+
+                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    address.setAddress_id(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Falha ao obter o código de endereço.");
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        } 
+        
+        finally {
+            try {
+                if (instrucaoSQL != null) {
+                    ConexaoDB.fecharConexao();
+                }
+            } catch (SQLException ex) {
+                System.out.println("Houve erro ao encerrar sua conexão. Tente novamente.");
+            }
+        }
+        return address.getAddress_id();
+    }
 
     public static Address getAddress(int addressId) {
         Address address = null;

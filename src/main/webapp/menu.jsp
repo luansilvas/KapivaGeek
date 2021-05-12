@@ -39,14 +39,14 @@
                     <li><a href="<c:url value="/Home_Servlet?categoria=Acessorio"/>"><img src="" alt="" id="universe-icon">Acessórios</a></li>
                     <li><a href="<c:url value="/Home_Servlet?categoria=Caneca"/>"><img src="" alt="" id="cart-icon">Canecas</a></li>
                     <li><a href="<c:url value="/Home_Servlet?categoria=variedade"/>><img src="" alt="" id="user-icon">Utilidades</a></li>
-           
+
                 </ul>
 
                 <form action="" method="post" id="search-topbar">
                     <div class="input-field">
                         <input id="#search" type="search" name="search">
                         <label class="label-icon" for="search"><i class="material-icons" style="color: black;"
-                                                                  id="search-topbar-label">search</i></label>
+                        id="search-topbar-label">search</i></label>
                     </div>
                 </form>
 
@@ -56,18 +56,27 @@
                     <li><a href=""><img src="icons/heart.png" alt="" id="universe-icon"></a></li>
 
                     <li><a href="${pageContext.request.contextPath}/carrinho?acao=abrirCarrinho"><img src="icons/shopping-cart.png" alt="" id="cart-icon"></a></li>
-                    <li class="itemD" id="itemD-quantity">0</li>
+
+                     <c:choose>
+                            <c:when test="${sessionScope.qtdeItensCarrinho != null}}">
+                            <li class="itemD" id="itemD-quantity">0</li>
+                            </c:when>
+                            <c:otherwise>
+                            <li class="itemD" id="itemD-quantity">${sessionScope.qtdeItensCarrinho}</li>
+                        </c:otherwise>
+
+                    </c:choose>
                         <c:choose>
                             <c:when test="${sessionScope.user != null}">
                             <li><a href="<c:url value="/alterRegister_Costumer" />"><img src="icons/user.png" id="user-icon">${user.getCustomer_name()}</a></li>
                             <li><a href="${pageContext.request.contextPath}/UserLogout"><img src="icons/logout.png" id="user-icon"></a></li>
-                        </c:when>
-                        <c:otherwise>
+                                </c:when>
+                                <c:otherwise>
                             <li><a href="<c:url value="/Loginusr" />"><img src="icons/user.png" id="user-icon">Login</a></li>
-                            
-                                </c:otherwise>
-                            
-                            </c:choose>
+
+                        </c:otherwise>
+
+                    </c:choose>
 
 
 
@@ -107,7 +116,13 @@
             <li><a class="waves-effect" href="#utilidades"><i class="material-icons">public</i>Variedades</a></li>
         </ul>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js">
+            
+                       
+                        $(document).ready(function () {
+                $('.collapsible').collapsible();
+            });
+        </script>
         <script>
 
 
@@ -148,6 +163,8 @@
             comprar.addEventListener('click', function () {
                 ComprarItem();
             });
+            
+ 
 
         </script>
     </body>

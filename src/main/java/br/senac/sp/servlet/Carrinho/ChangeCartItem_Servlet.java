@@ -27,6 +27,7 @@ public class ChangeCartItem_Servlet extends HttpServlet {
         try {
             HttpSession sessao = request.getSession();
             List<Product> carrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
+            int qtdeCarrinho = (int) sessao.getAttribute("qtdeItensCarrinho");
             double valorTotal = (Double) sessao.getAttribute("valorTotal");
             int prodId = Integer.parseInt(request.getParameter("prodId"));
             Product produtoSelecionado = new Product();
@@ -37,6 +38,9 @@ public class ChangeCartItem_Servlet extends HttpServlet {
                         valorTotal = valorTotal + p.getPrice();
                     }
                 }
+                qtdeCarrinho = +1;
+                sessao.removeAttribute("qtdeItensCarrinho");
+                sessao.setAttribute("qtdeItensCarrinho", qtdeCarrinho);
 
             } else if (request.getParameter("acao").equals("diminuir")) {
                 for (Product p : carrinho) {
@@ -45,11 +49,16 @@ public class ChangeCartItem_Servlet extends HttpServlet {
                         p.setQuantity(p.getQuantity() - 1);
                         valorTotal = valorTotal - p.getPrice();
                         produtoSelecionado = p;
+                        qtdeCarrinho -= 1;
+
                     }
                 }
                 if (produtoSelecionado.getQuantity() <= 0) {
+                    qtdeCarrinho-=howManyProducts(carrinho,prodId);
                     carrinho.remove(produtoSelecionado);
                 }
+                sessao.removeAttribute("qtdeItensCarrinho");
+                sessao.setAttribute("qtdeItensCarrinho", qtdeCarrinho);
 
             } else if (request.getParameter("acao").equals("deletar")) {
                 for (Product p : carrinho) {
@@ -60,6 +69,9 @@ public class ChangeCartItem_Servlet extends HttpServlet {
                         produtoSelecionado = p;
                     }
                 }
+                qtdeCarrinho-=howManyProducts(carrinho,prodId);
+                sessao.removeAttribute("qtdeItensCarrinho");
+                sessao.setAttribute("qtdeItensCarrinho", qtdeCarrinho);
                 carrinho.remove(produtoSelecionado);
             }
             if (carrinho.size() == 0) {
@@ -87,4 +99,13 @@ public class ChangeCartItem_Servlet extends HttpServlet {
 
     }
 
+    public static int howManyProducts(List<Product> li, int id) {
+        int qtde = 0;
+        for (Product p : li) {
+            if (p.getProductId() == id) {
+                qtde = p.getQuantity();
+            }
+        }
+        return qtde;
+    }
 }

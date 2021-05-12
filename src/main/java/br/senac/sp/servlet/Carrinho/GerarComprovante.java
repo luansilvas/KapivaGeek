@@ -45,7 +45,7 @@ public class GerarComprovante extends HttpServlet {
         Customer usuario = (Customer) sessao.getAttribute("user");
         Address addr = (Address) sessao.getAttribute("deliveryAddress");
         List<Product> listaProdutos = (List<Product>) sessao.getAttribute("listaCarrinho");
-        Order order = new Order(codPedido.toString(), (Double) sessao.getAttribute("valorTotal"), usuario.getCustomer_id(), codPagamento, "Peding", addr.getAddress_id());
+        Order order = new Order(codPedido.toString(), (Double) sessao.getAttribute("valorTotal"), usuario.getCustomer_id(), codPagamento, "Aguardando pagamento", addr.getAddress_id());
         if (OrderDAO.addOrder(order)) {
             for (Product p : listaProdutos) {
                 ProductOrder po = new ProductOrder(codPedido.toString(), p.getProductId(), p.getQuantity(), p.getPrice());

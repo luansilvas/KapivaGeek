@@ -114,6 +114,10 @@
                         <c:if test="${addre != null}" >
                             + Frete R$ ${valorCarrinho}
                         </c:if>
+                     
+                   
+                    <h3 id="valorTotal"  >Valor total: R$ ${valorTotal}</h3>
+                    <a id="finalizar" href="${pageContext.request.contextPath}/EscolherEnderecoEntrega" >Finalizar</a>
                     </h3>
                         <div id="botaoFinalizar">
                         <a id="finalizar" href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar <img id="imgCarrinho" src="icons/carrinhoFinalizar.png"> </a>
