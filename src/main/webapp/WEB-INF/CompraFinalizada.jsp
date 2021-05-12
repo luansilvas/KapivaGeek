@@ -25,7 +25,15 @@
         
     </head>
     <body>
-        <h1>Obrigado por comprar com a gente!</h1>
-        <h5>Acompanhe sua compra pelo código ${sessionScope.codPedido}</h5>
+        
+        <%@include file="../menu.jsp" %>
+        
+        <h1 class="thanks" style="text-align: center;margin-top:10%">Obrigado por comprar com a gente!</h1>
+       
+        <h5 class="thanks" style="text-align: center;">Acompanhe sua compra pelo código ${sessionScope.codPedido}</h5>
+        
+                    <a href="${pageContext.request.contextPath}/Home_Servlet" id="go-back" style="margin-top: 10%;text-align: center;">
+                Continuar comprando
+            </a>
     </body>
 </html>

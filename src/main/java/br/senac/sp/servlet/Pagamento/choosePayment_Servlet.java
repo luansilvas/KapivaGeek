@@ -9,6 +9,7 @@ import br.senac.sp.model.Card;
 import br.senac.sp.model.Payment;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,27 +33,27 @@ public class choosePayment_Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            HttpSession sessao = request.getSession();
-            Payment p = null;
-            Card c = null;
-            if (request.getParameter("boleto") != null) {
 
-                p = new Payment("Boleto", 1, "pending");
-                sessao.setAttribute("pagamento", p);
-                request.getRequestDispatcher("/WEB-INF/revisarPedido.jsp").forward(request, response);
+        HttpSession sessao = request.getSession();
+        Payment p = null;
+        Card c = null;
+        if (request.getParameter("boleto") != null) {
+            p = new Payment("Boleto", 1, "pending");
+            sessao.setAttribute("pagamento", p);
+            request.getRequestDispatcher("/WEB-INF/revisarPedido.jsp").forward(request, response);
 
-            } else {
-                String card_number = request.getParameter("numCartao");
-                String cvv = request.getParameter("cvv");
-                String exp = request.getParameter("exp");
-                System.out.println("ESSA É A DATA DE EXP " + exp);
-                String printedName = request.getParameter("printedName");
-                int payment_instalments = Integer.parseInt(request.getParameter("parcelas"));
+        } else {
+            String card_number = request.getParameter("numCartao");
+            String cvv = request.getParameter("cvv");
+            String exp = request.getParameter("exp");
+            String printedName = request.getParameter("printedName");
+            int payment_instalments = Integer.parseInt(request.getParameter("parcelas"));
 
-                c = new Card(card_number, cvv, exp, printedName, "CCredito", payment_instalments, "pending");
-                CreditCardValidation cv = new CreditCardValidation();
+            c = new Card(card_number, cvv, exp, printedName, "CCredito", payment_instalments, "pending");
+            CreditCardValidation cv = new CreditCardValidation();
 
+            
+            try {
                 List<String> errorList = cv.CheckCCData(c);
                 if (errorList.size() == 0) {
 
@@ -66,15 +67,23 @@ public class choosePayment_Servlet extends HttpServlet {
                     request.getRequestDispatcher("/WEB-INF/revisarPedido.jsp").forward(request, response);
 
                 } else {
-                    for (String s : errorList) {
-                        System.out.println("TEM ESSE ERRO" + p);
-                    }
+                    request.setAttribute("hasError", "true");
+                    request.setAttribute("errorList", errorList);
+                    request.getRequestDispatcher("/WEB-INF/EscolherFormaPagamento.jsp").forward(request, response);
 
                 }
+            } catch (Exception e) {
+                request.setAttribute("hasError", "true");
+                ArrayList<String> errorList = new ArrayList();
+                errorList.add("Verifique os valores digitados");
+                
+                request.setAttribute("errorList", errorList);
+
+                System.out.println(e.getMessage());
+                request.getRequestDispatcher("/WEB-INF/EscolherFormaPagamento.jsp").forward(request, response);
             }
-        } catch (Exception e) {
-            request.getRequestDispatcher("/WEB-INF/EscolherFormaPagamento.jsp").forward(request, response);
         }
+
     }
 
 }

@@ -21,6 +21,7 @@ public class CreditCardValidation {
 
     public List<String> CheckCCData(Card c) {
         List<String> errorList = new ArrayList();
+        try{
         System.out.println(c);
         if (c.getPrintedName().equals("")
                 || c.getCvv().equals("")
@@ -28,12 +29,11 @@ public class CreditCardValidation {
             System.out.println("Existem campos que nao foram preenchidos");
             errorList.add("Nem todos os campos foram preenchidos.");
         }
-
-        if (!CheckCCNumber(c.getCard_number())) {
+        if (CheckCCNumber(c.getCard_number())) {
             errorList.add("O cartão inserido não é válido");
             System.out.println("cartao invalido");
         }
-        if (!checkExp(c.getExp())) {
+        if (checkExp(c.getExp())) {
             System.out.println("Exp invalido");
             errorList.add("Data exp invalida");
         }
@@ -45,7 +45,10 @@ public class CreditCardValidation {
             System.out.println("CVV invalido");
             errorList.add("Código de verificação inválido.");
         }
-
+        }catch(Exception e){
+            System.out.println("ERRRO DE FORMATO HEIN");
+        throw e;
+        }
         return errorList;
     }
 

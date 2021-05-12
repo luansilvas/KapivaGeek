@@ -7,6 +7,9 @@ and open the template in the editor.
     Created on : 07/05/2021, 20:32:13
     Author     : luans
 */
+#go-back{
+margin-top: 10%;
+}
 #pay-boleto{
     margin-left: 70%;
 }
@@ -50,6 +53,7 @@ and open the template in the editor.
 #go-address{
     margin-top: 2%;
     margin-left: 45%;
+    margin-bottom: 5%;
 }
 #titulo{
     text-align: center

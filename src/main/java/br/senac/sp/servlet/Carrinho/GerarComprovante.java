@@ -54,6 +54,7 @@ public class GerarComprovante extends HttpServlet {
 
         }
         sessao.removeAttribute("listaCarrinho");
+        sessao.setAttribute("qtdeItensCarrinho",0);
         request.getRequestDispatcher("/WEB-INF/CompraFinalizada.jsp").forward(request, response);
         }catch(Exception e){
         request.getRequestDispatcher("/WEB-INF/UserLogin.jsp").forward(request, response);

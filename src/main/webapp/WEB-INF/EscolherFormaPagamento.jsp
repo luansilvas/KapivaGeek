@@ -15,24 +15,37 @@
         <title>Carrinho</title>
         <link href="css/EstiloRevisarPedido.css" type="text/css" rel="stylesheet">
 
-              href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     </head>
     <body>
         <%@include file="../menu.jsp" %>
-        
-                <nav>
+
+        <nav>
             <div class="nav-wrapper brown" id="nav-stepper">
                 <div class="col s12" id="step">
-                    <a href="${pageContext.request.contextPath}/Home_Servlet" class="breadcrumb white-text">Loja</a>
-                    <a href="${pageContext.request.contextPath}/ReviewOrder" class="breadcrumb white-text">Meu carrinho</a>
+                    <a href="${pageContext.request.contextPath}/Home_Servlet" class="breadcrumb white-text">Loja</a>                
+                    <a href="${pageContext.request.contextPath}/carrinho?acao=abrirCarrinho" class="breadcrumb white-text">Meu carrinho</a>                  
                     <a href="${pageContext.request.contextPath}/EscolherEnderecoEntrega" class="breadcrumb white-text">Endereco</a>
-                    <a href="${pageContext.request.contextPath}/choosePayment_Servlet" class="breadcrumb white-text" disabled>Pagamento</a>
+                    <a href="${pageContext.request.contextPath}/choosePayment_Servlet" class="breadcrumb white-text">Pagamento</a>
                     <a class="breadcrumb grey-text">Confirma</a>
                 </div>
             </div>
         </nav>
         <h1 id="payment-title">Escolha a forma de pagamento</h1>
         <section id="pagamento">
+            <a href="${pageContext.request.contextPath}/EscolherEnderecoEntrega" id="go-back" style="margin-top: 10%;">
+                <img src="icons/left-arrow.png">
+            </a>
+
+            <c:if test="${hasError eq 'true'}">
+                <div class="msg msg-error z-depth-3 scale-transition">
+                    <ul>
+                        <c:forEach items="${errorList}" var="p">
+                            <li>${p}</li>
+                            </c:forEach>
+                    </ul>
+                </div>
+            </c:if>
             <ul class="collapsible">
                 <li>
                     <div class="collapsible-header"><i class="material-icons">feed</i>Boleto</div>
@@ -40,8 +53,8 @@
                         <form action="<c:url value="/choosePayment_Servlet"/>" method="POST">
                             <input type="radio" id="boleto" name="boleto" value="boleto" required>
                             <label for="boleto" value="boleto"class="black-text">1x de ${valorTotal}</label>
-                            
-                            
+
+
                             <button class="btn waves-effect brown" id="pay-boleto" type="submit" name="action">Pagar com boleto
                                 <i class="material-icons right"></i>
                             </button>
