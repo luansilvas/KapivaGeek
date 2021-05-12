@@ -223,6 +223,12 @@
     <servlet>
         <servlet-name>CadastrarEnderecoParaEntrega</servlet-name>
         <servlet-class>br.senac.sp.servlet.Address.CadastrarEnderecoParaEntrega</servlet-class>
+        <servlet-name>OrderHistory_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Orders.OrderHistory_Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerDetalhes_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.Orders.VerDetalhes_Servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
@@ -407,6 +413,12 @@
     <servlet-mapping>
         <servlet-name>CadastrarEnderecoParaEntrega</servlet-name>
         <url-pattern>/CadastrarEnderecoParaEntrega</url-pattern>
+        <servlet-name>OrderHistory_Servlet</servlet-name>
+        <url-pattern>/OrderHistory_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerDetalhes_Servlet</servlet-name>
+        <url-pattern>/VerDetalhes_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

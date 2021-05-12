@@ -112,6 +112,7 @@ public class Carrinho extends HttpServlet {
         addr.setAddress_complement(cidadeStr);
         
         request.setAttribute("addre", addr);
+        request.setAttribute("valorCarrinho", geraValorCEP());
          request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
         
     }
@@ -173,5 +174,9 @@ public class Carrinho extends HttpServlet {
     
     
     
+    
+    public static int geraValorCEP(){
+      return  (int) (1 + Math.random() * 20);
+    }
     
 }

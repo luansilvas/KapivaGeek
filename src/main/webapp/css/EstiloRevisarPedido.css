@@ -26,6 +26,9 @@ and open the template in the editor.
   color: white;
 }
 
+.titulo{
+    margin-left: 50%;
+}
 .prod-img{
     height: 80px;
     width: 90px;

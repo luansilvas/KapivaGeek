@@ -22,6 +22,9 @@ public class Order {
         return diaPedido;
     }
 
+    public Order() {
+    }
+
     public Order(String purchaseorder_id, double purchaseorder_amount, int customer_customer_id, int payment_payment_id, String purchaseorder_status, int address_address_id, String diaPedido) {
         this.purchaseorder_id = purchaseorder_id;
         this.purchaseorder_amount = purchaseorder_amount;
