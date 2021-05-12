@@ -110,7 +110,7 @@
                      
                    
                     <h3 id="valorTotal"  >Valor total: R$ ${valorTotal}</h3>
-                    <a id="finalizar" href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar</a>
+                    <a id="finalizar" href="${pageContext.request.contextPath}/EscolherEnderecoEntrega" >Finalizar</a>
                 </section>
 
             </c:when>

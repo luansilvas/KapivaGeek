@@ -24,16 +24,26 @@ public class EscolherEnderecoEntrega extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                
+        HttpSession sessao = request.getSession(); 
+
+        if (sessao.getAttribute("user")==null) {
+            request.getRequestDispatcher("/WEB-INF/UserLogin.jsp").forward(request, response);
+        }else{
                 request.getRequestDispatcher("/WEB-INF/escolherEnderecoEntrega.jsp").forward(request, response);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         HttpSession sessao = request.getSession(); 
+         if (sessao.getAttribute("user")==null) {
+            request.getRequestDispatcher("/WEB-INF/UserLogin.jsp").forward(request, response);
+        }
         if (request.getParameter("end")!=null) {
             int idEndereco = Integer.parseInt(request.getParameter("end"));
             
-            HttpSession sessao = request.getSession();
             List<Address> addresses = (List<Address>)sessao.getAttribute("addr");
             Address enderecoEscolhido = null;
             
@@ -43,8 +53,10 @@ public class EscolherEnderecoEntrega extends HttpServlet {
                 }
             }
             sessao.setAttribute("deliveryAddress", enderecoEscolhido);
-            request.getRequestDispatcher("/WEB-INF/DoubleCheckPedido.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/EscolherFormaPagamento.jsp").forward(request, response);
                 
+        }else{
+        request.getRequestDispatcher("/WEB-INF/EscolherEnderecoEntrega.jsp").forward(request, response);
         }
         
 

@@ -61,7 +61,7 @@ public class UserLogin extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/alterRegister_Costumer");
                 }else{
                     request.setAttribute("user", customer);
-                response.sendRedirect(request.getContextPath() + "/ReviewOrder");
+                response.sendRedirect(request.getContextPath() + "/EscolherEnderecoEntrega");
                 }
                 
                 System.out.println("validado...");

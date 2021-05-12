@@ -40,7 +40,7 @@ public class choosePayment_Servlet extends HttpServlet {
 
                 p = new Payment("Boleto", 1, "pending");
                 sessao.setAttribute("pagamento", p);
-                request.getRequestDispatcher("/WEB-INF/escolherEnderecoEntrega.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/revisarPedido.jsp").forward(request, response);
 
             } else {
                 String card_number = request.getParameter("numCartao");
@@ -63,7 +63,7 @@ public class choosePayment_Servlet extends HttpServlet {
                     sessao.setAttribute("cartaoPag", c);
                     System.out.println((Payment) sessao.getAttribute("payment"));
 
-                    request.getRequestDispatcher("/WEB-INF/escolherEnderecoEntrega.jsp").forward(request, response);
+                    request.getRequestDispatcher("/WEB-INF/revisarPedido.jsp").forward(request, response);
 
                 } else {
                     for (String s : errorList) {

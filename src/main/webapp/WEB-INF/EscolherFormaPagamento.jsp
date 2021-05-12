@@ -15,39 +15,34 @@
         <title>Carrinho</title>
         <link href="css/EstiloRevisarPedido.css" type="text/css" rel="stylesheet">
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/style_menu.css">
-        <link rel="stylesheet" type="text/css"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <link rel="stylesheet" type="text/css"
               href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     </head>
     <body>
+        <%@include file="../menu.jsp" %>
+        
                 <nav>
-            <div class="nav-wrapper brown">
+            <div class="nav-wrapper brown" id="nav-stepper">
                 <div class="col s12" id="step">
                     <a href="${pageContext.request.contextPath}/Home_Servlet" class="breadcrumb white-text">Loja</a>
                     <a href="${pageContext.request.contextPath}/ReviewOrder" class="breadcrumb white-text">Meu carrinho</a>
+                    <a href="${pageContext.request.contextPath}/EscolherEnderecoEntrega" class="breadcrumb white-text">Endereco</a>
                     <a href="${pageContext.request.contextPath}/choosePayment_Servlet" class="breadcrumb white-text" disabled>Pagamento</a>
-                    <a class="breadcrumb grey-text">Endereco</a>
                     <a class="breadcrumb grey-text">Confirma</a>
                 </div>
             </div>
         </nav>
-        <h1>Escolha a forma de pagamento</h1>
+        <h1 id="payment-title">Escolha a forma de pagamento</h1>
         <section id="pagamento">
             <ul class="collapsible">
                 <li>
                     <div class="collapsible-header"><i class="material-icons">feed</i>Boleto</div>
                     <div class="collapsible-body">
                         <form action="<c:url value="/choosePayment_Servlet"/>" method="POST">
-                            <input type="radio" id="boleto" name="boleto" value="boleto">
-                            <label for="boleto" value="boleto">1x de ${valorTotal}</label>
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <input type="radio" id="boleto" name="boleto" value="boleto" required>
+                            <label for="boleto" value="boleto"class="black-text">1x de ${valorTotal}</label>
+                            
+                            
+                            <button class="btn waves-effect brown" id="pay-boleto" type="submit" name="action">Pagar com boleto
                                 <i class="material-icons right"></i>
                             </button>
                         </form>
@@ -105,11 +100,6 @@
                 </li>
             </ul>
         </section>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js">
-            $(document).ready(function () {
-                $('.collapsible').collapsible();
-            });
-        </script>
+
     </body>
 </html>

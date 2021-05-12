@@ -7,6 +7,12 @@ and open the template in the editor.
     Created on : 07/05/2021, 20:32:13
     Author     : luans
 */
+#pay-boleto{
+    margin-left: 70%;
+}
+#nav-stepper{
+    margin-top: 70px;
+}
 .msg {
   width:90%;
   border: 1px solid;
@@ -33,7 +39,7 @@ and open the template in the editor.
 }
 
 #step a:first-child{
-    margin-left: 32%;
+    margin-left: 35%;
 }
 .change-quantity{
     margin-bottom: -5%;
@@ -49,6 +55,10 @@ and open the template in the editor.
 #pagamento{
     margin-left: 20%;
     margin-right: 20%;
+    margin-top: 8%;
+}
+#payment-title{
+    margin-left: 20%;
 }
 
 #valorTotal{

@@ -17,6 +17,7 @@ import br.senac.sp.dao.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,7 +28,9 @@ public class Home_Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("CHEGUEI");
+
+        
+
         try{
         String categoria = request.getParameter("categoria");
 

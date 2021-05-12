@@ -103,7 +103,7 @@ public class ChangeCartItem_Servlet extends HttpServlet {
         int qtde = 0;
         for (Product p : li) {
             if (p.getProductId() == id) {
-                qtde++;
+                qtde = p.getQuantity();
             }
         }
         return qtde;

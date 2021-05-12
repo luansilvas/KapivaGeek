@@ -26,13 +26,14 @@
               href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     </head>
     <body>
+      
         <nav>
-            <div class="nav-wrapper brown">
+            <div class="nav-wrapper brown" id="nav-stepper">
                 <div class="col s12" id="step">
-                    <a href="${pageContext.request.contextPath}/Home_Servlet" class="breadcrumb white-text">Loja</a>
-                    <a href="${pageContext.request.contextPath}/ReviewOrder" class="breadcrumb white-text">Meu carrinho</a>
-                    <a href="${pageContext.request.contextPath}/choosePayment_Servlet" class="breadcrumb white-text" disabled>Pagamento</a>
+                    <a href="${pageContext.request.contextPath}/Home_Servlet" class="breadcrumb white-text">Loja</a>                
+                    <a href="${pageContext.request.contextPath}/carrinho?acao=abrirCarrinho" class="breadcrumb white-text">Meu carrinho</a>                  
                     <a href="${pageContext.request.contextPath}/EscolherEnderecoEntrega" class="breadcrumb white-text">Endereco</a>
+                    <a class="breadcrumb grey-text">Pagamento</a>                   
                     <a class="breadcrumb grey-text">Revisar</a>
                 </div>
             </div>
