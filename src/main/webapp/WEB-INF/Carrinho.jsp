@@ -115,7 +115,9 @@
                             + Frete R$ ${valorCarrinho}
                         </c:if>
                     </h3>
-                    <a id="finalizar" href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar</a>
+                        <div id="botaoFinalizar">
+                        <a id="finalizar" href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar <img id="imgCarrinho" src="icons/carrinhoFinalizar.png"> </a>
+                    </div>
                 </section>
 
             </c:when>
@@ -125,7 +127,7 @@
                 </div>
             </c:otherwise>
         </c:choose>  
-        <a href="${pageContext.request.contextPath}/Home_Servlet">Continuar comprando</a>
+        <a id="continuar" href="${pageContext.request.contextPath}/Home_Servlet"><img id="voltarCompra" src="icons/undo.png">Continuar comprando</a>
 
 
         <script>
