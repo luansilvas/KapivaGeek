@@ -112,6 +112,32 @@ input[type=submit]{
     margin-top: 300px;
     text-align: center;
 }
+#finalizar{
+   margin: 0 auto;
+    width: 100%;
+    font-size: 20px;
+}
+
+#imgCarrinho{
+    width: 2%; 
+}
+#botaoFinalizar{
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    
+}
+#continuar{
+    font-size: 20px;
+    margin-bottom: 30px;
+  
+}
+
+#voltarCompra{
+    width: 1%;
+    margin: 0 10px;
+}
+    
 #other-option{
     text-align: center;
 }
