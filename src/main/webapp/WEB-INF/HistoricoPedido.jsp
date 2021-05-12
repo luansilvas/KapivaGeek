@@ -35,9 +35,13 @@
                                 <th class="valores">
                                     <p class="titulos">Valor Total sem frete</p>
                                 </th>
+                                <th class="valores">
+                                    <p class="titulos">Status</p>
+                                </th>
                                 <th>
                                     <p>Ver detalhes</p>
-                                </th>  
+                                </th> 
+                                
 
                             </tr>
                         </thead>
@@ -45,7 +49,6 @@
                             <tbody>
                                 <tr>
                                     <td id="produto">
-                                        
                                         <p>${p.purchaseorder_id}</p>
                                     </td>
                                     <td id="qtd" class="borda">
@@ -54,6 +57,10 @@
                                     <td class="preco">
                                         <p>R$ ${p.purchaseorder_amount}</p>
                                     </td>
+                                     <td>
+                                        <p>${p.purchaseorder_status}</p>
+                                    </td>
+                                    
                                    
                                     <td>
                                         <a href="${pageContext.request.contextPath}/VerDetalhes_Servlet?orderId=${p.purchaseorder_id}"><img id="delete" src="icons/loupe.png"></a>

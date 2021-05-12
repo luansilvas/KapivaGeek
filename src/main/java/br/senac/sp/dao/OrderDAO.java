@@ -84,9 +84,37 @@ public class OrderDAO {
                 pedido.setPayment_payment_id(rs.getInt("payment_payment_id"));
                 pedido.setPurchaseorder_status(rs.getString("purchaseorder_status"));
                 pedido.setAddress_address_id(rs.getInt("address_address_id"));
+                pedido.setPurchaseorder_status(rs.getString("purchaseorder_status"));
                 pedido.setDiaPedido(rs.getString("diaPedido"));
                 System.out.println("ESSE É O ID DO PEDIDO " + pedido.getPurchaseorder_id());
                 prodBd.add(pedido);
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return prodBd;
+    }
+    
+    public static List<Product> getProdPedido(String id){
+        String sql = "select p.name_prod,p.price,ppo.quantity from product_purchaseorder as ppo INNER JOIN purchaseorder as po on po.purchaseorder_id = ppo.purchaseorder_purchaseorder_id INNER JOIN products as p on ppo.product_product_id = p.prod_id where po.purchaseorder_id='" + id + "'";
+        
+        System.out.println(sql);
+        ArrayList<Product> prodBd = new ArrayList<>();
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {// enquanto tiver empresas adiciona no array
+
+                Product pedido = new Product();
+                pedido.setProductName(rs.getString("name_prod"));
+                pedido.setPrice(rs.getDouble("price"));
+                pedido.setQuantity(rs.getInt("quantity"));
+                prodBd.add(pedido);
+                System.out.println(prodBd.toString());
             }
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
