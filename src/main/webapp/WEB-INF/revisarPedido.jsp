@@ -44,7 +44,7 @@
             <c:when test="${sessionScope.listaCarrinho != null && !sessionScope.itensSelecionados.isEmpty()}">
 
                 <section id="listaCarrinho">
-                    <a href="${pageContext.request.contextPath}/choosePayment_Servlet" id="go-back" style="margin-top: 10%;">
+                    <a href="${pageContext.request.contextPath}/choosePayment_Servlet" id="go-back" style="margin-top: 10%;margin-left: 20%;">
                         <img src="icons/left-arrow.png">
                     </a>
                     <table class="highlight" id="product-listing">
@@ -54,6 +54,7 @@
                                 <th class="tituloTabela">Produto</th>
                                 <th class="tituloTabelaQtd">Quantidade</th>
                                 <th class="valores">Valor Unit</th>
+                                <th class="valores">Valor total item</th>
                                 <th>Acões</th>
 
                             </tr>
@@ -69,26 +70,32 @@
                                                 ${p.quantity}
                                         <a  href="<c:url value="/ChangeCartItem_Servlet?prodId=${p.productId}&acao=adicionar"/>"><i><img class="change-quantity" src="icons/add24px.png"></i></a>
                                     </td>
-                                    <td>R$ ${p.price}</td>
-                                    <td>
-                                        <a href="<c:url value="/ChangeCartItem_Servlet?prodId=${p.productId}&acao=deletar"/>">
-                                            <i><img src="icons/delete.png"></i></td>
+                                    <td>R$ ${Math.ceil(p.price)}</td>
+
                                     </a>
+                                     <td>R$ ${Math.ceil(p.totalPrice)}</td>       
+                                                                         <td>
+                                        <a href="<c:url value="/ChangeCartItem_Servlet?prodId=${p.productId}&acao=deletar"/>">
+                                            <i><img src="icons/delete.png"></i>
+                                        </td>
+                                            
                                 </tr>
                             </c:forEach>
 
                             <tr>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                                 <td>Frete:</td>
-                                <td>R$ 14.0</td>
+                                <td>R$ ${Math.ceil(valorFrete)}</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                                 <td>Total:</td>
-                                <td>R$ ${valorTotal+14}</td>
+                                <td>R$ ${Math.ceil(valorTotal+valorFrete)}</td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -111,18 +118,18 @@
                         <th scope="col">
 
                         </th>
-
+                        <th>Alterar<th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>${deliveryAddress.address_street},${deliveryAddress.address_number} - ${deliveryAddress.address_neighborhood},${deliveryAddress.address_state_abbreviation} - ${addrFat.address_code}</td>
+                        <td>${deliveryAddress.address_street},${deliveryAddress.address_number} - ${deliveryAddress.address_neighborhood},${deliveryAddress.address_state_abbreviation} - ${addrFat.address_code}</td>                   
+                        <td><a href="<c:url value="/EscolherEnderecoEntrega"/>"><i><img src="icons/pen32px.png"></i></a></td>
                     </tr>
-
                 </tbody>
             </table>
         </div>
-        <c:choose >
+        <c:choose>
             <c:when test="${sessionScope.pagamento.payment_way eq 'Boleto'}">
                 <div id="endCadastrado">
 
@@ -136,7 +143,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Valor à vista de ${Math.ceil(valorTotal+14)} no ${sessionScope.pagamento.payment_way}</td>
+                                <td>Valor à vista de ${Math.ceil(valorTotal+valorFrete)} no ${sessionScope.pagamento.payment_way}</td>
                             </tr>
 
                         </tbody>
@@ -159,7 +166,7 @@
                             <tr>
                                 <td>${sessionScope.pagamento.payment_way}</td>
                                 <td>${sessionScope.pagamento.payment_instalments}</td>
-                                <td>${Math.ceil(valorTotal/sessionScope.pagamento.payment_instalments)}</td>
+                                <td>${Math.ceil((valorTotal+valorFrete)/sessionScope.pagamento.payment_instalments)}</td>
                             </tr>
 
                         </tbody>

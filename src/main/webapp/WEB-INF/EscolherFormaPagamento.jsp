@@ -52,7 +52,7 @@
                     <div class="collapsible-body">
                         <form action="<c:url value="/choosePayment_Servlet"/>" method="POST">
                             <input type="radio" id="boleto" name="boleto" value="boleto" required>
-                            <label for="boleto" value="boleto"class="black-text">1x de ${valorTotal}</label>
+                            <label for="boleto" value="boleto"class="black-text">1x de ${Math.ceil(valorTotal+valorFrete)}</label>
 
 
                             <button class="btn waves-effect brown" id="pay-boleto" type="submit" name="action">Pagar com boleto
@@ -68,19 +68,20 @@
                             <label>Browser Select</label>
                             <select class="browser-default" name="parcelas">
                                 <option value="" disabled selected>Choose your option</option>
-                                <option value="1">1x de ${Math.ceil(valorTotal)}</option>
-                                <option value="2">2x de ${Math.ceil(valorTotal/2)}</option>
-                                <option value="3">3x de ${Math.ceil(valorTotal/3)}</option>
-                                <option value="4">4x de ${Math.ceil(valorTotal/4)}</option>
-                                <option value="5">5x de ${Math.ceil(valorTotal/5)}</option>
-                                <option value="6">6x de ${Math.ceil(valorTotal/6)}</option>
-                                <option value="7">7x de ${Math.ceil(valorTotal/7)}</option>
-                                <option value="8">8x de ${Math.ceil(valorTotal/8)}</option>
-                                <option value="9">9x de ${Math.ceil(valorTotal/9)}</option>
-                                <option value="10">10x de ${Math.ceil(valorTotal/10)}</option>
-                                <option value="11">11x de ${Math.ceil(valorTotal/11)}</option>
-                                <option value="12">12x de ${Math.ceil(valorTotal/12)}</option>
+                                <option value="1">1x de ${Math.ceil((valorTotal+valorFrete))}</option>
+                                <option value="2">2x de ${Math.ceil((valorTotal+valorFrete)/2)}</option>
+                                <option value="3">3x de ${Math.ceil((valorTotal+valorFrete)/3)}</option>
+                                <option value="4">4x de ${Math.ceil((valorTotal+valorFrete)/4)}</option>
+                                <option value="5">5x de ${Math.ceil((valorTotal+valorFrete)/5)}</option>
+                                <option value="6">6x de ${Math.ceil((valorTotal+valorFrete)/6)}</option>
+                                <option value="7">7x de ${Math.ceil((valorTotal+valorFrete)/7)}</option>
+                                <option value="8">8x de ${Math.ceil((valorTotal+valorFrete)/8)}</option>
+                                <option value="9">9x de ${Math.ceil((valorTotal+valorFrete)/9)}</option>
+                                <option value="10">10x de ${Math.ceil((valorTotal+valorFrete)/10)}</option>
+                                <option value="11">11x de ${Math.ceil((valorTotal+valorFrete)/11)}</option>
+                                <option value="12">12x de ${Math.ceil((valorTotal+valorFrete)/12)}</option>
                             </select>
+
 
                             <div class="row">
                                 <div class="input-field col s6">
@@ -104,7 +105,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <button class="btn waves-effect waves-light brown" type="submit" name="action">Salvar
                                 <i class="material-icons right"></i>
                             </button>
 

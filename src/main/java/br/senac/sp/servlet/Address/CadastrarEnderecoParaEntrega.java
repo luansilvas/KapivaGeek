@@ -38,7 +38,9 @@ public class CadastrarEnderecoParaEntrega extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("Acessei o servlet de endereco");
         try{
+        System.out.println("Acessei o servlet de endereco");
         HttpSession sessao = request.getSession();
         String complement = " ";
         String title = " ";
@@ -64,8 +66,13 @@ public class CadastrarEnderecoParaEntrega extends HttpServlet {
             try {
                 int addressId = AddressDAO.addAddressReturnId(address);
                 address.setAddress_id(addressId);
+                double valorTotal = (double) sessao.getAttribute("valorTotal");
+                sessao.setAttribute("valorFrete", valorTotal*0.04);
                 sessao.setAttribute("deliveryAddress", address);
                 request.setAttribute("deliveryAddr", address);
+                if (sessao.getAttribute("pagamento")!=null) {
+                request.getRequestDispatcher("/WEB-INF/revisarPedido.jsp").forward(request, response);
+                }
                 request.getRequestDispatcher("/WEB-INF/EscolherFormaPagamento.jsp").forward(request, response);
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());

@@ -35,6 +35,7 @@ public class ChangeCartItem_Servlet extends HttpServlet {
                 for (Product p : carrinho) {
                     if (p.getProductId() == prodId) {
                         p.setQuantity(p.getQuantity() + 1);
+                        p.setTotalPrice(p.getTotalPrice()+p.getPrice());
                         valorTotal = valorTotal + p.getPrice();
                     }
                 }
@@ -48,12 +49,13 @@ public class ChangeCartItem_Servlet extends HttpServlet {
 
                         p.setQuantity(p.getQuantity() - 1);
                         valorTotal = valorTotal - p.getPrice();
+                        p.setTotalPrice(p.getTotalPrice()-p.getPrice());
                         produtoSelecionado = p;
                         qtdeCarrinho -= 1;
-
                     }
                 }
                 if (produtoSelecionado.getQuantity() <= 0) {
+                    
                     qtdeCarrinho-=howManyProducts(carrinho,prodId);
                     carrinho.remove(produtoSelecionado);
                 }
@@ -75,7 +77,12 @@ public class ChangeCartItem_Servlet extends HttpServlet {
                 carrinho.remove(produtoSelecionado);
             }
             if (carrinho.size() == 0) {
-                sessao.setAttribute("listaCarrinho", null);
+                sessao.setAttribute("listaCarrinho", null); 
+                request.setAttribute("valorCompraFeita", 0.0);
+                sessao.removeAttribute("listaCarrinho");
+                sessao.setAttribute("qtdeItensCarrinho",0);
+                sessao.setAttribute("valorTotal",0.0);
+                request.getRequestDispatcher("/WEB-INF/Carrinho.jsp").forward(request, response);
             } else {
                 sessao.removeAttribute("listaCarrinho");
                 sessao.setAttribute("listaCarrinho", carrinho);

@@ -91,9 +91,9 @@
                             <option value="TO">TO</option>
                         </select>
                     </div>
-<input type="text" name="addressId" value="${address.address_id}" readonly style="display:none">
-<input type="text" name="customerId" value="${address.customer_customer_id}" readonly style="display:none">
-                    
+                    <input type="text" name="addressId" value="${address.address_id}" readonly style="display:none">
+                    <input type="text" name="customerId" value="${address.customer_customer_id}" readonly style="display:none">
+
                     <div id="Botoes" class="divsForm">
                         <button type="submit" style="margin-left:30%">Atualiza</button>
                     </div> 

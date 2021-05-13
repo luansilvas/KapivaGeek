@@ -62,14 +62,14 @@
                                     ${mainAddress.address_street},${mainAddress.address_number} - ${mainAddress.address_neighborhood},${mainAddress.address_state_abbreviation} - ${mainAddress.address_code}
                                 </label>
                             </td>
-                            <td>R$ ${Math.ceil(valorTotal*0.2)}<td>
+                            <td>R$ ${Math.ceil(valorTotal*0.02)}<td>
 
                         </tr>
 
 
                     </tbody>
                 </table>
-                <button class="btn waves-effect waves-light" type="submit" name="action" id="send-button">Prosseguir
+                <button class="btn waves-effect waves-light brown" type="submit" name="action" id="send-button">Prosseguir
                     <i class="material-icons right"></i>
                 </button>
 
@@ -77,7 +77,7 @@
 
             <h3 id="other-option" style="margin-top: 5%;">ou cadastre um novo</h3> 
 
-            <form class="formCadastro" method="post" action="<c:url value="/CadastrarEnderecoParaEntrega"/>" novalidate class="form">
+            <form class="formCadastro" method="POST" action="<c:url value="/CadastrarEnderecoParaEntrega"/>" novalidate class="form">
                 <c:if test="${hasError eq 'true'}">
                     <div class="msg msg-error z-depth-3 scale-transition">
                         <ul>
@@ -161,7 +161,7 @@
                     <h5 id="valor-estimado"></h5>
                     
                     
-                    <button class="btn waves-effect waves-light" type="submit" name="action" id="send-button">Cadastrar
+                    <button class="btn waves-effect waves-light brown" type="submit" name="action" id="send-button">Cadastrar
                         <i class="material-icons right"></i>
                     </button>
 
@@ -192,7 +192,7 @@
                             $("#cidade").val(resposta.localidade);
                             $("#uf").val(resposta.uf);
                             $("#numero").focus();
-                            document.getElementById("valor-estimado").innerHTML = "valor estimado para frete: R$"+${Math.ceil((valorTotal*0.4))};
+                            document.getElementById("valor-estimado").innerHTML = "valor estimado para frete: R$"+${Math.ceil((valorTotal*0.04))};
                             
 
                         }

@@ -27,7 +27,17 @@
     <body>
 
         <%@include file="../menu.jsp" %>
-
+        <nav>
+            <div class="nav-wrapper brown" id="nav-stepper">
+                <div class="col s12" id="step">
+                    <a href="${pageContext.request.contextPath}/Home_Servlet" class="breadcrumb white-text">Loja</a>                
+                    <a href="${pageContext.request.contextPath}/carrinho?acao=abrirCarrinho" class="breadcrumb white-text">Meu carrinho</a>                  
+                    <a class="breadcrumb grey-text">Endereco</a>
+                    <a class="breadcrumb grey-text">Pagamento</a>
+                    <a class="breadcrumb grey-text">Confirma</a>
+                </div>
+            </div>
+        </nav>
         <c:choose >
             <c:when test="${sessionScope.listaCarrinho != null && !sessionScope.listaCarrinho.isEmpty()}">
 
@@ -103,7 +113,7 @@
 
                     </div>
                     <c:if test="${addre != null}">
-                        <p>${valorCarrinho}</p>
+
                         <div id="endereco">
                             <span><c:out value="${addre.address_street}, ${addre.address_neighborhood}, ${addre.address_state_abbreviation}" /></span>
                         </div>
@@ -112,15 +122,13 @@
 
                     <h3 id="valorTotal"  >Valor total: R$ ${valorTotal}
                         <c:if test="${addre != null}" >
-                            + Frete R$ ${valorCarrinho}
+                            + Frete R$ ${Math.ceil(valorTotal*0.04)}
                         </c:if>
-                     
+                    
                    
-                    <h3 id="valorTotal"  >Valor total: R$ ${valorTotal}</h3>
-                    <a id="finalizar" href="${pageContext.request.contextPath}/EscolherEnderecoEntrega" >Finalizar</a>
                     </h3>
                         <div id="botaoFinalizar">
-                        <a id="finalizar" href="${pageContext.request.contextPath}/ReviewOrder" >Finalizar <img id="imgCarrinho" src="icons/carrinhoFinalizar.png"> </a>
+                        <a id="finalizar" href="${pageContext.request.contextPath}/EscolherEnderecoEntrega" >Finalizar <img id="imgCarrinho" src="icons/carrinhoFinalizar.png"> </a>
                     </div>
                 </section>
 

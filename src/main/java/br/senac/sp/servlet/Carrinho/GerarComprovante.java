@@ -45,6 +45,8 @@ public class GerarComprovante extends HttpServlet {
         Customer usuario = (Customer) sessao.getAttribute("user");
         Address addr = (Address) sessao.getAttribute("deliveryAddress");
         List<Product> listaProdutos = (List<Product>) sessao.getAttribute("listaCarrinho");
+        double vlrTotal = (Double) sessao.getAttribute("valorTotal");
+        vlrTotal+=(Double) sessao.getAttribute("valorFrete");
         Order order = new Order(codPedido.toString(), (Double) sessao.getAttribute("valorTotal"), usuario.getCustomer_id(), codPagamento, "Aguardando pagamento", addr.getAddress_id());
         if (OrderDAO.addOrder(order)) {
             for (Product p : listaProdutos) {
@@ -53,10 +55,14 @@ public class GerarComprovante extends HttpServlet {
             }
 
         }
+        
+        request.setAttribute("valorCompraFeita", vlrTotal);
         sessao.removeAttribute("listaCarrinho");
         sessao.setAttribute("qtdeItensCarrinho",0);
+        sessao.setAttribute("valorTotal",0.0);
         request.getRequestDispatcher("/WEB-INF/CompraFinalizada.jsp").forward(request, response);
         }catch(Exception e){
+            System.out.println("PEGUEI UMA EXCECAO"+e);
         request.getRequestDispatcher("/WEB-INF/UserLogin.jsp").forward(request, response);
         }
     }

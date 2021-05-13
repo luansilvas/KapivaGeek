@@ -33,7 +33,7 @@ public class choosePayment_Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        try{
         HttpSession sessao = request.getSession();
         Payment p = null;
         Card c = null;
@@ -83,7 +83,16 @@ public class choosePayment_Servlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/EscolherFormaPagamento.jsp").forward(request, response);
             }
         }
+        }catch(Exception e){
+        request.setAttribute("hasError", "true");
+                ArrayList<String> errorList = new ArrayList();
+                errorList.add("Verifique os valores digitados");
+                
+                request.setAttribute("errorList", errorList);
 
+                System.out.println(e.getMessage());
+                request.getRequestDispatcher("/WEB-INF/EscolherFormaPagamento.jsp").forward(request, response);
+        }
     }
 
 }

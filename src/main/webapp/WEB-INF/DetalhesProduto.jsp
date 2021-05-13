@@ -17,42 +17,43 @@
     </head>
     <body>
         <h1 id="titulo" >Detalhes da compra</h1>
+        <a href="${pageContext.request.contextPath}/OrderHistory_Servlet" id="go-back" style="margin-top:70px;margin-left: 20%;">
+            <img src="icons/left-arrow.png">
+        </a>
         <table class="highlight" id="product-listing">
-                        <thead>
-                            <tr>
-                                <th class="tituloTabela">
-                                    <p id="prod" class="titulos">Nome do produto</p>
-                                </th>
-                                <th class="tituloTabelaQtd">
-                                    <p class="titulos">Valor Unit.</p>
-                                </th>
-                                <th class="valores">
-                                    <p class="titulos">Quantidade</p>
-                                </th>
-                                <th class="valores">
-                                    <p class="titulos">Status</p>
-                                </th>
+            <thead>
+                <tr>
+                    <th class="tituloTabela">
+                        <p id="prod" class="titulos">Nome do produto</p>
+                    </th>
+                    <th class="tituloTabelaQtd">
+                        <p class="titulos">Valor Unit.</p>
+                    </th>
+                    <th class="valores">
+                        <p class="titulos">Quantidade</p>
+                    </th>
 
-                            </tr>
-                        </thead>
-                        <c:forEach items="${detalhesPedido}" var="p">
-                            <tbody>
-                                <tr>
-                                    <td id="produto">
-                                        <p>${p.productName}</p>
-                                    </td>
-                                    <td id="qtd" class="borda">
-                                       <p>R$ ${p.price}</p>
-                                    </td>
-                                    <td class="preco">
-                                        <p> ${p.quantity}</p>
-                                    </td>
-                                    
-                                </tr>
 
-                            </tbody>
-                        </c:forEach>
-                    </table>
-        
+                </tr>
+            </thead>
+            <c:forEach items="${detalhesPedido}" var="p">
+                <tbody>
+                    <tr>
+                        <td id="produto">
+                            <p>${p.productName}</p>
+                        </td>
+                        <td id="qtd" class="borda">
+                            <p>R$ ${p.price}</p>
+                        </td>
+                        <td class="preco">
+                            <p> ${p.quantity}</p>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </c:forEach>
+        </table>
+
     </body>
 </html>

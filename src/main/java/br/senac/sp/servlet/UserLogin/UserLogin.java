@@ -53,12 +53,11 @@ public class UserLogin extends HttpServlet {
                 HttpSession sessao = request.getSession();
                 Address mainAddress =addr.get(0);
                 sessao.setAttribute("mainAddress", mainAddress);
-                sessao.setAttribute("qtdeItensCarrinho",0);
                 sessao.setAttribute("user", customer);
                 sessao.setAttribute("addr", addr);
                 sessao.setAttribute("addrFat", addrFat);
                 if (sessao.getAttribute("listaCarrinho")==null) {
-                    response.sendRedirect(request.getContextPath() + "/alterRegister_Costumer");
+                    response.sendRedirect(request.getContextPath() + "/Home_Servlet");
                 }else{
                     request.setAttribute("user", customer);
                 response.sendRedirect(request.getContextPath() + "/EscolherEnderecoEntrega");

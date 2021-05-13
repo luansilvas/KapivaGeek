@@ -3,7 +3,7 @@
     Created on : 11/05/2021, 17:45:34
     Author     : raque
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>s
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,8 +21,10 @@
         
         <title>Histórico Pedido</title>
     </head>
-    <body>
-        <h1 id="titulo">Histórico de Pedidos</h1>
+    <body> 
+ <%@include file="../menu.jsp" %>
+        <h1 style="margin-top:80px;margin-left: 20%;">Histórico de Pedidos</h1>
+
         <table class="highlight" id="product-listing">
                         <thead>
                             <tr>
