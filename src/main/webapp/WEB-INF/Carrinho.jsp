@@ -120,7 +120,7 @@
                     </c:if>
 
 
-                    <h3 id="valorTotal"  >Valor total: R$ ${valorTotal}
+                    <h3 id="valorTotal"  >Valor total: R$ ${Math.ceil(valorTotal)}
                         <c:if test="${addre != null}" >
                             + Frete R$ ${Math.ceil(valorTotal*0.04)}
                         </c:if>

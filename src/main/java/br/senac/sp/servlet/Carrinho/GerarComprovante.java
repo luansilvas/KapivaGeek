@@ -63,7 +63,7 @@ public class GerarComprovante extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/CompraFinalizada.jsp").forward(request, response);
         }catch(Exception e){
             System.out.println("PEGUEI UMA EXCECAO"+e);
-        request.getRequestDispatcher("/WEB-INF/UserLogin.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/CompraComErro.jsp").forward(request, response);
         }
     }
 
