@@ -43,8 +43,7 @@ body{
 .slider {
     width: 900px;
     margin: 0 auto;
-
-
+    
 }
 
 .slider .indicators {
@@ -183,12 +182,13 @@ nav ul li a, li a, #menu-icon, #menu-search-icon, #menu-cart-icon {
 
 @media (max-width:750px) {
     #search-bar {
-        margin-top: 70px;
+        margin-top: 15px;
         margin-bottom: -20px;
-        width: 80%;
+        width:580%;
         margin-left: 10%;
     }
 }
+
 
 .card {
     text-align: center;
@@ -209,7 +209,7 @@ nav ul li a, li a, #menu-icon, #menu-search-icon, #menu-cart-icon {
 
 @media (min-width:750px) {
     #search-bar {
-        margin-top: 65px;
+        margin-top: 15px;
         margin-right: 10%;
         margin-left: 10%;
     }

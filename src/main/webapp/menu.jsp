@@ -42,9 +42,9 @@
 
                 </ul>
 
-                <form action="" method="post" id="search-topbar">
+                <form action="" method="post" id="search-topbar" action="Home_Servlet">
                     <div class="input-field">
-                        <input id="#search" type="search" name="search">
+                        <input id="#search" type="search" name="categoria">
                         <label class="label-icon" for="search"><i class="material-icons" style="color: black;"
                         id="search-topbar-label">search</i></label>
                     </div>

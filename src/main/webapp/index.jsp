@@ -9,12 +9,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
         <link rel="stylesheet" href="css/styleFront.css" type="text/css">
-
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -39,20 +37,9 @@
 
 
 
-        <div class="row">
-            <form class="col s12" action="#" method="POST">
-                <div class="row" id="search-bar">
-                    <div class="input-field col s12">
-                        <input id="icon_prefix" type="text" class="validate" name="categoria">
-                        <label for="icon_prefix">Pesquise aqui</label>
-                        <i class="material-icons prefix">search</i>
-                    </div>
-                </div>
-            </form>
-        </div>
 
 
-        <div class="slider">
+        <div class="slider" style="margin-top: 50px;">
             <ul class="slides">
                 <li>
                     <img src="cover-images/cover-starwars.jpg">
@@ -86,7 +73,17 @@
             </ul>
         </div>
 
-
+        <div class="row" style="margin-top: -80px;">
+            <form class="col s12" action="Home_Servlet" method="POST">
+                <div class="row" id="search-bar">
+                    <div class="input-field col s12">
+                        <input id="icon_prefix" type="text" class="validate" name="categoria">
+                        <label for="icon_prefix">Pesquise aqui</label>
+                        <i class="material-icons prefix">search</i>
+                    </div>
+                </div>
+            </form>
+        </div>
         <c:if test="${hasPromocoes eq 'true'}">
 
             <div class="row">
@@ -95,7 +92,7 @@
                         <h3 class="category-title">Bonecos</h3>
                         <div class="category-category-carousel-container">
                             <div class="product-card">
-                                <a href="#">
+                                <a href="<c:url value="/seeProductDetail?productId=${cm.productId}"/>">
                                     <img class="product-img" src="${b.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
@@ -131,7 +128,7 @@
                         <c:forEach items="${bonecos}" var="b">
 
                             <div class="product-card">
-                                <a href="#">
+                                <a href="<c:url value="/seeProductDetail?productId=${b.productId}"/>">
                                     <img class="product-img" src="${b.path_MainImg}">
                                 </a>
 
@@ -169,9 +166,7 @@
                             <div class="product-card">
                                 <a href="Comprar.html">
                                     <img class="product-img" src="${cm.path_MainImg}">
-                                </a>
-
-                              
+                                </a>                             
                                     <div class="add-cart-field" id="comprar">
                                         <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  class="fas fa-cart-plus fa-2x"></a>
                                     </div>
@@ -374,7 +369,7 @@
         <c:if test="${hasFiltro eq 'pesquisa'}">
             <div class="row">
                 <section class="category-carousel" id="camisetas-femininas">
-                    <h3 class="category-title">Resultados para '${filtro}'</h3>
+                    <h3 class="category-title" style="margin-top:45px">Resultados para '${filtro}'</h3>
                     <div class="category-category-carousel-container">
                         <div class="row">
                             <c:forEach items="${resultado}" var="r">
