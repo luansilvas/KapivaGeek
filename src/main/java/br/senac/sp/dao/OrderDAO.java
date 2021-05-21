@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ import java.util.List;
  */
 public class OrderDAO {
 
-    public static boolean addOrder(Order o){
+    public static boolean addOrder(Order o) {
 
         boolean retorno = false;
         Connection conexao;
@@ -53,9 +54,9 @@ public class OrderDAO {
 
         } catch (ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }finally {
+        } finally {
             try {
                 if (instrucaoSQL != null) {
                     ConexaoDB.fecharConexao();
@@ -66,9 +67,9 @@ public class OrderDAO {
         }
         return retorno;
     }
-    
-    public static List<Order> getOrders(int customerId){
-        String sql = "select * from purchaseorder where customer_customer_id="+customerId + ";";
+
+    public static List<Order> getOrders(int customerId) {
+        String sql = "select * from purchaseorder where customer_customer_id=" + customerId + ";";
         System.out.println(sql);
         ArrayList<Order> prodBd = new ArrayList<>();
 
@@ -97,10 +98,10 @@ public class OrderDAO {
 
         return prodBd;
     }
-    
-    public static List<Product> getProdPedido(String id){
+
+    public static List<Product> getProdPedido(String id) {
         String sql = "select p.name_prod,p.price,ppo.quantity from product_purchaseorder as ppo INNER JOIN purchaseorder as po on po.purchaseorder_id = ppo.purchaseorder_purchaseorder_id INNER JOIN products as p on ppo.product_product_id = p.prod_id where po.purchaseorder_id='" + id + "'";
-        
+
         System.out.println(sql);
         ArrayList<Product> prodBd = new ArrayList<>();
 
@@ -123,5 +124,50 @@ public class OrderDAO {
         }
 
         return prodBd;
+    }
+
+    public static List<Order> getOrders() {
+        String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,purchaseorder_status  from purchaseorder ORDER BY diaPedido";
+        List<Order> orders = new LinkedList<>();
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {// enquanto tiver empresas adiciona no array
+
+                Order order = new Order();
+                order.setPurchaseorder_id(rs.getString("purchaseorder_id"));
+                order.setDiaPedido(rs.getString("diaPedido"));
+                order.setPurchaseorder_amount(rs.getDouble("purchaseorder_amount"));
+                order.setPurchaseorder_status(rs.getString("purchaseorder_status"));
+                orders.add(order);
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return orders;
+    }
+
+    public static boolean updateStatus(String status, String id) {
+        String sql = "UPDATE purchaseorder SET purchaseorder_status = ? WHERE purchaseorder_id = ? ";
+       
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, status);
+            stmt.setString(2, id);
+            stmt.execute();
+            return true;
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return false;
     }
 }

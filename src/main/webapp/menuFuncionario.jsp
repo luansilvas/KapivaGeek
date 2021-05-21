@@ -55,6 +55,10 @@
                             <a class="nav-link" href="${pageContext.request.contextPath}/ListEmployee_Servlet?currentRecord=10&acao=FirstAccess">Funcionários</a>
                         </li>
                         
+                          <li class="nav-item" id="navItem" >
+                            <a class="nav-link" href="#">Pedidos</a>
+                        </li>
+                        
                          <li class="nav-item" id="navItem" >
                              <a class="nav-link" rel="external" target="blank_" href="${pageContext.request.contextPath}/Home_Servlet">Loja</a>
                         </li>
