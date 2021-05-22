@@ -48,15 +48,13 @@
                         <li class="nav-item" id="navItem">
                             <a class="nav-link" aria-current="page" href="ProductList_Servlet#">Produtos</a>
                         </li>
-                        
-                       
-                        
+                    
                         <li class="nav-item" id="navItem" >
                             <a class="nav-link" href="${pageContext.request.contextPath}/ListEmployee_Servlet?currentRecord=10&acao=FirstAccess">Funcionários</a>
                         </li>
                         
                           <li class="nav-item" id="navItem" >
-                            <a class="nav-link" href="#">Pedidos</a>
+                              <a class="nav-link" href="${pageContext.request.contextPath}/orderlist">Pedidos</a>
                         </li>
                         
                          <li class="nav-item" id="navItem" >

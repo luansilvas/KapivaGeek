@@ -28,7 +28,7 @@
 
                 <h1>Pedidos</h1>
                 <div class="container">
-                    <form method="post" action="${pageContext.request.contextPath}/orderlistpesq">
+                    <form method="post" action="${pageContext.request.contextPath}/orderlist?id=${o.purchaseorder_id}">
                         <label>Pedido</label>
                         <input class="form-control" type="text" name="pesquisa" placeholder="Digite o ID do pedido">
                         <input type="submit" >

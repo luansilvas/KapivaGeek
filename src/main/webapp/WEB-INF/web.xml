@@ -27,6 +27,7 @@
         <url-pattern>/ActivateInactivateEmployee_Servlet/*</url-pattern>
         <url-pattern>/AlterarProduto</url-pattern>
         <url-pattern>/ListEmployee_Servlet</url-pattern>
+        <url-pattern>/orderlist/*</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>UploadImageServlet</servlet-name>
@@ -236,6 +237,10 @@
         <servlet-name>OrderList_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.OrderList.OrderList_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderListPesquisa_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.OrderList.OrderListPesquisa_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -431,6 +436,10 @@
     <servlet-mapping>
         <servlet-name>OrderList_Servlet</servlet-name>
         <url-pattern>/orderlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderListPesquisa_Servlet</servlet-name>
+        <url-pattern>/orderlistpesq</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>60</session-timeout>

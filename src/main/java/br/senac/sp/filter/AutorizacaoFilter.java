@@ -89,7 +89,8 @@ public class AutorizacaoFilter implements Filter {
             return true;
         else if(pagenaAcessada.endsWith("/ListEmployee_Servlet"))
             return true;
-        
+        else if(pagenaAcessada.endsWith("/orderlist"))
+            return true;
         
 
         return false;

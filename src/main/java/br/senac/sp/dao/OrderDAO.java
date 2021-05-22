@@ -15,9 +15,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -115,7 +119,6 @@ public class OrderDAO {
                 pedido.setPrice(rs.getDouble("price"));
                 pedido.setQuantity(rs.getInt("quantity"));
                 prodBd.add(pedido);
-                System.out.println(prodBd.toString());
             }
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
@@ -129,15 +132,19 @@ public class OrderDAO {
     public static List<Order> getOrders() {
         String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,purchaseorder_status  from purchaseorder ORDER BY diaPedido";
         List<Order> orders = new LinkedList<>();
-
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
-            while (rs.next()) {// enquanto tiver empresas adiciona no array
-
+            while (rs.next()) {
+               
+                Date data = rs.getDate("diaPedido");
+                String dataFormat = dataFormatada.format(data);
+            
                 Order order = new Order();
                 order.setPurchaseorder_id(rs.getString("purchaseorder_id"));
-                order.setDiaPedido(rs.getString("diaPedido"));
+                order.setDiaPedido(dataFormat);
                 order.setPurchaseorder_amount(rs.getDouble("purchaseorder_amount"));
                 order.setPurchaseorder_status(rs.getString("purchaseorder_status"));
                 orders.add(order);
@@ -169,5 +176,38 @@ public class OrderDAO {
         }
         
         return false;
+    }
+    
+    
+    
+    
+    
+     public static List<Order> getOrderById( String id) {
+        String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,purchaseorder_status  from purchaseorder  WHERE purchaseorder_id = '"+id+"' ORDER BY diaPedido";
+        List<Order> orders = new LinkedList<>();
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+               
+                Date data = rs.getDate("diaPedido");
+                String dataFormat = dataFormatada.format(data);
+            
+                Order order = new Order();
+                order.setPurchaseorder_id(rs.getString("purchaseorder_id"));
+                order.setDiaPedido(dataFormat);
+                order.setPurchaseorder_amount(rs.getDouble("purchaseorder_amount"));
+                order.setPurchaseorder_status(rs.getString("purchaseorder_status"));
+                orders.add(order);
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return orders;
     }
 }
