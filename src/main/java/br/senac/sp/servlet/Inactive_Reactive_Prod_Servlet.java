@@ -32,7 +32,7 @@ public class Inactive_Reactive_Prod_Servlet extends HttpServlet {
             throws ServletException, IOException {
         int productId = Integer.parseInt(request.getParameter("codProduto"));
 
-        try {
+        
             ProductDAO dao = new ProductDAO();
             Product prod = dao.findProductById(productId);
             boolean statusValue = prod.getValueStatus(prod.getStatus());
@@ -43,11 +43,7 @@ public class Inactive_Reactive_Prod_Servlet extends HttpServlet {
  
          RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Inactive_Reactive_Product.jsp");
         dispatcher.forward(request, response);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        }
+     
       
        
        

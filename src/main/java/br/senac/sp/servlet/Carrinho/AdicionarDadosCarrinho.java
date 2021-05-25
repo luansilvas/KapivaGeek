@@ -32,7 +32,7 @@ public class AdicionarDadosCarrinho extends HttpServlet {
 
         HttpSession sessao = request.getSession();
 
-        try {
+       
 
             if (sessao.getAttribute("listaCarrinho") == null) {
                 sessao.setAttribute("listaCarrinho", new ArrayList<Product>());
@@ -62,11 +62,7 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             sessao.setAttribute("qtdeItensCarrinho", qtdeCarrinho);
             response.sendRedirect(request.getContextPath() + "/Home_Servlet");
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Carrinho.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Carrinho.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
 
     }
 

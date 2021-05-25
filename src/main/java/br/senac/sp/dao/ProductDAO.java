@@ -173,7 +173,7 @@ public class ProductDAO {
         return prodBd;
     }      
           
-    public static Product findProductById(int idProd) throws SQLException, ClassNotFoundException {
+    public static Product findProductById(int idProd) {
         String sql = "select p.prod_id, p.name_prod,p.long_name,p.amount_stars,p.price,p.status_prod,p.stock,p.category,pi.path_img from products as p INNER JOIN product_img as pi on p.prod_id = pi.prod_id WHERE p.prod_id = ? and pi.Main_img = 'true';";
         Product prod = new Product();
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
@@ -197,6 +197,11 @@ public class ProductDAO {
                 }
 
             }
+        }
+        catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
         return prod;
     }
@@ -338,6 +343,26 @@ public class ProductDAO {
         }
         return id;
 
+    }
+    
+    public static boolean updateQtd(int idProduto, int novaQuantidade){
+        String sql = " call Add_qtd(?,?);";
+         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+            
+                stmt.setInt(1, novaQuantidade);
+                stmt.setInt(2, idProduto);
+                stmt.execute();
+                return true;
+       
+
+        } catch (ClassNotFoundException ex) {
+             return false;
+         
+        } catch (SQLException ex) {
+            System.out.println(ex); return false;
+        }
+       
     }
 
 }
