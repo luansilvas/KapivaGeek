@@ -32,7 +32,7 @@ public class Product_Servlet_Alter extends HttpServlet {
        
       
         
-        try {   
+      
             ProductDAO dao = new ProductDAO();
             Product result = dao.findProductById(productId);
             
@@ -40,11 +40,7 @@ public class Product_Servlet_Alter extends HttpServlet {
             request.setAttribute("id", productId);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Form_Alter_Prod.jsp");
             dispatcher.forward(request, response);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        }
+     
         
         
         

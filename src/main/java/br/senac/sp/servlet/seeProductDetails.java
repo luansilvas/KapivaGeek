@@ -37,14 +37,10 @@ public class seeProductDetails extends HttpServlet {
             int productId = Integer.parseInt(request.getParameter("productId"));
             Product product = new Product();
 
-            try {
+            
 
                 product = productDAO.findProductById(productId);
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductVisualizeServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ProductVisualizeServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
+          
 
             List<Image> imageList = new ArrayList();
             imageList = ImageDAO.getImages(productId);

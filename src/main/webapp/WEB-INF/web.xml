@@ -241,6 +241,10 @@
         <servlet-name>OrderListPesquisa_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.OrderList.OrderListPesquisa_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AtualizarQuantidadeProduto_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.productManagement.AtualizarQuantidadeProduto_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -440,6 +444,10 @@
     <servlet-mapping>
         <servlet-name>OrderListPesquisa_Servlet</servlet-name>
         <url-pattern>/orderlistpesq</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtualizarQuantidadeProduto_Servlet</servlet-name>
+        <url-pattern>/quantidade</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>60</session-timeout>

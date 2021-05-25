@@ -28,7 +28,49 @@
         <c:choose>
             <c:when test="${sessionScope.emp!= null}">
                 <div class="containerMain">
-               
+
+                    <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        ADD
+                    </a>
+                    <form method="post" action="${pageContext.request.contextPath}/quantidade" >
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Adicionar quantidade</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Id do Produto: </label>
+                                                <input class="form-control" type="number" name="idProd">
+                                            </div >
+                                            <div class="col-md-6" >
+                                                <label>Adicionar quantidade: </label>
+                                                <input class="form-control" type="text" name="quantidade">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-primary">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+
                     <fieldset>
                         <legend>Listar produtos</legend>  
 
@@ -75,7 +117,10 @@
                                     <tr>
 
                                         <td>${p.productName}</td>
-                                        <td>${p.getQuantity()}</td>
+                                        <td>
+                                            ${p.getQuantity()}  
+                                            <a href="<c:url value="/quantidade?id=${p.productId}" />" style="margin-right: 10px;"><img src="icons/add24px.png"></a>
+                                        </td>
                                         <td>${p.getStatus()}</td>
                                         <td><a href="<c:url value="/AlterarProduto?codProduto=${p.productId}"/>">EDITAR</a></td>
                                         <td><a href="<c:url value="/InactiveReactive?codProduto=${p.productId}"/>">INATIVAR/REATIVAR</a></td>
@@ -86,7 +131,7 @@
                             </table>
 
                         </div>
-                       
+
                         <div id="setas">
 
                             <img src="icons/seta2-left.png" alt="icone next">
@@ -97,7 +142,7 @@
                             <img src="icons/seta2-right.png" alt="icone next">
 
                         </div>
-                       
+
 
                     </fieldset>
                 </div>
@@ -109,5 +154,7 @@
 
             </c:otherwise>
         </c:choose>
+
+
     </body>
 </html>

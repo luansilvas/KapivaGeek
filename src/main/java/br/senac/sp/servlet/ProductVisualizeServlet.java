@@ -37,13 +37,9 @@ public class ProductVisualizeServlet extends HttpServlet {
         ProductDAO productDAO = new ProductDAO();
 
         Product product = new Product();
-        try {
+   
             product = productDAO.findProductById(productId);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductVisualizeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProductVisualizeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
 
         List<Image> imageList = new ArrayList();
         imageList = ImageDAO.getImages(productId);
