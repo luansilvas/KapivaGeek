@@ -441,6 +441,21 @@
         <servlet-name>OrderListPesquisa_Servlet</servlet-name>
         <url-pattern>/orderlistpesq</url-pattern>
     </servlet-mapping>
+    <error-page>
+        <!-- Missing resource -->
+        <error-code>500</error-code>
+        <location>/Home_Servlet</location>
+    </error-page>
+    <error-page>
+        <!-- Uncaught exception -->
+        <error-code>500</error-code>
+        <location>/Home_Servlet</location>
+    </error-page>
+    <error-page>
+        <!-- Unsupported servlet method -->
+        <error-code>503</error-code>
+        <location>/Home_Servlet</location>
+    </error-page>
     <session-config>
         <session-timeout>60</session-timeout>
     </session-config>

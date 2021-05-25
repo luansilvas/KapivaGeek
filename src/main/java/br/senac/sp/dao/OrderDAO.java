@@ -73,7 +73,7 @@ public class OrderDAO {
     }
 
     public static List<Order> getOrders(int customerId) {
-        String sql = "select * from purchaseorder where customer_customer_id=" + customerId + ";";
+        String sql = "select * from purchaseorder where customer_customer_id=" + customerId + " order by diaPedido desc;";
         System.out.println(sql);
         ArrayList<Order> prodBd = new ArrayList<>();
 
@@ -104,7 +104,7 @@ public class OrderDAO {
     }
 
     public static List<Product> getProdPedido(String id) {
-        String sql = "select p.name_prod,p.price,ppo.quantity from product_purchaseorder as ppo INNER JOIN purchaseorder as po on po.purchaseorder_id = ppo.purchaseorder_purchaseorder_id INNER JOIN products as p on ppo.product_product_id = p.prod_id where po.purchaseorder_id='" + id + "'";
+        String sql = "select p.name_prod,p.price,ppo.quantity,pi.path_img from product_purchaseorder as ppo INNER JOIN purchaseorder as po on po.purchaseorder_id = ppo.purchaseorder_purchaseorder_id INNER JOIN products as p on ppo.product_product_id = p.prod_id INNER JOIN product_img as pi on p.prod_id = pi.prod_id where po.purchaseorder_id='" + id + "' and pi.Main_img = 'true'";
 
         System.out.println(sql);
         ArrayList<Product> prodBd = new ArrayList<>();
@@ -118,6 +118,8 @@ public class OrderDAO {
                 pedido.setProductName(rs.getString("name_prod"));
                 pedido.setPrice(rs.getDouble("price"));
                 pedido.setQuantity(rs.getInt("quantity"));
+                pedido.setPath_MainImg(rs.getString("path_img"));
+                System.out.println("ESSA É A FOTO + "+pedido.getPath_MainImg());
                 prodBd.add(pedido);
             }
         } catch (ClassNotFoundException ex) {
@@ -183,7 +185,7 @@ public class OrderDAO {
     
     
      public static List<Order> getOrderById( String id) {
-        String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,purchaseorder_status  from purchaseorder  WHERE purchaseorder_id = '"+id+"' ORDER BY diaPedido";
+        String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,payment_payment_id,address_address_id,purchaseorder_status  from purchaseorder  WHERE purchaseorder_id = '"+id+"' ORDER BY diaPedido";
         List<Order> orders = new LinkedList<>();
         SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
         
@@ -198,6 +200,8 @@ public class OrderDAO {
                 Order order = new Order();
                 order.setPurchaseorder_id(rs.getString("purchaseorder_id"));
                 order.setDiaPedido(dataFormat);
+                order.setPayment_payment_id(rs.getInt("payment_payment_id"));
+                order.setAddress_address_id(rs.getInt("address_address_id"));
                 order.setPurchaseorder_amount(rs.getDouble("purchaseorder_amount"));
                 order.setPurchaseorder_status(rs.getString("purchaseorder_status"));
                 orders.add(order);

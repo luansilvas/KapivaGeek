@@ -20,40 +20,127 @@
         <a href="${pageContext.request.contextPath}/OrderHistory_Servlet" id="go-back" style="margin-top:70px;margin-left: 20%;">
             <img src="icons/left-arrow.png">
         </a>
-        <table class="highlight" id="product-listing">
-            <thead>
-                <tr>
-                    <th class="tituloTabela">
-                        <p id="prod" class="titulos">Nome do produto</p>
-                    </th>
-                    <th class="tituloTabelaQtd">
-                        <p class="titulos">Valor Unit.</p>
-                    </th>
-                    <th class="valores">
-                        <p class="titulos">Quantidade</p>
-                    </th>
+        <div class="container">
 
 
-                </tr>
-            </thead>
-            <c:forEach items="${detalhesPedido}" var="p">
-                <tbody>
+            <table class="centered" id="product-listing">
+                <thead>
                     <tr>
-                        <td id="produto">
-                            <p>${p.productName}</p>
-                        </td>
-                        <td id="qtd" class="borda">
-                            <p>R$ ${p.price}</p>
-                        </td>
-                        <td class="preco">
-                            <p> ${p.quantity}</p>
-                        </td>
+                        <th>
+                        </th>
+                        <th class="tituloTabela">
+                            <p id="prod" class="titulos">Nome do produto</p>
+                        </th>
+
+                        <th class="tituloTabelaQtd">
+                            <p class="titulos">Valor Unit.</p>
+                        </th>
+                        <th class="valores">
+                            <p class="titulos">Quantidade</p>
+                        </th>
+                        <th class="valores">
+                            <p class="titulos">Subtotal</p>
+                        </th>
+
 
                     </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${detalhesPedido}" var="p">
+                    
+                        <tr>
+                            <td><img class = "prod-img" src="${p.path_MainImg}"></td>
+                            <td id="produto">
+                                <p>${p.productName}</p>
+                            </td>
+                            <td id="qtd" class="borda">
+                                <p>R$ ${p.price}</p>
+                            </td>
+                            <td class="preco">
+                                <p> ${p.quantity}</p>
+                            </td>
+                            <td class="preco">
+                                <p> ${Math.ceil(p.quantity*p.price)}</p>
+                            </td>
 
-                </tbody>
-            </c:forEach>
-        </table>
+                        </tr>
 
-    </body>
-</html>
+                    
+                </c:forEach>
+                        
+                        
+                        <tr>
+                            <td></td>
+                            <td id="produto">
+                                
+                            </td>
+                            <td id="qtd" class="borda">
+                           
+                            </td>
+                            <td class="preco">
+                              Subtotal
+                            </td>
+                            <td class="preco">
+                                <p> ${valorTotal}</p>
+                            </td>
+
+                        </tr>
+                                                <tr>
+                            <td></td>
+                            <td id="produto">
+                                
+                            </td>
+                            <td id="qtd" class="borda">
+                           
+                            </td>
+                            <td class="preco">
+                              Frete
+                            </td>
+                            <td class="preco">
+                                <p> ${valorFrete}</p>
+                            </td>
+
+                        </tr>
+                                                                        <tr>
+                            <td></td>
+                            <td id="produto">
+                                
+                            </td>
+                            <td id="qtd" class="borda">
+                           
+                            </td>
+                            <td class="preco">
+                              Total
+                            </td>
+                            <td class="preco">
+                                <p> ${valorTotal+valorFrete}</p>
+                            </td>
+
+                        </tr>
+                        </tbody>
+            </table>
+
+            <div class="card"  style="width:60%;margin-left: 20%;">
+                <h3>
+                    Endereço de entrega
+                </h3>
+                <h5>
+                    ${endEntrega.address_title}
+
+                </h5>
+                <p>${endEntrega.address_street}, ${endEntrega.address_number} - ${endEntrega.address_neighborhood},${endEntrega.address_state_abbreviation} - ${endEntrega.address_code}</p>
+            </div>    
+                    
+                <div class="card"  style="width:60%;margin-left: 20%;">
+                <h3>
+                    Forma de pagamento
+                </h3>
+                <p>
+                    Feito em ${pagamento.payment_instalments}x no ${pagamento.payment_way} 
+                </p>
+                </div>
+                
+                </div>
+
+                </body>
+                </html>

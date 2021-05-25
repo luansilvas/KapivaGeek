@@ -58,7 +58,9 @@ public class CadastrarEnderecoParaEntrega extends HttpServlet {
         String uf = request.getParameter("uf");
 
         CustomerDataValidation customerData = new CustomerDataValidation();
+        
         List<String> errorList = customerData.validaAtualizaEndereco(street, cep, uf, number, neighborhood, complement, cep, street);
+        
         Customer user = (Customer) sessao.getAttribute("user");
 
         Address address = new Address(user.getCustomer_id(), title, street, cep, uf, number, neighborhood, complement, "Entrega", "Ativo");

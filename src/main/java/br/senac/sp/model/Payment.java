@@ -14,6 +14,30 @@ public class Payment {
     private String payment_way;
     private int payment_instalments;
     private String payment_status;
+    private int card_id;
+
+    public Payment(int payment_id, String payment_way, int payment_instalments, String payment_status, int card_id) {
+        this.payment_id = payment_id;
+        this.payment_way = payment_way;
+        this.payment_instalments = payment_instalments;
+        this.payment_status = payment_status;
+        this.card_id = card_id;
+    }
+
+    public Payment(String payment_way, int payment_instalments, String payment_status, int card_id) {
+        this.payment_way = payment_way;
+        this.payment_instalments = payment_instalments;
+        this.payment_status = payment_status;
+        this.card_id = card_id;
+    }
+
+    public int getCard_id() {
+        return card_id;
+    }
+
+    public void setCard_id(int card_id) {
+        this.card_id = card_id;
+    }
 
     public Payment(String payment_way, int payment_instalments, String payment_status) {
         this.payment_way = payment_way;

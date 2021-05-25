@@ -167,10 +167,10 @@
                                 <a href="Comprar.html">
                                     <img class="product-img" src="${cm.path_MainImg}">
                                 </a>                             
-                                    <div class="add-cart-field" id="comprar">
-                                        <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  class="fas fa-cart-plus fa-2x"></a>
-                                    </div>
-                     
+                                <div class="add-cart-field" id="comprar">
+                                    <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  class="fas fa-cart-plus fa-2x"></a>
+                                </div>
+
 
                                 <div class="info">
 
@@ -268,7 +268,7 @@
                     <h3 class="category-title">Acessórios</h3>
                     <div class="category-category-carousel-container">
                         <c:forEach items="${acessorios}" var="a">
-                            <form></form>
+
                             <div class="product-card">
                                 <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  >
                                     <img class="product-img" src="${a.path_MainImg}">
@@ -277,18 +277,15 @@
                                     <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${a.productId}" class="fas fa-cart-plus fa-2x"></a>
                                 </div>
                                 <div class="info">
-                                    <a href="#">
-                                        <a>
-                                            <h3 class="">${a.productName}</h3>
-                                        </a>
-                                        <h5 class="price">${a.price}</h5>
-                                        <br>
-                                        <div class="stars">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-
-                                        </div>
+                                    <a href="#">                                      
+                                        <h3 class="">${a.productName}</h3>
                                     </a>
+                                    <h5 class="price">${a.price}</h5>
+                                    <br>
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>                                   
                                 </div>
                             </div>
                         </c:forEach>
@@ -459,12 +456,6 @@
             $(document).ready(function () {
                 $('.slider').slider();
             });
-
-
-
-
-
-
 
             function ComprarItem() {
                 var numeroString = new String(document.querySelector('.itemM').innerHTML);

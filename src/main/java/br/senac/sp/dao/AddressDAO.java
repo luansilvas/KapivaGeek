@@ -155,7 +155,7 @@ public class AddressDAO {
         Customer customer = null;
         try {
             conexao = ConexaoDB.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("select * from address where address_id=? and isActive='Ativo'");
+            instrucaoSQL = conexao.prepareStatement("select * from customer_address where address_id=? and isActive='Ativo'");
             instrucaoSQL.setInt(1, addressId);
             rs = instrucaoSQL.executeQuery();
 

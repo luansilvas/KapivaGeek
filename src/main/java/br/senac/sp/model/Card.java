@@ -47,6 +47,15 @@ public class Card extends Payment{
     private String cvv;
     private String exp;
     private String printedName;
+    private int customerId;
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
     public Card(String card_number, String cvv, String exp, String printedName, String payment_way, int payment_instalments, String payment_status) {
         super(payment_way, payment_instalments, payment_status);
@@ -56,9 +65,30 @@ public class Card extends Payment{
         this.printedName = printedName;
     }
 
+    public Card(String card_number, String cvv, String exp, String printedName, int customerId, String payment_way, int payment_instalments, String payment_status) {
+        super(payment_way, payment_instalments, payment_status);
+        this.card_number = card_number;
+        this.cvv = cvv;
+        this.exp = exp;
+        this.printedName = printedName;
+        this.customerId = customerId;
+    }
+
+    public Card(String card_number, String cvv, String exp, String printedName, int customerId, int payment_id, String payment_way, int payment_instalments, String payment_status) {
+        super(payment_way, payment_instalments, payment_status);
+        this.card_number = card_number;
+        this.cvv = cvv;
+        this.exp = exp;
+        this.printedName = printedName;
+        this.customerId = customerId;
+    }
+
     @Override
     public String toString() {
-        return "Card{" + "card_number=" + card_number + ", cvv=" + cvv + ", exp=" + exp + ", printedName=" + printedName + '}';
+        return "Card{" + "card_number=" + card_number + ", cvv=" + cvv + ", exp=" + exp + ", printedName=" + printedName + ", customerId=" + customerId + '}';
     }
+
+
+    
     
 }

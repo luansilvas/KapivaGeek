@@ -6,6 +6,7 @@
 package br.senac.sp.servlet.Pagamento;
 
 import br.senac.sp.model.Card;
+import br.senac.sp.model.Customer;
 import br.senac.sp.model.Payment;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,16 +44,19 @@ public class choosePayment_Servlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/revisarPedido.jsp").forward(request, response);
 
         } else {
+            
             String card_number = request.getParameter("numCartao");
             String cvv = request.getParameter("cvv");
             String exp = request.getParameter("exp");
-            String printedName = request.getParameter("printedName");
+            String printedName = request.getParameter("printedName");         
             int payment_instalments = Integer.parseInt(request.getParameter("parcelas"));
-
-            c = new Card(card_number, cvv, exp, printedName, "CCredito", payment_instalments, "pending");
-            CreditCardValidation cv = new CreditCardValidation();
-
             
+            Customer usuario = (Customer) sessao.getAttribute("user");
+            
+            c = new Card(card_number, cvv, exp, printedName,usuario.getCustomer_id() ,"Cartao de Credito", payment_instalments, "pending");
+            
+            System.out.println("AQUI O CARTAO HEIN"+c);
+            CreditCardValidation cv = new CreditCardValidation();
             try {
                 List<String> errorList = cv.CheckCCData(c);
                 if (errorList.size() == 0) {
