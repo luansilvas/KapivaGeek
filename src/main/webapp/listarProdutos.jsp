@@ -29,8 +29,8 @@
             <c:when test="${sessionScope.emp!= null}">
                 <div class="containerMain">
 
-                    <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                        ADD
+                    <a type="button" class="btn " data-toggle="modal" data-target="#exampleModalCenter">
+                        <img src="icons/car.png">
                     </a>
                     <form method="post" action="${pageContext.request.contextPath}/quantidade" >
 
