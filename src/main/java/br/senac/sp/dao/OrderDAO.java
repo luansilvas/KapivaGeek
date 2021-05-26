@@ -119,7 +119,7 @@ public class OrderDAO {
                 pedido.setPrice(rs.getDouble("price"));
                 pedido.setQuantity(rs.getInt("quantity"));
                 pedido.setPath_MainImg(rs.getString("path_img"));
-                System.out.println("ESSA É A FOTO + "+pedido.getPath_MainImg());
+                System.out.println("ESSA É A FOTO + " + pedido.getPath_MainImg());
                 prodBd.add(pedido);
             }
         } catch (ClassNotFoundException ex) {
@@ -135,15 +135,15 @@ public class OrderDAO {
         String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,purchaseorder_status  from purchaseorder ORDER BY diaPedido";
         List<Order> orders = new LinkedList<>();
         SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
-        
+
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-               
+
                 Date data = rs.getDate("diaPedido");
                 String dataFormat = dataFormatada.format(data);
-            
+
                 Order order = new Order();
                 order.setPurchaseorder_id(rs.getString("purchaseorder_id"));
                 order.setDiaPedido(dataFormat);
@@ -162,7 +162,6 @@ public class OrderDAO {
 
     public static boolean updateStatus(String status, String id) {
         String sql = "UPDATE purchaseorder SET purchaseorder_status = ? WHERE purchaseorder_id = ? ";
-       
 
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -176,27 +175,54 @@ public class OrderDAO {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        
+
         return false;
     }
-    
-    
-    
-    
-    
-     public static List<Order> getOrderById( String id) {
-        String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,payment_payment_id,address_address_id,purchaseorder_status  from purchaseorder  WHERE purchaseorder_id = '"+id+"' ORDER BY diaPedido";
+
+    public static List<Order> getOrderById(String id) {
+        String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,payment_payment_id,address_address_id,purchaseorder_status  from purchaseorder  WHERE purchaseorder_id = '" + id + "' ORDER BY diaPedido";
         List<Order> orders = new LinkedList<>();
         SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
-        
+
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-               
+
                 Date data = rs.getDate("diaPedido");
                 String dataFormat = dataFormatada.format(data);
-            
+
+                Order order = new Order();
+                order.setPurchaseorder_id(rs.getString("purchaseorder_id"));
+                order.setDiaPedido(dataFormat);
+                order.setPayment_payment_id(rs.getInt("payment_payment_id"));
+                order.setAddress_address_id(rs.getInt("address_address_id"));
+                order.setPurchaseorder_amount(rs.getDouble("purchaseorder_amount"));
+                order.setPurchaseorder_status(rs.getString("purchaseorder_status"));
+                orders.add(order);
+            }
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return orders;
+    }
+
+    public static List<Order> getOrderByDate(LocalDate data) {
+        String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,payment_payment_id,address_address_id,purchaseorder_status  from purchaseorder  WHERE diaPedido = '" + data + "'";
+        List<Order> orders = new LinkedList<>();
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        
+
+        try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Date datapesq = rs.getDate("diaPedido");
+                String dataFormat = dataFormatada.format(datapesq);
+
                 Order order = new Order();
                 order.setPurchaseorder_id(rs.getString("purchaseorder_id"));
                 order.setDiaPedido(dataFormat);

@@ -103,6 +103,7 @@
                             <table border =1 class="table table-striped" >
                                 <thead class="thead-dark">   
                                     <tr >
+                                        <th>Código do Produto</th>
                                         <th>Nome do produto</th>
                                         <th>Qnt. Estoque</th> 
                                         <th>Status</th>
@@ -115,7 +116,7 @@
                                 <c:forEach items="${productList}" var="p">
 
                                     <tr>
-
+                                        <td>${p.productId}</td>
                                         <td>${p.productName}</td>
                                         <td>
                                             ${p.getQuantity()}  

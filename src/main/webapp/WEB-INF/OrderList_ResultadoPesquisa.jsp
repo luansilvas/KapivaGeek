@@ -27,11 +27,16 @@
             <c:when test="${sessionScope.emp!= null}">
 
                 <h1>Pedidos</h1>
-                <div class="container">
-                    <form method="post" action="${pageContext.request.contextPath}/orderlist?id=${o.purchaseorder_id}">
+                <<div class="container">
+                    <form method="post" action="${pageContext.request.contextPath}/orderlistpesq">
                         <label>Pedido</label>
-                        <input class="form-control" type="text" name="pesquisa" placeholder="Digite o ID do pedido">
-                        <input type="submit" >
+                        <div class="row">
+                            <input class="form-control col-md-4" type="text" name="pesquisa" placeholder="Digite o ID do pedido" style="margin-right: 10px">
+                            
+                            <input class="form-control col-md-2" type="date" name="dataPesq" >
+                            
+                        </div>
+                        <input type="submit" class="btn btn-primary ">
                     </form>
                 </div>
                 <table class="table table-striped" id="product-listing" >

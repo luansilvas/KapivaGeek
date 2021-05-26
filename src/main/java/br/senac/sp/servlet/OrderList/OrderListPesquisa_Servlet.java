@@ -9,6 +9,7 @@ import br.senac.sp.dao.OrderDAO;
 import br.senac.sp.model.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,10 +34,18 @@ public class OrderListPesquisa_Servlet extends HttpServlet {
             throws ServletException, IOException {
         
         String id = (String) request.getParameter("pesquisa");
+        LocalDate data =  LocalDate.parse(request.getParameter("dataPesq"));
+        System.out.println(data);
         
-        System.out.println(id);
+       if(!id.equals("")){
         List<Order> orders = OrderDAO.getOrderById(id);
         request.setAttribute("order", orders);
+       }
+       else if(!data.equals("")){
+           System.out.println("passou");
+       List<Order> orders = OrderDAO.getOrderByDate(data);
+        request.setAttribute("order", orders);
+       }
         request.getRequestDispatcher("/WEB-INF/OrderList_ResultadoPesquisa.jsp").forward(request, response);
 
         
