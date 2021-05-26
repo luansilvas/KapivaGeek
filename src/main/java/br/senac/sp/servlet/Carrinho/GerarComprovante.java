@@ -38,7 +38,7 @@ public class GerarComprovante extends HttpServlet {
         try {
             HttpSession sessao = request.getSession();
             UUID codPedido = UUID.randomUUID();
-            sessao.setAttribute("codPedido", codPedido);
+            
 
             int codPagamento = 0;
             Payment formaPagamento = (Payment) sessao.getAttribute("pagamento");
@@ -67,7 +67,7 @@ public class GerarComprovante extends HttpServlet {
                 }
 
             }
-
+            request.setAttribute("codigoPedido", codPedido.toString().substring(0,8));
             request.setAttribute("valorCompraFeita", vlrTotal);
             sessao.removeAttribute("listaCarrinho");
             sessao.setAttribute("qtdeItensCarrinho", 0);

@@ -233,6 +233,10 @@
         <servlet-name>AtualizarQuantidadeProduto_Servlet</servlet-name>
         <servlet-class>br.senac.sp.servlet.productManagement.AtualizarQuantidadeProduto_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getProduct_Servlet</servlet-name>
+        <servlet-class>br.senac.sp.servlet.getProduct_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UploadImageServlet</servlet-name>
         <url-pattern>/UploadImageServlet</url-pattern>
@@ -451,6 +455,10 @@
     <servlet-mapping>
         <servlet-name>AtualizarQuantidadeProduto_Servlet</servlet-name>
         <url-pattern>/quantidade</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getProduct_Servlet</servlet-name>
+        <url-pattern>/getProduct_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>60</session-timeout>

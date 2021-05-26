@@ -48,7 +48,7 @@
                 <tbody>
                 <c:forEach items="${detalhesPedido}" var="p">
                     
-                        <tr>
+                        <tr style="border-top-color: white;">
                             <td><img class = "prod-img" src="${p.path_MainImg}"></td>
                             <td id="produto">
                                 <p>${p.productName}</p>
@@ -64,8 +64,6 @@
                             </td>
 
                         </tr>
-
-                    
                 </c:forEach>
                         
                         
