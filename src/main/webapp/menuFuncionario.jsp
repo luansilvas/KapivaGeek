@@ -46,7 +46,7 @@
                         </li>
                         
                         <li class="nav-item" id="navItem">
-                            <a class="nav-link" aria-current="page" href="ProductList_Servlet#">Produtos</a>
+                            <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/ProductList_Servlet">Produtos</a>
                         </li>
                     
                         <li class="nav-item" id="navItem" >

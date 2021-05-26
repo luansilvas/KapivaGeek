@@ -18,7 +18,7 @@ public class ConexaoDB {
     public static String DATABASE = "kapivageekdb";
 
     public static String LOGIN = "root";
-    public static String SENHA = "";
+    public static String SENHA = "03102327";
 
     public static String URL = "";
 

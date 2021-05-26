@@ -23,6 +23,11 @@
 
     </head>
     <body>
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
         <%@include file="menuFuncionario.jsp" %>  
 
         <c:choose>
@@ -103,6 +108,7 @@
                             <table border =1 class="table table-striped" >
                                 <thead class="thead-dark">   
                                     <tr >
+                                        <th>  </th>
                                         <th>Código do Produto</th>
                                         <th>Nome do produto</th>
                                         <th>Qnt. Estoque</th> 
@@ -116,6 +122,19 @@
                                 <c:forEach items="${productList}" var="p">
 
                                     <tr>
+                                        <td>
+                                            <c:if test="${p.quantity eq 10}">
+                                                <span><img src="icons/atencao.png"  data-toggle="tooltip" data-placement="left" title="Atenção a quantidade de produtos em estoque"></span>
+                                                </c:if>
+
+                                            <c:if test="${p.quantity < 10}">
+                                                <span><img src="icons/marca-x.png"  data-toggle="tooltip" data-placement="left" title="Baixa quantidade em estoque"></span>
+                                                </c:if>     
+
+                                            <c:if test="${p.quantity > 10}">
+                                                <span><img src="icons/simbolo-correto.png"  data-toggle="tooltip" data-placement="left" title="Estoque Ok"></span>
+                                                </c:if> 
+                                        </td>
                                         <td>${p.productId}</td>
                                         <td>${p.productName}</td>
                                         <td>
