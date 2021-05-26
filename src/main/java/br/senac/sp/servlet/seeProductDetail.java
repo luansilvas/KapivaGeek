@@ -64,7 +64,7 @@ public class seeProductDetail extends HttpServlet {
             
             
 
-            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/seeProductDetails.jsp");
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/visualizeProductDetails.jsp");
             requestDispatcher.forward(request, response);
         } catch (Exception e) {
             RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/Home_Servlet");

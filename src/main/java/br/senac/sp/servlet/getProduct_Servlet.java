@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.sp.servlet.Carrinho;
+package br.senac.sp.servlet;
 
 import br.senac.sp.dao.ProductDAO;
 import br.senac.sp.model.Product;
+import br.senac.sp.servlet.Carrinho.Carrinho;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +20,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author adm
+ * @author luans
  */
-public class AdicionarDadosCarrinho extends HttpServlet {
+public class getProduct_Servlet extends HttpServlet {
 
-    @Override
+   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -59,7 +57,7 @@ public class AdicionarDadosCarrinho extends HttpServlet {
 
             sessao.removeAttribute("qtdeItensCarrinho");
             sessao.setAttribute("qtdeItensCarrinho", qtdeCarrinho);
-            response.sendRedirect(request.getContextPath() + "/Home_Servlet");
+            response.sendRedirect(request.getContextPath() + "/carrinho?acao=abrirCarrinho");
 
        
 

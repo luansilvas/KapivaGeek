@@ -21,7 +21,7 @@
     <body>
         <nav class="nav-wrapper white" id="menu-navbar">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo" id="title"><img src="icons/kapiva(logo).png" alt="" id="logo-icon">Kapiva
+                <a href="${pageContext.request.contextPath}/Home_Servlet" class="brand-logo" id="title"><img src="icons/kapiva(logo).png" alt="" id="logo-icon">Kapiva
                     Geek</a>
                 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons"
                                                                                id="menu-icon">menu</i></a>
@@ -38,7 +38,7 @@
                     <li><a href="<c:url value="/Home_Servlet?categoria=Camiseta+masculina"/>"><img src="" alt="" id="acessories-icon">Camisetas</a></li>
                     <li><a href="<c:url value="/Home_Servlet?categoria=Acessorio"/>"><img src="" alt="" id="universe-icon">Acessórios</a></li>
                     <li><a href="<c:url value="/Home_Servlet?categoria=Caneca"/>"><img src="" alt="" id="cart-icon">Canecas</a></li>
-                    <li><a href="<c:url value="/Home_Servlet?categoria=variedade"/>><img src="" alt="" id="user-icon">Utilidades</a></li>
+                    <li><a href="<c:url value="/Home_Servlet?categoria=Variedade"/>"><img  id="user-icon">Utilidades</a></li>
 
                 </ul>
 

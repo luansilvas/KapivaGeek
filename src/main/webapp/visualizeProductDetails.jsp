@@ -1,40 +1,27 @@
 <%-- 
-    Document   : seeProductDetails
-    Created on : 20/03/2021, 14:21:44
+    Document   : visualizeProductDetails
+    Created on : 25/05/2021, 18:05:03
     Author     : luans
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Comprar ${product.productName}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link href="css/style.css" rel="stylesheet" type="text/css">
-
-
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/visualizeProductDetailsStyle.css" rel="stylesheet" type="text/css">
+        <title>JSP Page</title>
     </head>
     <body>
-
-        
-        
-        <a href="<c:url value="/Home_Servlet?categoria=all"/>" class="go-back">
-            <img src="icons/left-arrow.png">
-        </a>
-
+        <%@include file="menu.jsp" %>
         <div id="content-wrapper">
-
             <div class="column">
-                <img id=featured src="${mainImage.path}">
+                <img id="featured" src="${mainImage.path}">
 
-                <div id="slide-wrapper" >
+                <div id="slide-wrapper">
                     <img id="slideLeft" class="arrow" src="icons/left-chevron.png">
 
                     <div id="slider">
-
                         <c:forEach items="${imageList}" var="image">
                             <img class="thumbnail" src="${image.path}">
 
@@ -47,27 +34,27 @@
 
             <div class="column">
                 <h1>${product.productName}</h1>
+                <h3>
+                    <p>R$ ${product.price}</p>
+                </h3>
                 <br>
-                <p>Classificação:<c:forEach items="${Stars}" var="stars">
-                    <img src="icons/mushroom.png" class="mushrooms">
-                </c:forEach> </p>
 
-                <br>
                 <div id="product-full-name">
+                    <h5>Descrição:</h5>
                     <p>${product.productFullName}</p>
+                    <p>Classificação:<c:forEach items="${Stars}" var="stars">
+                            <img src="icons/mushroom.png" class="mushrooms">
+                        </c:forEach> </p>
                 </div>
-
-
-            </div>
-            <div class="column">
-
-                <h3><p>R$ ${product.price}</p></h3>
-                <a class="btn btn-dark" href="#">Comprar</a>
+                <div class="botao">
+                    <a class="btn btn-dark" href="${pageContext.request.contextPath}/getProduct_Servlet?productId=${product.productId}">Eu quero!</a>
+                </div>
 
 
             </div>
 
         </div>
+
 
         <script type="text/javascript">
             let thumbnails = document.getElementsByClassName('thumbnail')
@@ -100,9 +87,30 @@
             buttonRight.addEventListener('click', function () {
                 document.getElementById('slider').scrollLeft += 180
             })
-
-
         </script>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <script>
 
-    </body>
+
+            $('.button-collapse').sideNav({
+                menuWidth: 300, // Default is 300
+                edge: 'left', // Choose the horizontal origin
+                closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                draggable: true // Choose whether you can drag to open on touch screens,
+            }
+            );
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var elems = document.querySelectorAll('.sidenav');
+                var instances = M.Sidenav.init(elems);
+            });
+
+
+            $(document).ready(function () {
+                $('.slider').slider();
+            });
+    </script>
+</body>
 </html>

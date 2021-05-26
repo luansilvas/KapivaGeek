@@ -30,7 +30,7 @@
         
         <h1 class="thanks" style="text-align: center;margin-top:10%">Obrigado por comprar com a gente!</h1>
        
-        <h5 class="thanks" style="text-align: center;">Acompanhe sua compra de valor R$${Math.ceil(valorCompraFeita)} pelo código ${sessionScope.codPedido}</h5>
+        <h5 class="thanks" style="text-align: center;">Acompanhe sua compra de valor R$${Math.ceil(valorCompraFeita)} pelo código ${codigoPedido}</h5>
         
                     <a href="${pageContext.request.contextPath}/Home_Servlet" id="go-back" style="margin-top: 10%;text-align: center;">
                 Continuar comprando

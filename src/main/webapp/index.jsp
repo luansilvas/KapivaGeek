@@ -73,7 +73,7 @@
             </ul>
         </div>
 
-        <div class="row" style="margin-top: -80px;">
+        <div class="row" style="margin-top: -20px;">
             <form class="col s12" action="Home_Servlet" method="POST">
                 <div class="row" id="search-bar">
                     <div class="input-field col s12">
@@ -164,7 +164,7 @@
                         <c:forEach items="${camisetasMasc}" var="cm">
 
                             <div class="product-card">
-                                <a href="Comprar.html">
+                                <a href="<c:url value="/seeProductDetail?productId=${cm.productId}"/>">
                                     <img class="product-img" src="${cm.path_MainImg}">
                                 </a>                             
                                 <div class="add-cart-field" id="comprar">
@@ -200,7 +200,7 @@
                     <div class="category-category-carousel-container">
                         <c:forEach items="${camisetasFem}" var="cf">
                             <div class="product-card">
-                                <a href="#">
+                                <a href="<c:url value="/seeProductDetail?productId=${cf.productId}"/>">
                                     <img class="product-img" src="${cf.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
@@ -234,7 +234,7 @@
                     <div class="category-category-carousel-container">
                         <c:forEach items="${canecas}" var="c">
                             <div class="product-card">
-                                <a href=#">
+                                <a href="<c:url value="/seeProductDetail?productId=${c.productId}"/>">
                                     <img class="product-img" src="${c.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
@@ -270,7 +270,7 @@
                         <c:forEach items="${acessorios}" var="a">
 
                             <div class="product-card">
-                                <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  >
+                                <a href="<c:url value="/seeProductDetail?productId=${a.productId}"/>" >
                                     <img class="product-img" src="${a.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
@@ -296,11 +296,11 @@
         <c:if test="${hasVariedades eq 'true'}">
             <div class="row">
                 <section class="category-carousel" id="camisetas-femininas">
-                    <h3 class="category-title">Acessórios</h3>
+                    <h3 class="category-title">Variedades</h3>
                     <div class="category-category-carousel-container">
                         <c:forEach items="${variedades}" var="v">
                             <div class="product-card">
-                                <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  >
+                                <a href="<c:url value="/seeProductDetail?productId=${v.productId}"/>">
                                     <img class="product-img" src="${v.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
@@ -336,7 +336,7 @@
                         <c:forEach items="${resultado}" var="r">
 
                             <div class="product-card">
-                                <a href="${pageContext.request.contextPath}/AdicionarDadosCarrinho?productId=${cm.productId}"  >
+                                <a href="<c:url value="/seeProductDetail?productId=${r.productId}"/>">
                                     <img class="product-img" src="${r.path_MainImg}">
                                 </a>
                                 <div class="add-cart-field">
@@ -372,7 +372,7 @@
                             <c:forEach items="${resultado}" var="r">
 
                                 <div class="product-card">
-                                    <a href="#">
+                                    <a href="<c:url value="/seeProductDetail?productId=${r.productId}"/>">
                                         <img class="product-img" src="${r.path_MainImg}">
                                     </a>
                                     <div class="add-cart-field">

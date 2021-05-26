@@ -40,7 +40,6 @@ public class Inactive_Reactive_Prod_Servlet extends HttpServlet {
             request.setAttribute("statusValue", statusValue);
             request.setAttribute("product", prod);
  
- 
          RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Inactive_Reactive_Product.jsp");
         dispatcher.forward(request, response);
      

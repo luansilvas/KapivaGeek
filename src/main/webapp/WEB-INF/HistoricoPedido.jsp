@@ -51,7 +51,7 @@
                             <tbody>
                                 <tr>
                                     <td id="produto">
-                                        <p>${p.purchaseorder_id}</p>
+                                        <p>${p.purchaseorder_id.substring(0,8)}</p>
                                     </td>
                                     <td id="qtd" class="borda">
                                         <p>${p.diaPedido}</p>
