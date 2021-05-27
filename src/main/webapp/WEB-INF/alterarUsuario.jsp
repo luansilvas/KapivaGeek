@@ -60,7 +60,7 @@
                     </div>
 
                     <legend id="personal-data-label">Trocar Senha <a href="<c:url value="/updateCustomerPassword_Servlet?customerId=${user.customer_id}"/>"> <i><img src="icons/padlock.png"></i></a></legend>
-                    <legend id="personal-data-label">Histórico de Pagamento<a href="${request.pageContext.contextPath}OrderHistory_Servlet"> <i><img src ="icons/historico.png"></i></a></legend>
+                    <legend id="personal-data-label">Histórico de Compra<a href="${request.pageContext.contextPath}OrderHistory_Servlet"> <i><img src ="icons/historico.png"></i></a></legend>
                 </fieldset>
             </form>
 

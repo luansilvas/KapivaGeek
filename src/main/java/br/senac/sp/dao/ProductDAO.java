@@ -119,7 +119,7 @@ public class ProductDAO {
         return prodBd;
     }
           public ArrayList<Product> findProductByCategory(String categoria) {
-        String sql = "select p.prod_id, p.name_prod,p.long_name,p.price,pi.path_img from products as p inner JOIN product_img as pi on pi.prod_id = p.prod_id where pi.Main_img = 'true' and p.category =  '"+categoria+"' and p.status_prod='Ativo'";
+        String sql = "select p.prod_id, p.name_prod,p.long_name,p.price,p.stock,pi.path_img from products as p inner JOIN product_img as pi on pi.prod_id = p.prod_id where pi.Main_img = 'true' and p.category =  '"+categoria+"' and p.status_prod='Ativo'";
         ArrayList<Product> prodBd = new ArrayList<>();
         
 
@@ -134,6 +134,7 @@ public class ProductDAO {
                 prod.setProductFullName(rs.getString("long_name"));
                 prod.setPrice(rs.getDouble("price"));
                 prod.setPath_MainImg(rs.getString("path_img"));
+                prod.setQuantity(rs.getInt("stock"));
                 
                 prodBd.add(prod);
             }
