@@ -141,7 +141,7 @@
                                             <h3 class="">${b.productName}</h3>
                                         </a>
                                         <h5 class="price">${b.price}</h5>
-                                        <p>${b.quantity}</p>
+                                        
                                         <br>
                                         <div class="stars">
                                             <i class="fas fa-star"></i>

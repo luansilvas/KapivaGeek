@@ -28,6 +28,7 @@ public class ProductList_Servlet extends HttpServlet {
         ProductDAO productDAO = new ProductDAO();
         List<Product> lista = new ArrayList();
         lista = productDAO.findProduct();
+        atualizaStatusProduto(lista);
         request.setAttribute("productList", lista);
         request.setAttribute("ultimoId", lista.get(lista.size() - 1));
         request.setAttribute("primeiroId", lista.get(0));
@@ -57,4 +58,15 @@ public class ProductList_Servlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    public void atualizaStatusProduto(List<Product> prod){
+        ProductDAO dao = new ProductDAO();
+        for(Product p: prod){
+            if(p.getQuantity()< 10)
+                dao.StatusUpdate(p.getProductId(), "Inativo");
+            else
+                dao.StatusUpdate(p.getProductId(), "Ativo");
+                
+        }
+    }
+    
 }

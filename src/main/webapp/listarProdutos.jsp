@@ -128,7 +128,7 @@
                                                 </c:if>
 
                                             <c:if test="${p.quantity < 10}">
-                                                <span><img src="icons/marca-x.png"  data-toggle="tooltip" data-placement="left" title="Baixa quantidade em estoque"></span>
+                                                <span><img src="icons/marca-x.png"  data-toggle="tooltip" data-placement="left" title="Baixa quantidade em estoque seu produto foi Inativado"></span>
                                                 </c:if>     
 
                                             <c:if test="${p.quantity > 10}">

@@ -49,7 +49,7 @@
                                 <p class="titulos">Data</p>
                             </th>
                             <th class="valores" scope="col">
-                                <p class="titulos">Valor Total sem frete</p>
+                                <p class="titulos">Valor Total</p>
                             </th>
                             <th class="valores" scope="col">
                                 <p class="titulos">Status</p>
