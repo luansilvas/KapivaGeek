@@ -35,7 +35,7 @@
             <div class="column">
                 <h1>${product.productName}</h1>
                 <h3>
-                    <p>R$ ${product.price}</p>
+                    <p>R$ ${Math.round(product.price)}</p>
                 </h3>
                 <br>
 

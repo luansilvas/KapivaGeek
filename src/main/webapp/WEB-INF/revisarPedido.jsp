@@ -70,10 +70,10 @@
                                                 ${p.quantity}
                                         <a  href="<c:url value="/ChangeCartItem_Servlet?prodId=${p.productId}&acao=adicionar"/>"><i><img class="change-quantity" src="icons/add24px.png"></i></a>
                                     </td>
-                                    <td>R$ ${Math.ceil(p.price)}</td>
+                                    <td>R$ ${Math.round(p.price)}</td>
 
                                     </a>
-                                     <td>R$ ${Math.ceil(p.totalPrice)}</td>       
+                                     <td>R$ ${Math.round(p.totalPrice)}</td>       
                                                                          <td>
                                         <a href="<c:url value="/ChangeCartItem_Servlet?prodId=${p.productId}&acao=deletar"/>">
                                             <i><img src="icons/delete.png"></i>
@@ -87,7 +87,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>Frete:</td>
-                                <td>R$ ${Math.ceil(valorFrete)}</td>
+                                <td>R$ ${Math.round(valorFrete)}</td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -95,7 +95,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>Total:</td>
-                                <td>R$ ${Math.ceil(valorTotal+valorFrete)}</td>
+                                <td>R$ ${Math.round(valorTotal+valorFrete)}</td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -166,7 +166,7 @@
                             <tr>
                                 <td>${sessionScope.pagamento.payment_way}</td>
                                 <td>${sessionScope.pagamento.payment_instalments}</td>
-                                <td>${Math.ceil((valorTotal+valorFrete)/sessionScope.pagamento.payment_instalments)}</td>
+                                <td>${Math.round((valorTotal+valorFrete)/sessionScope.pagamento.payment_instalments)}</td>
                             </tr>
 
                         </tbody>

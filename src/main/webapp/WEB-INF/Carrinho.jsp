@@ -79,10 +79,10 @@
                                         </div>
                                     </td>
                                     <td class="preco">
-                                        <p>R$ ${p.price}</p>
+                                        <p>R$ ${Math.round(p.price)}</p>
                                     </td>
                                     <td>
-                                        <p>${p.totalPrice}</p>
+                                        <p>${Math.round(p.totalPrice)}</p>
 
                                     </td>
                                     <td>
@@ -120,9 +120,9 @@
                     </c:if>
 
 
-                    <h3 id="valorTotal"  >Valor total: R$ ${Math.ceil(valorTotal)}
+                    <h3 id="valorTotal"  >Valor total: R$ ${Math.round(valorTotal)}
                         <c:if test="${addre != null}" >
-                            + Frete R$ ${Math.ceil(valorTotal*0.04)}
+                            + Frete R$ ${Math.round(valorTotal*0.04)}
                         </c:if>
                     
                    

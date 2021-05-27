@@ -54,7 +54,7 @@
                                 <p>${p.productName}</p>
                             </td>
                             <td id="qtd" class="borda">
-                                <p>R$ ${p.price}</p>
+                                <p>R$ ${Math.round(p.price)}</p>
                             </td>
                             <td class="preco">
                                 <p> ${p.quantity}</p>
@@ -79,7 +79,7 @@
                               Subtotal
                             </td>
                             <td class="preco">
-                                <p> ${valorTotal}</p>
+                                <p> ${Math.round(valorTotal)}</p>
                             </td>
 
                         </tr>
@@ -95,7 +95,7 @@
                               Frete
                             </td>
                             <td class="preco">
-                                <p> ${valorFrete}</p>
+                                <p> ${Math.round(valorFrete)}</p>
                             </td>
 
                         </tr>
@@ -111,7 +111,7 @@
                               Total
                             </td>
                             <td class="preco">
-                                <p> ${valorTotal+valorFrete}</p>
+                                <p> ${Math.round(valorTotal+valorFrete)}</p>
                             </td>
 
                         </tr>
