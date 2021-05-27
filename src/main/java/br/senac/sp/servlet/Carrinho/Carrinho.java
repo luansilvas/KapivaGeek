@@ -24,6 +24,8 @@ public class Carrinho extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        System.out.println("AGORA POR AQUI HEIN");
         HttpSession sessao = request.getSession();
         List<Product> listaCarrinho = (List<Product>) sessao.getAttribute("listaCarrinho");
         int qtdeCarrinho = (int)sessao.getAttribute("qtdeItensCarrinho");
@@ -40,6 +42,7 @@ public class Carrinho extends HttpServlet {
             }
 
         } 
+        
         else if (acao.equals("adicionar")) {
 
             if (sessao.getAttribute("listaCarrinho") == null) {

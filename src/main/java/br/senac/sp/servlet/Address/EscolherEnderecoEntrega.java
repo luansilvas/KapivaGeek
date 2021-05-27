@@ -55,9 +55,7 @@ public class EscolherEnderecoEntrega extends HttpServlet {
             sessao.setAttribute("deliveryAddress", enderecoEscolhido);
             double valorTotal = (double) sessao.getAttribute("valorTotal");
             sessao.setAttribute("valorFrete", valorTotal * 0.02);
-            if (sessao.getAttribute("pagamento") != null) {
-                request.getRequestDispatcher("/WEB-INF/revisarPedido.jsp").forward(request, response);
-            }
+
             request.getRequestDispatcher("/WEB-INF/EscolherFormaPagamento.jsp").forward(request, response);
 
         } else {
