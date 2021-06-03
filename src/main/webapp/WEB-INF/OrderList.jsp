@@ -90,7 +90,7 @@
                                                 <input type="submit" class="dropdown-item" name="acao" value="Pagamento com sucesso">
                                                 <input type="submit" class="dropdown-item" name="acao" value="Aguardando retirada">
                                                 <input type="submit" class="dropdown-item" name="acao" value="Em trânsito">
-                                                <input type="submit" class="dropdown-item" name="acao" value="Entrege">
+                                                <input type="submit" class="dropdown-item" name="acao" value="Entregue">
                                             </div>
                                         </div>
 
