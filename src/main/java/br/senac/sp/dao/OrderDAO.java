@@ -76,15 +76,14 @@ public class OrderDAO {
     public static List<Order> getOrders(int customerId) {
         String sql = "select * from purchaseorder where customer_customer_id=" + customerId + " order by diaPedido desc;";
         ArrayList<Order> prodBd = new ArrayList<>();
-        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+       
 
         try (Connection conn = ConexaoDB.abrirConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {// enquanto tiver empresas adiciona no array
 
-                Date data = rs.getDate("diaPedido");
-                String dataFormat = dataFormatada.format(data);
+              
                 
                 Order pedido = new Order();
                 pedido.setPurchaseorder_id(rs.getString("purchaseorder_id"));
@@ -94,7 +93,7 @@ public class OrderDAO {
                 pedido.setPurchaseorder_status(rs.getString("purchaseorder_status"));
                 pedido.setAddress_address_id(rs.getInt("address_address_id"));
                 pedido.setPurchaseorder_status(rs.getString("purchaseorder_status"));
-                pedido.setDiaPedido(dataFormat);
+                pedido.setDiaPedido(rs.getString("diaPedido"));
                 System.out.println("ESSE É O ID DO PEDIDO " + pedido.getPurchaseorder_id());
                 prodBd.add(pedido);
             }
@@ -136,7 +135,7 @@ public class OrderDAO {
     }
 
     public static List<Order> getOrders() {
-        String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,purchaseorder_status  from purchaseorder ORDER BY diaPedido";
+        String sql = "select purchaseorder_id, diaPedido,purchaseorder_amount,purchaseorder_status  from purchaseorder ORDER BY diaPedido DESC";
         List<Order> orders = new LinkedList<>();
         SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
 

@@ -144,7 +144,7 @@
                                         <td>${p.getStatus()}</td>
                                         <td><a href="<c:url value="/AlterarProduto?codProduto=${p.productId}"/>">EDITAR</a></td>
                                         <td><a href="<c:url value="/InactiveReactive?codProduto=${p.productId}"/>">INATIVAR/REATIVAR</a></td>
-                                        <td><a href="<c:url value="/VisualizeProductImageServlet?productId=${p.productId}"/>">VISUALIZAR</a></td>
+                                        <td><a href="<c:url value="/seeProductDetail?productId=${p.productId}"/>">VISUALIZAR</a></td>
                                     </tr>
                                 </c:forEach>                    
 
