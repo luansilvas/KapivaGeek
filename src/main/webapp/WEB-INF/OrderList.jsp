@@ -26,21 +26,24 @@
         <c:choose>
             <c:when test="${sessionScope.emp!= null}">
 
-                <h1>Pedidos</h1>
+              
                 <div class="container">
                     <form method="post" action="${pageContext.request.contextPath}/orderlistpesq">
                         <label>Pedido</label>
-                        <div class="row">
+                        <div class="row form-group">
                             <input class="form-control col-md-4" type="text" name="pesquisa" placeholder="Digite o ID do pedido" style="margin-right: 10px">
                             
                             <input class="form-control col-md-2" type="date" name="dataPesq" >
                             
+
                         </div>
-                        <input type="submit" class="btn btn-primary ">
+                     
+                         <input type="submit" class="btn btn-primary col-md-2">
+                        
                     </form>
                 </div>
-                <table class="table table-striped" id="product-listing" >
-                    <thead>
+                <table class="table table-striped " id="product-listing" >
+                    <thead class="thead-dark">
                         <tr>
                             <th class="tituloTabela" scope="col"> 
                                 <p id="prod" class="titulos">Id do Pedido</p>
@@ -62,7 +65,7 @@
                         </tr>
                     </thead>
                     <c:forEach items="${order}" var="o">
-                        <tbody>
+                        
                             <tr>
                                 <td id="produto">
                                     <p>${o.purchaseorder_id}</p>
@@ -99,7 +102,7 @@
 
                             </tr>
 
-                        </tbody>
+                      
                     </c:forEach>
                 </table>
             </c:when>
@@ -107,12 +110,6 @@
                 <p> Deu ruim</p>
             </c:otherwise>
         </c:choose>
-        <script>
-            const elemsDropdown = document.querySelector(".dropdown-trigger");
-            const instanceDropdown = M.Dropdown.init(elemsDropdown);
-
-
-        </script>
-
+  
     </body>
 </html>

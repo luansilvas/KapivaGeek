@@ -25,9 +25,9 @@
                     <legend>Lista funcionários</legend>  
 
                     <form id="barraPesquisa" method="post" action="ListEmployee_Servlet?currentRecord=0&acao=FirstAccess">
-                        <div id="input">
-
-                            <input id="pesquisar"type="text" name="pesquisa" placeholder="Pesquise um funcionário">
+                        <div id="input" class="form-group row">
+                            <p class="col-md-1"></p>
+                            <input class="form-control" id="pesquisar"type="text" name="pesquisa" placeholder="Pesquise um funcionário">
                             <input type="hidden" name="firstId" value="${primeiroId.getProductId()}">                       
                             <button id="lupa" style="border: none;color:white;background-color: white">
                                 <label>
@@ -49,10 +49,10 @@
 
                     <br>
                     <div>
-                        <table border =1 class="table table-striped" >
+                        <table class="table table-striped" >
                             <thead class="thead-dark">   
                                 <tr >
-                                    <th>Nome</th> 
+                                    <th >Nome</th> 
                                     <th>Tipo</th>
                                     <th>Status</th>
                                         <c:if test="${sessionScope.emp.employeeRole.equals('Administrador')}">

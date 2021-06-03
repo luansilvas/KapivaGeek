@@ -26,8 +26,8 @@
         <c:choose>
             <c:when test="${sessionScope.emp!= null}">
 
-                <h1>Pedidos</h1>
-                <<div class="container">
+             
+                <div class="container">
                     <form method="post" action="${pageContext.request.contextPath}/orderlistpesq">
                         <label>Pedido</label>
                         <div class="row">

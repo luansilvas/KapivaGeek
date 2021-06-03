@@ -19,7 +19,6 @@ public class ConexaoDB {
 
     public static String LOGIN = "root";
     public static String SENHA = "";
-
     public static String URL = "";
 
     public static Connection CONEXAO;
