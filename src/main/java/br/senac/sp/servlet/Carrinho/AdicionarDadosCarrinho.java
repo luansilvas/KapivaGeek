@@ -52,8 +52,7 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             Product produtoBD = ProductDAO.findProductById(produto);
             Product p = iniciarQtd(produtoBD);
          
-            Product p = iniciarQtd(produtoBD); //INICIALIZA A QUANTIDADE DO PRODUTO =1
-            System.out.println("ESSE PRODUTO TEM no banco"+produtoBD.getQuantity());
+          
             if (!find(listCarrinho, p.getProductId()) || listCarrinho.isEmpty()) {
                 qtdeCarrinho+=1;
                 listCarrinho.add(p);
