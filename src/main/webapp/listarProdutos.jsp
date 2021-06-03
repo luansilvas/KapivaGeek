@@ -80,9 +80,9 @@
                         <legend>Listar produtos</legend>  
 
                         <form id="barraPesquisa" method="post" action="ProductList_Servlet">
-                            <div id="input">
-
-                                <input id="pesquisar"type="text" name="pesquisa" placeholder="Pesquise um produto">
+                            <div id="input" class="form-group row">
+                                <p class="col-md-1"></p>
+                                <input class="form-control" id="pesquisar" type="text" name="pesquisa" placeholder="Pesquise um produto">
                                 <input type="hidden" name="firstId" value="${primeiroId.getProductId()}">                       
                                 <button id="lupa" style="border: none;color:white;background-color: white">
                                     <label>
@@ -105,14 +105,14 @@
 
                         <br>
                         <div>
-                            <table border =1 class="table table-striped" >
+                            <table class= "table  table table-striped" >
                                 <thead class="thead-dark">   
                                     <tr >
                                         <th>  </th>
                                         <th>Código do Produto</th>
                                         <th>Nome do produto</th>
                                         <th>Qnt. Estoque</th> 
-                                        <th>Status</th>
+                                        <th >Status</th>
                                         <th>Editar</th>
                                         <th>Inativar/Reativar</th>
                                         <th>Visualizar</th>
@@ -137,9 +137,9 @@
                                         </td>
                                         <td>${p.productId}</td>
                                         <td>${p.productName}</td>
-                                        <td>
+                                        <td class="row">
                                             ${p.getQuantity()}  
-                                            <a href="<c:url value="/quantidade?id=${p.productId}" />" style="margin-right: 10px;"><img src="icons/add24px.png"></a>
+                                            <a style="margin:0 10px;" href="<c:url value="/quantidade?id=${p.productId}" />" style="margin-right: 10px;"><img src="icons/add24px.png"></a>
                                         </td>
                                         <td>${p.getStatus()}</td>
                                         <td><a href="<c:url value="/AlterarProduto?codProduto=${p.productId}"/>">EDITAR</a></td>
