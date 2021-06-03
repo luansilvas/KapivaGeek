@@ -33,7 +33,7 @@ public class AdicionarDadosCarrinho extends HttpServlet {
         HttpSession sessao = request.getSession();
 
        
-        System.out.println("PASSOU POR AQUI HEIN");
+       
             if (sessao.getAttribute("listaCarrinho") == null) {
                 sessao.setAttribute("listaCarrinho", new ArrayList<Product>());
             }
@@ -51,7 +51,7 @@ public class AdicionarDadosCarrinho extends HttpServlet {
             //INICIALIZA A QUANTIDADE DO PRODUTO =1
             Product produtoBD = ProductDAO.findProductById(produto);
             Product p = iniciarQtd(produtoBD);
-            System.out.println("ESSE PRODUTO TEM no banco"+produtoBD.getQuantity());
+         
             if (!find(listCarrinho, p.getProductId()) || listCarrinho.isEmpty()) {
                 qtdeCarrinho+=1;
                 listCarrinho.add(p);
