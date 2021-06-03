@@ -35,7 +35,7 @@
                                     <p class="titulos">Data</p>
                                 </th>
                                 <th class="valores">
-                                    <p class="titulos">Valor Total sem frete</p>
+                                    <p class="titulos">Valor Total</p>
                                 </th>
                                 <th class="valores">
                                     <p class="titulos">Status</p>
@@ -57,7 +57,7 @@
                                         <p>${p.diaPedido}</p>
                                     </td>
                                     <td class="preco">
-                                        <p>R$ ${p.purchaseorder_amount}</p>
+                                        <p>R$ ${Math.round(p.purchaseorder_amount)}</p>
                                     </td>
                                      <td>
                                         <p>${p.purchaseorder_status}</p>
